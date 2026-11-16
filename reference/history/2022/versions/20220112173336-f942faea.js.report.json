@@ -1,0 +1,33 @@
+{
+  "decoderFamily": "rotated-custom-base64",
+  "bodySha256": "caabf166e019ae71004e0ef386388f168e5d24373ec764bef86e669ada3dd31a",
+  "stringTableEntries": 4411,
+  "decodedCalls": 18760,
+  "foldedExpressions": 15745,
+  "decoderAudited": true,
+  "expandedApplicationVerified": true,
+  "removedBootstrapBytes": 76663,
+  "preservedLegacyScratchGlobals": [],
+  "constantBranchesRemoved": 248,
+  "preservedHoistedBindings": 248,
+  "sequencesExpanded": 872,
+  "explanatoryComments": 424,
+  "renamedBindings": 2342,
+  "transferredNameHints": 911,
+  "readableApplicationVerified": true,
+  "naming": "Heuristic structural alignment, inferred roles, and contextual fallback; not recovered author names",
+  "outputSha256": "be57381ee5cfeb48ba4ee64ae59029fad865ba293c57bae1c0988c3d5fcc7931",
+  "toolFingerprint": "f0c4a287d91e4d78e8c76a12070e3257817113b33fea6f62dec16e8db5e88cb4",
+  "inputSha256": "caabf166e019ae71004e0ef386388f168e5d24373ec764bef86e669ada3dd31a",
+  "namesSha256": "b6d5f15e775610d823565283eecfa329abfcf96c83c3a070e85aef7155945c08",
+  "bootstrapProtection": {
+    "features": [
+      "console suppression",
+      "function-source self-defense"
+    ],
+    "implementationFingerprint": "6410520ff5925729878cafae",
+    "assessment": "Static classification of deliberately removed obfuscator guards; an implementation fingerprint change can be generated obfuscation noise, not a new protection."
+  },
+  "revalidatedWithToolFingerprint": "e39ad42638b937a610216f0ef611ca220eba904b7c9a3064529c18122c600b1a",
+  "revalidatedAt": "2026-11-16T19:43:17.961Z"
+}

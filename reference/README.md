@@ -1,13 +1,17 @@
 # Supplied JavaScript: deobfuscated reference
 
-The latest readable source includes explanatory comments for protocol-sensitive
+The latest readable source includes 551 explanatory comment blocks for protocol-sensitive
 code, coordinate transforms, rendering, HTTP/realtime handling, and UI state.
 Its comment-only update was checked against the previous version's parsed code.
 
-For recovered 2026 captures and the separate live snapshot, see the
-[observed changelog](history/2026/CHANGELOG.md). The
+For recovered 2022–2026 captures and the separate live snapshot, see the
+[observed changelog](history/CHANGELOG.md). The
+[coverage report](history/COVERAGE.md) lists recovered captures and explicit gaps. The
 [archive deobfuscator documentation](../tools/deobfuscate/README.md) describes
 query-independent discovery, regeneration, verification, and coverage limits.
+Each update report includes inferred major feature changes and a security/anticheat
+section with source evidence. Coverage is limited to archived captures of this
+script pathname; missing captures and failed transformations remain explicit.
 
 ## Readable version
 

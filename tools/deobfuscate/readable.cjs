@@ -187,6 +187,16 @@ function simplify(ast) {
       },
     },
   });
+  // Splitting a sequence can expose a leading string expression. Keep it out
+  // of the directive prologue (especially "use strict") when printing/reparsing.
+  // Prettier preserves the distinction by parenthesizing the expression.
+  traverse(ast, {
+    "Program|BlockStatement"(p) {
+      const first = p.node.body[0];
+      if (t.isExpressionStatement(first) && t.isStringLiteral(first.expression))
+        p.node.body.unshift(t.emptyStatement());
+    },
+  });
   return counts;
 }
 

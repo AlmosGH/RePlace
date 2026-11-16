@@ -412,7 +412,8 @@ function rename(ast, options = {}) {
       for (const binding of Object.values(p.scope.bindings)) {
         if (
           !seen.has(binding) &&
-          /^_0x[\da-f]+$/i.test(binding.identifier.name)
+          (/^_0x[\da-f]+$/i.test(binding.identifier.name) ||
+            options.extraBindings?.includes(binding.identifier.name))
         ) {
           seen.add(binding);
           bindings.push(binding);
@@ -699,8 +700,51 @@ function rename(ast, options = {}) {
       `Review ${collisions.length} naming collisions in naming-review.json`,
     );
   }
-  for (const [binding, next] of planned)
-    binding.scope.rename(binding.identifier.name, next);
+  // Resolve every variable position before changing a name. Applying the plan
+  // in one pass avoids repeatedly traversing the large ready/initializer scope.
+  // Public property keys and labels are not variable positions.
+  const edits = [];
+  const declarations = new Map(
+    [...planned].map(([binding, name]) => [binding.identifier, name]),
+  );
+  traverse(ast, {
+    Identifier(p) {
+      if (declarations.has(p.node)) {
+        edits.push([p.node, declarations.get(p.node)]);
+        return;
+      }
+      const binding = p.scope.getBinding(p.node.name);
+      if (!planned.has(binding)) return;
+      const parent = p.parentPath;
+      if (
+        p.key === "property" &&
+        parent.isMemberExpression() &&
+        !parent.node.computed
+      )
+        return;
+      if (
+        p.key === "key" &&
+        (parent.isObjectProperty() || parent.isObjectMethod()) &&
+        !parent.node.computed
+      )
+        return;
+      if (p.isReferencedIdentifier() || p.isBindingIdentifier()) {
+        if (
+          parent.isObjectProperty() &&
+          p.key === "value" &&
+          parent.node.shorthand
+        )
+          parent.node.shorthand = false;
+        edits.push([p.node, planned.get(binding)]);
+      }
+    },
+  });
+  for (const [node, name] of edits) node.name = name;
+  traverse(ast, {
+    Program(p) {
+      p.scope.crawl();
+    },
+  });
   return manifest;
 }
 

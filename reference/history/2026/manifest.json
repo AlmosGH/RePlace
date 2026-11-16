@@ -51,7 +51,7 @@
       "mimetype": "application/javascript"
     }
   ],
-  "toolFingerprint": "c5e5a0cbb55c5f33da5f07cb49bb4325bbf63afcc26d27db3421a8146e2ddbc0",
+  "toolFingerprint": "3536ed58422f2fbb7adc30ab16463f706fe53b5f3e84aebacfb7a142a86c7207",
   "versions": [
     {
       "urlkey": "io,pixelplace)/js/script.min.js?v3=85030",
@@ -68,7 +68,7 @@
       "inputSha256": "a7be64ec2d8cb8802e2b42c2852c96c9b7e939108a5c74ee95a5da27d9bab537",
       "bytes": 1330793,
       "file": "versions/20260103192131-7c807d1b.js",
-      "outputSha256": "bdf8f1d74bbb348238976a108649b261083ca9fb1c290c57cdfe830e9344a660",
+      "outputSha256": "49845f39891053f83d3a3479383f12cfd0c086dff9a5fbeef2f2d97d8fd9effa",
       "report": "versions/20260103192131-7c807d1b.js.report.json",
       "names": "versions/20260103192131-7c807d1b.js.names.json"
     },
@@ -87,7 +87,7 @@
       "inputSha256": "13030f9b57ccfdb2c5495e42aec4ff3d0c49731ce40e46c802f677edf757f765",
       "bytes": 1365851,
       "file": "versions/20260227071834-18cc5114.js",
-      "outputSha256": "f78c84081df2cffb5cd6803da0f134ad2c747f22ad13012eee3559bc63779ea3",
+      "outputSha256": "c79565d6cbeaef78d3bf2493df33750b226be0a88eeafbf81fb68d6374df67cd",
       "report": "versions/20260227071834-18cc5114.js.report.json",
       "names": "versions/20260227071834-18cc5114.js.names.json"
     },
@@ -106,7 +106,7 @@
       "inputSha256": "88d77d3c9be4c715d5814329a49843d72b98f6c45479346bbfacbdadfe714100",
       "bytes": 1373269,
       "file": "versions/20260524052024-c5d5ffa7.js",
-      "outputSha256": "47aa22e4dcbf376152da071af2403a8ba54db340a42813b68f79936cc2d7ac34",
+      "outputSha256": "51c4046f196ca18cb4dda2b9745e74f2185b1868f63208273a8f12b009c003bd",
       "report": "versions/20260524052024-c5d5ffa7.js.report.json",
       "names": "versions/20260524052024-c5d5ffa7.js.names.json"
     },
@@ -125,7 +125,7 @@
       "inputSha256": "63b1d63cd99f2563b7e4ca7b8cfb9ccfef21cc4b73c918b6febd3ea0e5209916",
       "bytes": 1375353,
       "file": "versions/20260824144436-501ca950.js",
-      "outputSha256": "cb791aabf939702f00fb9e1d4a8d7ab4d04dce3af2acfc2d0d26decffb74c68f",
+      "outputSha256": "befd76be292bdf4455e8bba085f3e7e709a91070d357a4a386357da5fb447746",
       "report": "versions/20260824144436-501ca950.js.report.json",
       "names": "versions/20260824144436-501ca950.js.names.json"
     },
@@ -140,7 +140,7 @@
       "inputSha256": "b167480edb4b7ecf1a72edf006841a334d332727e933c0f9b9651646a1b5f220",
       "bytes": 1358228,
       "file": "versions/live.js",
-      "outputSha256": "c8235a5217da0cdaa3ed293e76a31320220692cad9d0ae4344a624b6e1b68d6d",
+      "outputSha256": "4495baef4d65b26365c68ce7eaa18ae88d3cb18980358d3e65ab0a5406d876bc",
       "report": "versions/live.js.report.json",
       "names": "versions/live.js.names.json"
     }
@@ -151,28 +151,37 @@
       "after": "20260227071834-18cc5114",
       "summary": "diffs/20260103192131-7c807d1b--20260227071834-18cc5114.md",
       "patch": "diffs/20260103192131-7c807d1b--20260227071834-18cc5114.patch",
-      "details": "diffs/20260103192131-7c807d1b--20260227071834-18cc5114.json"
+      "details": "diffs/20260103192131-7c807d1b--20260227071834-18cc5114.json",
+      "shortSummary": "Security/anticheat: candidates include CAPTCHA (+6/-8); synthetic input (+3/-3); sessions/authentication (+8/-7); placement cooldown/rate (+9/-15); permissions/moderation (+3/-5). Static observations; review source evidence. Removed obfuscator guard implementation differs; detected guard features are unchanged (possibly obfuscation noise).\nAccount and access: changed object.goBackFromCaptcha, changed runCaptchaAction; Canvas and placement: removed Everyday, you have a chance to earn one of the following daily reward: 3 coins - 26.8, removed drawBrushFrame; Guilds and social features: added /api/get-lovemail.php, added item.notification.lovemail; Store and inventory: added item.notification.lovemail, removed Everyday, you have a chance to earn one of the following daily reward: 3 coins - 26.8"
     },
     {
       "before": "20260227071834-18cc5114",
       "after": "20260524052024-c5d5ffa7",
       "summary": "diffs/20260227071834-18cc5114--20260524052024-c5d5ffa7.md",
       "patch": "diffs/20260227071834-18cc5114--20260524052024-c5d5ffa7.patch",
-      "details": "diffs/20260227071834-18cc5114--20260524052024-c5d5ffa7.json"
+      "details": "diffs/20260227071834-18cc5114--20260524052024-c5d5ffa7.json",
+      "shortSummary": "Security/anticheat: candidates include CAPTCHA (+3/-5); synthetic input (+3/-3); sessions/authentication (+4/-5); placement cooldown/rate (+20/-13); permissions/moderation (+9/-9). Static observations; review source evidence. Removed obfuscator guard features and implementation fingerprint unchanged.\nAccount and access: changed requestCaptcha, changed runCaptchaAction; Canvas and placement: added /pps - Toggle pixels per second display (shown while holding space), added Pixels per second display disabled; Guilds and social features: added chat.report.message, changed canvasRenderer.loadFriends; Store and inventory: changed canvasRenderer.loadFreeCoins, changed canvasRenderer.loadUserItems"
     },
     {
       "before": "20260524052024-c5d5ffa7",
       "after": "20260824144436-501ca950",
       "summary": "diffs/20260524052024-c5d5ffa7--20260824144436-501ca950.md",
       "patch": "diffs/20260524052024-c5d5ffa7--20260824144436-501ca950.patch",
-      "details": "diffs/20260524052024-c5d5ffa7--20260824144436-501ca950.json"
+      "details": "diffs/20260524052024-c5d5ffa7--20260824144436-501ca950.json",
+      "shortSummary": "Security/anticheat: candidates include CAPTCHA (+6/-6); synthetic input (+4/-5); sessions/authentication (+4/-4); client integrity/bot detection (+4/-0); placement cooldown/rate (+14/-9); permissions/moderation (+12/-7). Static observations; review source evidence. Removed obfuscator guard features and implementation fingerprint unchanged.\nAccount and access: added /api/xauth.php?client=, changed object.goBackFromCaptcha; Canvas and placement: changed animateWeaponEffect, changed applyPixelBatch; Guilds and social features: changed canvasRenderer.loadFriends, changed canvasRenderer.loadGuildMembers; Store and inventory: changed canvasRenderer.loadFreeCoins, changed canvasRenderer.loadUserItems"
     },
     {
       "before": "20260824144436-501ca950",
       "after": "live",
       "summary": "diffs/20260824144436-501ca950--live.md",
       "patch": "diffs/20260824144436-501ca950--live.patch",
-      "details": "diffs/20260824144436-501ca950--live.json"
+      "details": "diffs/20260824144436-501ca950--live.json",
+      "shortSummary": "Security/anticheat: candidates include CAPTCHA (+7/-4); synthetic input (+4/-2); sessions/authentication (+8/-7); placement cooldown/rate (+14/-12); permissions/moderation (+4/-5). Static observations; review source evidence. Removed obfuscator guard features and implementation fingerprint unchanged.\nCanvas and placement: changed animateWeaponEffect, changed applyPixelBatch; Guilds and social features: added #guild .edit-guild-desc, added #guild .edit-guild-desc; Store and inventory: changed canvasRenderer.loadFreeCoins, changed canvasRenderer.loadUserItems; Realtime and connection handling: changed connectRealtime"
     }
-  ]
+  ],
+  "baseline": {
+    "id": "20260103192131-7c807d1b",
+    "summary": "BASELINE.md",
+    "shortSummary": "Initial observed baseline 20260103192131-7c807d1b. Security/anticheat: no earlier verified snapshot is available for comparison; security changes before this capture are unknown."
+  }
 }

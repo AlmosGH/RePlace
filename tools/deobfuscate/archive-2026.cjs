@@ -10,6 +10,7 @@ const { learn, hints, alignNames } = require("./name-model.cjs");
 const { resolveRoles } = require("./roles.cjs");
 const { rename } = require("./rename.cjs");
 const { annotate } = require("./annotate.cjs");
+const { preserveScratchBindings } = require("./binding-identity.cjs");
 const {
   restoreNames,
   annotateBindings,
@@ -52,6 +53,18 @@ async function transformVersion(source, reference, known, model) {
   // contains every application branch and every original binding identity.
   const expected = parse(print(expanded.ast)),
     counts = simplify(expanded.ast);
+  const removedBindings = new Set(expanded.bootstrapBindings || []);
+  const scratchBindings = preserveScratchBindings(
+    expanded.ast,
+    removedBindings,
+  );
+  if (scratchBindings.length)
+    expected.program.body.unshift(
+      t.variableDeclaration(
+        "var",
+        scratchBindings.map((name) => t.variableDeclarator(t.identifier(name))),
+      ),
+    );
   const proposed =
     expanded.report.bodySha256 === SOURCE_SHA256
       ? Object.fromEntries(
@@ -61,6 +74,35 @@ async function transformVersion(source, reference, known, model) {
           ...alignNames(reference, expanded.ast, known),
           ...hints(expanded.ast, model),
         };
+  Object.assign(
+    proposed,
+    Object.fromEntries(
+      scratchBindings.map((name) => {
+        let role = "legacyRendererScratch";
+        traverse(expanded.ast, {
+          AssignmentExpression(p) {
+            if (!t.isIdentifier(p.node.left, { name })) return;
+            const rhs = p.node.right;
+            if (t.isBinaryExpression(rhs, { operator: "%" }))
+              role = "imageColumnOffset";
+            else if (
+              t.isCallExpression(rhs) &&
+              t.isMemberExpression(rhs.callee) &&
+              t.isIdentifier(rhs.callee.object, { name: "Math" }) &&
+              t.isIdentifier(rhs.callee.property, { name: "floor" })
+            )
+              role = "imageRowOffset";
+            else if (
+              t.isMemberExpression(rhs) &&
+              t.isIdentifier(rhs.property, { name: "data" })
+            )
+              role = "paintingPixelData";
+          },
+        });
+        return [name, role];
+      }),
+    ),
+  );
   let names;
   for (let attempt = 0; attempt < 4; attempt++) {
     try {
@@ -68,6 +110,7 @@ async function transformVersion(source, reference, known, model) {
         reviewed: proposed,
         reviewPath: false,
         contextualFallback: true,
+        extraBindings: scratchBindings,
       });
       break;
     } catch (error) {
@@ -78,6 +121,12 @@ async function transformVersion(source, reference, known, model) {
     }
   }
   if (!names) throw Error("Unresolved semantic names");
+  if (expanded.sourceBindings)
+    names = names.map((entry) => ({
+      ...entry,
+      sourceOriginal: expanded.sourceBindings[entry.original]?.original,
+      sourceScope: expanded.sourceBindings[entry.original]?.scope,
+    }));
   const explanatoryComments = annotate(expanded.ast);
   traverse(expanded.ast, {
     NumericLiteral(p) {
@@ -101,6 +150,8 @@ async function transformVersion(source, reference, known, model) {
     names,
     report: {
       ...expanded.report,
+      preservedLegacyScratchGlobals: scratchBindings,
+      scratchNamingVersion: 1,
       ...counts,
       explanatoryComments,
       renamedBindings: names.length,
@@ -121,7 +172,15 @@ function options(args) {
   };
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
-    if (["--offline", "--rebuild", "--no-live", "--refresh"].includes(arg))
+    if (
+      [
+        "--offline",
+        "--rebuild",
+        "--no-live",
+        "--refresh",
+        "--revalidate-cache",
+      ].includes(arg)
+    )
       result[arg.slice(2).replace(/-([a-z])/g, (_, c) => c.toUpperCase())] =
         true;
     else if (
@@ -290,14 +349,66 @@ async function run(opts) {
         if (!opts.rebuild && fs.existsSync(reportFile)) {
           const cached = JSON.parse(fs.readFileSync(reportFile, "utf8"));
           if (
-            cached.toolFingerprint === toolFingerprint &&
             cached.inputSha256 === download.inputSha256 &&
             cached.outputSha256 ===
               sha256(fs.readFileSync(path.join(opts.out, file))) &&
             cached.namesSha256 ===
               sha256(fs.readFileSync(path.join(opts.out, file + ".names.json")))
-          )
-            report = cached;
+          ) {
+            if (
+              cached.toolFingerprint === toolFingerprint ||
+              cached.revalidatedWithToolFingerprint === toolFingerprint
+            )
+              report = cached;
+            else if (
+              opts.revalidateCache &&
+              cached.explanatoryComments > 45 &&
+              (!cached.preservedLegacyScratchGlobals?.length ||
+                cached.scratchNamingVersion === 1)
+            ) {
+              // Preserve the generation recipe as provenance. A fresh decoder
+              // audit and full application comparison validate reuse under the
+              // current verifier; this does not pretend the source was regenerated.
+              const expanded = expand(download.source),
+                expected = parse(print(expanded.ast)),
+                cleaned = parse(print(expanded.ast));
+              simplify(cleaned);
+              const scratch = preserveScratchBindings(
+                cleaned,
+                new Set(expanded.bootstrapBindings || []),
+              );
+              if (scratch.length)
+                expected.program.body.unshift(
+                  t.variableDeclaration(
+                    "var",
+                    scratch.map((name) =>
+                      t.variableDeclarator(t.identifier(name)),
+                    ),
+                  ),
+                );
+              try {
+                verifyApplication(
+                  expected,
+                  fs.readFileSync(path.join(opts.out, file), "utf8"),
+                  JSON.parse(
+                    fs.readFileSync(
+                      path.join(opts.out, file + ".names.json"),
+                      "utf8",
+                    ),
+                  ),
+                );
+                report = {
+                  ...cached,
+                  bootstrapProtection: expanded.report.bootstrapProtection,
+                  revalidatedWithToolFingerprint: toolFingerprint,
+                  revalidatedAt: new Date().toISOString(),
+                };
+                json(reportFile, report);
+              } catch {
+                /* Regenerate when the current baseline rejects an old output. */
+              }
+            }
+          }
         }
         if (!report) {
           const result = await transformVersion(
@@ -327,6 +438,12 @@ async function run(opts) {
           report: file + ".report.json",
           names: file + ".names.json",
         });
+        const reviewFile = path.join(
+          opts.out,
+          "versions",
+          version.id + ".review.json",
+        );
+        if (fs.existsSync(reviewFile)) fs.unlinkSync(reviewFile);
         seen.set(download.inputSha256, version);
       }
       console.log(

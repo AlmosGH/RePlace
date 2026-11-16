@@ -17,6 +17,8 @@ function isScriptUrl(text) {
 function parseCdx(text, year = 2026) {
   const data = JSON.parse(text),
     header = data[0];
+  if (Array.isArray(data) && data.length === 0)
+    return { rows: [], resumeKey: null };
   if (!Array.isArray(header)) throw Error("CDX response is not a table");
   for (const field of ["timestamp", "original", "digest", "statuscode"])
     if (!header.includes(field)) throw Error("CDX field missing: " + field);

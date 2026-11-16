@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "indexedCaptures": 183,
+  "verifiedCaptures": 180,
+  "liveSnapshots": 1,
+  "uniqueVerifiedSnapshots": 93,
+  "updateReports": 92,
+  "explanatoryCommentsAcrossUniqueSnapshots": 45042,
+  "unavailable": [
+    {
+      "id": "20220406233802-08de9dca",
+      "original": "https://pixelplace.io/js/script.min.js?v3=7072",
+      "error": "Source is not cached: https://pixelplace.io/js/script.min.js?v3=7072"
+    },
+    {
+      "id": "20231208043959-4deb5806",
+      "original": "https://pixelplace.io/js/script.min.js?v2=6058",
+      "error": "Source is not cached: https://pixelplace.io/js/script.min.js?v2=6058"
+    },
+    {
+      "id": "20231208044750-d3992925",
+      "original": "https://pixelplace.io/js/script.min.js?v2=6064",
+      "error": "Source is not cached: https://pixelplace.io/js/script.min.js?v2=6064"
+    }
+  ],
+  "checks": [
+    "Source and name-map hashes",
+    "Recorded decoder and structural verification provenance",
+    "JavaScript parsing and absence of obfuscated hex identifiers",
+    "Security/anticheat summary and obfuscator inventory on every update",
+    "Report, JSON and patch links"
+  ],
+  "applicationExecuted": false
+}

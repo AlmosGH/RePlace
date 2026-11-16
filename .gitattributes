@@ -3,6 +3,7 @@ reference/script.deobfuscated.js -text
 reference/script.readable.js -text
 reference/history/**/*.js -text
 reference/history/**/*.json text eol=lf
+reference/**/*.md text eol=lf
 reference/history/**/*.patch text eol=lf
 # Unified patches require a single-space prefix on empty context lines.
 reference/history/**/*.patch whitespace=-blank-at-eol,-blank-at-eof

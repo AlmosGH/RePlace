@@ -1,0 +1,1091 @@
+{
+  "before": "20221002145105-161d64dd",
+  "after": "20221018113848-6a06e81f",
+  "changes": {
+    "endpoints": {
+      "added": [
+        "/api/account-password.php",
+        "/api/account-username.php",
+        "/api/delete-painting.php",
+        "/api/forgot-activation.php",
+        "/api/forgot.php",
+        "/api/get-bot.php",
+        "/api/get-claims.php",
+        "/api/get-coin-island.php",
+        "/api/get-guild-members.php",
+        "/api/get-guild.php",
+        "/api/get-item.php",
+        "/api/get-jackpot-ticket.php",
+        "/api/get-my-friends.php",
+        "/api/get-my-items.php",
+        "/api/get-my-paintings.php",
+        "/api/get-painting-access.php",
+        "/api/get-painting-access.php?getAccessRequests=true&id=",
+        "/api/get-painting-access.php?getModerators=true&painting=",
+        "/api/get-painting-access.php?getPendingCount=true&id=",
+        "/api/get-painting-access.php?getStatus=true&painting=",
+        "/api/get-painting.php?id=",
+        "/api/get-user-guild.php",
+        "/api/get-user-sessions.php?username=",
+        "/api/get-user.php",
+        "/api/login.php",
+        "/api/manage-premium.php",
+        "/api/ping.php",
+        "/api/post-bio.php",
+        "/api/post-claim.php",
+        "/api/post-coin-island.php",
+        "/api/post-coins.php",
+        "/api/post-dailylootv3.php",
+        "/api/post-dailyreward.php",
+        "/api/post-delete.php",
+        "/api/post-friend.php",
+        "/api/post-guild-access.php",
+        "/api/post-guild-avatar.php",
+        "/api/post-guild-rank.php",
+        "/api/post-guild-transfer.php",
+        "/api/post-guild.php",
+        "/api/post-jackpot-ticket.php",
+        "/api/post-logout.php",
+        "/api/post-painting.php",
+        "/api/post-settings.php",
+        "/api/post-shop.php",
+        "/api/post-user-avatar.php",
+        "/api/register.php",
+        "/api/sso.php?type=3&action=login",
+        "/api/stripe.php"
+      ],
+      "removed": []
+    },
+    "emits": {
+      "added": [],
+      "removed": []
+    },
+    "listeners": {
+      "added": [],
+      "removed": []
+    },
+    "selectors": {
+      "added": [
+        "#tools .checkbox-protection-bg",
+        "#tools .radio",
+        "#tools .radio [name=\"radio-protection-tool\"][value=\"0\"]",
+        "#tools .radio [name=\"radio-protection-tool\"][value=\"4\"]",
+        "#tools > h1",
+        ".odds"
+      ],
+      "removed": []
+    },
+    "text": {
+      "added": [
+        "#tools .checkbox-protection-bg",
+        "#tools .radio [name=\"radio-protection-tool\"][value=\"0\"]",
+        "#tools .radio [name=\"radio-protection-tool\"][value=\"4\"]",
+        "Everyday, you have a chance to earn one of the following daily reward:\n3 coins - 28.82%\n5 coins - 26.17%\n10 coins - 23.12%\nMissile - 8.35%\nBomb - 5.24%\n30 coins - 3.15%\nAtomic bomb - 2.61%\n50 coins - 1.56%\n100 coins - 0.98%",
+        "Global Moderator Tools",
+        "Now filtering live tracking to only show this user pixels for the next 3 minutes",
+        "Pixelplace Moderators (Do not ping/contact admin)",
+        "Tracking filter expired",
+        "Tracking filter removed",
+        "You need to be a Premium Subscriber to pout more than 300 pixels. (Maximum 3000 x 3000 pixels for Premium)"
+      ],
+      "removed": [
+        ", the page will reload..",
+        "You need to be a Premium Subscriber to modify this setting. (Cooldown can be set to 0 second to be disabled or up to 1 hour)",
+        "You need to be a Premium Subscriber to modify this setting. (Maximum 3000 x 3000 pixels)"
+      ]
+    },
+    "functions": {
+      "added": [
+        "toggleInventory"
+      ],
+      "removed": [
+        "clickCallback",
+        "encodePayloadPacket"
+      ],
+      "changed": [
+        "animateWeaponExpansion",
+        "api.removeRequest",
+        "api.req",
+        "canvasRenderer.checkDuplicateFromPainting",
+        "canvasRenderer.checkProtectionFromPainting",
+        "canvasRenderer.checkSamePlaceThanLast",
+        "canvasRenderer.drawPixelAt",
+        "canvasRenderer.fetchPaintingAccess",
+        "canvasRenderer.fetchPaintingModerators",
+        "canvasRenderer.getUrlHash",
+        "canvasRenderer.loadBlocked",
+        "canvasRenderer.loadFreeCoins",
+        "canvasRenderer.loadFriends",
+        "canvasRenderer.loadGuildMembers",
+        "canvasRenderer.loadGuildMembersRequests",
+        "canvasRenderer.loadMyPaintings",
+        "canvasRenderer.loadPainting",
+        "canvasRenderer.loadPaintingList",
+        "canvasRenderer.loadUserItems",
+        "canvasRenderer.refreshPaintingList",
+        "canvasRenderer.selectPaletteColor",
+        "canvasRenderer.triggerCooldownPanel",
+        "canvasRenderer.updateScaleAndPosition",
+        "canvasRenderer.useItem",
+        "canvasRenderer.useWeapon",
+        "chat.addMessageRow",
+        "chat.checkOnlineDisplay",
+        "chat.display",
+        "chat.sendMessage",
+        "chat.updateNotificationCount",
+        "connectRealtime",
+        "formatElapsedTime",
+        "holidayTextHtml",
+        "initializePainting",
+        "itemNotificationUseCallback",
+        "object.closeModal",
+        "object.loadGuildData",
+        "object.loadGuilds",
+        "object.loadPaintingCreateOrEdit",
+        "object.loadTopUsers",
+        "object.onChangeTools",
+        "object.saveUserSettings",
+        "object.settingsPaintingSelectAccess",
+        "object.settingsPaintingSelectBackground",
+        "object.triggerFormInputError",
+        "object.triggerLoader",
+        "object.updateActiveContent",
+        "openCoinIsland",
+        "openGuild",
+        "openProfile",
+        "placeNextImagePixel",
+        "pointer.setCursorCoords",
+        "pointer.setCursorPosition",
+        "pointer.triggerCursor",
+        "renderImagePainterFrame",
+        "resizeViewport",
+        "setPaintingLoading",
+        "updatePaletteScrollButtons",
+        "value",
+        "zoomAroundViewportCenter"
+      ],
+      "smallNumericOnly": [
+        "colorDifference",
+        "rgbToLab"
+      ]
+    }
+  },
+  "assessment": {
+    "major": [
+      {
+        "area": "Account and access",
+        "evidence": [
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/account-password.php"
+          },
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/account-username.php"
+          },
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/get-user-sessions.php?username="
+          },
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/login.php"
+          },
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/post-logout.php"
+          },
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/sso.php?type=3&action=login"
+          }
+        ]
+      },
+      {
+        "area": "Canvas and placement",
+        "evidence": [
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/delete-painting.php"
+          },
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/get-my-paintings.php"
+          },
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/get-painting-access.php"
+          },
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/get-painting-access.php?getAccessRequests=true&id="
+          },
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/get-painting-access.php?getModerators=true&painting="
+          },
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/get-painting-access.php?getPendingCount=true&id="
+          },
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/get-painting-access.php?getStatus=true&painting="
+          },
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/get-painting.php?id="
+          },
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/post-painting.php"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "Everyday, you have a chance to earn one of the following daily reward:\n3 coins - 28.82%\n5 coins - 26.17%\n10 coins - 23.12%\nMissile - 8.35%\nBomb - 5.24%\n30 coins - 3.15%\nAtomic bomb - 2.61%\n50 coins - 1.56%\n100 coins - 0.98%"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "Now filtering live tracking to only show this user pixels for the next 3 minutes"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "Pixelplace Moderators (Do not ping/contact admin)"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "You need to be a Premium Subscriber to pout more than 300 pixels. (Maximum 3000 x 3000 pixels for Premium)"
+          },
+          {
+            "kind": "removed",
+            "key": "text",
+            "value": "You need to be a Premium Subscriber to modify this setting. (Cooldown can be set to 0 second to be disabled or up to 1 hour)"
+          },
+          {
+            "kind": "removed",
+            "key": "text",
+            "value": "You need to be a Premium Subscriber to modify this setting. (Maximum 3000 x 3000 pixels)"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "animateWeaponExpansion"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.checkDuplicateFromPainting"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.checkProtectionFromPainting"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.checkSamePlaceThanLast"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.drawPixelAt"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.fetchPaintingAccess"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.fetchPaintingModerators"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.getUrlHash"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadBlocked"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadFreeCoins"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadFriends"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadGuildMembers"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadGuildMembersRequests"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadMyPaintings"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadPainting"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadPaintingList"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadUserItems"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.refreshPaintingList"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.selectPaletteColor"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.triggerCooldownPanel"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.updateScaleAndPosition"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.useItem"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.useWeapon"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "initializePainting"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.loadPaintingCreateOrEdit"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.settingsPaintingSelectAccess"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.settingsPaintingSelectBackground"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "placeNextImagePixel"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "renderImagePainterFrame"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "setPaintingLoading"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "updatePaletteScrollButtons"
+          }
+        ]
+      },
+      {
+        "area": "Guilds and social features",
+        "evidence": [
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/get-guild-members.php"
+          },
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/get-guild.php"
+          },
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/get-my-friends.php"
+          },
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/get-user-guild.php"
+          },
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/post-friend.php"
+          },
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/post-guild-access.php"
+          },
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/post-guild-avatar.php"
+          },
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/post-guild-rank.php"
+          },
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/post-guild-transfer.php"
+          },
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/post-guild.php"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadFriends"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadGuildMembers"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadGuildMembersRequests"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "chat.addMessageRow"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "chat.checkOnlineDisplay"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "chat.display"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "chat.sendMessage"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "chat.updateNotificationCount"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.loadGuildData"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.loadGuilds"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "openGuild"
+          }
+        ]
+      },
+      {
+        "area": "Store and inventory",
+        "evidence": [
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/get-coin-island.php"
+          },
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/get-item.php"
+          },
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/get-my-items.php"
+          },
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/manage-premium.php"
+          },
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/post-coin-island.php"
+          },
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/post-coins.php"
+          },
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/post-shop.php"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "Everyday, you have a chance to earn one of the following daily reward:\n3 coins - 28.82%\n5 coins - 26.17%\n10 coins - 23.12%\nMissile - 8.35%\nBomb - 5.24%\n30 coins - 3.15%\nAtomic bomb - 2.61%\n50 coins - 1.56%\n100 coins - 0.98%"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "You need to be a Premium Subscriber to pout more than 300 pixels. (Maximum 3000 x 3000 pixels for Premium)"
+          },
+          {
+            "kind": "removed",
+            "key": "text",
+            "value": "You need to be a Premium Subscriber to modify this setting. (Cooldown can be set to 0 second to be disabled or up to 1 hour)"
+          },
+          {
+            "kind": "removed",
+            "key": "text",
+            "value": "You need to be a Premium Subscriber to modify this setting. (Maximum 3000 x 3000 pixels)"
+          },
+          {
+            "kind": "added",
+            "key": "functions",
+            "value": "toggleInventory"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadFreeCoins"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadUserItems"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.useItem"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "itemNotificationUseCallback"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "openCoinIsland"
+          }
+        ]
+      },
+      {
+        "area": "Realtime and connection handling",
+        "evidence": [
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/ping.php"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "Pixelplace Moderators (Do not ping/contact admin)"
+          },
+          {
+            "kind": "removed",
+            "key": "functions",
+            "value": "encodePayloadPacket"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "connectRealtime"
+          }
+        ]
+      },
+      {
+        "area": "Maps and navigation",
+        "evidence": [
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "resizeViewport"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "zoomAroundViewportCenter"
+          }
+        ]
+      },
+      {
+        "area": "Interface and settings",
+        "evidence": [
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/post-settings.php"
+          },
+          {
+            "kind": "removed",
+            "key": "text",
+            "value": "You need to be a Premium Subscriber to modify this setting. (Cooldown can be set to 0 second to be disabled or up to 1 hour)"
+          },
+          {
+            "kind": "removed",
+            "key": "text",
+            "value": "You need to be a Premium Subscriber to modify this setting. (Maximum 3000 x 3000 pixels)"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "chat.checkOnlineDisplay"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "chat.display"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "chat.updateNotificationCount"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "itemNotificationUseCallback"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.closeModal"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.saveUserSettings"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.settingsPaintingSelectAccess"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.settingsPaintingSelectBackground"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "openProfile"
+          }
+        ]
+      }
+    ],
+    "security": {
+      "added": [
+        {
+          "fingerprint": "07dadaa525a3e33b2461ecba",
+          "line": 5144,
+          "code": "defaultPainting.cooldown=0;"
+        },
+        {
+          "fingerprint": "240f18088a3df5f21cc68b0d",
+          "line": 5988,
+          "code": "showCountdown&&(canvasRenderer.cooldownSetInterval=setInterval(function(){var cooldown=canvasRenderer.cooldown+1000-nowMilliseconds();if(cooldown<0){cooldown=0;clearInterval(canvasRenderer.cooldownSetInterval);elements.cooldown.hide();}else cooldown=parseInt(cooldown/1000);!dotting&&cooldown>serverData.painting.cooldown&&(cooldown=serverData.painting.cooldown);var number=0,text=0;cooldown>60?(number=parseInt(cooldown/60),text=cooldown-number*60):text=cooldown;number<10&&(number='0'+number);text<10&&(text='0'+text);elements.cooldown.find('.box .cd').text(number+':'+text);},10),elements.cooldown.find('.head').hide(),elements.cooldown.find('.foot').hide(),dotting?(elements.cooldown.find('.head[data-id=\"dotting\"]').show(),elements.cooldown.find('.foot[data-id=\"dotting\"]').show()):(elements.cooldown.find('.head[data-id=\"painting\"]').show(),elements.cooldown.find('.foot[data-id=\"painting\"]').show()),elements.cooldown.show());"
+        },
+        {
+          "fingerprint": "20167be8e6f198e851bc324e",
+          "line": 5999,
+          "code": "clearInterval(canvasRenderer.cooldownSetInterval);"
+        },
+        {
+          "fingerprint": "efc8442ab8984dc524154eb5",
+          "line": 6000,
+          "code": "elements.cooldown.hide();"
+        },
+        {
+          "fingerprint": "5808797e3d0d322b2b1cb570",
+          "line": 7773,
+          "code": "mathAbs<5&&mathAbsTouchStartY<5&&touchStartScale===canvasRenderer.scale&&event.originalEvent&&(event.preventDefault(),selectedItemId!==null?canvasRenderer.useWeapon():(!enabled&&(count>5?(enabled=true,localStorage.setItem('know-about-space-bar',true),showNotification('info','Tip: Hold [SPACE BAR] to draw faster!')):count++),canvasRenderer.drawPixelAt()));"
+        },
+        {
+          "fingerprint": "155690c585ada5b6fc28737c",
+          "line": 8731,
+          "code": "drawingActive=setInterval(function(){canvasRenderer.drawPixelAt();},serverData.painting.rate);"
+        },
+        {
+          "fingerprint": "7d770ea3ab71ae1e0c1535f4",
+          "line": 8998,
+          "code": "profileElement.find('.profile-name').attr('title','BANNED').removeClass('banned').addClass('banned');"
+        },
+        {
+          "fingerprint": "301f438b697c799f4b6a5d53",
+          "line": 9009,
+          "code": "profileElement.find('.profile-name').attr('title','').removeClass('banned');"
+        },
+        {
+          "fingerprint": "ec9a27c4c9586d52c5251c15",
+          "line": 9144,
+          "code": "if(event.originalEvent){var guildRankRequest={};guildRankRequest.username=$(this).attr('data-username');guildRankRequest.rank=$(this).val();var requestData=guildRankRequest;api.xhr.req('POST','/api/post-guild-rank.php',requestData,true,function(success,response){success?showNotification('success','Success','Guild rank updated'):($('.profile-guild-rank select[name=\"guild-rank\"]').val($('.profile-guild-rank select[name=\"guild-rank\"]').attr('data-rank')).change(),showNotification('error','Error',response.message));});}"
+        },
+        {
+          "fingerprint": "e29304fb7704a69682ce3d42",
+          "line": 9242,
+          "code": "var moderatorWindow=window.open('/api/get-user-sessions.php?username='+$(this).attr('data-username'),'Moderator tool: User data','width=700,height=600,toolbar=0,menubar=0,location=0');"
+        },
+        {
+          "fingerprint": "99c0944d5670f6a31e547b24",
+          "line": 9585,
+          "code": "if(ui.selectors.modal==='captcha'){return;}else if(visible){ui.activeContent.find('> form').hide();ui.activeContent.find('> div').hide();ui.activeContent.find('.loading').css('display','flex');}else{ui.activeContent.find('> form').show();ui.activeContent.find('> div').show();ui.activeContent.find('.loading').css('display','none');}"
+        },
+        {
+          "fingerprint": "3e450e6c2d14737a7e2aa523",
+          "line": 10476,
+          "code": "if(confirm(\"To use this option, Pixelplace needs to access your Twitch subscribers list. You are about to be redirected to Twitch to authorize this. This data will be private and used just for verifications purpose when someone access the painting. We won't disclose any of it. Would you like to continue?\")){window.location.replace('/api/sso.php?type=3&action=login');return;}"
+        },
+        {
+          "fingerprint": "8f6f99b518bbfa20b67e9eca",
+          "line": 11562,
+          "code": "!ui.activeCaptcha&&!ui.activeAlert&&ui.closeModal();"
+        },
+        {
+          "fingerprint": "ba52ae2aee1443fb9a54f313",
+          "line": 13828,
+          "code": "ui.elem.settings.painting.find('[name=\"cooldown\"]').on('input',function(event){var inputValue=parseInt($(this).val());if(inputValue>3600)ui.triggerFormInputError('cooldown','Maximum cooldown is 3600 (1 hour)');else inputValue<0?ui.triggerFormInputError('cooldown','Minimum cooldown is 0 (disabled)'):ui.triggerFormInputError('cooldown','');});"
+        },
+        {
+          "fingerprint": "dfc182a8cab3cb3a92b5a017",
+          "line": 13843,
+          "code": "inputValue<0?ui.triggerFormInputError('cooldown','Minimum cooldown is 0 (disabled)'):ui.triggerFormInputError('cooldown','');"
+        },
+        {
+          "fingerprint": "885b3f336452550a94b1c54a",
+          "line": 14141,
+          "code": "isTouchDevice()?(pointer.touchDevice=true,!alternativeMobileDrawing&&(serverData.painting.cooldown>0?($('#mobileplace a.mobile-place').find('span').text('Place pixel?'),$('#mobileplace a.mobile-place').find('div').hide()):($('#mobileplace a.mobile-place').find('span').text('Activate Brush?'),$('#mobileplace a.mobile-place').find('div').show()),$('#mobileplace').show())):$('.input-checkbox[data-name=\"tools-mobile-alt\"]').hide();"
+        },
+        {
+          "fingerprint": "32381afc8139b9d040f20192",
+          "line": 14701,
+          "code": "formActions['form-account-change-password']=function(gRecaptchaResponse){var passwordChangeForm=$('#form-account-change-password'),passwordChangeFields={};passwordChangeFields.current=passwordChangeForm.find('[name=\"password-current\"]').val();passwordChangeFields.password=passwordChangeForm.find('[name=\"password\"]').val();passwordChangeFields.confirm=passwordChangeForm.find('[name=\"password-confirm\"]').val();var requestData=passwordChangeFields;gRecaptchaResponse!==undefined&&(requestData['g-recaptcha-response']=gRecaptchaResponse);grecaptcha.reset();gRecaptchaResponse!==undefined&&ui.goBackFromCaptcha();ui.triggerLoader(true);api.xhr.req('POST','/api/account-password.php',requestData,true,function(success,response){ui.triggerLoader(false);passwordChangeForm.find('.submit-form').text(passwordChangeForm.find('.submit-form').attr('data-text'));passwordChangeForm.find('.submit-form').removeAttr('disabled');passwordChangeForm.find('.submit-form').removeClass('spin');if(success){passwordChangeForm.find('input').val('');showNotification('success','Success','Password updated');}else{showNotification('error','Error',response.message);}});};"
+        },
+        {
+          "fingerprint": "b3abf3a6b3191768b4202d09",
+          "line": 14712,
+          "code": "api.xhr.req('POST','/api/account-password.php',requestData,true,function(success,response){ui.triggerLoader(false);passwordChangeForm.find('.submit-form').text(passwordChangeForm.find('.submit-form').attr('data-text'));passwordChangeForm.find('.submit-form').removeAttr('disabled');passwordChangeForm.find('.submit-form').removeClass('spin');if(success){passwordChangeForm.find('input').val('');showNotification('success','Success','Password updated');}else{showNotification('error','Error',response.message);}});"
+        },
+        {
+          "fingerprint": "7e2670b0106abbb3a2414ecf",
+          "line": 15912,
+          "code": "if(Notification.permission==='granted'){const notification=new Notification(messageDataMessageData.username+' says: '+messageDataMessageData.message);}else Notification.permission!=='denied'&&Notification.requestPermission().then(argument=>{if(argument==='granted'){const notification=new Notification(messageDataMessageData.username+' says: '+messageDataMessageData.message);}});"
+        },
+        {
+          "fingerprint": "f62f2bbc1a8a774a905b29d2",
+          "line": 15917,
+          "code": "Notification.permission!=='denied'&&Notification.requestPermission().then(argument=>{if(argument==='granted'){const notification=new Notification(messageDataMessageData.username+' says: '+messageDataMessageData.message);}});"
+        },
+        {
+          "fingerprint": "ae6ed60dc267ba5f6206b736",
+          "line": 16305,
+          "code": "if(Notification.permission==='granted'){const notification=new Notification('The '+options[areaFightStartPayload.id].name+' '+text+' war has begun!');}else Notification.permission!=='denied'&&Notification.requestPermission().then(argument=>{if(argument==='granted'){const notification=new Notification('The '+options[areaFightStartPayload.id].name+' '+text+' war has begun!');}});"
+        },
+        {
+          "fingerprint": "6efe40ed83aa2090aa6010ee",
+          "line": 16310,
+          "code": "Notification.permission!=='denied'&&Notification.requestPermission().then(argument=>{if(argument==='granted'){const notification=new Notification('The '+options[areaFightStartPayload.id].name+' '+text+' war has begun!');}});"
+        },
+        {
+          "fingerprint": "08d99787f0d1ee378f3ac032",
+          "line": 17035,
+          "code": "if(serverData.painting.rate<100){serverData.painting.rate+=10;if(imagePainter&&imagePainter.rate&&serverData.painting.rate>imagePainter.rate){imagePainter.rate=serverData.painting.rate;if(imagePainter.started){}}drawingActive!==null&&(clearInterval(drawingActive),drawingActive=null);}"
+        },
+        {
+          "fingerprint": "0448af46d9e84194c79e5b63",
+          "line": 17597,
+          "code": "frameTime-imagePainter.lastTime>=imagePainter.rate&&(canvasRenderer.cooldown===0||canvasRenderer.cooldown<nowMilliseconds())&&(imagePainter.lastTime=frameTime,placeNextImagePixel(),imagePainter.count+=4);"
+        },
+        {
+          "fingerprint": "b857f95dacd642a08a29b12d",
+          "line": 17940,
+          "code": "api.xhr.req('POST','/api/post-logout.php',{},true,function(success,response){unsupportedClientDetected=true;});"
+        },
+        {
+          "fingerprint": "328e80642e430e74442d858d",
+          "line": 17963,
+          "code": "api.xhr.req('POST','/api/post-logout.php',requestData,true,function(success,response){unsupportedClientDetected=true;});"
+        }
+      ],
+      "removed": [
+        {
+          "fingerprint": "ed6b698bc1f89d122be374ef",
+          "line": 5148,
+          "code": "defaultPainting.cooldown=5;"
+        },
+        {
+          "fingerprint": "f6bc796f13f804fc1d56a6ef",
+          "line": 5971,
+          "code": "showCountdown&&(canvasRenderer.cooldownSetInterval=setInterval(function(){var cooldown=canvasRenderer.cooldown+1000-nowMilliseconds();cooldown<0?(cooldown=0,clearInterval(canvasRenderer.cooldownSetInterval),elements.cooldown.hide()):cooldown=parseInt(cooldown/1000);!dotting&&cooldown>serverData.painting.cooldown&&(cooldown=serverData.painting.cooldown);var number=0,text=0;cooldown>60?(number=parseInt(cooldown/60),text=cooldown-number*60):text=cooldown;number<10&&(number='0'+number);text<10&&(text='0'+text);elements.cooldown.find('.box .cd').text(number+':'+text);},10),elements.cooldown.find('.head').hide(),elements.cooldown.find('.foot').hide(),dotting?(elements.cooldown.find('.head[data-id=\"dotting\"]').show(),elements.cooldown.find('.foot[data-id=\"dotting\"]').show()):(elements.cooldown.find('.head[data-id=\"painting\"]').show(),elements.cooldown.find('.foot[data-id=\"painting\"]').show()),elements.cooldown.show());"
+        },
+        {
+          "fingerprint": "7a966517b669cb805705fda2",
+          "line": 5980,
+          "code": "cooldown<0?(cooldown=0,clearInterval(canvasRenderer.cooldownSetInterval),elements.cooldown.hide()):cooldown=parseInt(cooldown/1000);"
+        },
+        {
+          "fingerprint": "ade56a382fd2627932ebdbde",
+          "line": 7747,
+          "code": "if(event.originalEvent){event.preventDefault();if(selectedItemId!==null)canvasRenderer.useWeapon();else{if(!drawingHintAcknowledged){if(drawingHintAttempts>5){drawingHintAcknowledged=true;localStorage.setItem('know-about-space-bar',true);showNotification('info','Tip: Hold [SPACE BAR] to draw faster!');}else drawingHintAttempts++;}canvasRenderer.drawPixelAt();}}"
+        },
+        {
+          "fingerprint": "c0e27c8e0b6ed333da56bf7f",
+          "line": 8676,
+          "code": "selectedItemId===null&&drawingActive===null&&(!drawingHintAcknowledged&&(localStorage.setItem('know-about-space-bar',true),drawingHintAcknowledged=true),canvasRenderer.drawPixelAt(),drawingActive=setInterval(function(){canvasRenderer.drawPixelAt();},serverData.painting.rate));"
+        },
+        {
+          "fingerprint": "a585dd2b2fe1383b34d87341",
+          "line": 8945,
+          "code": "parseInt(response.status)===2?(profileElement.find('.profile-name').attr('title','BANNED').removeClass('banned').addClass('banned'),response.banReason&&profileElement.find('.profile-name-ban').text('Ban reason: '+response.banReason).show()):profileElement.find('.profile-name').attr('title','').removeClass('banned');"
+        },
+        {
+          "fingerprint": "b0669353470665036aef2fc9",
+          "line": 9081,
+          "code": "if(event.originalEvent){var guildRankRequest={};guildRankRequest.username=$(this).attr('data-username');guildRankRequest.rank=$(this).val();var requestData=guildRankRequest;api.xhr.req('POST','https://pixelplace.io/api/post-guild-rank.php',requestData,true,function(success,response){success?showNotification('success','Success','Guild rank updated'):($('.profile-guild-rank select[name=\"guild-rank\"]').val($('.profile-guild-rank select[name=\"guild-rank\"]').attr('data-rank')).change(),showNotification('error','Error',response.message));});}"
+        },
+        {
+          "fingerprint": "c74b561a7d4cb43a76d43d73",
+          "line": 9179,
+          "code": "var moderatorWindow=window.open('https://pixelplace.io/api/get-user-sessions.php?username='+$(this).attr('data-username'),'Moderator tool: User data','width=700,height=600,toolbar=0,menubar=0,location=0');"
+        },
+        {
+          "fingerprint": "bb38c6c191b832cd5b9433ed",
+          "line": 9517,
+          "code": "if(ui.selectors.modal==='captcha')return;else visible?(ui.activeContent.find('> form').hide(),ui.activeContent.find('> div').hide(),ui.activeContent.find('.loading').css('display','flex')):(ui.activeContent.find('> form').show(),ui.activeContent.find('> div').show(),ui.activeContent.find('.loading').css('display','none'));"
+        },
+        {
+          "fingerprint": "4a906b3b25c63882d2972587",
+          "line": 10192,
+          "code": "serverData.user.premium.active?(ui.elem.settings.painting.find('input[name=\"sizeX\"]').val(serverData.painting.width),ui.elem.settings.painting.find('input[name=\"sizeY\"]').val(serverData.painting.height),ui.elem.settings.painting.find('input[name=\"cooldown\"]').val(serverData.painting.cooldown),ui.elem.settings.painting.find('input[name=\"autoAcceptTime\"]').val(serverData.painting.autoAcceptTime)):(ui.elem.settings.painting.find('input[name=\"sizeX\"]').val(appState.painting.width),ui.elem.settings.painting.find('input[name=\"sizeY\"]').val(appState.painting.height),ui.elem.settings.painting.find('input[name=\"cooldown\"]').val(appState.painting.cooldown),ui.elem.settings.painting.find('input[name=\"autoAcceptTime\"]').val(appState.painting.autoAcceptTime));"
+        },
+        {
+          "fingerprint": "d55f52321b84eaf335e45077",
+          "line": 10411,
+          "code": "if(confirm(\"To use this option, Pixelplace needs to access your Twitch subscribers list. You are about to be redirected to Twitch to authorize this. This data will be private and used just for verifications purpose when someone access the painting. We won't disclose any of it. Would you like to continue?\")){window.location.replace('https://pixelplace.io/api/sso.php?type=3&action=login');return;}"
+        },
+        {
+          "fingerprint": "661957d70736f20ead6dc0db",
+          "line": 11527,
+          "code": "if(!ui.activeCaptcha&&!ui.activeAlert){ui.closeModal();}"
+        },
+        {
+          "fingerprint": "0a7f469831974b74f8f330f3",
+          "line": 13801,
+          "code": "ui.elem.settings.painting.find('[name=\"cooldown\"]').on('input',function(event){var inputValue=parseInt($(this).val());if(serverData.user.premium.active){if(inputValue>3600)ui.triggerFormInputError('cooldown','Maximum cooldown is 3600 (1 hour)');else inputValue<0&&ui.triggerFormInputError('cooldown','Minimum cooldown is 0 (disabled)');}else inputValue!==appState.painting.cooldown?($(this).val(appState.painting.cooldown),showNotification('error','You need to be a Premium Subscriber to modify this setting. (Cooldown can be set to 0 second to be disabled or up to 1 hour)')):ui.triggerFormInputError('cooldown','');});"
+        },
+        {
+          "fingerprint": "06f24d5693618c80a4bcd4e0",
+          "line": 13816,
+          "code": "inputValue<0&&ui.triggerFormInputError('cooldown','Minimum cooldown is 0 (disabled)');"
+        },
+        {
+          "fingerprint": "44f840573ecfa5079a620847",
+          "line": 13818,
+          "code": "inputValue!==appState.painting.cooldown?($(this).val(appState.painting.cooldown),showNotification('error','You need to be a Premium Subscriber to modify this setting. (Cooldown can be set to 0 second to be disabled or up to 1 hour)')):ui.triggerFormInputError('cooldown','');"
+        },
+        {
+          "fingerprint": "bf00493f62ab737df6551c3a",
+          "line": 14133,
+          "code": "serverData.painting.cooldown>0?($('#mobileplace a.mobile-place').find('span').text('Place pixel?'),$('#mobileplace a.mobile-place').find('div').hide()):($('#mobileplace a.mobile-place').find('span').text('Activate Brush?'),$('#mobileplace a.mobile-place').find('div').show());"
+        },
+        {
+          "fingerprint": "654fc2df9c3d81f2da7d3823",
+          "line": 14438,
+          "code": "requestData['g-recaptcha-response']=gRecaptchaResponse;"
+        },
+        {
+          "fingerprint": "b9edce16694ea9710756b741",
+          "line": 14693,
+          "code": "formActions['form-account-change-password']=function(gRecaptchaResponse){var passwordChangeForm=$('#form-account-change-password'),passwordChangeFields={};passwordChangeFields.current=passwordChangeForm.find('[name=\"password-current\"]').val();passwordChangeFields.password=passwordChangeForm.find('[name=\"password\"]').val();passwordChangeFields.confirm=passwordChangeForm.find('[name=\"password-confirm\"]').val();var requestData=passwordChangeFields;gRecaptchaResponse!==undefined&&(requestData['g-recaptcha-response']=gRecaptchaResponse);grecaptcha.reset();gRecaptchaResponse!==undefined&&ui.goBackFromCaptcha();ui.triggerLoader(true);api.xhr.req('POST','https://pixelplace.io/api/account-password.php',requestData,true,function(success,response){ui.triggerLoader(false);passwordChangeForm.find('.submit-form').text(passwordChangeForm.find('.submit-form').attr('data-text'));passwordChangeForm.find('.submit-form').removeAttr('disabled');passwordChangeForm.find('.submit-form').removeClass('spin');if(success){passwordChangeForm.find('input').val('');showNotification('success','Success','Password updated');}else{showNotification('error','Error',response.message);}});};"
+        },
+        {
+          "fingerprint": "6b79c52444279f0ef7f90342",
+          "line": 14704,
+          "code": "api.xhr.req('POST','https://pixelplace.io/api/account-password.php',requestData,true,function(success,response){ui.triggerLoader(false);passwordChangeForm.find('.submit-form').text(passwordChangeForm.find('.submit-form').attr('data-text'));passwordChangeForm.find('.submit-form').removeAttr('disabled');passwordChangeForm.find('.submit-form').removeClass('spin');if(success){passwordChangeForm.find('input').val('');showNotification('success','Success','Password updated');}else{showNotification('error','Error',response.message);}});"
+        },
+        {
+          "fingerprint": "4e9409012e39134b4eeee840",
+          "line": 17006,
+          "code": "if(serverData.painting.rate<100){serverData.painting.rate+=10;if(imagePainter&&imagePainter.rate&&serverData.painting.rate>imagePainter.rate){imagePainter.rate=serverData.painting.rate;if(imagePainter.started){}}if(drawingActive!==null){clearInterval(drawingActive);drawingActive=null;}}"
+        },
+        {
+          "fingerprint": "aefd064b1f78ff363be09267",
+          "line": 17895,
+          "code": "api.xhr.req('POST','https://pixelplace.io/api/post-logout.php',{},true,function(success,response){unsupportedClientDetected=true;});"
+        },
+        {
+          "fingerprint": "f51db7bb597f21155281aaf4",
+          "line": 17918,
+          "code": "api.xhr.req('POST','https://pixelplace.io/api/post-logout.php',requestData,true,function(success,response){unsupportedClientDetected=true;});"
+        }
+      ]
+    },
+    "contracts": {
+      "registrations": {
+        "added": [],
+        "removed": []
+      },
+      "requests": {
+        "added": [
+          "GET /api/get-bot.php payload keys: (dynamic or none)",
+          "GET /api/get-claims.php payload keys: (dynamic or none)",
+          "GET /api/get-coin-island.php payload keys: (dynamic or none)",
+          "GET /api/get-guild-members.php payload keys: (dynamic or none)",
+          "GET /api/get-guild.php payload keys: (dynamic or none)",
+          "GET /api/get-item.php payload keys: (dynamic or none)",
+          "GET /api/get-jackpot-ticket.php payload keys: (dynamic or none)",
+          "GET /api/get-my-friends.php payload keys: (dynamic or none)",
+          "GET /api/get-my-items.php payload keys: (dynamic or none)",
+          "GET /api/get-my-paintings.php payload keys: (dynamic or none)",
+          "GET /api/get-user-guild.php payload keys: (dynamic or none)",
+          "GET /api/get-user.php payload keys: (dynamic or none)",
+          "GET /api/manage-premium.php payload keys: (dynamic or none)",
+          "GET /api/ping.php payload keys: (dynamic or none)",
+          "POST /api/account-password.php payload keys: (dynamic or none)",
+          "POST /api/account-username.php payload keys: (dynamic or none)",
+          "POST /api/delete-painting.php payload keys: (dynamic or none)",
+          "POST /api/forgot-activation.php payload keys: (dynamic or none)",
+          "POST /api/forgot.php payload keys: (dynamic or none)",
+          "POST /api/get-painting-access.php payload keys: (dynamic or none)",
+          "POST /api/login.php payload keys: (dynamic or none)",
+          "POST /api/post-bio.php payload keys: (dynamic or none)",
+          "POST /api/post-claim.php payload keys: (dynamic or none)",
+          "POST /api/post-coin-island.php payload keys: (dynamic or none)",
+          "POST /api/post-coins.php payload keys: (dynamic or none)",
+          "POST /api/post-dailylootv3.php payload keys: (dynamic or none)",
+          "POST /api/post-dailyreward.php payload keys: (dynamic or none)",
+          "POST /api/post-delete.php payload keys: (dynamic or none)",
+          "POST /api/post-friend.php payload keys: (dynamic or none)",
+          "POST /api/post-guild-access.php payload keys: (dynamic or none)",
+          "POST /api/post-guild-avatar.php payload keys: (dynamic or none)",
+          "POST /api/post-guild-rank.php payload keys: (dynamic or none)",
+          "POST /api/post-guild-transfer.php payload keys: (dynamic or none)",
+          "POST /api/post-guild.php payload keys: (dynamic or none)",
+          "POST /api/post-jackpot-ticket.php payload keys: (dynamic or none)",
+          "POST /api/post-logout.php payload keys: (dynamic or none)",
+          "POST /api/post-painting.php payload keys: (dynamic or none)",
+          "POST /api/post-settings.php payload keys: (dynamic or none)",
+          "POST /api/post-shop.php payload keys: (dynamic or none)",
+          "POST /api/post-user-avatar.php payload keys: (dynamic or none)",
+          "POST /api/register.php payload keys: (dynamic or none)",
+          "POST /api/stripe.php payload keys: (dynamic or none)"
+        ],
+        "removed": []
+      }
+    },
+    "securityTopics": [
+      {
+        "topic": "CAPTCHA",
+        "added": 3,
+        "removed": 4
+      },
+      {
+        "topic": "synthetic input",
+        "added": 2,
+        "removed": 2
+      },
+      {
+        "topic": "sessions/authentication",
+        "added": 5,
+        "removed": 5
+      },
+      {
+        "topic": "client integrity/bot detection",
+        "added": 2,
+        "removed": 2
+      },
+      {
+        "topic": "placement cooldown/rate",
+        "added": 10,
+        "removed": 10
+      },
+      {
+        "topic": "permissions/moderation",
+        "added": 7,
+        "removed": 2
+      }
+    ],
+    "bootstrap": {
+      "added": [],
+      "removed": [],
+      "implementationChanged": true
+    },
+    "bootstrapSummary": "Removed obfuscator guard implementation differs; detected guard features are unchanged (possibly obfuscation noise).",
+    "shortSummary": "Security/anticheat: candidates include CAPTCHA (+3/-4); synthetic input (+2/-2); sessions/authentication (+5/-5); client integrity/bot detection (+2/-2); placement cooldown/rate (+10/-10); permissions/moderation (+7/-2). Static observations; review source evidence. Removed obfuscator guard implementation differs; detected guard features are unchanged (possibly obfuscation noise).\nAccount and access: added /api/account-password.php, added /api/account-username.php; Canvas and placement: added /api/delete-painting.php, added /api/get-my-paintings.php; Guilds and social features: added /api/get-guild-members.php, added /api/get-guild.php; Store and inventory: added /api/get-coin-island.php, added /api/get-item.php",
+    "limits": "Categories are inferred from public literals, member names and function names. Security entries show exact changed statement fingerprints with source lines; they can include refactoring, renaming and numeric changes. They do not prove an exploit, anticheat bypass, server enforcement, or complete security coverage. Obfuscator bootstrap removal is the same deliberate transform in every generated version; this scan covers retained application code only."
+  }
+}

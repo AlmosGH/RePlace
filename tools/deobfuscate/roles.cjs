@@ -64,6 +64,13 @@ function resolveRoles(ast, proposed, collisions) {
     }
     if (name) result[issue.original] = name;
   }
-  return result;
+  return {
+    ...require("./legacy-roles.cjs").inferLegacyRoles(
+      ast,
+      proposed,
+      collisions,
+    ),
+    ...result,
+  };
 }
 module.exports = { resolveRoles };

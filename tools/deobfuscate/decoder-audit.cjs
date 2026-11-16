@@ -11,7 +11,7 @@ process.stdin.on("data", (chunk) => {
 process.stdin.on("end", () => {
   try {
     const { prefix, decoder, entries } = JSON.parse(input);
-    if (!/^_0x[\da-f]+$/i.test(decoder) || entries > 30000)
+    if (!/^[A-Za-z_$][\w$]*$/.test(decoder) || entries > 30000)
       throw Error("Invalid decoder request");
     const context = vm.createContext(Object.create(null), {
       codeGeneration: { strings: false, wasm: false },

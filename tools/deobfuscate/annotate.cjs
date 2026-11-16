@@ -145,6 +145,6 @@ function annotate(ast) {
       }
     },
   });
-  return comments;
+  return comments + require("./detailed-comments.cjs").annotateDetailed(ast);
 }
 module.exports = { annotate };

@@ -2,10 +2,12 @@ const path = require("node:path");
 const { spawnSync } = require("node:child_process");
 const traverse = require("@babel/traverse").default;
 const t = require("@babel/types");
-const { parse, sha256 } = require("./common.cjs");
+const { parse, sha256, SOURCE_SHA256 } = require("./common.cjs");
 const { fold } = require("./transform.cjs");
 const { normalize } = require("./verify.cjs");
 const { compare } = require("./verify-readable.cjs");
+const { uniquifyBindings } = require("./binding-identity.cjs");
+const { bootstrapFacts } = require("./bootstrap-facts.cjs");
 
 function numeric(node) {
   if (t.isNumericLiteral(node)) return node.value;
@@ -26,7 +28,8 @@ function expand(source) {
   const ast = parse(source),
     body = ast.program.body;
   if (
-    body.length !== 7 ||
+    body.length < 7 ||
+    body.length > 15 ||
     !t.isVariableDeclaration(body[0]) ||
     !t.isVariableDeclaration(body[2])
   )
@@ -126,7 +129,8 @@ function expand(source) {
       "Static decoder disagrees with the isolated original decoder: " +
         (audit.stderr || audit.error?.message || "hash mismatch"),
     );
-  const entry = body[6].expression;
+  const applicationStatement = body[body.length - 1];
+  const entry = applicationStatement.expression;
   if (
     !t.isSequenceExpression(entry) ||
     entry.expressions.length !== 2 ||
@@ -198,12 +202,37 @@ function expand(source) {
     normalize(raw.program.body, strings),
     normalize(expanded.program.body, strings),
   );
+  const removedBindings = new Set(
+    body
+      .slice(0, -1)
+      .filter(
+        (node) =>
+          t.isVariableDeclaration(node) || t.isFunctionDeclaration(node),
+      )
+      .flatMap((node) => Object.keys(t.getBindingIdentifiers(node))),
+  );
+  let shortNames = false;
+  traverse(expanded, {
+    BindingIdentifier(p) {
+      if (!/^_0x[\da-f]+$/i.test(p.node.name)) shortNames = true;
+    },
+  });
+  // The pinned current application already has a curated scoped identity map,
+  // including its intentionally named integrity helpers. Keep that identity
+  // space so its reviewed names remain applicable.
+  const sourceBindings =
+    shortNames && sha256(source.slice(body[0].start)) !== SOURCE_SHA256
+      ? uniquifyBindings(expanded)
+      : null;
   return {
     ast: expanded,
+    sourceBindings,
+    bootstrapBindings: [...removedBindings],
     strings,
     header: source.slice(0, body[0].start),
     report: {
       decoderFamily: "rotated-custom-base64",
+      bootstrapProtection: bootstrapFacts(body, decoder.id.name, strings),
       bodySha256: sha256(source.slice(body[0].start)),
       stringTableEntries: strings.length,
       decodedCalls,
@@ -211,7 +240,7 @@ function expand(source) {
       decoderAudited: true,
       expandedApplicationVerified: true,
       removedBootstrapBytes: Buffer.byteLength(
-        source.slice(body[0].start, body[6].start),
+        source.slice(body[0].start, applicationStatement.start),
       ),
     },
   };

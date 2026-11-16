@@ -158,7 +158,7 @@ function restoreNames(ast, manifest) {
   const inverse = new Map(),
     originals = new Set();
   for (const entry of manifest) {
-    assert.match(entry.original, /^_0x[\da-f]+$/i);
+    assert.match(entry.original, /^[A-Za-z_$][\w$]*$/);
     const key = `${entry.scope}:${entry.readable}`;
     assert.ok(
       !inverse.has(key) && !originals.has(entry.original),
@@ -195,8 +195,15 @@ function restoreNames(ast, manifest) {
   // Resolve all identifiers before changing any node,
   // then restore only variable positions; public property keys stay untouched.
   const edits = [];
+  const declarations = new Map(
+    [...bindingNames].map(([binding, name]) => [binding.identifier, name]),
+  );
   traverse(ast, {
     Identifier(p) {
+      if (declarations.has(p.node)) {
+        edits.push([p.node, declarations.get(p.node)]);
+        return;
+      }
       const binding = p.scope.getBinding(p.node.name);
       if (!bindingNames.has(binding)) return;
       const parent = p.parentPath;
@@ -285,12 +292,27 @@ if (require.main === module) {
   );
   const result = verifyReadable(conservative, readable, manifest);
   if (flag === "--self-test") {
+    function changeString(needle, replacement) {
+      const ast = parse(readable);
+      let changed = false;
+      traverse(ast, {
+        StringLiteral(p) {
+          if (!changed && p.node.value.includes(needle)) {
+            p.node.value = p.node.value.replace(needle, replacement);
+            delete p.node.extra;
+            changed = true;
+          }
+        },
+      });
+      assert.ok(changed, "Mutation target not found: " + needle);
+      return require("@babel/generator").default(ast).code;
+    }
     const mutations = [
       [
         "string",
-        readable.replace(
-          /(['"])gmbonjklezcfxta1234567890GMBONJKLEZCFXTA\1/,
-          "'changed alphabet'",
+        changeString(
+          "gmbonjklezcfxta1234567890GMBONJKLEZCFXTA",
+          "changed alphabet",
         ),
       ],
       ["number", readable.replace("clientVersion = 7", "clientVersion = 999")],
@@ -298,28 +320,19 @@ if (require.main === module) {
       ["reference", readable.replace("= nowSeconds()", "= nowMilliseconds()")],
       [
         "HTTP URL",
-        readable.replace(
+        changeString(
           "/api/get-painting.php?id=",
           "/api/changed-endpoint.php?id=",
         ),
       ],
       [
         "socket event",
-        readable.replace("'chat.user.command'", "'changed.socket.event'"),
+        changeString("chat.user.command", "changed.socket.event"),
       ],
-      [
-        "payload key",
-        readable.replace(
-          "requestHeaders['CACHE-L0CAL']",
-          "requestHeaders['CHANGED-HEADER']",
-        ),
-      ],
+      ["payload key", changeString("CACHE-L0CAL", "CHANGED-HEADER")],
       [
         "DOM selector",
-        readable.replace(
-          "'#notification .box'",
-          "'#changed-notification .box'",
-        ),
+        changeString("#notification .box", "#changed-notification .box"),
       ],
       ["statement", readable + '\nthrow new Error("changed application");'],
       ["bootstrap reintroduction", "_0x56df5f();\n" + readable],

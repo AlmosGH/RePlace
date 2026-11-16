@@ -1,0 +1,3841 @@
+===================================================================
+--- versions/20220405003252-ac30e3ea.js
++++ versions/20220405121923-4a476196.js
+@@ -2568,7 +2568,7 @@
+         },
+         function (argument, pollingData, callback) {
+           function polling(jsonpData) {
+-            var xabcdef000000267,
++            var xabcdef00000027c,
+               xdomain = false,
+               xscheme = false,
+               jsonp = false !== jsonpData.jsonp;
+@@ -2582,8 +2582,8 @@
+             if (
+               ((jsonpData.xdomain = xdomain),
+               (jsonpData.xscheme = xscheme),
+-              (xabcdef000000267 = new value(jsonpData)),
+-              'open' in xabcdef000000267 && !jsonpData.forceJSONP)
++              (xabcdef00000027c = new value(jsonpData)),
++              'open' in xabcdef00000027c && !jsonpData.forceJSONP)
+             )
+               return new callbackValue(jsonpData);
+             if (!jsonp) throw new Error('JSONP disabled');
+@@ -2946,8 +2946,8 @@
+             var xdomainData = {};
+             xdomainData.xdomain = false;
+             var value = callback(19),
+-              xabcdef0000002c5 = new value(xdomainData);
+-            return null != xabcdef0000002c5.responseType;
++              xabcdef0000002da = new value(xdomainData);
++            return null != xabcdef0000002da.responseType;
+           })();
+           callbackCallback(exports, callData);
+           exports.prototype.name = 'polling';
+@@ -3233,8 +3233,8 @@
+             if (idValue) return encodeBinaryPacket(typeData, argument, callback);
+             var uint8Array = new Uint8Array(1);
+             uint8Array[0] = loadedValue[typeData.type];
+-            var xabcdef000000308 = new undefinedValue([uint8Array.buffer, typeData.data]);
+-            return callback(xabcdef000000308);
++            var xabcdef00000031a = new undefinedValue([uint8Array.buffer, typeData.data]);
++            return callback(xabcdef00000031a);
+           }
+           function decodeUtf8Safely(decodeResult) {
+             try {
+@@ -3361,14 +3361,14 @@
+             }
+             var uint8Array = new Uint8Array(decodeUtf8SafelyResult),
+               charAtResult = uint8Array[0],
+-              xabcdef000000308 = localCallbackCallback(decodeUtf8SafelyResult, 1);
++              xabcdef00000031a = localCallbackCallback(decodeUtf8SafelyResult, 1);
+             return (
+               undefinedValue &&
+                 'blob' === argument &&
+-                (xabcdef000000308 = new undefinedValue([xabcdef000000308])),
++                (xabcdef00000031a = new undefinedValue([xabcdef00000031a])),
+               {
+                 type: callbackValue[charAtResult],
+-                data: xabcdef000000308
++                data: xabcdef00000031a
+               }
+             );
+           };
+@@ -3525,12 +3525,12 @@
+                 )
+                   parseIntUint8Array[index] = parseInt(toStringResult[index]);
+                 if (((parseIntUint8Array[toStringResult.length] = 255), undefinedValue)) {
+-                  var xabcdef000000308 = new undefinedValue([
++                  var xabcdef00000031a = new undefinedValue([
+                     uint8Array.buffer,
+                     parseIntUint8Array.buffer,
+                     buffer
+                   ]);
+-                  callback(null, xabcdef000000308);
++                  callback(null, xabcdef00000031a);
+                 }
+               });
+             }
+@@ -3904,12 +3904,12 @@
+           }
+           function prototypeData(argument, typeData) {
+             typeData = typeData || {};
+-            var xabcdef000000415 = new idPrototypeData();
++            var xabcdef000000422 = new idPrototypeData();
+             return (
+               callback(argument).forEach(function (entry) {
+-                xabcdef000000415.append(entry);
++                xabcdef000000422.append(entry);
+               }),
+-              typeData.type ? xabcdef000000415.getBlob(typeData.type) : xabcdef000000415.getBlob()
++              typeData.type ? xabcdef000000422.getBlob(typeData.type) : xabcdef000000422.getBlob()
+             );
+           }
+           function exportsPrototypeData(argument, exportsArgument) {
+@@ -4287,53 +4287,55 @@
+            * Input bindings: items. Names describe inferred roles; protocol field names are preserved separately.
+            */
+           exports.prototype.write = function (items) {
+-            /**
+-             * Outgoing socket event names: flush.
+-             *
+-             * Scheduled work: setTimeout (0 ms).
+-             */
+-            function callback() {
+-              emitData.emit('flush');
+-              setTimeout(
+-                /**
+-                 * Scheduled callback. State may have changed since scheduling, so the guards inside this body are evaluated at execution time.
+-                 *
+-                 * Outgoing socket event names: drain.
+-                 *
+-                 * Shared/receiver state written: emitData.writable.
+-                 */
+-                function () {
+-                  emitData.writable = true;
+-                  emitData.emit('drain');
+-                },
+-                0
+-              );
+-            }
+-            var emitData = this;
+-            this.writable = false;
+-            for (var length = items.length, index = 0, lengthIndex = length; index < lengthIndex; index++)
+-              !(function (optionsData) {
+-                encodePacketData.encodePacket(optionsData, emitData.supportsBinary, function (items) {
+-                  if (!emitData.usingBrowserWebSocket) {
+-                    var compressData = {};
+-                    if (
+-                      (optionsData.options && (compressData.compress = optionsData.options.compress),
+-                      emitData.perMessageDeflate)
+-                    ) {
+-                      var value = 'string' == typeof items ? Buffer.byteLength(items) : items.length;
+-                      value < emitData.perMessageDeflate.threshold && (compressData.compress = false);
++            {
++              /**
++               * Outgoing socket event names: flush.
++               *
++               * Scheduled work: setTimeout (0 ms).
++               */
++              function callback() {
++                emitData.emit('flush');
++                setTimeout(
++                  /**
++                   * Scheduled callback. State may have changed since scheduling, so the guards inside this body are evaluated at execution time.
++                   *
++                   * Outgoing socket event names: drain.
++                   *
++                   * Shared/receiver state written: emitData.writable.
++                   */
++                  function () {
++                    emitData.writable = true;
++                    emitData.emit('drain');
++                  },
++                  0
++                );
++              }
++              var emitData = this;
++              this.writable = false;
++              for (var length = items.length, index = 0, lengthIndex = length; index < lengthIndex; index++)
++                !(function (optionsData) {
++                  encodePacketData.encodePacket(optionsData, emitData.supportsBinary, function (items) {
++                    if (!emitData.usingBrowserWebSocket) {
++                      var compressData = {};
++                      if (
++                        (optionsData.options && (compressData.compress = optionsData.options.compress),
++                        emitData.perMessageDeflate)
++                      ) {
++                        var value = 'string' == typeof items ? Buffer.byteLength(items) : items.length;
++                        value < emitData.perMessageDeflate.threshold && (compressData.compress = false);
++                      }
+                     }
+-                  }
+-                  try {
+-                    emitData.usingBrowserWebSocket
+-                      ? emitData.ws.send(items)
+-                      : emitData.ws.send(items, compressData);
+-                  } catch (error) {
+-                    ioClientElement('websocket closed before onclose event');
+-                  }
+-                  --length || callback();
+-                });
+-              })(items[index]);
++                    try {
++                      emitData.usingBrowserWebSocket
++                        ? emitData.ws.send(items)
++                        : emitData.ws.send(items, compressData);
++                    } catch (error) {
++                      ioClientElement('websocket closed before onclose event');
++                    }
++                    --length || callback();
++                  });
++                })(items[index]);
++            }
+           };
+           exports.prototype.onClose = function () {
+             callData.prototype.onClose.call(this);
+@@ -4665,16 +4667,14 @@
+           };
+         },
+         function (exportsData, argument) {
+-          {
+-            function exports(items, argument) {
+-              var entries = [];
+-              argument = argument || 0;
+-              for (var index = argument || 0; index < items.length; index++)
+-                entries[index - argument] = items[index];
+-              return entries;
+-            }
+-            exportsData.exports = exports;
++          function exports(items, argument) {
++            var entries = [];
++            argument = argument || 0;
++            for (var index = argument || 0; index < items.length; index++)
++              entries[index - argument] = items[index];
++            return entries;
+           }
++          exportsData.exports = exports;
+         },
+         function (exportsData, argument) {
+           function exports(onData, argument, listener) {
+@@ -4773,7 +4773,7 @@
+     /* Coordinate modal state, form content, toolbar preferences, and the settings persisted by the original client. */
+     var ui = null,
+       selectedItemId = null,
+-      timestamp = 0,
++      lastConnectionTimestamp = 0,
+       mouseupSetIntervalResult = null,
+       selectedPriceId = 2,
+       enabled = false,
+@@ -4901,8 +4901,9 @@
+         html = '<span class="xmas">';
+       for (var key in characters) {
+         if (styleIndex === 1) html += '<span class="a">' + characters[key] + '</span>';
+-        else if (styleIndex === 2) html += '<span class="b">' + characters[key] + '</span>';
+-        else if (styleIndex === 3) html += '<span class="c">' + characters[key] + '</span>';
++        else if (styleIndex === 2) {
++          html += '<span class="b">' + characters[key] + '</span>';
++        } else if (styleIndex === 3) html += '<span class="c">' + characters[key] + '</span>';
+         else
+           styleIndex === 4 && ((html += '<span class="d">' + characters[key] + '</span>'), (styleIndex = 0));
+         styleIndex++;
+@@ -4914,7 +4915,9 @@
+       xhr: {
+         requests: {},
+         abortRequest: function (requestId) {
+-          api.xhr.requests[requestId] !== undefined && api.xhr.requests[requestId].abort();
++          if (api.xhr.requests[requestId] !== undefined) {
++            api.xhr.requests[requestId].abort();
++          }
+         },
+         removeRequest: function (requestId) {
+           api.xhr.requests[requestId] !== undefined && delete api.xhr.requests[requestId];
+@@ -4929,7 +4932,9 @@
+         /* The fourth argument cancels an older request with the same method/URL. CACHE-L0CAL is an existing protocol header, not an HTTP cache directive. */
+         req: function (method, url, data, cancelPrevious, callback) {
+           var requestKey = method + '-' + url;
+-          cancelPrevious && api.xhr.abortRequest(requestKey);
++          if (cancelPrevious) {
++            api.xhr.abortRequest(requestKey);
++          }
+           var requestHeaders = {};
+           requestHeaders.U_PREFS = 1;
+           api.xhr.requests[requestKey] = $.ajax({
+@@ -5114,10 +5119,10 @@
+         $('.open-modal[data-id="painting-settings"][data-target="main"][data-content="painting"]')
+           .removeClass('display-none')
+           .show());
+-      serverData.user.guild !== ''
+-        ? ($('#chat .tabs a[data-id="guild"] .title').text('' + serverData.user.guild + ''),
+-          $('.guild-quit').show())
+-        : $('.guild-quit').hide();
++      if (serverData.user.guild !== '') {
++        $('#chat .tabs a[data-id="guild"] .title').text('' + serverData.user.guild + '');
++        $('.guild-quit').show();
++      } else $('.guild-quit').hide();
+       $('.paypal-from').find('input[name="custom"]').val(serverData.user.key);
+       for (var key in serverData.shop.items) {
+         var imageClass = 'pixelate';
+@@ -5159,7 +5164,7 @@
+         if (serverData.user.settings.painting.isOwner) {
+           hasPendingPaintings = true;
+           $('#submit-painting-moderator-add').show();
+-        } else {
++        } else
+           for (var key in serverData.painting.moderators) {
+             if (serverData.painting.moderators[key].id === serverData.user.id) {
+               serverData.painting.moderators[key].permissions.tools &&
+@@ -5168,41 +5173,37 @@
+               break;
+             }
+           }
+-        }
+-        hasPendingPaintings
+-          ? ($('.open-modal[data-target="painting"][data-content="pending"]')
+-              .removeClass('display-none')
+-              .show(),
+-            api.xhr.req(
+-              'GET',
+-              'https://pixelplace.io/api/get-painting-access.php?getPendingCount=true&id=' +
+-                serverData.painting.id,
+-              {},
+-              true,
+-              /**
+-               * HTTP completion callback for https://pixelplace.io/api/get-painting-access.php?getPendingCount=true&id=. It runs through the existing wrapper result/error flow; preserve guard returns and branch-specific UI updates.
+-               *
+-               * Observed DOM operations: notificationBubbleElement.text, notificationBubbleElement.show, notificationBubbleElement.hide.
+-               *
+-               * Input bindings: success, response. Names describe inferred roles; protocol field names are preserved separately.
+-               */
+-              function (success, response) {
+-                if (success) {
+-                  var notificationBubbleElement = $(
+-                      '.open-modal[data-target="painting"][data-content="pending"]'
+-                    ).find('.notification-bubble'),
+-                    text = response.total;
+-                  (text >= 99 || text == '99+') && (text = '99+');
+-                  notificationBubbleElement.text(text);
+-                  text > 0 || text == '99+'
+-                    ? notificationBubbleElement.show()
+-                    : notificationBubbleElement.hide();
+-                }
++        if (hasPendingPaintings) {
++          $('.open-modal[data-target="painting"][data-content="pending"]').removeClass('display-none').show();
++          api.xhr.req(
++            'GET',
++            'https://pixelplace.io/api/get-painting-access.php?getPendingCount=true&id=' +
++              serverData.painting.id,
++            {},
++            true,
++            /**
++             * HTTP completion callback for https://pixelplace.io/api/get-painting-access.php?getPendingCount=true&id=. It runs through the existing wrapper result/error flow; preserve guard returns and branch-specific UI updates.
++             *
++             * Observed DOM operations: notificationBubbleElement.text, notificationBubbleElement.show, notificationBubbleElement.hide.
++             *
++             * Input bindings: success, response. Names describe inferred roles; protocol field names are preserved separately.
++             */
++            function (success, response) {
++              if (success) {
++                var notificationBubbleElement = $(
++                    '.open-modal[data-target="painting"][data-content="pending"]'
++                  ).find('.notification-bubble'),
++                  text = response.total;
++                (text >= 99 || text == '99+') && (text = '99+');
++                notificationBubbleElement.text(text);
++                text > 0 || text == '99+'
++                  ? notificationBubbleElement.show()
++                  : notificationBubbleElement.hide();
+               }
+-            ))
+-          : $('.open-modal[data-target="painting"][data-content="pending"]')
+-              .removeClass('display-none')
+-              .hide();
++            }
++          );
++        } else
++          $('.open-modal[data-target="painting"][data-content="pending"]').removeClass('display-none').hide();
+       }
+       var initialPosition = {};
+       initialPosition.x = 0;
+@@ -5234,7 +5235,9 @@
+             elements.cursor.hide();
+             elements.coordinates.hide();
+             if (pointer.touchDevice) {
+-            } else elements.placeholder.hide();
++            } else {
++              elements.placeholder.hide();
++            }
+           }
+           paletteIndex !== undefined &&
+             elements.cursor.css('background-color', appState.painting.palette.colors[paletteIndex]);
+@@ -5290,19 +5293,14 @@
+           var paintingPosition = pointer.screenToPaintingSpace(event.pageX, event.pageY);
+           paintingPosition.x |= 0;
+           paintingPosition.y |= 0;
+-          if (
+-            paintingPosition.x < 0 ||
+-            paintingPosition.x > canvasRenderer.width - 1 ||
+-            paintingPosition.y < 0 ||
+-            paintingPosition.y > canvasRenderer.height - 1
+-          ) {
+-            pointer.x = null;
+-            pointer.y = null;
+-          } else {
+-            pointer.x = paintingPosition.x;
+-            pointer.y = paintingPosition.y;
+-            elements.coordinates.text(pointer.x + ',' + pointer.y);
+-          }
++          paintingPosition.x < 0 ||
++          paintingPosition.x > canvasRenderer.width - 1 ||
++          paintingPosition.y < 0 ||
++          paintingPosition.y > canvasRenderer.height - 1
++            ? ((pointer.x = null), (pointer.y = null))
++            : ((pointer.x = paintingPosition.x),
++              (pointer.y = paintingPosition.y),
++              elements.coordinates.text(pointer.x + ',' + pointer.y));
+         },
+         /**
+          * Update cursor and placement previews using the current view and tool state. Desktop pointer placement and mobile-centered placement follow different branches. Weapon radius, brush size and rendering/zoom mode affect overlay dimensions, so the displayed cursor is not a direct statement about a server-accepted placement.
+@@ -5331,40 +5329,40 @@
+                 cursorHeight = parseInt(canvasRenderer.scale * canvasRenderer.brush.size);
+             var position = {},
+               bounds = canvasRenderer.element.canvas.painting[0].getBoundingClientRect();
+-            canvasRenderer.haveZoomRendering
+-              ? ((position.x = Math.round(innerWidth / canvasRenderer.scale - bounds.left - 2)),
+-                (position.y = Math.round(innerHeight / canvasRenderer.scale - bounds.top - 1)))
+-              : ((position.x = Math.round((innerWidth - bounds.left) / canvasRenderer.scale - 1)),
+-                (position.y = Math.round((innerHeight - bounds.top) / canvasRenderer.scale)));
+-            cursorWidth = 1;
+-            cursorHeight = 1;
+             if (canvasRenderer.haveZoomRendering) {
+-              elements.placeholderMobile.css(
+-                'webkitTransform',
+-                'translate(' + position.x + 'px, ' + position.y + 'px)'
+-              );
+-              elements.placeholderMobile.css(
+-                'transform',
+-                'translate(' + position.x + 'px, ' + position.y + 'px)'
+-              );
++              position.x = Math.round(innerWidth / canvasRenderer.scale - bounds.left - 2);
++              position.y = Math.round(innerHeight / canvasRenderer.scale - bounds.top - 1);
+             } else {
+-              elements.placeholderMobile.css(
+-                'webkitTransform',
+-                'translate(' +
+-                  (position.x - 0.2999999999992724) +
+-                  'px, ' +
+-                  (position.y - 0.3000000000001819) +
+-                  'px) scale(0.62)'
+-              );
+-              elements.placeholderMobile.css(
+-                'transform',
+-                'translate(' +
+-                  (position.x - 0.2999999999992724) +
+-                  'px, ' +
+-                  (position.y - 0.3000000000001819) +
+-                  'px) scale(0.62)'
+-              );
++              position.x = Math.round((innerWidth - bounds.left) / canvasRenderer.scale - 1);
++              position.y = Math.round((innerHeight - bounds.top) / canvasRenderer.scale);
+             }
++            cursorWidth = 1;
++            cursorHeight = 1;
++            canvasRenderer.haveZoomRendering
++              ? (elements.placeholderMobile.css(
++                  'webkitTransform',
++                  'translate(' + position.x + 'px, ' + position.y + 'px)'
++                ),
++                elements.placeholderMobile.css(
++                  'transform',
++                  'translate(' + position.x + 'px, ' + position.y + 'px)'
++                ))
++              : (elements.placeholderMobile.css(
++                  'webkitTransform',
++                  'translate(' +
++                    (position.x - 0.30000000000001137) +
++                    'px, ' +
++                    (position.y - 0.3000000000001819) +
++                    'px) scale(0.62)'
++                ),
++                elements.placeholderMobile.css(
++                  'transform',
++                  'translate(' +
++                    (position.x - 0.3000000000001819) +
++                    'px, ' +
++                    (position.y - 0.2999999999992724) +
++                    'px) scale(0.62)'
++                ));
+             elements.placeholderMobile.css('width', cursorWidth + 'px');
+             elements.placeholderMobile.css('height', cursorHeight + 'px');
+             pointer.x = position.x;
+@@ -5432,17 +5430,21 @@
+          * This body uses the call receiver (`this`); replacing it with an unbound callback can change behavior.
+          */
+         function () {
+-          pointer.mobileBrushActivated
+-            ? ((pointer.mobileBrushActivated = false),
+-              $(this).find('span').text('Activate Brush?'),
+-              $(this).find('div').show())
+-            : (pointer.mobileFirstActivation &&
+-                ((pointer.mobileFirstActivation = false),
+-                (canvasRenderer.scale = 10),
+-                zoomAroundViewportCenter(true)),
+-              (pointer.mobileBrushActivated = true),
+-              $(this).find('span').text('Disable Brush?'),
+-              $(this).find('div').hide());
++          if (pointer.mobileBrushActivated) {
++            pointer.mobileBrushActivated = false;
++            $(this).find('span').text('Activate Brush?');
++            $(this).find('div').show();
++          } else {
++            serverData.painting.cooldown > 0
++              ? canvasRenderer.drawPixelAt()
++              : (pointer.mobileFirstActivation &&
++                  ((pointer.mobileFirstActivation = false),
++                  (canvasRenderer.scale = 10),
++                  zoomAroundViewportCenter(true)),
++                (pointer.mobileBrushActivated = true),
++                $(this).find('span').text('Disable Brush?'),
++                $(this).find('div').hide());
++          }
+         }
+       );
+       $(document).on(
+@@ -5518,17 +5520,14 @@
+         centerPositionTo: function (scale, centerX, centerY) {
+           scale !== undefined && (canvasRenderer.scale = canvasRenderer.formatScale(scale));
+           centerX !== undefined && (canvasRenderer.x = canvasRenderer.width / 2 - centerX);
+-          if (centerY !== undefined) {
+-            canvasRenderer.y = canvasRenderer.height / 2 - centerY;
+-          }
++          centerY !== undefined && (canvasRenderer.y = canvasRenderer.height / 2 - centerY);
+           canvasRenderer.updateScaleAndPosition();
+         },
+         formatScale: function (scale) {
+           if (scale < canvasRenderer.zoom.min) scale = canvasRenderer.zoom.min;
+-          else
+-            scale > canvasRenderer.zoom.max
+-              ? (scale = canvasRenderer.zoom.max)
+-              : (scale = roundToDecimalPlaces(scale, 2));
++          else if (scale > canvasRenderer.zoom.max) {
++            scale = canvasRenderer.zoom.max;
++          } else scale = roundToDecimalPlaces(scale, 2);
+           return scale;
+         },
+         updateUrlHash: function () {
+@@ -5606,10 +5605,12 @@
+             'transform',
+             'translate(' + canvasRenderer.x + 'px, ' + canvasRenderer.y + 'px)'
+           );
+-          canvasRenderer.haveZoomRendering
+-            ? canvasRenderer.element.zoom.css('zoom', (canvasRenderer.scale * 100).toString() + '%')
+-            : (canvasRenderer.element.zoom.css('webkitTransform', 'scale(' + canvasRenderer.scale + ')'),
+-              canvasRenderer.element.zoom.css('transform', 'scale(' + canvasRenderer.scale + ')'));
++          if (canvasRenderer.haveZoomRendering) {
++            canvasRenderer.element.zoom.css('zoom', (canvasRenderer.scale * 100).toString() + '%');
++          } else {
++            canvasRenderer.element.zoom.css('webkitTransform', 'scale(' + canvasRenderer.scale + ')');
++            canvasRenderer.element.zoom.css('transform', 'scale(' + canvasRenderer.scale + ')');
++          }
+           var paintingPosition = pointer.screenToPaintingSpace(0, 0),
+             scale = canvasRenderer.scale;
+           const integerZoomScale = Math.max(1, Math.floor(scale)),
+@@ -5636,7 +5637,9 @@
+           var data = canvasRenderer.element.ctx.painting.getImageData(x, y, 1, 1).data;
+           data = rgbToHex(data[0], data[1], data[2]);
+           var paletteIndex = $.inArray(data.toUpperCase(), appState.painting.palette.colors);
+-          paletteIndex !== -1 && canvasRenderer.selectPaletteColor(paletteIndex);
++          if (paletteIndex !== -1) {
++            canvasRenderer.selectPaletteColor(paletteIndex);
++          }
+         },
+         /**
+          * Read the original protection image/buffer for a painting coordinate. This is a browser-side preliminary check over the latest local snapshot and does not prove that a later server request will be permitted.
+@@ -5654,11 +5657,13 @@
+               serverData.painting.height
+             ).data);
+           var pixelByteOffset = x * 4 + y * serverData.painting.width * 4;
+-          return canvasRenderer.currentImgDataProtection[pixelByteOffset] === canvasRenderer.protectionRGB &&
++          if (
++            canvasRenderer.currentImgDataProtection[pixelByteOffset] === canvasRenderer.protectionRGB &&
+             canvasRenderer.currentImgDataProtection[pixelByteOffset + 1] === canvasRenderer.protectionRGB &&
+             canvasRenderer.currentImgDataProtection[pixelByteOffset + 2] === canvasRenderer.protectionRGB
+-            ? true
+-            : false;
++          ) {
++            return true;
++          } else return false;
+         },
+         /**
+          * Compare the requested placement with currently rendered pixel data using the original palette conversion. This avoids a local duplicate path; it does not replace server-side placement validation or guarantee that the local snapshot is current.
+@@ -5705,9 +5710,7 @@
+                   cooldown = 0;
+                   clearInterval(canvasRenderer.cooldownSetInterval);
+                   elements.cooldown.hide();
+-                } else {
+-                  cooldown = parseInt(cooldown / 1000);
+-                }
++                } else cooldown = parseInt(cooldown / 1000);
+                 !dotting &&
+                   cooldown > serverData.painting.cooldown &&
+                   (cooldown = serverData.painting.cooldown);
+@@ -5855,11 +5858,13 @@
+                      * Observed DOM operations: text.
+                      */
+                     function () {
+-                      parseInt(serverData.painting.id) === 0 || parseInt(serverData.painting.id) === 13
+-                        ? (ui.openModal('alert', 'norules'),
+-                          $('.box[data-id="alert"] .box-header span').text('ANARCHY'))
+-                        : (ui.openModal('alert', 'nsfw'),
+-                          $('.box[data-id="alert"] .box-header span').text('NSFW'));
++                      if (parseInt(serverData.painting.id) === 0 || parseInt(serverData.painting.id) === 13) {
++                        ui.openModal('alert', 'norules');
++                        $('.box[data-id="alert"] .box-header span').text('ANARCHY');
++                      } else {
++                        ui.openModal('alert', 'nsfw');
++                        $('.box[data-id="alert"] .box-header span').text('NSFW');
++                      }
+                     },
+                     1
+                   );
+@@ -5871,15 +5876,16 @@
+                   lastVisit && parseInt(lastVisit) > nowSeconds() - 345600 && (welcomeVisible = false);
+                   !welcomeChoice && (welcomeVisible = true);
+                   localStorage.setItem('last-visit', nowSeconds());
+-                  welcomeVisible &&
+-                    (!pointer.touchDevice
++                  if (welcomeVisible) {
++                    !pointer.touchDevice
+                       ? ($('.box-content[data-id="welcome"]').find('.desktop').show(),
+                         $('.box-content[data-id="welcome"]').find('.mobile').hide())
+                       : ($('.box-content[data-id="welcome"]').find('.desktop').hide(),
+-                        $('.box-content[data-id="welcome"]').find('.mobile').show()),
++                        $('.box-content[data-id="welcome"]').find('.mobile').show());
+                     setTimeout(function () {
+                       ui.openModal('welcome', 'welcome');
+-                    }, 1));
++                    }, 1);
++                  }
+                 }
+                 var darkmodeEnabled = localStorage.getItem('darkmode-enabled');
+                 darkmodeEnabled &&
+@@ -5929,10 +5935,10 @@
+         /* The from-server path updates the rendered canvas; the local path validates client state and sends the existing placement tuple. Payload positions and event names must stay stable. */
+         drawPixelAt: function (fromServer, pointerX, pointerY, color, width, userId) {
+           var timestamp = nowMilliseconds();
+-          if (pointerX === undefined) {
+-            pointerX = pointer.x;
++          pointerX === undefined && (pointerX = pointer.x);
++          if (pointerY === undefined) {
++            pointerY = pointer.y;
+           }
+-          pointerY === undefined && (pointerY = pointer.y);
+           width === undefined && (width = canvasRenderer.brush.size);
+           color === undefined && (color = canvasRenderer.color);
+           if (!fromServer && !serverData.user.connected) {
+@@ -5983,9 +5989,9 @@
+                   : connection.io.emit('p', [pointerX, pointerY, color, width]);
+               }
+             } else {
+-              color === -100
+-                ? (canvasRenderer.element.ctx.painting.fillStyle = '#cccccc')
+-                : (canvasRenderer.element.ctx.painting.fillStyle = appState.painting.palette.colors[color]);
++              if (color === -100) {
++                canvasRenderer.element.ctx.painting.fillStyle = '#cccccc';
++              } else canvasRenderer.element.ctx.painting.fillStyle = appState.painting.palette.colors[color];
+               canvasRenderer.element.ctx.painting.fillRect(pointerX, pointerY, width, width);
+               userId !== undefined &&
+                 userId !== serverData.user.id &&
+@@ -6072,28 +6078,24 @@
+               var orderEntry = appState.painting.palette.order[key];
+               if ($.inArray(orderEntry, serverData.painting.palette) !== -1) {
+                 var colorEntry = appState.painting.palette.colors[orderEntry];
+-                if (
+-                  !serverData.user.premium.active &&
+-                  $.inArray(colorEntry, appState.painting.palette.premium) !== -1
+-                )
+-                  html +=
+-                    '<a href="#" title="' +
+-                    colorEntry +
+-                    '" data-id="' +
+-                    orderEntry +
+-                    '" style="background-color: ' +
+-                    colorEntry +
+-                    '" class="disabled"></a>';
+-                else {
+-                  html +=
+-                    '<a href="#" title="' +
+-                    colorEntry +
+-                    '" data-id="' +
+-                    orderEntry +
+-                    '"  style="background-color: ' +
+-                    colorEntry +
+-                    '"></a>';
+-                }
++                !serverData.user.premium.active &&
++                $.inArray(colorEntry, appState.painting.palette.premium) !== -1
++                  ? (html +=
++                      '<a href="#" title="' +
++                      colorEntry +
++                      '" data-id="' +
++                      orderEntry +
++                      '" style="background-color: ' +
++                      colorEntry +
++                      '" class="disabled"></a>')
++                  : (html +=
++                      '<a href="#" title="' +
++                      colorEntry +
++                      '" data-id="' +
++                      orderEntry +
++                      '"  style="background-color: ' +
++                      colorEntry +
++                      '"></a>');
+               }
+             }
+             elements.palette.html(html);
+@@ -6166,12 +6168,13 @@
+         fetchPaintingAccess: function (accessType, offset) {
+           var rowsElement = ui.activeContent.find('.rows'),
+             inputValue = $('input[name="filter-request"][data-type="' + accessType + '"]').val();
+-          if (inputValue === undefined || parseInt(accessType) === 0) {
+-            inputValue = '';
+-          }
++          (inputValue === undefined || parseInt(accessType) === 0) && (inputValue = '');
+           if (inputValue.length > 0 && inputValue.length <= 2) return;
+-          offset === 0 &&
+-            (ui.triggerLoader(true), rowsElement.html(''), (canvasRenderer.lastStartAccessFetch = 0));
++          if (offset === 0) {
++            ui.triggerLoader(true);
++            rowsElement.html('');
++            canvasRenderer.lastStartAccessFetch = 0;
++          }
+           api.xhr.req(
+             'GET',
+             'https://pixelplace.io/api/get-painting-access.php?getAccessRequests=true&id=' +
+@@ -6236,7 +6239,9 @@
+                           ' pixels, joined on ' +
+                           joinedDate
+                       );
+-                  } else element.find('.stats').hide();
++                  } else {
++                    element.find('.stats').hide();
++                  }
+                   requestEntry.message != ''
+                     ? element.find('.message').text(requestEntry.message)
+                     : element.find('.message').hide();
+@@ -6254,41 +6259,42 @@
+                         .removeClass('c-green')
+                         .removeClass('c-red')
+                         .addClass('c-green'));
+-                  } else
+-                    accessType === 2
+-                      ? (element.find('a[data-type="2"]').hide(),
+-                        element.find('a[data-type="1"]').text('GIVE ACCESS'),
+-                        element.find('.stats').hide(),
+-                        requestEntry.reason != ''
+-                          ? (element.find('.reason .text').text(requestEntry.reason),
+-                            requestEntry.lastChangeUsername &&
+-                              element
+-                                .find('.reason .lastChangeBy')
+-                                .text(requestEntry.lastChangeUsername + ': '),
+-                            element
+-                              .find('.reason .lastChangeBy')
+-                              .removeClass('c-green')
+-                              .removeClass('c-red')
+-                              .addClass('c-red'),
+-                            element.find('.reason .text').show(),
+-                            element.find('.reason').show())
+-                          : element.find('.reason').hide(),
+-                        parseInt(requestEntry.daysLeft) > -1
+-                          ? (element.find('.reasonTmp').show(),
+-                            element
+-                              .find('.reasonTmp .text')
+-                              .text(
+-                                '(Temp ban, ' +
+-                                  requestEntry.daysLeft +
+-                                  ' day' +
+-                                  (parseInt(requestEntry.daysLeft) != 1 ? 's' : '') +
+-                                  ' left)'
+-                              )
+-                              .show())
+-                          : element.find('.reasonTmp').hide())
+-                      : (element.find('a[data-type="2"].banTime').hide(),
+-                        element.find('a[data-type="2"].permaBan').text('DECLINE'),
+-                        element.find('a[data-type="1"]').text('ACCEPT'));
++                  } else if (accessType === 2) {
++                    element.find('a[data-type="2"]').hide();
++                    element.find('a[data-type="1"]').text('GIVE ACCESS');
++                    element.find('.stats').hide();
++                    if (requestEntry.reason != '') {
++                      element.find('.reason .text').text(requestEntry.reason);
++                      requestEntry.lastChangeUsername &&
++                        element.find('.reason .lastChangeBy').text(requestEntry.lastChangeUsername + ': ');
++                      element
++                        .find('.reason .lastChangeBy')
++                        .removeClass('c-green')
++                        .removeClass('c-red')
++                        .addClass('c-red');
++                      element.find('.reason .text').show();
++                      element.find('.reason').show();
++                    } else {
++                      element.find('.reason').hide();
++                    }
++                    parseInt(requestEntry.daysLeft) > -1
++                      ? (element.find('.reasonTmp').show(),
++                        element
++                          .find('.reasonTmp .text')
++                          .text(
++                            '(Temp ban, ' +
++                              requestEntry.daysLeft +
++                              ' day' +
++                              (parseInt(requestEntry.daysLeft) != 1 ? 's' : '') +
++                              ' left)'
++                          )
++                          .show())
++                      : element.find('.reasonTmp').hide();
++                  } else {
++                    element.find('a[data-type="2"].banTime').hide();
++                    element.find('a[data-type="2"].permaBan').text('DECLINE');
++                    element.find('a[data-type="1"]').text('ACCEPT');
++                  }
+                 }
+                 response.requests.length <= 0 && accessType === 0
+                   ? (rowsElement.html(
+@@ -6330,7 +6336,7 @@
+              */
+             function (success, response) {
+               ui.triggerLoader(false);
+-              if (success)
++              if (success) {
+                 for (var key in response) {
+                   var moderatorPermissions = response[key],
+                     paintingToolsChecked =
+@@ -6355,7 +6361,7 @@
+                   element.find('[name="modPermBan"]').attr('data-username', moderatorPermissions.username);
+                   element.find('.username').attr('data-profile', moderatorPermissions.username);
+                 }
+-              else showNotification('error', 'Error', response.message);
++              } else showNotification('error', 'Error', response.message);
+             }
+           );
+         },
+@@ -6442,18 +6448,19 @@
+               var text = '';
+               if (pixelplaceEntry.havePremiumSettings && pixelplaceEntry.premiumTime < nowSeconds())
+                 text = 'bg-disabled';
+-              else if (pixelplaceEntry.status != '1') {
+-                text = 'bg-disabled';
+-              } else if (
++              else if (pixelplaceEntry.status != '1') text = 'bg-disabled';
++              else if (
+                 pixelplaceEntry.visibility == '2' &&
+                 parseInt(pixelplaceEntry.guildIntegration) === 1
+-              )
++              ) {
+                 text = 'bg-guild';
+-              else if (pixelplaceEntry.visibility == '2' && parseInt(pixelplaceEntry.twitchIntegration) === 1)
++              } else if (
++                pixelplaceEntry.visibility == '2' &&
++                parseInt(pixelplaceEntry.twitchIntegration) === 1
++              )
+                 text = 'bg-twitch';
+-              else if (pixelplaceEntry.visibility == '2') {
+-                text = 'bg-approval';
+-              } else pixelplaceEntry.visibility == '3' && (text = 'bg-owner');
++              else if (pixelplaceEntry.visibility == '2') text = 'bg-approval';
++              else pixelplaceEntry.visibility == '3' && (text = 'bg-owner');
+               var paintingFilteredOut = false;
+               !accessFilters['filter-1'] &&
+                 pixelplaceEntry.visibility === '1' &&
+@@ -6469,7 +6476,9 @@
+                   pixelplaceEntry.status !== '1') &&
+                 (paintingFilteredOut = true);
+               !accessFilters['filter-5'] && pixelplaceEntry.template === '1' && (paintingFilteredOut = true);
+-              !accessFilters['filter-6'] && pixelplaceEntry.cooldown !== '0' && (paintingFilteredOut = true);
++              if (!accessFilters['filter-6'] && pixelplaceEntry.cooldown !== '0') {
++                paintingFilteredOut = true;
++              }
+               if (!paintingFilteredOut) {
+                 if (countValue0Setting >= paintingListStart) {
+                   var aHrefText = '';
+@@ -6575,15 +6584,14 @@
+                  * Input bindings: success, response. Names describe inferred roles; protocol field names are preserved separately.
+                  */
+                 function (success, response) {
+-                  if (success)
++                  if (success) {
+                     for (var key in response.paintings) {
+                       var paintingEntry = response.paintings[key],
+                         text = '';
+                       if (paintingEntry.havePremiumSettings && paintingEntry.premiumTime < nowSeconds())
+                         text = 'bg-disabled';
+-                      else if (paintingEntry.status != '1') {
+-                        text = 'bg-disabled';
+-                      } else if (
++                      else if (paintingEntry.status != '1') text = 'bg-disabled';
++                      else if (
+                         paintingEntry.visibility == '2' &&
+                         parseInt(paintingEntry.guildIntegration) === 1
+                       )
+@@ -6591,11 +6599,10 @@
+                       else if (
+                         paintingEntry.visibility == '2' &&
+                         parseInt(paintingEntry.twitchIntegration) === 1
+-                      ) {
++                      )
+                         text = 'bg-twitch';
+-                      } else if (paintingEntry.visibility == '2') {
+-                        text = 'bg-approval';
+-                      } else if (paintingEntry.visibility == '3') text = 'bg-owner';
++                      else if (paintingEntry.visibility == '2') text = 'bg-approval';
++                      else if (paintingEntry.visibility == '3') text = 'bg-owner';
+                       else paintingEntry.visibility == '4' && (text = 'bg-guild');
+                       var element = $(
+                         '<a href="/' +
+@@ -6618,7 +6625,7 @@
+                       element.find('.name').text(paintingEntry.name);
+                       parseInt(paintingEntry.xMax) < 205 && element.find('img').addClass('pixelate');
+                     }
+-                  else showNotification('error', 'Error', response.message);
++                  } else showNotification('error', 'Error', response.message);
+                   canvasRenderer.loadPaintingList();
+                 }
+               );
+@@ -6661,8 +6668,9 @@
+                   for (var key in response.members) {
+                     var text = response.members[key],
+                       gETText = '';
+-                    if (count === 0) count++;
+-                    else count === 1 && (count = 0);
++                    if (count === 0) {
++                      count++;
++                    } else count === 1 && (count = 0);
+                     connection.io.emit('user.profile', text);
+                     var element = $(
+                       '<tr data-online="0" data-username="" ' +
+@@ -6890,7 +6898,9 @@
+                     selectedElement.prepend(
+                       '<tr><td class="text-center hover-bg-white">No blocked users</td></tr>'
+                     );
+-                } else showNotification('error', 'Error', response.message);
++                } else {
++                  showNotification('error', 'Error', response.message);
++                }
+               }
+             );
+           }
+@@ -6935,17 +6945,18 @@
+                 for (var key in response.items) {
+                   if (serverData.shop.items[key] !== undefined) {
+                     var text = 'pixelate';
+-                    (parseInt(key) === 4 ||
++                    if (
++                      parseInt(key) === 4 ||
+                       parseInt(key) === 5 ||
+                       parseInt(key) === 6 ||
+-                      parseInt(key) === 10) &&
+-                      (text = '');
++                      parseInt(key) === 10
++                    ) {
++                      text = '';
++                    }
+                     var gETText = 'png',
+                       apiGetMyItemsPhpText = '';
+-                    if (parseInt(key) === 6 || parseInt(key) === 10) {
+-                      gETText = 'gif';
+-                      apiGetMyItemsPhpText = 'bg-white';
+-                    }
++                    (parseInt(key) === 6 || parseInt(key) === 10) &&
++                      ((gETText = 'gif'), (apiGetMyItemsPhpText = 'bg-white'));
+                     parseInt(response.items[key]) > 0 &&
+                       (html +=
+                         '<div class="prem-item" data-item="' +
+@@ -7028,7 +7039,9 @@
+                   $('.claim-coins[data-id="' + claimEntry.claim_id + '"]').addClass('disabled');
+                   $('.claim-coins[data-id="' + claimEntry.claim_id + '"] span').text('Already Claimed');
+                 }
+-              else showNotification('error', 'Error', response.message);
++              else {
++                showNotification('error', 'Error', response.message);
++              }
+             }
+           );
+         },
+@@ -7043,7 +7056,7 @@
+          */
+         useWeapon: function (item) {
+           if (!serverData.user.connected) {
+-          } else if (timestamp > nowSeconds() - 1)
++          } else if (lastConnectionTimestamp > nowSeconds() - 1)
+             showNotification('error', 'Error', 'Please wait 1 sec between each weapon use');
+           else if (canvasRenderer.tryingToUseWeapon) {
+           } else if (
+@@ -7087,9 +7100,9 @@
+                   },
+                   1000
+                 );
+-                success
+-                  ? canvasRenderer.loadUserItems()
+-                  : showNotification('error', 'Error', response.message);
++                if (success) {
++                  canvasRenderer.loadUserItems();
++                } else showNotification('error', 'Error', response.message);
+               }
+             );
+           }
+@@ -7213,11 +7226,12 @@
+           count = 39;
+         } else argument === 3 && ((enabled = true), (count = 74));
+         var timestamp = nowMilliseconds();
+-        enabled &&
++        if (enabled) {
+           window.requestAnimationFrame(function () {
+             timestamp > nowMilliseconds() - 1000 &&
+               animateWeaponExpansion(0, 0, centerX, centerY, count, color, true);
+           });
++        }
+       }
+       function animateWeaponExpansion(argument, diameter, centerX, centerY, maximumDiameter, color, rounded) {
+         argument++;
+@@ -7331,17 +7345,15 @@
+       panGestureOptions.onend = function (unusedEvent) {
+         if (serverData.user.settings.painting.lockPainting) return;
+         else if (!canvasRenderer.loaded) return;
+-        else if (ui.activeElement) {
+-          return;
+-        } else canvasRenderer.updateUrlHash();
++        else if (ui.activeElement) return;
++        else canvasRenderer.updateUrlHash();
+       };
+       var pinchGestureOptions = {};
+       pinchGestureOptions.onmove = function (gesture) {
+         if (serverData.user.settings.painting.lockPainting) return;
+         else if (!canvasRenderer.loaded) return;
+-        else if (ui.activeElement) {
+-          return;
+-        } else {
++        else if (ui.activeElement) return;
++        else {
+           canvasRenderer.scale = canvasRenderer.formatScale(canvasRenderer.scale * (1 + gesture.ds));
+           canvasRenderer.updateScaleAndPosition();
+         }
+@@ -7390,9 +7402,7 @@
+         var scale = canvasRenderer.scale;
+         if (zoomIn) {
+           canvasRenderer.scale = canvasRenderer.formatScale(canvasRenderer.scale * 1.5);
+-        } else {
+-          canvasRenderer.scale = canvasRenderer.formatScale(canvasRenderer.scale / 1.5);
+-        }
++        } else canvasRenderer.scale = canvasRenderer.formatScale(canvasRenderer.scale / 1.5);
+         var centerOffsetX = $(window).width() / 2 - canvasRenderer.element.painting.width() / 2,
+           centerOffsetY = $(window).height() / 2 - canvasRenderer.element.painting.height() / 2;
+         canvasRenderer.x -= centerOffsetX / scale;
+@@ -7422,13 +7432,10 @@
+         }
+       );
+       $(document).on('contextmenu', function (event) {
+-        if (
+-          !ui.activeElement &&
++        !ui.activeElement &&
+           !chat.inputActive &&
+-          $(event.target).closest('#chat .messages').length <= 0
+-        ) {
++          $(event.target).closest('#chat .messages').length <= 0 &&
+           event.preventDefault();
+-        }
+       });
+       var touchStartX,
+         touchStartY,
+@@ -7489,8 +7496,9 @@
+            * Input bindings: event. Names describe inferred roles; protocol field names are preserved separately.
+            */
+           function (event) {
+-            if (!canvasRenderer.loaded) return;
+-            else if (ui.activeElement) return;
++            if (!canvasRenderer.loaded) {
++              return;
++            } else if (ui.activeElement) return;
+             else if (!pointer.touchDevice) {
+               if (event.which === 1 || event.button === 0) {
+                 if (chat.altActive) {
+@@ -7545,9 +7553,8 @@
+         .add(canvasRenderer.element.canvas.protected)
+         .add($('#areas'))
+         .on('touchstart', function (event) {
+-          if (!canvasRenderer.loaded) {
+-            return;
+-          } else if (ui.activeElement) return;
++          if (!canvasRenderer.loaded) return;
++          else if (ui.activeElement) return;
+           else
+             pointer.touchDevice &&
+               event.touches.length == 1 &&
+@@ -7665,20 +7672,20 @@
+         },
+         resize: function (windowX, innerHeight) {
+           windowX === undefined && (windowX = pointer.window.x - 10);
+-          if (innerHeight === undefined) {
+-            innerHeight = window.innerHeight - pointer.window.y - 15;
+-          }
++          innerHeight === undefined && (innerHeight = window.innerHeight - pointer.window.y - 15);
+           chat.elem.container.css('width', windowX + 'px');
+           chat.elem.container.css('height', innerHeight + 'px');
+           chat.checkOnlineDisplay();
+         },
+         checkOnlineDisplay: function () {
+           var chatWidth = parseInt(chat.elem.container.css('width'));
+-          chatWidth < 400
+-            ? parseInt(chat.elem.container.find('.tabs').css('width')) > chatWidth - 100
+-              ? chat.elem.online.hide()
+-              : chat.elem.online.show()
+-            : chat.elem.online.show();
++          if (chatWidth < 400) {
++            if (parseInt(chat.elem.container.find('.tabs').css('width')) > chatWidth - 100)
++              chat.elem.online.hide();
++            else {
++              chat.elem.online.show();
++            }
++          } else chat.elem.online.show();
+         },
+         /**
+          * Shared/receiver state written: chat.isScrolling.
+@@ -7706,14 +7713,16 @@
+         /* Render the original message variants and their metadata. Preserve the existing distinction between text insertion and trusted markup paths. */
+         addMessageRow: function (message, selected) {
+           selected === undefined && (selected = chat.selected);
+-          if (message.type === 'custom')
++          if (message.type === 'custom') {
+             var messageHtml = message.message,
+               element = $('<div class="row"><span class="text custom">' + messageHtml + '</span></div>');
+-          else if (message.type === 'custom-tiny')
++          } else if (message.type === 'custom-tiny')
+             var messageHtml = message.message,
+               element = $('<div class="row"><span class="text custom tiny">' + messageHtml + '</span></div>');
+           else if (message.type === 'announce' || message.type === 'system' || message.type === 'warning') {
+-            message.type === 'announce' && (message.message = message.message);
++            if (message.type === 'announce') {
++              message.message = message.message;
++            }
+             var element = $('<div class="row"><span class="text ' + message.type + '"></span></div>');
+           } else if (serverData.user.blocked.indexOf(message.username) === -1) {
+             var text = '';
+@@ -7722,9 +7731,7 @@
+                 var badgeLabel = message.icons[key].toUpperCase();
+                 message.icons[key] === 'partner' && (badgeLabel = 'TWITCH PARTNER');
+                 message.icons[key] === 'gifter' && (badgeLabel = 'TOP 3 GIFTER');
+-                if (message.icons[key] === 'booster') {
+-                  badgeLabel = 'TOP DISCORD BOOSTER';
+-                }
++                message.icons[key] === 'booster' && (badgeLabel = 'TOP DISCORD BOOSTER');
+                 text +=
+                   '<img src="/img/badges/' +
+                   message.icons[key] +
+@@ -7775,23 +7782,18 @@
+                 : (divClassRowHtml += '<span class="mention grey">@' + message.mention + '</span>'));
+             var date = new Date(message.createdAt),
+               minutes = date.getMinutes();
+-            if (minutes < 10) {
+-              minutes = '0' + minutes;
+-            }
++            minutes < 10 && (minutes = '0' + minutes);
+             var hours = date.getHours();
+             hours < 10 && (hours = '0' + hours);
+             var timestampHtml = '<div class="time">' + hours + ':' + minutes + '</div>',
+               username = message.username,
+               divClassRowText = '';
+-            if (selected === 'whispers') {
+-              html = '';
+-              text = '';
+-              usernameStyle = 'style="color:#fa93f4"';
+-              if (message.username.toLowerCase() === serverData.user.name.toLowerCase()) {
+-                username = message.target;
+-                divClassRowText = 'to ';
+-              }
+-            }
++            selected === 'whispers' &&
++              ((html = ''),
++              (text = ''),
++              (usernameStyle = 'style="color:#fa93f4"'),
++              message.username.toLowerCase() === serverData.user.name.toLowerCase() &&
++                ((username = message.target), (divClassRowText = 'to ')));
+             var aHrefClassUserOpenProfileText = '',
+               displayUsername = username;
+             message.rainbow && (aHrefClassUserOpenProfileText = ' rainbowText');
+@@ -7843,7 +7845,7 @@
+             chat.elem.messages[selected].find('.row').length >= serverData.user.settings.chat.messagesLimit &&
+               chat.elem.messages[selected].find('.row').eq(0).remove();
+             chat.elem.messages[selected].append(element);
+-            if (message.posX !== undefined && message.posY !== undefined && message.posS !== undefined) {
++            if (message.posX !== undefined && message.posY !== undefined && message.posS !== undefined)
+               element
+                 .find('.text')
+                 .html(
+@@ -7859,11 +7861,13 @@
+                     parseInt(message.posY) +
+                     ']</a>'
+                 );
+-            } else
++            else
+               message.type !== 'custom' &&
+                 message.type !== 'custom-tiny' &&
+                 element.find('.text').text(message.message);
+-            message.type === 'custom-tiny' && element.addClass('custom-tiny');
++            if (message.type === 'custom-tiny') {
++              element.addClass('custom-tiny');
++            }
+             chat.updateScroll(selected);
+             if (!chat.isDisplayed && !message.silent) {
+               var int = parseInt($('a[data-id="chat"]').find('.notification-bubble').text());
+@@ -7891,18 +7895,20 @@
+             : (chat.elem.button[channel].removeClass('flash'), chat.elem.button[channel].addClass('flash'));
+         },
+         updateNotificationCount(channel, resetCount) {
+-          if (channel === 'whispers') {
+-            return;
+-          } else if (resetCount) {
++          if (channel === 'whispers') return;
++          else if (resetCount) {
+             chat.elem.button[channel].find('.unread-count').text(0);
+             chat.elem.button[channel].find('.unread-count').hide();
+           } else {
+             var text = parseInt(chat.elem.button[channel].find('.unread-count').text());
+-            text >= 99 || text == '99+' ? (text = '99+') : text++;
++            if (text >= 99 || text == '99+') {
++              text = '99+';
++            } else text++;
+             chat.elem.button[channel].find('.unread-count').text(text);
+-            text > 0 || text == '99+'
+-              ? chat.elem.button[channel].find('.unread-count').show()
+-              : chat.elem.button[channel].find('.unread-count').hide();
++            if (text > 0 || text == '99+') chat.elem.button[channel].find('.unread-count').show();
++            else {
++              chat.elem.button[channel].find('.unread-count').hide();
++            }
+           }
+         },
+         /**
+@@ -7970,10 +7976,13 @@
+               return;
+             } else if (parts[0] === '/darkmode') {
+               var darkmodeEnabled = localStorage.getItem('darkmode-enabled');
+-              darkmodeEnabled && parseInt(darkmodeEnabled) === 1
+-                ? ($('body').removeClass('darkmode'), localStorage.setItem('darkmode-enabled', 0))
+-                : (localStorage.setItem('darkmode-enabled', 1),
+-                  $('body').removeClass('darkmode').addClass('darkmode'));
++              if (darkmodeEnabled && parseInt(darkmodeEnabled) === 1) {
++                $('body').removeClass('darkmode');
++                localStorage.setItem('darkmode-enabled', 0);
++              } else {
++                localStorage.setItem('darkmode-enabled', 1);
++                $('body').removeClass('darkmode').addClass('darkmode');
++              }
+               return;
+             } else if (parts[0] === '/guild' || parts[0] === '/g') {
+               ui.openModal('main', 'guilds');
+@@ -8276,11 +8285,12 @@
+           event.preventDefault();
+           chat.inputActive = false;
+           var inputValue = chat.elem.input.val();
+-          inputValue != '' &&
+-            (chat.sendMessage(inputValue),
+-            chat.previousMessages.unshift(inputValue),
+-            chat.previousMessages.length > 3 && chat.previousMessages.pop(),
+-            (chat.previousMessagesPos = 0));
++          if (inputValue != '') {
++            chat.sendMessage(inputValue);
++            chat.previousMessages.unshift(inputValue);
++            chat.previousMessages.length > 3 && chat.previousMessages.pop();
++            chat.previousMessagesPos = 0;
++          }
+           chat.elem.input.val('');
+           chat.elem.input.blur();
+           chat.elem.input.removeClass('whisper');
+@@ -8345,21 +8355,21 @@
+               }, serverData.painting.rate)));
+           } else if (event.which === 13) {
+             if (ui.activeElement) {
+-            } else
+-              !chat.inputActive &&
+-                (event.preventDefault(),
+-                (chat.inputActive = true),
+-                chat.elem.input.focus(),
+-                chat.selected === 'whispers' &&
+-                  (chat.lastWhisper !== ''
+-                    ? chat.elem.input.val('/w ' + chat.lastWhisper + ' ')
+-                    : chat.elem.input.val('/w '),
+-                  chat.elem.input.trigger('input')));
+-          } else if (!chat.ctrlActive && event.which === 67 && !chat.inputActive && !ui.activeElement) {
+-            if (chat.isDisplayed) {
+-              chat.display(false);
+-            } else chat.display(true);
+-          } else if (event.which === 27) {
++            } else if (!chat.inputActive) {
++              event.preventDefault();
++              chat.inputActive = true;
++              chat.elem.input.focus();
++              if (chat.selected === 'whispers') {
++                if (chat.lastWhisper !== '') chat.elem.input.val('/w ' + chat.lastWhisper + ' ');
++                else {
++                  chat.elem.input.val('/w ');
++                }
++                chat.elem.input.trigger('input');
++              }
++            }
++          } else if (!chat.ctrlActive && event.which === 67 && !chat.inputActive && !ui.activeElement)
++            chat.isDisplayed ? chat.display(false) : chat.display(true);
++          else if (event.which === 27) {
+             if (ui.activeElement) ui.closeModal();
+             else
+               chat.inputActive
+@@ -8381,12 +8391,15 @@
+           } else if (event.which === 76 && !chat.inputActive && !ui.activeElement) {
+             var displayTracking = serverData.user.settings.painting.saveTracking ? true : false;
+             ui.onChangeTools('tools-display-save-tracking', displayTracking);
+-          } else if (event.which === 38 && chat.inputActive)
+-            chat.previousMessages.length > 0 &&
+-              (chat.previousMessages.length - 1 < chat.previousMessagesPos && (chat.previousMessagesPos = 0),
+-              chat.elem.input.val(chat.previousMessages[chat.previousMessagesPos]),
+-              chat.previousMessagesPos++);
+-          else if (event.which === 71 && !chat.inputActive && !ui.activeElement) openSocialPanel('guild');
++          } else if (event.which === 38 && chat.inputActive) {
++            if (chat.previousMessages.length > 0) {
++              if (chat.previousMessages.length - 1 < chat.previousMessagesPos) {
++                chat.previousMessagesPos = 0;
++              }
++              chat.elem.input.val(chat.previousMessages[chat.previousMessagesPos]);
++              chat.previousMessagesPos++;
++            }
++          } else if (event.which === 71 && !chat.inputActive && !ui.activeElement) openSocialPanel('guild');
+           else if (event.which === 70 && !chat.inputActive && !ui.activeElement) openSocialPanel('friends');
+           else if ((event.which === 106 || event.which === 220) && !chat.inputActive && !ui.activeElement)
+             interfaceVisible
+@@ -8415,9 +8428,12 @@
+             zoomAroundViewportCenter(true);
+           else if (event.which === 109 && !chat.inputActive && !ui.activeElement)
+             zoomAroundViewportCenter(false);
+-          else if (event.which === 16) chat.shiftActive = true;
+-          else if (event.which === 17) chat.ctrlActive = true;
+-          else event.which === 18 && (chat.altActive = true);
++          else if (event.which === 16) {
++            chat.shiftActive = true;
++          } else if (event.which === 17) chat.ctrlActive = true;
++          else if (event.which === 18) {
++            chat.altActive = true;
++          }
+         }
+       );
+       window.onfocus = function () {
+@@ -8435,13 +8451,14 @@
+          * Input bindings: event. Names describe inferred roles; protocol field names are preserved separately.
+          */
+         function (event) {
+-          if (event.which === 16) chat.shiftActive = false;
+-          else if (event.which === 17) chat.ctrlActive = false;
++          if (event.which === 16) {
++            chat.shiftActive = false;
++          } else if (event.which === 17) chat.ctrlActive = false;
+           else if (event.which === 18) chat.altActive = false;
+-          else
+-            event.which === 32 &&
+-              mouseupSetIntervalResult !== null &&
++          else if (event.which === 32) {
++            mouseupSetIntervalResult !== null &&
+               (clearInterval(mouseupSetIntervalResult), (mouseupSetIntervalResult = null));
++          }
+         }
+       );
+       $(document).on(
+@@ -8509,19 +8526,16 @@
+                */
+               function (success, response) {
+                 if (success) {
+-                  if (response.canvas && parseInt(response.canvas) > 0) {
+-                    $('#profile .user-avatar').html(
+-                      '<img src="https://pixelplace.io/canvas/' +
+-                        response.canvas +
+-                        '.png?t=' +
+-                        nowSeconds() +
+-                        '">'
+-                    );
+-                    $('#profile .user-avatar').show();
+-                  } else {
+-                    $('#profile .user-avatar').html('');
+-                    $('#profile .user-avatar').hide();
+-                  }
++                  response.canvas && parseInt(response.canvas) > 0
++                    ? ($('#profile .user-avatar').html(
++                        '<img src="https://pixelplace.io/canvas/' +
++                          response.canvas +
++                          '.png?t=' +
++                          nowSeconds() +
++                          '">'
++                      ),
++                      $('#profile .user-avatar').show())
++                    : ($('#profile .user-avatar').html(''), $('#profile .user-avatar').hide());
+                   connection.io.emit('user.profile', response.username);
+                   var profileElement = $('#profile');
+                   profileElement.find('.chip').hide();
+@@ -8530,52 +8544,46 @@
+                   profileElement.find('.profile-offline').hide();
+                   response.admin && profileElement.find('.i-admin').show();
+                   response.mod && profileElement.find('.i-moderator').show();
+-                  if (response.chatmod) {
+-                    profileElement.find('.i-chat-moderator').show();
+-                  }
++                  response.chatmod && profileElement.find('.i-chat-moderator').show();
+                   response.vip && profileElement.find('.i-vip').show();
+                   response.premiumIcon && profileElement.find('.i-premium-' + response.premiumIcon).show();
+-                  if (response.previousUsername && response.previousUsername !== '') {
+-                    profileElement.find('.previousUsername').show();
+-                    profileElement.find('.previousUsername span').text(response.previousUsername);
+-                  } else {
+-                    profileElement.find('.previousUsername').hide();
+-                  }
++                  response.previousUsername && response.previousUsername !== ''
++                    ? (profileElement.find('.previousUsername').show(),
++                      profileElement.find('.previousUsername span').text(response.previousUsername))
++                    : profileElement.find('.previousUsername').hide();
+                   if (response.othersIcons) {
+                     var parts = response.othersIcons.split(',');
+                     for (var key in parts) {
+                       profileElement.find('.i-' + parts[key]).show();
+                     }
+                   }
+-                  if (response.guild) {
+-                    profileElement.find('.profile-name a span').html('' + response.guild + '');
+-                    profileElement.find('.profile-name a').attr('data-tag', response.guild);
+-                    if (response.guild === serverData.user.guild) {
+-                      profileElement
+-                        .find('.profile-guild-rank select option')
+-                        .eq(0)
+-                        .text(response.guild_rank_1_title);
+-                      profileElement
+-                        .find('.profile-guild-rank select option')
+-                        .eq(1)
+-                        .text(response.guild_rank_2_title);
+-                      profileElement
+-                        .find('.profile-guild-rank select option')
+-                        .eq(2)
+-                        .text(response.guild_rank_3_title);
+-                      profileElement.find('.profile-guild-rank select').val(response.guild_rank).change();
+-                      profileElement
+-                        .find('.profile-guild-rank select')
+-                        .attr('data-username', response.username);
+-                      profileElement
+-                        .find('.profile-guild-rank select')
+-                        .attr('data-rank', response.guild_rank);
+-                      profileElement.find('.profile-guild-rank').show();
+-                    } else profileElement.find('.profile-guild-rank').hide();
+-                  } else {
+-                    profileElement.find('.profile-guild-rank').hide();
+-                    profileElement.find('.profile-name a span').text('');
+-                  }
++                  response.guild
++                    ? (profileElement.find('.profile-name a span').html('' + response.guild + ''),
++                      profileElement.find('.profile-name a').attr('data-tag', response.guild),
++                      response.guild === serverData.user.guild
++                        ? (profileElement
++                            .find('.profile-guild-rank select option')
++                            .eq(0)
++                            .text(response.guild_rank_1_title),
++                          profileElement
++                            .find('.profile-guild-rank select option')
++                            .eq(1)
++                            .text(response.guild_rank_2_title),
++                          profileElement
++                            .find('.profile-guild-rank select option')
++                            .eq(2)
++                            .text(response.guild_rank_3_title),
++                          profileElement.find('.profile-guild-rank select').val(response.guild_rank).change(),
++                          profileElement
++                            .find('.profile-guild-rank select')
++                            .attr('data-username', response.username),
++                          profileElement
++                            .find('.profile-guild-rank select')
++                            .attr('data-rank', response.guild_rank),
++                          profileElement.find('.profile-guild-rank').show())
++                        : profileElement.find('.profile-guild-rank').hide())
++                    : (profileElement.find('.profile-guild-rank').hide(),
++                      profileElement.find('.profile-name a span').text(''));
+                   response.bio
+                     ? (profileElement.find('.bio span').text(response.bio),
+                       profileElement.find('.bio span').show())
+@@ -8592,9 +8600,11 @@
+                         (profileElement.find('.i-twitch').show(),
+                         profileElement.find('.i-twitch > div').text(response.social[key]));
+                   }
+-                  response.guild
+-                    ? profileElement.find('.profile-name > span').html(' &bull; ' + response.username)
+-                    : profileElement.find('.profile-name > span').text(response.username);
++                  if (response.guild)
++                    profileElement.find('.profile-name > span').html(' &bull; ' + response.username);
++                  else {
++                    profileElement.find('.profile-name > span').text(response.username);
++                  }
+                   profileElement.find('.profile-name-ban').hide();
+                   parseInt(response.status) === 2
+                     ? (profileElement
+@@ -8611,9 +8621,9 @@
+                   if (
+                     parseInt(response.rainbowTime) > nowSeconds() &&
+                     parseInt(response.rainbowTime) > parseInt(response.xmasTime)
+-                  )
++                  ) {
+                     profileElement.find('.profile-name > span').addClass('rainbowText');
+-                  else
++                  } else
+                     parseInt(response.xmasTime) > nowSeconds() &&
+                     parseInt(response.xmasTime) > parseInt(response.rainbowTime)
+                       ? (profileElement.find('.profile-name > span').addClass('xmasText'),
+@@ -8749,12 +8759,14 @@
+                * Input bindings: success, response. Names describe inferred roles; protocol field names are preserved separately.
+                */
+               function (success, response) {
+-                success
+-                  ? showNotification('success', 'Success', 'Guild rank updated')
+-                  : ($('.profile-guild-rank select[name="guild-rank"]')
+-                      .val($('.profile-guild-rank select[name="guild-rank"]').attr('data-rank'))
+-                      .change(),
+-                    showNotification('error', 'Error', response.message));
++                if (success) {
++                  showNotification('success', 'Success', 'Guild rank updated');
++                } else {
++                  $('.profile-guild-rank select[name="guild-rank"]')
++                    .val($('.profile-guild-rank select[name="guild-rank"]').attr('data-rank'))
++                    .change();
++                  showNotification('error', 'Error', response.message);
++                }
+               }
+             );
+           }
+@@ -8859,11 +8871,9 @@
+                 true,
+                 function (success, response) {
+                   ui.triggerLoader(false);
+-                  if (success) {
+-                    showNotification('success', 'Sent');
+-                  } else {
+-                    showNotification('error', 'Error', response.message);
+-                  }
++                  success
++                    ? showNotification('success', 'Sent')
++                    : showNotification('error', 'Error', response.message);
+                 }
+               );
+             }
+@@ -8895,10 +8905,7 @@
+          * Input bindings: event. Names describe inferred roles; protocol field names are preserved separately.
+          */
+         function (event) {
+-          if ($(event.target).attr('id') === 'profile') {
+-            event.preventDefault();
+-            $('#profile').hide();
+-          }
++          $(event.target).attr('id') === 'profile' && (event.preventDefault(), $('#profile').hide());
+         }
+       );
+       /**
+@@ -8934,19 +8941,24 @@
+             if (success) {
+               $('#guild .guild-name .tag').html(response.tag);
+               $('#guild .edit-guild-emblem').attr('data-tag', response.tag);
+-              serverData.user.guild.toUpperCase() === response.tag.toUpperCase()
+-                ? $('#guild .edit-guild-emblem').show()
+-                : $('#guild .edit-guild-emblem').hide();
+-              response.canvas && parseInt(response.canvas) > 0
+-                ? ($('#guild .emblem').html(
+-                    '<img src="https://pixelplace.io/canvas/' +
+-                      response.canvas +
+-                      '.png?t=' +
+-                      nowSeconds() +
+-                      '">'
+-                  ),
+-                  $('#guild .emblem').show())
+-                : ($('#guild .emblem').html(''), $('#guild .emblem').hide());
++              if (serverData.user.guild.toUpperCase() === response.tag.toUpperCase())
++                $('#guild .edit-guild-emblem').show();
++              else {
++                $('#guild .edit-guild-emblem').hide();
++              }
++              if (response.canvas && parseInt(response.canvas) > 0) {
++                $('#guild .emblem').html(
++                  '<img src="https://pixelplace.io/canvas/' +
++                    response.canvas +
++                    '.png?t=' +
++                    nowSeconds() +
++                    '">'
++                );
++                $('#guild .emblem').show();
++              } else {
++                $('#guild .emblem').html('');
++                $('#guild .emblem').hide();
++              }
+               $('#guild .guild-name .name').text(response.name);
+               $('#guild .description').text(response.description);
+               $('#guild .createdAt a').text(response.owner_username);
+@@ -8968,9 +8980,9 @@
+                 response.members_count + ' member' + (response.members_count != 1 ? 's' : '')
+               );
+               $('#guild .guild-new-apply').attr('data-tag', response.tag);
+-              if (parseInt(response.auto_accept)) {
+-                $('#guild .guild-new-apply').text('JOIN').css('background-color', '#00b2e1');
+-              } else $('#guild .guild-new-apply').text('APPLY TO JOIN').css('background-color', '#ff9d50');
++              parseInt(response.auto_accept)
++                ? $('#guild .guild-new-apply').text('JOIN').css('background-color', '#00b2e1')
++                : $('#guild .guild-new-apply').text('APPLY TO JOIN').css('background-color', '#ff9d50');
+               $('#guild .box-content-x > div').show();
+               $('#guild .box-content-x > .loading').hide();
+               $('#guild').show();
+@@ -9046,15 +9058,18 @@
+          * Input bindings: event. Names describe inferred roles; protocol field names are preserved separately.
+          */
+         function (event) {
+-          !chat.inputActive &&
+-            (event.preventDefault(),
+-            (chat.inputActive = true),
+-            chat.elem.input.focus(),
+-            chat.selected === 'whispers' &&
+-              (chat.lastWhisper !== ''
+-                ? chat.elem.input.val('/w ' + chat.lastWhisper + ' ')
+-                : chat.elem.input.val('/w '),
+-              chat.elem.input.trigger('input')));
++          if (!chat.inputActive) {
++            event.preventDefault();
++            chat.inputActive = true;
++            chat.elem.input.focus();
++            if (chat.selected === 'whispers') {
++              if (chat.lastWhisper !== '') chat.elem.input.val('/w ' + chat.lastWhisper + ' ');
++              else {
++                chat.elem.input.val('/w ');
++              }
++              chat.elem.input.trigger('input');
++            }
++          }
+         }
+       );
+       chat.elem.input.on(
+@@ -9084,12 +9099,9 @@
+                   : ($(this).removeClass('mention'), $(this).removeClass('whisper'));
+             } else {
+               var parts = inputValue.split('@');
+-              if (parts.length > 1) {
+-                $(this).addClass('mention');
+-              } else {
+-                $(this).removeClass('mention');
+-                $(this).removeClass('whisper');
+-              }
++              parts.length > 1
++                ? $(this).addClass('mention')
++                : ($(this).removeClass('mention'), $(this).removeClass('whisper'));
+             }
+           }
+         }
+@@ -9175,16 +9187,16 @@
+         },
+         triggerLoader: function (visible) {
+           if (ui.activeElement && ui.activeContent) {
+-            if (ui.selectors.modal === 'captcha') {
+-              return;
+-            } else
+-              visible
+-                ? (ui.activeContent.find('> form').hide(),
+-                  ui.activeContent.find('> div').hide(),
+-                  ui.activeContent.find('.loading').css('display', 'flex'))
+-                : (ui.activeContent.find('> form').show(),
+-                  ui.activeContent.find('> div').show(),
+-                  ui.activeContent.find('.loading').css('display', 'none'));
++            if (ui.selectors.modal === 'captcha') return;
++            else if (visible) {
++              ui.activeContent.find('> form').hide();
++              ui.activeContent.find('> div').hide();
++              ui.activeContent.find('.loading').css('display', 'flex');
++            } else {
++              ui.activeContent.find('> form').show();
++              ui.activeContent.find('> div').show();
++              ui.activeContent.find('.loading').css('display', 'none');
++            }
+           }
+         },
+         /**
+@@ -9212,14 +9224,8 @@
+             ui.addLoaderToBox();
+             ui.activeElement.find('.box-menu li.selected').removeClass('selected');
+             var contentId = content;
+-            if (
+-              content === 'tools' ||
+-              content === 'painting' ||
+-              content === 'top' ||
+-              content === 'top-users'
+-            ) {
+-              contentId = 'top';
+-            }
++            (content === 'tools' || content === 'painting' || content === 'top' || content === 'top-users') &&
++              (contentId = 'top');
+             ui.activeElement
+               .find('.box-menu li a[data-content="' + contentId + '"]')
+               .closest('li')
+@@ -9227,8 +9233,8 @@
+             ui.activeElement.find('.box-content').hide();
+             ui.activeElement.find('.box-sub-menu').hide();
+             ui.activeElement.find('.box-sub-menu li.selected').removeClass('selected');
+-            content === 'painting'
+-              ? extra === 'edit'
++            if (content === 'painting')
++              extra === 'edit'
+                 ? ui.activeElement
+                     .find('.box-sub-menu li a[data-content="' + content + '"][data-extra="edit"]')
+                     .closest('li')
+@@ -9236,15 +9242,17 @@
+                 : ui.activeElement
+                     .find('.box-sub-menu li a[data-content="' + content + '"][data-extra="create"]')
+                     .closest('li')
+-                    .addClass('selected')
+-              : ui.activeElement
+-                  .find('.box-sub-menu li a[data-content="' + content + '"]')
+-                  .closest('li')
+-                  .addClass('selected');
++                    .addClass('selected');
++            else {
++              ui.activeElement
++                .find('.box-sub-menu li a[data-content="' + content + '"]')
++                .closest('li')
++                .addClass('selected');
++            }
+             ui.activeElement.find('.box-sub-menu[data-id="' + contentId + '"').show();
+-            serverData.user.settings.painting.isOwner
+-              ? ui.activeElement.find('.box-sub-menu [data-content="painting"][data-extra="edit"]').show()
+-              : ui.activeElement.find('.box-sub-menu [data-content="painting"][data-extra="edit"]').hide();
++            if (serverData.user.settings.painting.isOwner) {
++              ui.activeElement.find('.box-sub-menu [data-content="painting"][data-extra="edit"]').show();
++            } else ui.activeElement.find('.box-sub-menu [data-content="painting"][data-extra="edit"]').hide();
+             if (modal === 'main' && content === 'shop') {
+               canvasRenderer.loadUserItems();
+               for (var key in appState.painting.palette.premium) {
+@@ -9258,9 +9266,10 @@
+                 $('.premium-subscribe-alt').show();
+                 var text = '',
+                   expireAt = serverData.user.premium.expire_at - nowSeconds();
+-                expireAt <= 86400
+-                  ? (text = 'less than 1 day')
+-                  : (text = Math.ceil(expireAt / 86400) + ' days');
++                if (expireAt <= 86400) text = 'less than 1 day';
++                else {
++                  text = Math.ceil(expireAt / 86400) + ' days';
++                }
+                 $('.premium-subscribed').html('' + text + ' left<span>Click to manage</span>');
+                 $('.premium-subscribed').show();
+                 $('.subscribed-off').show();
+@@ -9270,9 +9279,8 @@
+                 $('.premium-subscribed').hide();
+                 $('.subscribed-off').hide();
+               }
+-            } else if (modal === 'main' && content === 'freecoins') {
+-              canvasRenderer.loadFreeCoins();
+-            } else if (modal === 'main' && content === 'terms')
++            } else if (modal === 'main' && content === 'freecoins') canvasRenderer.loadFreeCoins();
++            else if (modal === 'main' && content === 'terms')
+               $.ajax({
+                 url: 'https://pixelplace.io/legal.html?t=' + nowSeconds(),
+                 type: 'GET',
+@@ -9308,9 +9316,9 @@
+                   .html('<div class="blog">' + argument + '</div>');
+               };
+               $.ajax(backgroundRequest);
+-            } else if (modal === 'main' && content === 'painting')
++            } else if (modal === 'main' && content === 'painting') {
+               ui.loadPaintingCreateOrEdit(paintingEditData);
+-            else if (modal === 'main' && content === 'guilds') {
++            } else if (modal === 'main' && content === 'guilds') {
+               ui.triggerLoader(true);
+               api.xhr.req(
+                 'GET',
+@@ -9437,29 +9445,31 @@
+                       ui.loadGuilds(0));
+                 }
+               );
+-            } else if (modal === 'main' && content === 'guilds-store')
+-              extra === 'create'
+-                ? (ui.activeElement.find('.box-content[data-id="guilds-store"] h1 span').text('New guild'),
+-                  ui.activeElement
+-                    .find('.box-content[data-id="guilds-store"] #submit-guild-store')
+-                    .text('CREATE GUILD')
+-                    .show(),
+-                  ui.activeElement.find('.box-content[data-id="guilds-store"] #submit-guild-delete').hide(),
+-                  ui.activeElement.find('.box-content[data-id="guilds-store"] [name="tag"]').show(),
+-                  ui.activeElement.find('.box-content[data-id="guilds-store"] .tag').show(),
+-                  ui.activeElement.find('.box-content[data-id="guilds-store"][name="id"]').val(''))
+-                : (ui.activeElement
+-                    .find('.box-content[data-id="guilds-store"][name="id"]')
+-                    .val(serverData.user.guild),
+-                  ui.activeElement.find('.box-content[data-id="guilds-store"] h1 span').text('Edit guild'),
+-                  ui.activeElement
+-                    .find('.box-content[data-id="guilds-store"] #submit-guild-store')
+-                    .text('SAVES CHANGES')
+-                    .show(),
+-                  ui.activeElement.find('.box-content[data-id="guilds-store"] #submit-guild-delete').show(),
+-                  ui.activeElement.find('.box-content[data-id="guilds-store"] .tag').hide(),
+-                  ui.activeElement.find('.box-content[data-id="guilds-store"] [name="tag"]').hide());
+-            else if (modal === 'main' && content === 'account') {
++            } else if (modal === 'main' && content === 'guilds-store') {
++              if (extra === 'create') {
++                ui.activeElement.find('.box-content[data-id="guilds-store"] h1 span').text('New guild');
++                ui.activeElement
++                  .find('.box-content[data-id="guilds-store"] #submit-guild-store')
++                  .text('CREATE GUILD')
++                  .show();
++                ui.activeElement.find('.box-content[data-id="guilds-store"] #submit-guild-delete').hide();
++                ui.activeElement.find('.box-content[data-id="guilds-store"] [name="tag"]').show();
++                ui.activeElement.find('.box-content[data-id="guilds-store"] .tag').show();
++                ui.activeElement.find('.box-content[data-id="guilds-store"][name="id"]').val('');
++              } else {
++                ui.activeElement
++                  .find('.box-content[data-id="guilds-store"][name="id"]')
++                  .val(serverData.user.guild);
++                ui.activeElement.find('.box-content[data-id="guilds-store"] h1 span').text('Edit guild');
++                ui.activeElement
++                  .find('.box-content[data-id="guilds-store"] #submit-guild-store')
++                  .text('SAVES CHANGES')
++                  .show();
++                ui.activeElement.find('.box-content[data-id="guilds-store"] #submit-guild-delete').show();
++                ui.activeElement.find('.box-content[data-id="guilds-store"] .tag').hide();
++                ui.activeElement.find('.box-content[data-id="guilds-store"] [name="tag"]').hide();
++              }
++            } else if (modal === 'main' && content === 'account') {
+               !serverData.user.hasEmail
+                 ? ui.activeElement.find('.account-password').hide()
+                 : ui.activeElement.find('.account-password').show();
+@@ -9485,21 +9495,20 @@
+                 : (ui.activeElement.find('.linked-account[data-id="2"]').find('span').hide(),
+                   ui.activeElement.find('.linked-account[data-id="2"]').find('.link-remove').hide(),
+                   ui.activeElement.find('.linked-account[data-id="2"]').find('.link-add').show());
+-              if (serverData.user.social.twitch.linked) {
+-                ui.activeElement
+-                  .find('.linked-account[data-id="3"]')
+-                  .find('span')
+-                  .text(serverData.user.social.twitch.name);
+-                ui.activeElement.find('.linked-account[data-id="3"]').find('span').show();
+-                ui.activeElement.find('.linked-account[data-id="3"]').find('.link-remove').show();
+-                ui.activeElement.find('.linked-account[data-id="3"]').find('.link-add').hide();
+-              } else {
+-                ui.activeElement.find('.linked-account[data-id="3"]').find('span').hide();
+-                ui.activeElement.find('.linked-account[data-id="3"]').find('.link-remove').hide();
+-                ui.activeElement.find('.linked-account[data-id="3"]').find('.link-add').show();
+-              }
+-            } else if (modal === 'main' && content === 'top') canvasRenderer.loadMyPaintings();
+-            else if (modal === 'main' && content === 'top-users') ui.loadTopUsers();
++              serverData.user.social.twitch.linked
++                ? (ui.activeElement
++                    .find('.linked-account[data-id="3"]')
++                    .find('span')
++                    .text(serverData.user.social.twitch.name),
++                  ui.activeElement.find('.linked-account[data-id="3"]').find('span').show(),
++                  ui.activeElement.find('.linked-account[data-id="3"]').find('.link-remove').show(),
++                  ui.activeElement.find('.linked-account[data-id="3"]').find('.link-add').hide())
++                : (ui.activeElement.find('.linked-account[data-id="3"]').find('span').hide(),
++                  ui.activeElement.find('.linked-account[data-id="3"]').find('.link-remove').hide(),
++                  ui.activeElement.find('.linked-account[data-id="3"]').find('.link-add').show());
++            } else if (modal === 'main' && content === 'top') {
++              canvasRenderer.loadMyPaintings();
++            } else if (modal === 'main' && content === 'top-users') ui.loadTopUsers();
+             else if (modal === 'request-access') {
+               ui.triggerLoader(true);
+               mouseupSetIntervalResult && clearInterval(mouseupSetIntervalResult);
+@@ -9519,13 +9528,11 @@
+                 function (success, response) {
+                   ui.triggerLoader(false);
+                   if (success) {
+-                    if (response.auto_accept !== undefined && parseInt(response.auto_accept) > 0) {
+-                      $('#submit-painting-request-access').text('CLICK TO GET INSTANT ACCESS');
+-                      $('#form-painting-request-access [name="message"]').hide();
+-                    } else {
+-                      $('#submit-painting-request-access').text('REQUEST ACCESS');
+-                      $('#form-painting-request-access [name="message"]').show();
+-                    }
++                    response.auto_accept !== undefined && parseInt(response.auto_accept) > 0
++                      ? ($('#submit-painting-request-access').text('CLICK TO GET INSTANT ACCESS'),
++                        $('#form-painting-request-access [name="message"]').hide())
++                      : ($('#submit-painting-request-access').text('REQUEST ACCESS'),
++                        $('#form-painting-request-access [name="message"]').show());
+                     $('.block-request-access-other').find('p').find('.username').hide();
+                     $('.block-request-access-other').find('.reason').hide();
+                     if (response.status === -1) {
+@@ -9552,106 +9559,107 @@
+                         : ($('.block-request-access').find('.twitch-form-info').show(),
+                           $('.block-request-access').find('.twitch-form').hide());
+                     } else if (response.status === 1) ui.closeModal();
+-                    else
+-                      response.status === 2
+-                        ? ($('.block-request-access-other').show(),
+-                          $('.block-request-access').hide(),
+-                          $('.block-request-access-other')
++                    else if (response.status === 2) {
++                      $('.block-request-access-other').show();
++                      $('.block-request-access').hide();
++                      $('.block-request-access-other')
++                        .find('p')
++                        .find('.message')
++                        .removeClass('c-error')
++                        .removeClass('c-warning');
++                      parseInt(response.daysLeft) > -1
++                        ? ($('.block-request-access-other')
+                             .find('p')
+                             .find('.message')
+-                            .removeClass('c-error')
+-                            .removeClass('c-warning'),
+-                          parseInt(response.daysLeft) > -1
+-                            ? ($('.block-request-access-other')
+-                                .find('p')
+-                                .find('.message')
+-                                .text(
+-                                  'You have been suspended temporarily from this painting ' +
+-                                    (response.user ? ' by ' : '')
+-                                ),
+-                              $('.block-request-access-other').find('.tmpban').show(),
+-                              $('.block-request-access-other')
+-                                .find('.tmpban .message')
+-                                .text(
+-                                  'Your access to this painting will be restored in ' +
+-                                    response.daysLeft +
+-                                    ' day' +
+-                                    (parseInt(response.daysLeft) != 1 ? 's' : '')
+-                                )
+-                                .show(),
+-                              showNotification(
+-                                'error',
+-                                'Access denied',
+-                                'You have been suspended temporarily from this painting'
+-                              ))
+-                            : (showNotification(
+-                                'error',
+-                                'Access denied',
+-                                'Your previous request to access this painting has been declined'
+-                              ),
+-                              $('.block-request-access-other')
+-                                .find('p')
+-                                .find('.message')
+-                                .text(
+-                                  'Your previous request to access this painting has been declined' +
+-                                    (response.user ? ' by ' : '')
+-                                ),
+-                              $('.block-request-access-other').find('.tmpban').hide()),
+-                          $('.block-request-access-other').find('p').find('.message').addClass('c-error'),
+-                          response.user
+-                            ? $('.block-request-access-other')
+-                                .find('p')
+-                                .find('.username')
+-                                .text(response.user)
+-                                .show()
+-                            : $('.block-request-access-other').find('p').find('.username').hide(),
+-                          response.reason
+-                            ? ($('.block-request-access-other').find('.reason span').text(response.reason),
+-                              $('.block-request-access-other').find('.reason').show())
+-                            : $('.block-request-access-other').find('.reason').hide(),
+-                          $('.block-request-access').find('.guild-form-info').hide(),
+-                          $('.block-request-access').find('.guild-form').hide(),
+-                          $('.block-request-access').find('.twitch-form-info').hide(),
+-                          $('.block-request-access').find('.twitch-form').hide())
+-                        : ($('.block-request-access-other').show(),
+-                          $('.block-request-access').hide(),
++                            .text(
++                              'You have been suspended temporarily from this painting ' +
++                                (response.user ? ' by ' : '')
++                            ),
++                          $('.block-request-access-other').find('.tmpban').show(),
+                           $('.block-request-access-other')
+-                            .find('p')
+-                            .find('.message')
+-                            .removeClass('c-error')
+-                            .removeClass('c-warning'),
++                            .find('.tmpban .message')
++                            .text(
++                              'Your access to this painting will be restored in ' +
++                                response.daysLeft +
++                                ' day' +
++                                (parseInt(response.daysLeft) != 1 ? 's' : '')
++                            )
++                            .show(),
++                          showNotification(
++                            'error',
++                            'Access denied',
++                            'You have been suspended temporarily from this painting'
++                          ))
++                        : (showNotification(
++                            'error',
++                            'Access denied',
++                            'Your previous request to access this painting has been declined'
++                          ),
+                           $('.block-request-access-other')
+                             .find('p')
+                             .find('.message')
+-                            .text('Your request to access this painting is still pending'),
+-                          $('.block-request-access-other').find('p').find('.message').addClass('c-warning'),
+-                          showNotification(
+-                            'warning',
+-                            'Access request pending',
+-                            'Your request to access this painting is still pending'
+-                          ),
+-                          serverData.painting.guild.integration
+-                            ? ($('.block-request-access').find('.guild-form-info').hide(),
+-                              $('.block-request-access').find('.guild-form').show(),
+-                              $('.block-request-access')
+-                                .find('.guild-link')
+-                                .text(serverData.painting.guild.name),
+-                              $('.block-request-access')
+-                                .find('.guild-link')
+-                                .attr('data-tag', serverData.painting.guild.name))
+-                            : ($('.block-request-access').find('.guild-form-info').show(),
+-                              $('.block-request-access').find('.guild-form').hide()),
+-                          serverData.painting.twitch.integration
+-                            ? ($('.block-request-access').find('.twitch-form-info').hide(),
+-                              $('.block-request-access').find('.twitch-form').show(),
+-                              $('.block-request-access')
+-                                .find('.twitch-link')
+-                                .text('twitch.tv/' + serverData.painting.twitch.name),
+-                              $('.block-request-access')
+-                                .find('.twitch-link')
+-                                .attr('href', 'https://twitch.tv/' + serverData.painting.twitch.name))
+-                            : ($('.block-request-access').find('.twitch-form-info').show(),
+-                              $('.block-request-access').find('.twitch-form').hide()));
++                            .text(
++                              'Your previous request to access this painting has been declined' +
++                                (response.user ? ' by ' : '')
++                            ),
++                          $('.block-request-access-other').find('.tmpban').hide());
++                      $('.block-request-access-other').find('p').find('.message').addClass('c-error');
++                      response.user
++                        ? $('.block-request-access-other')
++                            .find('p')
++                            .find('.username')
++                            .text(response.user)
++                            .show()
++                        : $('.block-request-access-other').find('p').find('.username').hide();
++                      response.reason
++                        ? ($('.block-request-access-other').find('.reason span').text(response.reason),
++                          $('.block-request-access-other').find('.reason').show())
++                        : $('.block-request-access-other').find('.reason').hide();
++                      $('.block-request-access').find('.guild-form-info').hide();
++                      $('.block-request-access').find('.guild-form').hide();
++                      $('.block-request-access').find('.twitch-form-info').hide();
++                      $('.block-request-access').find('.twitch-form').hide();
++                    } else {
++                      $('.block-request-access-other').show();
++                      $('.block-request-access').hide();
++                      $('.block-request-access-other')
++                        .find('p')
++                        .find('.message')
++                        .removeClass('c-error')
++                        .removeClass('c-warning');
++                      $('.block-request-access-other')
++                        .find('p')
++                        .find('.message')
++                        .text('Your request to access this painting is still pending');
++                      $('.block-request-access-other').find('p').find('.message').addClass('c-warning');
++                      showNotification(
++                        'warning',
++                        'Access request pending',
++                        'Your request to access this painting is still pending'
++                      );
++                      serverData.painting.guild.integration
++                        ? ($('.block-request-access').find('.guild-form-info').hide(),
++                          $('.block-request-access').find('.guild-form').show(),
++                          $('.block-request-access').find('.guild-link').text(serverData.painting.guild.name),
++                          $('.block-request-access')
++                            .find('.guild-link')
++                            .attr('data-tag', serverData.painting.guild.name))
++                        : ($('.block-request-access').find('.guild-form-info').show(),
++                          $('.block-request-access').find('.guild-form').hide());
++                      if (serverData.painting.twitch.integration) {
++                        $('.block-request-access').find('.twitch-form-info').hide();
++                        $('.block-request-access').find('.twitch-form').show();
++                        $('.block-request-access')
++                          .find('.twitch-link')
++                          .text('twitch.tv/' + serverData.painting.twitch.name);
++                        $('.block-request-access')
++                          .find('.twitch-link')
++                          .attr('href', 'https://twitch.tv/' + serverData.painting.twitch.name);
++                      } else {
++                        $('.block-request-access').find('.twitch-form-info').show();
++                        $('.block-request-access').find('.twitch-form').hide();
++                      }
++                    }
+                     serverData.painting.isEmblem
+                       ? (ui.activeElement.find('.block-request-access #form-painting-request-access').hide(),
+                         ui.activeElement.find('.block-request-access > h1').hide(),
+@@ -9672,8 +9680,9 @@
+               else if (content === 'declined') canvasRenderer.fetchPaintingAccess(2, 0);
+               else content === 'moderators' && canvasRenderer.fetchPaintingModerators();
+             } else if (modal === 'auth') {
+-              if (content === 'login') ui.activeElement.find('.box-header > span').html('Log In');
+-              else if (content === 'register')
++              if (content === 'login') {
++                ui.activeElement.find('.box-header > span').html('Log In');
++              } else if (content === 'register')
+                 ui.activeElement.find('.box-header > span').html('Create Account');
+               else
+                 content === 'forgot' && ui.activeElement.find('.box-header > span').html('Forgot Password');
+@@ -9710,7 +9719,9 @@
+         /* Switch visible modal content through the existing loading and permission paths. */
+         openModal: function (target, content, extra, paintingEditData) {
+           $('#profile').hide();
+-          target === 'captcha' ? (ui.activeCaptcha = true) : (ui.activeCaptcha = false);
++          if (target === 'captcha') {
++            ui.activeCaptcha = true;
++          } else ui.activeCaptcha = false;
+           ui.activeElement &&
+             ((ui.previousActiveElement = ui.activeElement),
+             (ui.previousActiveContent = ui.activeContent),
+@@ -9724,11 +9735,13 @@
+           ui.activeElement.find('.box-content input.error, .box-content textarea.error').removeClass('error');
+           ui.activeElement.find('.box-content .input-error').text('');
+           if (target == 'main') {
+-            content == 'top' &&
+-              localStorage &&
+-              ($('.attention').hide(),
+-              setIntervalResult && clearInterval(setIntervalResult),
+-              localStorage.setItem('attention-notif', true));
++            if (content == 'top') {
++              if (localStorage) {
++                $('.attention').hide();
++                setIntervalResult && clearInterval(setIntervalResult);
++                localStorage.setItem('attention-notif', true);
++              }
++            }
+             if (serverData.user.connected) {
+               ui.activeElement.find('.box-header > div').show();
+               var html = '';
+@@ -9768,9 +9781,9 @@
+                 if (
+                   parseInt(serverData.user.rainbowTime) > nowSeconds() &&
+                   parseInt(serverData.user.rainbowTime) > parseInt(serverData.user.xmasTime)
+-                ) {
++                )
+                   ui.activeElement.find('.box-header > div > a[data-id="username"]').addClass('rainbowText');
+-                } else
++                else
+                   parseInt(serverData.user.xmasTime) > nowSeconds() &&
+                   parseInt(serverData.user.xmasTime) > parseInt(serverData.user.rainbowTime)
+                     ? (ui.activeElement
+@@ -9825,7 +9838,9 @@
+             (ui.selectors.extra = ''));
+         },
+         goBackFromCaptcha: function () {
+-          ui.activeCaptcha && ui.openModal(ui.previous.modal, ui.previous.content, ui.previous.extra, true);
++          if (ui.activeCaptcha) {
++            ui.openModal(ui.previous.modal, ui.previous.content, ui.previous.extra, true);
++          }
+         },
+         /**
+          * Shared/receiver state written: ui.selectors.extra.
+@@ -9887,7 +9902,7 @@
+               .removeClass('selected');
+             if (serverData.user.premium.active)
+               for (var key in appState.painting.palette.colors) {
+-                if ($.inArray(parseInt(key), serverData.painting.palette) !== -1) {
++                $.inArray(parseInt(key), serverData.painting.palette) !== -1 &&
+                   ui.elem.settings.painting
+                     .find(
+                       '.settings-painting-palette[data-name="allowedColors"] > div > a[data-value="' +
+@@ -9896,7 +9911,6 @@
+                     )
+                     .parent()
+                     .addClass('selected');
+-                }
+               }
+             else
+               ui.elem.settings.painting
+@@ -9920,22 +9934,20 @@
+             ui.elem.settings.painting
+               .find('input[type="hidden"][name="allowedColors"]')
+               .val(entries.join(','));
+-            if (!serverData.painting.protection || !serverData.user.premium.active) {
+-              ui.elem.container.find('.input-checkbox[data-name="protection"]').removeClass('selected');
+-              ui.elem.container
+-                .find('.input-checkbox[data-name="protection"]')
+-                .parent()
+-                .find('input[name="protection"]')
+-                .val(0);
+-            } else {
+-              ui.elem.container.find('.input-checkbox[data-name="protection"]').removeClass('selected');
+-              ui.elem.container.find('.input-checkbox[data-name="protection"]').addClass('selected');
+-              ui.elem.container
+-                .find('.input-checkbox[data-name="protection"]')
+-                .parent()
+-                .find('input[name="protection"]')
+-                .val(1);
+-            }
++            !serverData.painting.protection || !serverData.user.premium.active
++              ? (ui.elem.container.find('.input-checkbox[data-name="protection"]').removeClass('selected'),
++                ui.elem.container
++                  .find('.input-checkbox[data-name="protection"]')
++                  .parent()
++                  .find('input[name="protection"]')
++                  .val(0))
++              : (ui.elem.container.find('.input-checkbox[data-name="protection"]').removeClass('selected'),
++                ui.elem.container.find('.input-checkbox[data-name="protection"]').addClass('selected'),
++                ui.elem.container
++                  .find('.input-checkbox[data-name="protection"]')
++                  .parent()
++                  .find('input[name="protection"]')
++                  .val(1));
+             !serverData.painting.shopItems
+               ? (ui.elem.container.find('.input-checkbox[data-name="shop-items"]').removeClass('selected'),
+                 ui.elem.container
+@@ -10000,15 +10012,13 @@
+             ui.activeElement
+               .find('button.open-modal[data-target="main"][data-content="painting"][data-extra="create"]')
+               .hide();
+-            if (serverData.user.settings.painting.isOwner) {
+-              ui.activeElement
+-                .find('button.open-modal[data-target="main"][data-content="painting"][data-extra="edit"]')
+-                .show();
+-            } else {
+-              ui.activeElement
+-                .find('button.open-modal[data-target="main"][data-content="painting"][data-extra="edit"]')
+-                .hide();
+-            }
++            serverData.user.settings.painting.isOwner
++              ? ui.activeElement
++                  .find('button.open-modal[data-target="main"][data-content="painting"][data-extra="edit"]')
++                  .show()
++              : ui.activeElement
++                  .find('button.open-modal[data-target="main"][data-content="painting"][data-extra="edit"]')
++                  .hide();
+             ui.elem.settings.painting.find('.replacePainting').hide();
+             ui.elem.settings.painting.find('input[name="title"]').val('My Painting');
+             ui.elem.settings.painting.find('textarea[name="description"]').val('');
+@@ -10096,11 +10106,9 @@
+             accessType === 2 &&
+             enabled &&
+             (inputValue = 4);
+-          inputValue === 2 &&
+-            serverData.painting.twitch.integration &&
+-            accessType === 2 &&
+-            enabled &&
+-            (inputValue = 5);
++          if (inputValue === 2 && serverData.painting.twitch.integration) {
++            accessType === 2 && enabled && (inputValue = 5);
++          }
+           checkbox
+             .parent()
+             .find('input[type="hidden"][name="' + text + '"]')
+@@ -10133,23 +10141,22 @@
+         },
+         settingsPaintingSelectBackground: function (radioButton, skipSave) {
+           var inputValue = radioButton.attr('data-value');
+-          if (serverData.user.premium.active) {
+-            if (appState.painting.palette.colors[inputValue] !== undefined) {
+-              ui.elem.settings.painting.find('input[type="hidden"][name="background"]').val(inputValue);
+-              ui.elem.settings.painting
+-                .find('.settings-painting-palette[data-name="background"] > div')
+-                .removeClass('selected');
+-              ui.elem.settings.painting
+-                .find(
+-                  '.settings-painting-palette[data-name="background"] > div > a[data-value="' +
+-                    inputValue +
+-                    '"]'
+-                )
+-                .parent()
+-                .addClass('selected');
+-            } else !skipSave && showNotification('error', 'Color not found');
+-          } else
+-            !skipSave &&
++          serverData.user.premium.active
++            ? appState.painting.palette.colors[inputValue] !== undefined
++              ? (ui.elem.settings.painting.find('input[type="hidden"][name="background"]').val(inputValue),
++                ui.elem.settings.painting
++                  .find('.settings-painting-palette[data-name="background"] > div')
++                  .removeClass('selected'),
++                ui.elem.settings.painting
++                  .find(
++                    '.settings-painting-palette[data-name="background"] > div > a[data-value="' +
++                      inputValue +
++                      '"]'
++                  )
++                  .parent()
++                  .addClass('selected'))
++              : !skipSave && showNotification('error', 'Color not found')
++            : !skipSave &&
+               showNotification('error', 'You need to be a Premium Subscriber to modify this setting');
+         },
+         generateSettingsPaintingsPalettes: function () {
+@@ -10306,25 +10313,21 @@
+               ui.elem.settings.tools.find('a[data-name="' + tool + '"]').addClass('selected');
+               !save && showNotification('success', 'Tools', 'Save tracking enabled', false, true);
+             }
+-          } else if (tool === 'tools-display-grid') {
+-            if (
+-              (enabled !== undefined && enabled) ||
+-              (enabled === undefined && serverData.user.settings.painting.gridDisplay)
+-            ) {
+-              serverData.user.settings.painting.gridDisplay = false;
+-              ui.elem.settings.tools.find('a[data-name="' + tool + '"]').removeClass('selected');
+-              canvasRenderer.element.grid.hide();
+-              !save && showNotification('warning', 'Tools', 'Grid hidden', false, true);
+-            } else {
+-              serverData.user.settings.painting.gridDisplay = true;
+-              ui.elem.settings.tools.find('a[data-name="' + tool + '"]').removeClass('selected');
+-              ui.elem.settings.tools.find('a[data-name="' + tool + '"]').addClass('selected');
+-              canvasRenderer.element.grid.show();
+-              !save && showNotification('success', 'Tools', 'Grid displayed', false, true);
+-            }
+-          } else if (tool === 'tools-lock-painting') {
++          } else if (tool === 'tools-display-grid')
+             (enabled !== undefined && enabled) ||
+             (enabled === undefined && serverData.user.settings.painting.gridDisplay)
++              ? ((serverData.user.settings.painting.gridDisplay = false),
++                ui.elem.settings.tools.find('a[data-name="' + tool + '"]').removeClass('selected'),
++                canvasRenderer.element.grid.hide(),
++                !save && showNotification('warning', 'Tools', 'Grid hidden', false, true))
++              : ((serverData.user.settings.painting.gridDisplay = true),
++                ui.elem.settings.tools.find('a[data-name="' + tool + '"]').removeClass('selected'),
++                ui.elem.settings.tools.find('a[data-name="' + tool + '"]').addClass('selected'),
++                canvasRenderer.element.grid.show(),
++                !save && showNotification('success', 'Tools', 'Grid displayed', false, true));
++          else if (tool === 'tools-lock-painting') {
++            (enabled !== undefined && enabled) ||
++            (enabled === undefined && serverData.user.settings.painting.gridDisplay)
+               ? ((serverData.user.settings.painting.lockPainting = false),
+                 ui.elem.settings.tools.find('a[data-name="' + tool + '"]').removeClass('selected'),
+                 !save && showNotification('warning', 'Tools', 'Painting movement enabled', false, true))
+@@ -10355,15 +10358,21 @@
+                 !save && showNotification('success', 'Tools', 'Friends notifications enabled', false, true));
+             ui.saveUserSettings();
+           } else if (tool === 'tools-display-protection-flashing') {
+-            (enabled !== undefined && enabled) ||
+-            (enabled === undefined && serverData.user.settings.painting.protectionFlashing)
+-              ? ((serverData.user.settings.painting.protectionFlashing = false),
+-                ui.elem.settings.tools.find('a[data-name="' + tool + '"]').removeClass('selected'),
+-                !save && showNotification('warning', 'Tools', 'Protection flashing disabled', false, true))
+-              : (ui.elem.settings.tools.find('a[data-name="' + tool + '"]').removeClass('selected'),
+-                ui.elem.settings.tools.find('a[data-name="' + tool + '"]').addClass('selected'),
+-                (serverData.user.settings.painting.protectionFlashing = true),
+-                !save && showNotification('success', 'Tools', 'Protection flashing enabled', false, true));
++            if (
++              (enabled !== undefined && enabled) ||
++              (enabled === undefined && serverData.user.settings.painting.protectionFlashing)
++            ) {
++              serverData.user.settings.painting.protectionFlashing = false;
++              ui.elem.settings.tools.find('a[data-name="' + tool + '"]').removeClass('selected');
++              !save && showNotification('warning', 'Tools', 'Protection flashing disabled', false, true);
++            } else {
++              ui.elem.settings.tools.find('a[data-name="' + tool + '"]').removeClass('selected');
++              ui.elem.settings.tools.find('a[data-name="' + tool + '"]').addClass('selected');
++              serverData.user.settings.painting.protectionFlashing = true;
++              if (!save) {
++                showNotification('success', 'Tools', 'Protection flashing enabled', false, true);
++              }
++            }
+             ui.saveUserSettings();
+           } else if (tool === 'tools-display-zoom') {
+             (enabled !== undefined && enabled) ||
+@@ -10405,56 +10414,56 @@
+                   ));
+             ui.saveUserSettings();
+           } else if (tool === 'tools-display-timestamp') {
+-            (enabled !== undefined && enabled) ||
+-            (enabled === undefined && serverData.user.settings.chat.timestamps)
+-              ? ((serverData.user.settings.chat.timestamps = false),
+-                ui.elem.settings.tools.find('a[data-name="' + tool + '"]').removeClass('selected'),
+-                chat.elem.container.find('.messages .row .time').hide(),
+-                !save &&
+-                  showNotification('warning', 'Tools', 'Timestamps are now hidden from chat', false, true))
+-              : ((serverData.user.settings.chat.timestamps = true),
+-                ui.elem.settings.tools.find('a[data-name="' + tool + '"]').removeClass('selected'),
+-                ui.elem.settings.tools.find('a[data-name="' + tool + '"]').addClass('selected'),
+-                chat.elem.container.find('.messages .row .time').show(),
+-                !save &&
+-                  showNotification('success', 'Tools', 'Timestamps are now displayed in chat', false, true));
+-            ui.saveUserSettings();
+-          } else if (tool === 'tools-invisible-mode') {
+             if (
+               (enabled !== undefined && enabled) ||
+-              (enabled === undefined && serverData.user.settings.chat.invisible)
++              (enabled === undefined && serverData.user.settings.chat.timestamps)
+             ) {
+-              serverData.user.settings.chat.invisible = false;
++              serverData.user.settings.chat.timestamps = false;
+               ui.elem.settings.tools.find('a[data-name="' + tool + '"]').removeClass('selected');
++              chat.elem.container.find('.messages .row .time').hide();
+               !save &&
+-                (showNotification(
+-                  'warning',
+-                  'Tools',
+-                  'Invisible mode disabled, reloading the page in a few seconds...',
+-                  false,
+-                  true
+-                ),
+-                setTimeout(function () {
+-                  window.location.reload();
+-                }, 4000));
++                showNotification('warning', 'Tools', 'Timestamps are now hidden from chat', false, true);
+             } else {
+-              serverData.user.settings.chat.invisible = true;
++              serverData.user.settings.chat.timestamps = true;
+               ui.elem.settings.tools.find('a[data-name="' + tool + '"]').removeClass('selected');
+               ui.elem.settings.tools.find('a[data-name="' + tool + '"]').addClass('selected');
++              chat.elem.container.find('.messages .row .time').show();
+               if (!save) {
+-                showNotification(
+-                  'success',
+-                  'Tools',
+-                  'Invisible mode enabled, reloading the page in a few seconds...',
+-                  false,
+-                  true
+-                );
+-                setTimeout(function () {
+-                  window.location.reload();
+-                }, 4000);
++                showNotification('success', 'Tools', 'Timestamps are now displayed in chat', false, true);
+               }
+             }
+             ui.saveUserSettings();
++          } else if (tool === 'tools-invisible-mode') {
++            (enabled !== undefined && enabled) ||
++            (enabled === undefined && serverData.user.settings.chat.invisible)
++              ? ((serverData.user.settings.chat.invisible = false),
++                ui.elem.settings.tools.find('a[data-name="' + tool + '"]').removeClass('selected'),
++                !save &&
++                  (showNotification(
++                    'warning',
++                    'Tools',
++                    'Invisible mode disabled, reloading the page in a few seconds...',
++                    false,
++                    true
++                  ),
++                  setTimeout(function () {
++                    window.location.reload();
++                  }, 4000)))
++              : ((serverData.user.settings.chat.invisible = true),
++                ui.elem.settings.tools.find('a[data-name="' + tool + '"]').removeClass('selected'),
++                ui.elem.settings.tools.find('a[data-name="' + tool + '"]').addClass('selected'),
++                !save &&
++                  (showNotification(
++                    'success',
++                    'Tools',
++                    'Invisible mode enabled, reloading the page in a few seconds...',
++                    false,
++                    true
++                  ),
++                  setTimeout(function () {
++                    window.location.reload();
++                  }, 4000)));
++            ui.saveUserSettings();
+           } else
+             tool === 'tools-display-social' &&
+               ((enabled !== undefined && enabled) ||
+@@ -10680,12 +10689,15 @@
+              * Input bindings: success, response. Names describe inferred roles; protocol field names are preserved separately.
+              */
+             function (success, response) {
+-              success
+-                ? ((ui.guildListCache = response),
+-                  (ui.lastStartGuildFetch = 0),
+-                  ui.loadGuilds(0),
+-                  (ui.guildListI = 1))
+-                : (ui.triggerLoader(false), showNotification('error', 'Error', response.message));
++              if (success) {
++                ui.guildListCache = response;
++                ui.lastStartGuildFetch = 0;
++                ui.loadGuilds(0);
++                ui.guildListI = 1;
++              } else {
++                ui.triggerLoader(false);
++                showNotification('error', 'Error', response.message);
++              }
+             }
+           );
+         },
+@@ -10700,12 +10712,12 @@
+           if (ui.guildListCache === null) ui.loadGuildData();
+           else {
+             var rowsElement = ui.activeContent.find('.rows');
+-            if (lastStartGuildFetch === 0) {
+-              rowsElement.html('');
+-              ui.lastStartGuildFetch = 0;
+-              ui.triggerLoader(false);
+-              ui.guildListI = 1;
+-            } else ui.lastStartGuildFetch = lastStartGuildFetch;
++            lastStartGuildFetch === 0
++              ? (rowsElement.html(''),
++                (ui.lastStartGuildFetch = 0),
++                ui.triggerLoader(false),
++                (ui.guildListI = 1))
++              : (ui.lastStartGuildFetch = lastStartGuildFetch);
+             var loadMoreElement = ui.activeContent.find('.load-more'),
+               guildListCache = ui.guildListCache,
+               guildListLimit = lastStartGuildFetch + ui.guildListLimit;
+@@ -10768,17 +10780,15 @@
+                 }
+               }
+             }
+-            if (guildListCache.total > ui.lastStartGuildFetch + 1) {
+-              loadMoreElement.show();
+-              loadMoreElement.text(loadMoreElement.attr('data-text'));
+-              loadMoreElement.removeAttr('disabled');
+-              loadMoreElement.removeClass('spin');
+-            } else {
+-              loadMoreElement.hide();
+-              rowsElement.append(
+-                '<div class="text-center">Can\'t find your guild? The TOP 100 Guild list is updated every 10 minutes<br/>Click on your profile and click your guild tag to find yours</div>'
+-              );
+-            }
++            guildListCache.total > ui.lastStartGuildFetch + 1
++              ? (loadMoreElement.show(),
++                loadMoreElement.text(loadMoreElement.attr('data-text')),
++                loadMoreElement.removeAttr('disabled'),
++                loadMoreElement.removeClass('spin'))
++              : (loadMoreElement.hide(),
++                rowsElement.append(
++                  '<div class="text-center">Can\'t find your guild? The TOP 100 Guild list is updated every 10 minutes<br/>Click on your profile and click your guild tag to find yours</div>'
++                ));
+             guildListCache.total === 0 && rowsElement.html('<p class="margin-top"><b>No guilds :(.</b></p>');
+           }
+         }
+@@ -10992,13 +11002,13 @@
+               element.text(element.attr('data-text'));
+               element.removeAttr('disabled');
+               element.removeClass('spin');
+-              if (success) {
+-                showNotification('success', 'Success!', 'You left the guild');
+-                $('.guild-quit').hide();
+-                setTimeout(function () {
+-                  window.location.reload();
+-                }, 4000);
+-              } else showNotification('error', 'Error', response.message);
++              success
++                ? (showNotification('success', 'Success!', 'You left the guild'),
++                  $('.guild-quit').hide(),
++                  setTimeout(function () {
++                    window.location.reload();
++                  }, 4000))
++                : showNotification('error', 'Error', response.message);
+             }
+           );
+         }
+@@ -11204,25 +11214,21 @@
+                 .find('input[name="protection"]')
+                 .val()
+             );
+-            if (inputValue) {
+-              ui.elem.container.find('.input-checkbox[data-name="protection"]').removeClass('selected');
+-              ui.elem.container
+-                .find('.input-checkbox[data-name="protection"]')
+-                .parent()
+-                .find('input[name="protection"]')
+-                .val(0);
+-            } else {
+-              ui.elem.container.find('.input-checkbox[data-name="protection"]').removeClass('selected');
+-              ui.elem.container.find('.input-checkbox[data-name="protection"]').addClass('selected');
+-              ui.elem.container
+-                .find('.input-checkbox[data-name="protection"]')
+-                .parent()
+-                .find('input[name="protection"]')
+-                .val(1);
+-            }
+-          } else {
+-            showNotification('error', 'You need to be a Premium Subscriber to modify this setting');
+-          }
++            inputValue
++              ? (ui.elem.container.find('.input-checkbox[data-name="protection"]').removeClass('selected'),
++                ui.elem.container
++                  .find('.input-checkbox[data-name="protection"]')
++                  .parent()
++                  .find('input[name="protection"]')
++                  .val(0))
++              : (ui.elem.container.find('.input-checkbox[data-name="protection"]').removeClass('selected'),
++                ui.elem.container.find('.input-checkbox[data-name="protection"]').addClass('selected'),
++                ui.elem.container
++                  .find('.input-checkbox[data-name="protection"]')
++                  .parent()
++                  .find('input[name="protection"]')
++                  .val(1));
++          } else showNotification('error', 'You need to be a Premium Subscriber to modify this setting');
+         }
+       );
+       ui.elem.container.find('.input-checkbox[data-name="shop-items"]').on(
+@@ -11243,22 +11249,20 @@
+               .find('input[name="shop-items"]')
+               .val()
+           );
+-          if (inputValue) {
+-            ui.elem.container.find('.input-checkbox[data-name="shop-items"]').removeClass('selected');
+-            ui.elem.container
+-              .find('.input-checkbox[data-name="shop-items"]')
+-              .parent()
+-              .find('input[name="shop-items"]')
+-              .val(0);
+-          } else {
+-            ui.elem.container.find('.input-checkbox[data-name="shop-items"]').removeClass('selected');
+-            ui.elem.container.find('.input-checkbox[data-name="shop-items"]').addClass('selected');
+-            ui.elem.container
+-              .find('.input-checkbox[data-name="shop-items"]')
+-              .parent()
+-              .find('input[name="shop-items"]')
+-              .val(1);
+-          }
++          inputValue
++            ? (ui.elem.container.find('.input-checkbox[data-name="shop-items"]').removeClass('selected'),
++              ui.elem.container
++                .find('.input-checkbox[data-name="shop-items"]')
++                .parent()
++                .find('input[name="shop-items"]')
++                .val(0))
++            : (ui.elem.container.find('.input-checkbox[data-name="shop-items"]').removeClass('selected'),
++              ui.elem.container.find('.input-checkbox[data-name="shop-items"]').addClass('selected'),
++              ui.elem.container
++                .find('.input-checkbox[data-name="shop-items"]')
++                .parent()
++                .find('input[name="shop-items"]')
++                .val(1));
+         }
+       );
+       ui.elem.container.find('.input-checkbox[data-name="nsfw"]').on(
+@@ -11313,32 +11317,34 @@
+               .find('input[name="discord-required"]')
+               .val()
+           );
+-          if (serverData.user.premium.active) {
+-            if (inputValue) {
+-              ui.elem.container.find('.input-checkbox[data-name="discord-required"]').removeClass('selected');
+-              ui.elem.container
++          serverData.user.premium.active
++            ? inputValue
++              ? (ui.elem.container
++                  .find('.input-checkbox[data-name="discord-required"]')
++                  .removeClass('selected'),
++                ui.elem.container
++                  .find('.input-checkbox[data-name="discord-required"]')
++                  .parent()
++                  .find('input[name="discord-required"]')
++                  .val(0))
++              : (ui.elem.container
++                  .find('.input-checkbox[data-name="discord-required"]')
++                  .removeClass('selected'),
++                ui.elem.container.find('.input-checkbox[data-name="discord-required"]').addClass('selected'),
++                ui.elem.container
++                  .find('.input-checkbox[data-name="discord-required"]')
++                  .parent()
++                  .find('input[name="discord-required"]')
++                  .val(1))
++            : (ui.elem.container
+                 .find('.input-checkbox[data-name="discord-required"]')
+-                .parent()
+-                .find('input[name="discord-required"]')
+-                .val(0);
+-            } else {
+-              ui.elem.container.find('.input-checkbox[data-name="discord-required"]').removeClass('selected');
+-              ui.elem.container.find('.input-checkbox[data-name="discord-required"]').addClass('selected');
++                .removeClass('selected'),
+               ui.elem.container
+                 .find('.input-checkbox[data-name="discord-required"]')
+                 .parent()
+                 .find('input[name="discord-required"]')
+-                .val(1);
+-            }
+-          } else {
+-            ui.elem.container.find('.input-checkbox[data-name="discord-required"]').removeClass('selected');
+-            ui.elem.container
+-              .find('.input-checkbox[data-name="discord-required"]')
+-              .parent()
+-              .find('input[name="discord-required"]')
+-              .val(0);
+-            showNotification('error', 'You need to be a Premium Subscriber to modify this setting');
+-          }
++                .val(0),
++              showNotification('error', 'You need to be a Premium Subscriber to modify this setting'));
+         }
+       );
+       ui.elem.container.find('.input-checkbox[data-name="auto-accept"]').on(
+@@ -11440,9 +11446,12 @@
+            * Input bindings: event. Names describe inferred roles; protocol field names are preserved separately.
+            */
+           function (event) {
+-            $('#tools').find('input[type="checkbox"][name="checkbox-protection-bg"]').prop('checked') == true
+-              ? (canvasRenderer.protectionWithBG = true)
+-              : (canvasRenderer.protectionWithBG = false);
++            if (
++              $('#tools').find('input[type="checkbox"][name="checkbox-protection-bg"]').prop('checked') ==
++              true
++            ) {
++              canvasRenderer.protectionWithBG = true;
++            } else canvasRenderer.protectionWithBG = false;
+           }
+         );
+       var inputEnabled = false,
+@@ -11498,15 +11507,14 @@
+               elements.cursor.css('height', 'auto');
+               elements.cursor.css('padding', '10px');
+               elements.cursor.text('UN-PROTECTING');
+-              if (!toolsEnabled) {
+-                alert(
++              !toolsEnabled &&
++                (alert(
+                   "This tool allow you to un-protect pixels. Choose a color (doesn't matter which one) and start to paint over areas you want to un-protect."
+-                );
++                ),
+                 alert(
+                   "IMPORTANT: Changes are NOT instant, this will take up to 5 min before they are applied by the server. You will get a notification when it's done."
+-                );
+-                toolsEnabled = true;
+-              }
++                ),
++                (toolsEnabled = true));
+             } else if (inputValue === 3) {
+               canvasRenderer.mode = 3;
+               elements.cursor.css('width', 'auto');
+@@ -11520,22 +11528,23 @@
+                 ),
+                 alert('IMPORTANT: Changes are applied instantly for this tool'),
+                 (inputTypeRadioNameRadioProtectionToolEnabled = true));
+-            } else
+-              inputValue === 4 &&
+-                (parseInt(canvasRenderer.brush.size) > 10 &&
+-                  ((canvasRenderer.brush.size = 10),
+-                  $('#tools').find('input[type="range"][name="tool-brush"]').val(canvasRenderer.brush.size),
+-                  $('#tools').find('.size-preview').text(canvasRenderer.brush.size)),
+-                (canvasRenderer.mode = 4),
+-                elements.cursor.css('width', 'auto'),
+-                elements.cursor.css('max-width', '200px'),
+-                elements.cursor.css('height', 'auto'),
+-                elements.cursor.css('padding', '10px'),
+-                elements.cursor.text('FILLING'),
+-                !localInputEnabled &&
+-                  (alert('This tool allow you to fill any area without removing protected pixels'),
+-                  alert('IMPORTANT: Changes are applied instantly for this tool'),
+-                  (localInputEnabled = true)));
++            } else if (inputValue === 4) {
++              if (parseInt(canvasRenderer.brush.size) > 10) {
++                canvasRenderer.brush.size = 10;
++                $('#tools').find('input[type="range"][name="tool-brush"]').val(canvasRenderer.brush.size);
++                $('#tools').find('.size-preview').text(canvasRenderer.brush.size);
++              }
++              canvasRenderer.mode = 4;
++              elements.cursor.css('width', 'auto');
++              elements.cursor.css('max-width', '200px');
++              elements.cursor.css('height', 'auto');
++              elements.cursor.css('padding', '10px');
++              elements.cursor.text('FILLING');
++              !localInputEnabled &&
++                (alert('This tool allow you to fill any area without removing protected pixels'),
++                alert('IMPORTANT: Changes are applied instantly for this tool'),
++                (localInputEnabled = true));
++            }
+           }
+         );
+       var activeSocialPanel = false;
+@@ -11552,14 +11561,11 @@
+          */
+         function (event) {
+           event.preventDefault();
+-          if (!activeSocialPanel) {
+-            activeSocialPanel = true;
+-            $('#tools').css('top', parseInt($('[data-id="painting-owner-tools"]').offset().top) + 'px');
+-            $('#tools').show();
+-          } else {
+-            activeSocialPanel = false;
+-            $('#tools').hide();
+-          }
++          !activeSocialPanel
++            ? ((activeSocialPanel = true),
++              $('#tools').css('top', parseInt($('[data-id="painting-owner-tools"]').offset().top) + 'px'),
++              $('#tools').show())
++            : ((activeSocialPanel = false), $('#tools').hide());
+         }
+       );
+       var socialPanelState = false;
+@@ -11573,8 +11579,10 @@
+       function openSocialPanel(panel, forceOpen) {
+         if (!socialPanelState || forceOpen) {
+           socialPanelState = panel;
+-          !forceOpen && serverData.user.settings.chat.invisible && panel === 'friends' && (panel = 'guild');
+-          if (panel === 'friends') {
++          if (!forceOpen && serverData.user.settings.chat.invisible && panel === 'friends') {
++            panel = 'guild';
++          }
++          if (panel === 'friends')
+             forceOpen && serverData.user.settings.chat.invisible
+               ? (showNotification(
+                   'error',
+@@ -11592,7 +11600,7 @@
+                 $('#social').find('button.btn-add-blocked').hide(),
+                 $('#social').find('button.btn-add-friend').show(),
+                 $('#social').show());
+-          } else if (panel === 'guild') {
++          else if (panel === 'guild') {
+             canvasRenderer.loadGuildMembers(true);
+             $('#social').find('.tabs-list a').removeClass('active');
+             $('#social')
+@@ -11686,8 +11694,8 @@
+           profileBioRequest.bio = '';
+           var requestData = profileBioRequest,
+             bio = prompt('Enter a bio (max 255 characters)');
+-          if (bio !== null) {
+-            requestData.bio = bio;
++          bio !== null &&
++            ((requestData.bio = bio),
+             api.xhr.req(
+               'POST',
+               'https://pixelplace.io/api/post-bio.php',
+@@ -11708,8 +11716,7 @@
+                     showNotification('success', 'Success', 'Bio saved!'))
+                   : showNotification('error', 'Error', response.message);
+               }
+-            );
+-          }
++            ));
+         }
+       );
+       $('.btn-add-friend-data').on(
+@@ -11751,12 +11758,12 @@
+                * Input bindings: success, response. Names describe inferred roles; protocol field names are preserved separately.
+                */
+               function (success, response) {
+-                success
+-                  ? ($('#profile').hide(),
+-                    canvasRenderer.loadFriends(true),
+-                    response.changed &&
+-                      showNotification('success', 'Player followed', 'Player added to your list'))
+-                  : showNotification('error', 'Error', response.message);
++                if (success) {
++                  $('#profile').hide();
++                  canvasRenderer.loadFriends(true);
++                  response.changed &&
++                    showNotification('success', 'Player followed', 'Player added to your list');
++                } else showNotification('error', 'Error', response.message);
+               }
+             );
+           }
+@@ -11813,9 +11820,9 @@
+             requestData,
+             true,
+             function (success, response) {
+-              success
+-                ? window.location.replace('/' + response.id)
+-                : showNotification('error', 'Error', response.message);
++              if (success) {
++                window.location.replace('/' + response.id);
++              } else showNotification('error', 'Error', response.message);
+             }
+           );
+         }
+@@ -11875,11 +11882,9 @@
+               {},
+               true,
+               function (success, response) {
+-                if (success)
+-                  confirm(response.message) && response.url != '' && window.location.replace(response.url);
+-                else {
+-                  showNotification('error', 'Error', response.message);
+-                }
++                success
++                  ? confirm(response.message) && response.url != '' && window.location.replace(response.url)
++                  : showNotification('error', 'Error', response.message);
+               }
+             );
+         }
+@@ -12532,12 +12537,11 @@
+         $('#daily-reward').show();
+         $('#daily-reward .box-content-x > div').show();
+         $('#daily-reward .box-content-x > .loading').hide();
+-        if (serverData.user.event === 1) {
+-          $('#daily-reward .overlay').removeClass('backgroundRainbow').addClass('backgroundRainbow');
+-          $('#daily-reward .reel-container').removeClass('borderRainbow').addClass('borderRainbow');
+-          $('#daily-reward .line').removeClass('backgroundRainbow').addClass('backgroundRainbow');
+-          $('#daily-reward .reel img').attr('src', '/img/lootbox-event-1.png');
+-        }
++        serverData.user.event === 1 &&
++          ($('#daily-reward .overlay').removeClass('backgroundRainbow').addClass('backgroundRainbow'),
++          $('#daily-reward .reel-container').removeClass('borderRainbow').addClass('borderRainbow'),
++          $('#daily-reward .line').removeClass('backgroundRainbow').addClass('backgroundRainbow'),
++          $('#daily-reward .reel img').attr('src', '/img/lootbox-event-1.png'));
+         $('#slot .overlay').removeClass('disabled').text('OPEN').show();
+         $('#slot .overlay-bg').show();
+       }
+@@ -12703,19 +12707,17 @@
+               $('#coin-island .bonus > span').text(
+                 response.currentOwner.goalsList[response.currentOwner.currentGoalIdReached]
+               );
+-              if (response.currentOwner.nextGoalId) {
+-                $('#coin-island .next-bonus .coins').text(
+-                  response.currentOwner.goalsList[response.currentOwner.nextGoalId]
+-                );
+-                $('#coin-island .next-bonus .next-bonus-time').text(
+-                  response.currentOwner.nextBonusTimeLeft +
+-                    ' hour' +
+-                    (response.currentOwner.nextBonusTimeLeft != 1 ? 's' : '')
+-                );
+-                $('#coin-island .next-bonus').css('display', 'block');
+-              } else {
+-                $('#coin-island .next-bonus').css('display', 'none');
+-              }
++              response.currentOwner.nextGoalId
++                ? ($('#coin-island .next-bonus .coins').text(
++                    response.currentOwner.goalsList[response.currentOwner.nextGoalId]
++                  ),
++                  $('#coin-island .next-bonus .next-bonus-time').text(
++                    response.currentOwner.nextBonusTimeLeft +
++                      ' hour' +
++                      (response.currentOwner.nextBonusTimeLeft != 1 ? 's' : '')
++                  ),
++                  $('#coin-island .next-bonus').css('display', 'block'))
++                : $('#coin-island .next-bonus').css('display', 'none');
+               $('#submit-attack-coinisland').html(
+                 'SEND TROOPS & GET OWNERSHIP<div class="coin-line"><div class="pp-coin-1"><img src="/img/pp-coin-still.gif" width="26"></div> <span class="price">' +
+                   response.price +
+@@ -12728,11 +12730,10 @@
+               }
+               $('#submit-attack-coinisland').attr('data-price', response.price);
+               if (island === 0) $('.coinisland-title').text('Welcome to Coin Island!');
+-              else if (island === 1) $('.coinisland-title').text('Welcome to Tiny Coin Island #1');
+-              else if (island === 2) $('.coinisland-title').text('Welcome to Tiny Coin Island #2');
+-              else if (island === 3) {
+-                $('.coinisland-title').text('Welcome to Tiny Coin Island #3');
+-              }
++              else if (island === 1) {
++                $('.coinisland-title').text('Welcome to Tiny Coin Island #1');
++              } else if (island === 2) $('.coinisland-title').text('Welcome to Tiny Coin Island #2');
++              else island === 3 && $('.coinisland-title').text('Welcome to Tiny Coin Island #3');
+               parseInt(response.currentOwner.protection) > 0
+                 ? ($('#submit-attack-coinisland').attr('disabled'),
+                   $('#submit-attack-coinisland').addClass('disabled'),
+@@ -12827,9 +12828,7 @@
+           var count = 0;
+           if ($(this).attr('id') === 'coin-island-owner-1') count = 1;
+           else if ($(this).attr('id') === 'coin-island-owner-2') count = 2;
+-          else if ($(this).attr('id') === 'coin-island-owner-3') {
+-            count = 3;
+-          }
++          else $(this).attr('id') === 'coin-island-owner-3' && (count = 3);
+           openCoinIsland(count);
+         }
+       );
+@@ -13099,14 +13098,14 @@
+               function (success, response) {
+                 if (success) {
+                   $('#profile').hide();
+-                  if (declineRequest) {
+-                    canvasRenderer.loadGuildMembersRequests(true);
+-                    showNotification('success', 'Success', 'Request declined');
+-                  } else {
+-                    canvasRenderer.loadGuildMembers(true);
+-                    showNotification('success', 'Success', 'User removed from the guild');
+-                  }
+-                } else showNotification('error', 'Error', response.message);
++                  declineRequest
++                    ? (canvasRenderer.loadGuildMembersRequests(true),
++                      showNotification('success', 'Success', 'Request declined'))
++                    : (canvasRenderer.loadGuildMembers(true),
++                      showNotification('success', 'Success', 'User removed from the guild'));
++                } else {
++                  showNotification('error', 'Error', response.message);
++                }
+               }
+             );
+         }
+@@ -13331,9 +13330,11 @@
+          */
+         function (event) {
+           var inputValue = $(this).val();
+-          inputValue.length > 250
+-            ? ui.triggerFormInputError('description', 'Description too long (max 250 characters)')
+-            : ui.triggerFormInputError('description', '');
++          if (inputValue.length > 250)
++            ui.triggerFormInputError('description', 'Description too long (max 250 characters)');
++          else {
++            ui.triggerFormInputError('description', '');
++          }
+         }
+       );
+       ui.elem.settings.painting.find('[name="rules"]').on(
+@@ -13367,11 +13368,11 @@
+           var inputValue = parseInt(ui.elem.settings.painting.find('[name="sizeX"]').val()),
+             int = parseInt(ui.elem.settings.painting.find('[name="sizeY"]').val());
+           if (inputValue < 100 || int < 100) ui.triggerFormInputError('size', 'Minimum size is 100 pixels');
+-          else if (serverData.user.premium.active) {
+-            if (inputValue > 3000 || int > 3000) {
+-              ui.triggerFormInputError('size', 'Maximum size is 3000 pixels');
+-            } else ui.triggerFormInputError('size', '');
+-          } else
++          else if (serverData.user.premium.active)
++            inputValue > 3000 || int > 3000
++              ? ui.triggerFormInputError('size', 'Maximum size is 3000 pixels')
++              : ui.triggerFormInputError('size', '');
++          else
+             inputValue !== appState.painting.width || int !== appState.painting.height
+               ? (ui.elem.settings.painting.find('[name="sizeX"]').val(appState.painting.width),
+                 ui.elem.settings.painting.find('[name="sizeY"]').val(appState.painting.height),
+@@ -13397,7 +13398,9 @@
+           var inputValue = parseInt($(this).val());
+           if (serverData.user.premium.active) {
+             if (inputValue > 3600) ui.triggerFormInputError('cooldown', 'Maximum cooldown is 3600 (1 hour)');
+-            else inputValue < 0 && ui.triggerFormInputError('cooldown', 'Minimum cooldown is 0 (disabled)');
++            else if (inputValue < 0) {
++              ui.triggerFormInputError('cooldown', 'Minimum cooldown is 0 (disabled)');
++            }
+           } else
+             inputValue !== appState.painting.cooldown
+               ? ($(this).val(appState.painting.cooldown),
+@@ -13427,11 +13430,10 @@
+             else
+               inputValue < 0 &&
+                 ui.triggerFormInputError('autoAcceptTime', 'Minimum auto accept time is 0 (disabled)');
+-          } else
+-            inputValue !== appState.painting.autoAcceptTime
+-              ? ($(this).val(appState.painting.cooldown),
+-                showNotification('error', 'You need to be a Premium Subscriber to modify this setting.'))
+-              : ui.triggerFormInputError('autoAcceptTime', '');
++          } else if (inputValue !== appState.painting.autoAcceptTime) {
++            $(this).val(appState.painting.cooldown);
++            showNotification('error', 'You need to be a Premium Subscriber to modify this setting.');
++          } else ui.triggerFormInputError('autoAcceptTime', '');
+         }
+       );
+       ui.elem.settings.painting.find('a[data-name="template"]').on(
+@@ -13513,10 +13515,9 @@
+           event.preventDefault();
+           var element = $(this);
+           if (serverData.user.premium.active) {
+-            if (element.parent().hasClass('selected')) element.parent().removeClass('selected');
+-            else {
+-              element.parent().addClass('selected');
+-            }
++            element.parent().hasClass('selected')
++              ? element.parent().removeClass('selected')
++              : element.parent().addClass('selected');
+             var entries = [];
+             $(document)
+               .find(
+@@ -13535,9 +13536,7 @@
+             ui.elem.settings.painting
+               .find('input[type="hidden"][name="allowedColors"]')
+               .val(entries.join(','));
+-          } else {
+-            showNotification('error', 'You need to be a Premium Subscriber to modify this setting.');
+-          }
++          } else showNotification('error', 'You need to be a Premium Subscriber to modify this setting.');
+         }
+       );
+       document.addEventListener('gesturestart', function (event) {
+@@ -13574,9 +13573,8 @@
+           canvasRenderer.element.painting[0].style.width = window.innerWidth + 'px';
+           elements.palette[0].style.height = window.innerHeight + 'px';
+           document.body.style.height = window.innerHeight + 'px';
+-          if (parseInt(elements.container[0].style.width) <= 677) {
+-            elements.copyright.hide();
+-          } else {
++          if (parseInt(elements.container[0].style.width) <= 677) elements.copyright.hide();
++          else {
+             elements.copyright.show();
+           }
+           updatePaletteScrollButtons();
+@@ -13652,17 +13650,20 @@
+               .replace('_', '')
+           ) || false;
+         iosVersion >= 11 && (canvasRenderer.haveZoomRendering = true);
+-      } else if (isSafari) {
+-        canvasRenderer.haveZoomRendering = true;
+-      }
++      } else isSafari && (canvasRenderer.haveZoomRendering = true);
+       function formatElapsedTime(dateOrSeconds, includeSeconds) {
+         var date = null,
+           timeSuffix = null;
+-        dateOrSeconds instanceof Date
+-          ? ((date = Math.floor((new Date() - dateOrSeconds) / 1000)),
+-            date < 0 ? (timeSuffix = ' ') : (timeSuffix = ' '),
+-            (date = Math.abs(date)))
+-          : ((date = dateOrSeconds), (timeSuffix = ''));
++        if (dateOrSeconds instanceof Date) {
++          date = Math.floor((new Date() - dateOrSeconds) / 1000);
++          if (date < 0) {
++            timeSuffix = ' ';
++          } else timeSuffix = ' ';
++          date = Math.abs(date);
++        } else {
++          date = dateOrSeconds;
++          timeSuffix = '';
++        }
+         const items = [
+           [31536000, 'year'],
+           [2592000, 'month'],
+@@ -13676,17 +13677,16 @@
+         for (var index = 0; index < items.length; index++) {
+           if (index === 3) break;
+           var mathFloor = Math.floor(remainingSeconds / items[index][0]);
+-          if (mathFloor > 0) {
+-            entries.push(mathFloor + ' ' + items[index][1] + (mathFloor > 1 ? 's' : ''));
+-            remainingSeconds = remainingSeconds % items[index][0];
+-          }
++          mathFloor > 0 &&
++            (entries.push(mathFloor + ' ' + items[index][1] + (mathFloor > 1 ? 's' : '')),
++            (remainingSeconds = remainingSeconds % items[index][0]));
+         }
+         var durationText = entries.join(', '),
+           formattedTime = durationText + timeSuffix;
+-        if (formattedTime === '' || formattedTime === ' ') {
+-          formattedTime = 'less than a day';
+-        }
+-        return formattedTime;
++        return (
++          (formattedTime === '' || formattedTime === ' ') && (formattedTime = 'less than a day'),
++          formattedTime
++        );
+       }
+       function pingAliveCallback(argument) {
+         var entries = [],
+@@ -13726,13 +13726,18 @@
+           callback = function (mediaQuery) {
+             return window.matchMedia(mediaQuery).matches;
+           };
+-        if ('ontouchstart' in window || (window.DocumentTouch && document instanceof DocumentTouch)) {
++        if ('ontouchstart' in window || (window.DocumentTouch && document instanceof DocumentTouch))
+           return true;
+-        }
+         var touchMediaQuery = ['(', parts.join('touch-enabled),('), 'heartz', ')'].join('');
+         return callback(touchMediaQuery);
+       }
+-      isTouchDevice() && ((pointer.touchDevice = true), $('#mobileplace').show());
++      isTouchDevice() &&
++        ((pointer.touchDevice = true),
++        serverData.painting.cooldown > 0
++          ? ($('#mobileplace a').find('span').text('Place pixel?'), $('#mobileplace a').find('div').hide())
++          : ($('#mobileplace a').find('span').text('Activate Brush?'),
++            $('#mobileplace a').find('div').show()),
++        $('#mobileplace').show());
+       function byteToHex(byte) {
+         var hex = byte.toString(16);
+         return hex.length == 1 ? '0' + hex : hex;
+@@ -13954,7 +13959,9 @@
+         loginFields.email = formAccountLoginElement.find('[name="email"]').val();
+         loginFields.password = formAccountLoginElement.find('[name="password"]').val();
+         var requestData = loginFields;
+-        gRecaptchaResponse !== undefined && (requestData['g-recaptcha-response'] = gRecaptchaResponse);
++        if (gRecaptchaResponse !== undefined) {
++          requestData['g-recaptcha-response'] = gRecaptchaResponse;
++        }
+         grecaptcha.reset();
+         gRecaptchaResponse !== undefined && ui.goBackFromCaptcha();
+         ui.triggerLoader(true);
+@@ -13979,12 +13986,14 @@
+               .text(formAccountLoginElement.find('.submit-form').attr('data-text'));
+             formAccountLoginElement.find('.submit-form').removeAttr('disabled');
+             formAccountLoginElement.find('.submit-form').removeClass('spin');
+-            success
+-              ? (window.location.reload(),
+-                setTimeout(function () {
+-                  showNotification('success', 'Success!', 'You are now connected, please refresh the page');
+-                }, 5000))
+-              : showNotification('error', 'Error', response.message);
++            if (success) {
++              window.location.reload();
++              setTimeout(function () {
++                showNotification('success', 'Success!', 'You are now connected, please refresh the page');
++              }, 5000);
++            } else {
++              showNotification('error', 'Error', response.message);
++            }
+           }
+         );
+       };
+@@ -14002,11 +14011,11 @@
+         registrationFields.password = formAccountRegisterElement.find('[name="password"]').val();
+         registrationFields.confirm = formAccountRegisterElement.find('[name="password-confirm"]').val();
+         var requestData = registrationFields;
++        gRecaptchaResponse !== undefined && (requestData['g-recaptcha-response'] = gRecaptchaResponse);
++        grecaptcha.reset();
+         if (gRecaptchaResponse !== undefined) {
+-          requestData['g-recaptcha-response'] = gRecaptchaResponse;
++          ui.goBackFromCaptcha();
+         }
+-        grecaptcha.reset();
+-        gRecaptchaResponse !== undefined && ui.goBackFromCaptcha();
+         ui.triggerLoader(true);
+         api.xhr.req(
+           'POST',
+@@ -14056,9 +14065,7 @@
+         var requestData = passwordResetFields;
+         gRecaptchaResponse !== undefined && (requestData['g-recaptcha-response'] = gRecaptchaResponse);
+         grecaptcha.reset();
+-        if (gRecaptchaResponse !== undefined) {
+-          ui.goBackFromCaptcha();
+-        }
++        gRecaptchaResponse !== undefined && ui.goBackFromCaptcha();
+         ui.triggerLoader(true);
+         api.xhr.req(
+           'POST',
+@@ -14130,14 +14137,12 @@
+             activationForm.find('.submit-form').text(activationForm.find('.submit-form').attr('data-text'));
+             activationForm.find('.submit-form').removeAttr('disabled');
+             activationForm.find('.submit-form').removeClass('spin');
+-            if (success) {
+-              showNotification('success', 'Password set successfully! Please log in to your account');
+-              setTimeout(function () {
+-                window.location.replace('/' + appState.page);
+-              }, 3000);
+-            } else {
+-              showNotification('error', 'Error', response.message);
+-            }
++            success
++              ? (showNotification('success', 'Password set successfully! Please log in to your account'),
++                setTimeout(function () {
++                  window.location.replace('/' + appState.page);
++                }, 3000))
++              : showNotification('error', 'Error', response.message);
+           }
+         );
+       };
+@@ -14323,19 +14328,19 @@
+               .text(accessRequestForm.find('.submit-form').attr('data-text'));
+             accessRequestForm.find('.submit-form').removeAttr('disabled');
+             accessRequestForm.find('.submit-form').removeClass('spin');
+-            if (success) {
+-              ui.closeModal();
+-              response.auto_accepted !== undefined
+-                ? showNotification('success', 'Success', 'Access Granted')
+-                : showNotification(
+-                    'success',
+-                    'Success',
+-                    'Request sent, please wait until you get approved by the owner or the moderators'
+-                  );
+-            } else {
+-              response.action !== undefined && response.action === 'sso' && ui.openModal('main', 'account');
+-              showNotification('error', 'Error', response.message);
+-            }
++            success
++              ? (ui.closeModal(),
++                response.auto_accepted !== undefined
++                  ? showNotification('success', 'Success', 'Access Granted')
++                  : showNotification(
++                      'success',
++                      'Success',
++                      'Request sent, please wait until you get approved by the owner or the moderators'
++                    ))
++              : (response.action !== undefined &&
++                  response.action === 'sso' &&
++                  ui.openModal('main', 'account'),
++                showNotification('error', 'Error', response.message));
+           }
+         );
+       };
+@@ -14345,7 +14350,9 @@
+         guildAccessFields.createGuildRequest = true;
+         guildAccessFields.painting = serverData.painting.id;
+         var requestData = guildAccessFields;
+-        gRecaptchaResponse !== undefined && (requestData['g-recaptcha-response'] = gRecaptchaResponse);
++        if (gRecaptchaResponse !== undefined) {
++          requestData['g-recaptcha-response'] = gRecaptchaResponse;
++        }
+         grecaptcha.reset();
+         gRecaptchaResponse !== undefined && ui.goBackFromCaptcha();
+         ui.triggerLoader(true);
+@@ -14416,9 +14423,7 @@
+         moderatorFields.way = 1;
+         var requestData = moderatorFields,
+           username = prompt('Enter a username');
+-        if (username === null) {
+-          username = '';
+-        }
++        username === null && (username = '');
+         requestData.username = username;
+         captchaToken !== undefined && ui.goBackFromCaptcha();
+         ui.triggerLoader(true);
+@@ -14544,58 +14549,60 @@
+         var requestData = guildDeletionFields;
+         $('#form-guild-store').find('[name="id"]').val() &&
+           (requestData.id = $('#form-guild-store').find('[name="id"]').val());
+-        if (captchaToken !== undefined) {
+-          ui.goBackFromCaptcha();
+-        }
++        captchaToken !== undefined && ui.goBackFromCaptcha();
+         ui.triggerLoader(true);
+-        confirm('You are about to remove your guild and all its guild members')
+-          ? confirm("Are you sure? this action can't be undone")
+-            ? api.xhr.req(
+-                'POST',
+-                'https://pixelplace.io/api/post-guild.php',
+-                requestData,
+-                true,
+-                /**
+-                 * HTTP completion callback for https://pixelplace.io/api/post-guild.php. It runs through the existing wrapper result/error flow; preserve guard returns and branch-specific UI updates.
+-                 *
+-                 * Observed DOM operations: text, attr, removeClass.
+-                 *
+-                 * Scheduled work: setTimeout (4000 ms).
+-                 *
+-                 * Input bindings: success, response. Names describe inferred roles; protocol field names are preserved separately.
+-                 */
+-                function (success, response) {
+-                  ui.triggerLoader(false);
+-                  formGuildDeleteElement
+-                    .find('.submit-form')
+-                    .text(formGuildDeleteElement.find('.submit-form').attr('data-text'));
+-                  formGuildDeleteElement.find('.submit-form').removeAttr('disabled');
+-                  formGuildDeleteElement.find('.submit-form').removeClass('spin');
+-                  success
+-                    ? (showNotification(
+-                        'success',
+-                        'Success',
+-                        'Guild deleted, reloading the page in a few seconds...'
+-                      ),
+-                      setTimeout(function () {
+-                        window.location.reload();
+-                      }, 4000),
+-                      ui.closeModal())
+-                    : showNotification('error', 'Error', response.message);
+-                }
+-              )
+-            : (ui.triggerLoader(false),
+-              formGuildDeleteElement
+-                .find('.submit-form')
+-                .text(formGuildDeleteElement.find('.submit-form').attr('data-text')),
+-              formGuildDeleteElement.find('.submit-form').removeAttr('disabled'),
+-              formGuildDeleteElement.find('.submit-form').removeClass('spin'))
+-          : (ui.triggerLoader(false),
++        if (confirm('You are about to remove your guild and all its guild members')) {
++          if (confirm("Are you sure? this action can't be undone"))
++            api.xhr.req(
++              'POST',
++              'https://pixelplace.io/api/post-guild.php',
++              requestData,
++              true,
++              /**
++               * HTTP completion callback for https://pixelplace.io/api/post-guild.php. It runs through the existing wrapper result/error flow; preserve guard returns and branch-specific UI updates.
++               *
++               * Observed DOM operations: text, attr, removeClass.
++               *
++               * Scheduled work: setTimeout (4000 ms).
++               *
++               * Input bindings: success, response. Names describe inferred roles; protocol field names are preserved separately.
++               */
++              function (success, response) {
++                ui.triggerLoader(false);
++                formGuildDeleteElement
++                  .find('.submit-form')
++                  .text(formGuildDeleteElement.find('.submit-form').attr('data-text'));
++                formGuildDeleteElement.find('.submit-form').removeAttr('disabled');
++                formGuildDeleteElement.find('.submit-form').removeClass('spin');
++                success
++                  ? (showNotification(
++                      'success',
++                      'Success',
++                      'Guild deleted, reloading the page in a few seconds...'
++                    ),
++                    setTimeout(function () {
++                      window.location.reload();
++                    }, 4000),
++                    ui.closeModal())
++                  : showNotification('error', 'Error', response.message);
++              }
++            );
++          else {
++            ui.triggerLoader(false);
+             formGuildDeleteElement
+               .find('.submit-form')
+-              .text(formGuildDeleteElement.find('.submit-form').attr('data-text')),
+-            formGuildDeleteElement.find('.submit-form').removeAttr('disabled'),
+-            formGuildDeleteElement.find('.submit-form').removeClass('spin'));
++              .text(formGuildDeleteElement.find('.submit-form').attr('data-text'));
++            formGuildDeleteElement.find('.submit-form').removeAttr('disabled');
++            formGuildDeleteElement.find('.submit-form').removeClass('spin');
++          }
++        } else {
++          ui.triggerLoader(false);
++          formGuildDeleteElement
++            .find('.submit-form')
++            .text(formGuildDeleteElement.find('.submit-form').attr('data-text'));
++          formGuildDeleteElement.find('.submit-form').removeAttr('disabled');
++          formGuildDeleteElement.find('.submit-form').removeClass('spin');
++        }
+       };
+       /**
+        * Direct network calls: POST https://pixelplace.io/api/delete-painting.php.
+@@ -14609,7 +14616,9 @@
+           paintingDeletionFields = {};
+         paintingDeletionFields.painting = serverData.painting.id;
+         var requestData = paintingDeletionFields;
+-        captchaToken !== undefined && ui.goBackFromCaptcha();
++        if (captchaToken !== undefined) {
++          ui.goBackFromCaptcha();
++        }
+         ui.triggerLoader(true);
+         confirm('Do you really want to delete this painting?')
+           ? api.xhr.req(
+@@ -14707,9 +14716,7 @@
+             (requestData.replacePainting = formSettingsPaintingElement
+               .find('input[name="replacePainting"]')
+               .val()));
+-          if (gRecaptchaResponse !== undefined) {
+-            ui.goBackFromCaptcha();
+-          }
++          gRecaptchaResponse !== undefined && ui.goBackFromCaptcha();
+           if (
+             requestData.replacePainting === '' ||
+             (requestData.replacePainting !== '' &&
+@@ -14801,44 +14808,41 @@
+             formAttackCoinislandElement.find('.submit-form').removeAttr('disabled');
+             formAttackCoinislandElement.find('.submit-form').removeClass('spin');
+             openCoinIsland(requestData.island);
+-          } else
+-            parseInt(amount) < parseInt($('#submit-attack-coinisland').attr('data-price'))
+-              ? (formAttackCoinislandElement.find('.submit-form').removeAttr('disabled'),
+-                formAttackCoinislandElement.find('.submit-form').removeClass('spin'),
+-                openCoinIsland(requestData.island),
+-                showNotification(
+-                  'error',
+-                  'Error',
+-                  "Custom attack price can't be lower than the current price"
+-                ))
+-              : ((requestData.amount = amount),
+-                api.xhr.req(
+-                  'POST',
+-                  'https://pixelplace.io/api/post-coin-island.php',
+-                  requestData,
+-                  true,
+-                  /**
+-                   * HTTP completion callback for https://pixelplace.io/api/post-coin-island.php. It runs through the existing wrapper result/error flow; preserve guard returns and branch-specific UI updates.
+-                   *
+-                   * Observed DOM operations: removeClass, hide.
+-                   *
+-                   * Scheduled work: setTimeout (10000 ms).
+-                   *
+-                   * Input bindings: success, response. Names describe inferred roles; protocol field names are preserved separately.
+-                   */
+-                  function (success, response) {
+-                    formAttackCoinislandElement.find('.submit-form').removeAttr('disabled');
+-                    formAttackCoinislandElement.find('.submit-form').removeClass('spin');
+-                    openCoinIsland(requestData.island);
+-                    success
+-                      ? (showNotification('success', 'Success!', 'The island is yours! YARRRRRR!'),
+-                        $('#coin-island').hide(),
+-                        setTimeout(function () {
+-                          window.location.reload();
+-                        }, 10000))
+-                      : showNotification('error', 'Error', response.message);
+-                  }
+-                ));
++          } else if (parseInt(amount) < parseInt($('#submit-attack-coinisland').attr('data-price'))) {
++            formAttackCoinislandElement.find('.submit-form').removeAttr('disabled');
++            formAttackCoinislandElement.find('.submit-form').removeClass('spin');
++            openCoinIsland(requestData.island);
++            showNotification('error', 'Error', "Custom attack price can't be lower than the current price");
++          } else {
++            requestData.amount = amount;
++            api.xhr.req(
++              'POST',
++              'https://pixelplace.io/api/post-coin-island.php',
++              requestData,
++              true,
++              /**
++               * HTTP completion callback for https://pixelplace.io/api/post-coin-island.php. It runs through the existing wrapper result/error flow; preserve guard returns and branch-specific UI updates.
++               *
++               * Observed DOM operations: removeClass, hide.
++               *
++               * Scheduled work: setTimeout (10000 ms).
++               *
++               * Input bindings: success, response. Names describe inferred roles; protocol field names are preserved separately.
++               */
++              function (success, response) {
++                formAttackCoinislandElement.find('.submit-form').removeAttr('disabled');
++                formAttackCoinislandElement.find('.submit-form').removeClass('spin');
++                openCoinIsland(requestData.island);
++                success
++                  ? (showNotification('success', 'Success!', 'The island is yours! YARRRRRR!'),
++                    $('#coin-island').hide(),
++                    setTimeout(function () {
++                      window.location.reload();
++                    }, 10000))
++                  : showNotification('error', 'Error', response.message);
++              }
++            );
++          }
+         }
+       };
+       /**
+@@ -14902,8 +14906,9 @@
+        */
+       /* Create the original websocket-only Socket.IO connection and register its server-event handlers. Reconnection uses the existing handshake and state-reset logic. */
+       function connectRealtime() {
+-        if (connection.started) return;
+-        else {
++        if (connection.started) {
++          return;
++        } else {
+           connection.started = true;
+           var socketOptions = {};
+           socketOptions.transports = ['websocket'];
+@@ -15014,17 +15019,21 @@
+                 parts = text.split(''),
+                 heartbeatToken = '';
+               for (var key in parts) {
+-                key == 0 && (heartbeatToken += localPingAliveCallback(5));
++                if (key == 0) {
++                  heartbeatToken += localPingAliveCallback(5);
++                }
+                 key == 1 && (heartbeatToken += localPingAliveCallback(7));
+                 key == 2 && (heartbeatToken += pingAliveCallback(3));
+-                key == 3 && (heartbeatToken += localPingAliveCallback(8));
+-                if (key == 4) {
+-                  heartbeatToken += pingAliveCallback(6);
++                if (key == 3) {
++                  heartbeatToken += localPingAliveCallback(8);
+                 }
++                key == 4 && (heartbeatToken += pingAliveCallback(6));
+                 key == 5 && (heartbeatToken += localPingAliveCallback(3));
+                 key == 6 && (heartbeatToken += localPingAliveCallback(6));
+                 key == 7 && (heartbeatToken += pingAliveCallback(4));
+-                key == 8 && (heartbeatToken += localPingAliveCallback(7));
++                if (key == 8) {
++                  heartbeatToken += localPingAliveCallback(7);
++                }
+                 key == 9 && (heartbeatToken += localPingAliveCallback(6));
+                 Math.floor(Math.random() * 2) === 0
+                   ? (heartbeatToken += digitLetterTableDigitLetters[parseInt(parts[key])].toUpperCase())
+@@ -15211,10 +15220,9 @@
+           connection.io.on('l', function (lPayload) {
+             if (!serverData.user.settings.chat.invisible) {
+               if (serverData.user.name.toLowerCase() !== lPayload.toLowerCase()) {
+-                if (serverData.user.friends.indexOf(lPayload) !== -1) {
++                serverData.user.friends.indexOf(lPayload) !== -1 &&
+                   serverData.user.settings.chat.friendsNotifications &&
+-                    showNotification('info', lPayload + ' went offline');
+-                }
++                  showNotification('info', lPayload + ' went offline');
+               }
+             }
+           });
+@@ -15301,14 +15309,12 @@
+              */
+             function (chatStatsPayload) {
+               chat.elem.onlineValue.text(chatStatsPayload[1]);
+-              if (chatStatsPayload[2] !== undefined && parseInt(chatStatsPayload[2]) > 0)
+-                chat.elem.onlineValue.attr(
+-                  'title',
+-                  chatStatsPayload[0] + ' players connected & ' + chatStatsPayload[2] + ' on this painting'
+-                );
+-              else {
+-                chat.elem.onlineValue.attr('title', chatStatsPayload[0] + ' players connected');
+-              }
++              chatStatsPayload[2] !== undefined && parseInt(chatStatsPayload[2]) > 0
++                ? chat.elem.onlineValue.attr(
++                    'title',
++                    chatStatsPayload[0] + ' players connected & ' + chatStatsPayload[2] + ' on this painting'
++                  )
++                : chat.elem.onlineValue.attr('title', chatStatsPayload[0] + ' players connected');
+               chat.elem.onlineSubValue.hide();
+             }
+           );
+@@ -15362,13 +15368,14 @@
+             /**
+              * Registered item.notification.use callback. It reads the current shared state when the event arrives; registration does not execute the callback body.
+              *
+-             * Shared/receiver state written: timestamp.
++             * Shared/receiver state written: lastConnectionTimestamp.
+              *
+              * Input bindings: itemNotificationUsePayload. Names describe inferred roles; protocol field names are preserved separately.
+              */
+             function (itemNotificationUsePayload) {
+-              parseInt(itemNotificationUsePayload.userId) === serverData.user.id &&
+-                (timestamp = nowSeconds());
++              if (parseInt(itemNotificationUsePayload.userId) === serverData.user.id) {
++                lastConnectionTimestamp = nowSeconds();
++              }
+               var text = 'dropped';
+               if (parseInt(itemNotificationUsePayload.item) === 1) text = 'fired a';
+               else if (parseInt(itemNotificationUsePayload.item) === 2) text = 'dropped a';
+@@ -15377,7 +15384,9 @@
+                 parseInt(itemNotificationUsePayload.item) === 8
+               )
+                 text = 'dropped an';
+-              else parseInt(itemNotificationUsePayload.item) === 7 && (text = 'dropped a');
++              else if (parseInt(itemNotificationUsePayload.item) === 7) {
++                text = 'dropped a';
++              }
+               var messageData = {};
+               messageData.type = 'custom';
+               messageData.target = '';
+@@ -15415,14 +15424,17 @@
+               messageData.icons = [];
+               messageData.createdAt = '';
+               chat.addMessageRow(messageData, 'global');
+-              parseInt(itemNotificationUsePayload.item) !== 7 &&
+-                parseInt(itemNotificationUsePayload.item) !== 8 &&
++              if (
++                parseInt(itemNotificationUsePayload.item) !== 7 &&
++                parseInt(itemNotificationUsePayload.item) !== 8
++              ) {
+                 callback(
+                   itemNotificationUsePayload.item,
+                   itemNotificationUsePayload.x,
+                   itemNotificationUsePayload.y,
+                   itemNotificationUsePayload.c
+                 );
++              }
+             }
+           );
+           $(document).on(
+@@ -15485,9 +15497,7 @@
+                       if (fightEndAt > 0) {
+                         var number = Math.floor(fightEndAt / 60),
+                           text = fightEndAt - number * 60;
+-                        if (text < 10) {
+-                          text = '0' + text;
+-                        }
++                        text < 10 && (text = '0' + text);
+                         number = '0' + number + '';
+                         text = text + '';
+                       } else {
+@@ -15575,7 +15585,9 @@
+              * Input bindings: areaFightStartPayload. Names describe inferred roles; protocol field names are preserved separately.
+              */
+             function (areaFightStartPayload) {
+-              if (serverData.painting.id !== 7) return;
++              if (serverData.painting.id !== 7) {
++                return;
++              }
+               if (options[areaFightStartPayload.id] !== undefined) {
+                 options[areaFightStartPayload.id].fightEndAt = areaFightStartPayload.fightEndAt;
+                 options[areaFightStartPayload.id].nextFightAt = areaFightStartPayload.nextFightAt;
+@@ -15921,7 +15933,9 @@
+                 $('.paintings-list[data-id="featured"]').append(element);
+                 element.find('.name').text(hotPaintingsPayloadEntry.name);
+                 element.find('.featuredOnline span').text(hotPaintingsPayloadEntry.online);
+-                parseInt(hotPaintingsPayloadEntry.xMax) < 205 && element.find('img').addClass('pixelate');
++                if (parseInt(hotPaintingsPayloadEntry.xMax) < 205) {
++                  element.find('img').addClass('pixelate');
++                }
+               }
+             }
+           );
+@@ -15942,12 +15956,11 @@
+                 $('#onlineUsers .players-list').append(htmlElement);
+                 htmlElement.text(paintingPlayersPayloadEntry.username);
+                 htmlElement.attr('data-profile', paintingPlayersPayloadEntry.username.toLowerCase());
+-                if (parseInt(paintingPlayersPayloadEntry.color) >= 0) {
++                parseInt(paintingPlayersPayloadEntry.color) >= 0 &&
+                   htmlElement.css(
+                     'color',
+                     appState.painting.palette.colors[paintingPlayersPayloadEntry.color]
+                   );
+-                }
+               }
+               $('#onlineUsers h1').text(serverData.painting.name);
+               $('#onlineUsers p').text(serverData.painting.description);
+@@ -16217,9 +16230,7 @@
+                   window.location.reload();
+                 }, 4000);
+               } else if (throwErrorPayload == 44) {
+-                if (mouseupSetIntervalResult) {
+-                  clearInterval(mouseupSetIntervalResult);
+-                }
++                mouseupSetIntervalResult && clearInterval(mouseupSetIntervalResult);
+                 openCoinIsland(0);
+               } else if (throwErrorPayload == 45) {
+                 mouseupSetIntervalResult && clearInterval(mouseupSetIntervalResult);
+@@ -16309,13 +16320,15 @@
+                   ? (boxContentElement.find('.rules p').text(serverData.painting.rules),
+                     boxContentElement.find('.rules').show())
+                   : boxContentElement.find('.rules').hide();
+-                serverData.painting.guild.integration
+-                  ? (boxContentElement.find('.guild-form-info').hide(),
+-                    boxContentElement.find('.guild-form').show(),
+-                    boxContentElement.find('.guild-link').text(serverData.painting.guild.name),
+-                    boxContentElement.find('.guild-link').attr('data-tag', serverData.painting.guild.name))
+-                  : (boxContentElement.find('.guild-form-info').show(),
+-                    boxContentElement.find('.guild-form').hide());
++                if (serverData.painting.guild.integration) {
++                  boxContentElement.find('.guild-form-info').hide();
++                  boxContentElement.find('.guild-form').show();
++                  boxContentElement.find('.guild-link').text(serverData.painting.guild.name);
++                  boxContentElement.find('.guild-link').attr('data-tag', serverData.painting.guild.name);
++                } else {
++                  boxContentElement.find('.guild-form-info').show();
++                  boxContentElement.find('.guild-form').hide();
++                }
+                 serverData.painting.twitch.integration
+                   ? (boxContentElement.find('.twitch-form-info').css('display', 'none!important'),
+                     boxContentElement.find('.twitch-form').show(),
+@@ -16328,16 +16341,14 @@
+                   : (boxContentElement.find('.twitch-form-info').css('display', 'block!important'),
+                     boxContentElement.find('.twitch-form').hide());
+                 ui.openModal('request-access', 'request');
+-              } else if (throwErrorPayload == 11) {
+-                if (serverData.painting.rate < 100) {
+-                  serverData.painting.rate += 10;
+-                  if (mouseupSetIntervalResult !== null) {
+-                    clearInterval(mouseupSetIntervalResult);
+-                    mouseupSetIntervalResult = null;
+-                  }
+-                }
+-              } else if (throwErrorPayload == 30) ui.openModal('main', 'guilds');
+-              else if (throwErrorPayload == 15) {
++              } else if (throwErrorPayload == 11)
++                serverData.painting.rate < 100 &&
++                  ((serverData.painting.rate += 10),
++                  mouseupSetIntervalResult !== null &&
++                    (clearInterval(mouseupSetIntervalResult), (mouseupSetIntervalResult = null)));
++              else if (throwErrorPayload == 30) {
++                ui.openModal('main', 'guilds');
++              } else if (throwErrorPayload == 15) {
+                 showNotification(
+                   'error',
+                   'Error',
+@@ -16392,14 +16403,12 @@
+               var time = parseInt(queuePayload.time),
+                 text = '';
+               if (time > 60) text = parseInt(time / 60) + ' min';
+-              else time === 0 ? (text = 'Loading...') : (text = 'Less than 1 min');
++              else if (time === 0) {
++                text = 'Loading...';
++              } else text = 'Less than 1 min';
+               $('#modals .box-content[data-id="queue"]').find('.position').text(queuePayload.position);
+               $('#modals .box-content[data-id="queue"]').find('.time').text(text);
+-              if (parseInt(queuePayload.position) <= 0) {
+-                if (ui.selectors.content === 'queue') {
+-                  ui.closeModal();
+-                }
+-              }
++              parseInt(queuePayload.position) <= 0 && ui.selectors.content === 'queue' && ui.closeModal();
+             }
+           );
+           /* Server pixel batches are rendered only after any image resources required by their commands have been loaded. */
+@@ -16467,51 +16476,51 @@
+                 300000
+               );
+               setPaintingLoading(false);
+-              !localStorage || !localStorage.getItem('attention-notif')
+-                ? setTimeout(
+-                    /**
+-                     * Scheduled callback. State may have changed since scheduling, so the guards inside this body are evaluated at execution time.
+-                     *
+-                     * Shared/receiver state written: setIntervalResult.
+-                     *
+-                     * Observed DOM operations: show, css.
+-                     *
+-                     * Scheduled work: setInterval (5000 ms).
+-                     */
+-                    function () {
+-                      $('.attention').show();
+-                      $('.attention').css('animation', 'shake 0.82s cubic-bezier(.36,.07,.19,.97) both');
+-                      setIntervalResult = setInterval(
+-                        /**
+-                         * Scheduled callback. State may have changed since scheduling, so the guards inside this body are evaluated at execution time.
+-                         *
+-                         * Observed DOM operations: css.
+-                         *
+-                         * Scheduled work: setTimeout (1000 ms).
+-                         */
+-                        function () {
+-                          $('.attention').css('animation', 'none');
+-                          setTimeout(
+-                            /**
+-                             * Scheduled callback. State may have changed since scheduling, so the guards inside this body are evaluated at execution time.
+-                             *
+-                             * Observed DOM operations: css.
+-                             */
+-                            function () {
+-                              $('.attention').css(
+-                                'animation',
+-                                'shake 0.82s cubic-bezier(.36,.07,.19,.97) both'
+-                              );
+-                            },
+-                            1000
+-                          );
+-                        },
+-                        5000
+-                      );
+-                    },
+-                    5000
+-                  )
+-                : $('.attention').hide();
++              if (!localStorage || !localStorage.getItem('attention-notif')) {
++                setTimeout(
++                  /**
++                   * Scheduled callback. State may have changed since scheduling, so the guards inside this body are evaluated at execution time.
++                   *
++                   * Shared/receiver state written: setIntervalResult.
++                   *
++                   * Observed DOM operations: show, css.
++                   *
++                   * Scheduled work: setInterval (5000 ms).
++                   */
++                  function () {
++                    $('.attention').show();
++                    $('.attention').css('animation', 'shake 0.82s cubic-bezier(.36,.07,.19,.97) both');
++                    setIntervalResult = setInterval(
++                      /**
++                       * Scheduled callback. State may have changed since scheduling, so the guards inside this body are evaluated at execution time.
++                       *
++                       * Observed DOM operations: css.
++                       *
++                       * Scheduled work: setTimeout (1000 ms).
++                       */
++                      function () {
++                        $('.attention').css('animation', 'none');
++                        setTimeout(
++                          /**
++                           * Scheduled callback. State may have changed since scheduling, so the guards inside this body are evaluated at execution time.
++                           *
++                           * Observed DOM operations: css.
++                           */
++                          function () {
++                            $('.attention').css(
++                              'animation',
++                              'shake 0.82s cubic-bezier(.36,.07,.19,.97) both'
++                            );
++                          },
++                          1000
++                        );
++                      },
++                      5000
++                    );
++                  },
++                  5000
++                );
++              } else $('.attention').hide();
+             }
+           );
+           connection.io.on('p', function (pPayload) {
+@@ -16562,10 +16571,7 @@
+       message === undefined
+         ? elements.loaderCanvas.find('.text').html('LOADING<br/>PAINTING')
+         : elements.loaderCanvas.find('.text').html(message);
+-      if (visible) elements.loaderCanvas.show();
+-      else {
+-        elements.loaderCanvas.hide();
+-      }
++      visible ? elements.loaderCanvas.show() : elements.loaderCanvas.hide();
+     }
+     setPaintingLoading(true);
+     setPageLoading(true);
+@@ -16575,9 +16581,7 @@
+         pathname = window.location.pathname;
+       pathname = parseInt(pathname.substring(1));
+       if (pathname === 0 && !isNaN(pathname)) paintingId = 13;
+-      else if (pathname != 0 && !isNaN(pathname)) {
+-        paintingId = parseInt(pathname);
+-      }
++      else pathname != 0 && !isNaN(pathname) && (paintingId = parseInt(pathname));
+       var hasAuthCookie = 0;
+       Cookies.get('authId') && (hasAuthCookie = 1);
+       api.xhr.req(
+@@ -16597,17 +16601,15 @@
+             response.painting.palette.length <= 0 &&
+               (response.painting.palette = appState.painting.palette.order);
+             serverData = response;
+-            if (window.location.href.indexOf('?forgotKey=') !== -1) {
+-              initializePainting();
+-            } else if (
++            if (window.location.href.indexOf('?forgotKey=') !== -1) initializePainting();
++            else if (
+               !serverData.painting.slug ||
+               serverData.painting.slug === '' ||
+               window.location.pathname.indexOf(serverData.painting.slug) !== -1
+             )
+               initializePainting();
+-            else if (paintingId === 13) {
+-              initializePainting();
+-            } else {
++            else if (paintingId === 13) initializePainting();
++            else {
+               var text = '',
+                 position = {},
+                 hash = window.location.hash;

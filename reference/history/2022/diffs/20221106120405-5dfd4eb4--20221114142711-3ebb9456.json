@@ -1,0 +1,888 @@
+{
+  "before": "20221106120405-5dfd4eb4",
+  "after": "20221114142711-3ebb9456",
+  "changes": {
+    "endpoints": {
+      "added": [
+        "/api/get-gold-rush-island.php",
+        "/api/relog.php"
+      ],
+      "removed": []
+    },
+    "emits": {
+      "added": [],
+      "removed": []
+    },
+    "listeners": {
+      "added": [
+        "golden.notification"
+      ],
+      "removed": []
+    },
+    "selectors": {
+      "added": [
+        "#chat .messages[data-id=\"nonenglish\"]",
+        "#chat .tabs a[data-id=\"nonenglish\"]",
+        "#gold-rush",
+        "#gold-rush .ah_cut",
+        "#gold-rush .box-content-x > .loading",
+        "#gold-rush .box-content-x > div",
+        "#gold-rush .box-x",
+        "#gold-rush .close-modal",
+        "#gold-rush .gold-bar-count",
+        "#gold-rush .gold-bar-price",
+        "#gold-rush .gold-items-level",
+        "#gold-rush .gold-ore-count",
+        "#gold-rush .gold-upgrade .bar-text",
+        "#gold-rush .gold-upgrade .gold-items img",
+        "#gold-rush .img-gold-tools-current",
+        "#gold-rush .mine-gold",
+        "#gold-rush .smelt-gold",
+        "#gold-rush .top-gold table",
+        "#gold-rush .upgrade-gold",
+        "#tools .radio [name=\"radio-protection-tool\"][value=\"3\"]",
+        ".ah-all",
+        ".ah-all, .ah-my",
+        ".ah-chart",
+        ".ah-display-sell",
+        ".ah-my",
+        ".ah-sell-form",
+        ".ah_fee",
+        ".ah_table tbody",
+        ".ah_table tbody .ah-load-more",
+        ".ah_table tbody .ah-loading",
+        ".ah_table thead tr td",
+        ".display-my-painting-list",
+        ".gold-bar-count",
+        ".gold-mining",
+        ".gold-odds",
+        ".gold-ore-count",
+        ".gold-prog .bar-progress .bar",
+        ".gold-rush-island",
+        ".gold-smelting",
+        ".gold-upgrade",
+        ".imp",
+        ".my-paintings-list",
+        ".my-pp b",
+        "[name=\"ah_sell\"] [name=\"ah_sell_amount\"]",
+        "[name=\"ah_sell\"] [name=\"ah_sell_price\"]"
+      ],
+      "removed": []
+    },
+    "text": {
+      "added": [
+        " battle points (+5 bonus)",
+        " my-paintings-list\" style=\"background-color:",
+        "#chat .messages[data-id=\"nonenglish\"]",
+        "#chat .tabs a[data-id=\"nonenglish\"]",
+        "#gold-rush .close-modal",
+        "#gold-rush .gold-bar-count",
+        "#gold-rush .gold-bar-price",
+        "#gold-rush .gold-items-level",
+        "#gold-rush .gold-ore-count",
+        "#gold-rush .gold-upgrade .bar-text",
+        "#gold-rush .gold-upgrade .gold-items img",
+        "#gold-rush .img-gold-tools-current",
+        "#gold-rush .mine-gold",
+        "#gold-rush .smelt-gold",
+        "#gold-rush .top-gold table",
+        "#gold-rush .upgrade-gold",
+        "#tools .radio [name=\"radio-protection-tool\"][value=\"3\"]",
+        ".ah_table tbody .ah-load-more",
+        ".ah_table tbody .ah-loading",
+        ".ah_table thead tr td",
+        ".gold-prog .bar-progress .bar",
+        ".open-gold-rush-island, .open-gold-rush",
+        "/track USERNAME - Filter live tracking users (Premium command). Use /untrack to cancel)",
+        "1px is the max size for this mode",
+        "Amount received (after AH cut)",
+        "Available at this price",
+        "Click to mine Gold ores",
+        "Everyday, you have a chance to earn one of the following daily reward:\n3 coins - 26.82%\n5 coins - 25.17%\n10 coins - 22.12%\nMissile - 7.35%\nGold ore (8 to 16) - 6.00%\nBomb - 4.24%\n30 coins - 3.15%\nAtomic bomb - 2.61%\n50 coins - 1.56%\n100 coins - 0.98%",
+        "Gold bar(s) added to your inventory",
+        "How many Gold bars do you want to buy at this price ? (max: ",
+        "Minimum unit price allowed: ",
+        "Please enter only plain numbers",
+        "Welcome to the global chat (shared across all paintings). English only! (use Non-English tab for other languages)",
+        "Would you like to cancel this auction? Deposit fee will be lost",
+        "You are about spend some Gold Bar to upgrade your mining items, would you like to continue?",
+        "[name=\"ah_sell\"] [name=\"ah_sell_amount\"]",
+        "[name=\"ah_sell\"] [name=\"ah_sell_price\"]"
+      ],
+      "removed": [
+        " guild battle points awarded",
+        " guild battle points awarded (+5 bonus)",
+        "10px is the max size for this mode",
+        "Everyday, you have a chance to earn one of the following daily reward:\n3 coins - 28.82%\n5 coins - 26.17%\n10 coins - 23.12%\nMissile - 8.35%\nBomb - 5.24%\n30 coins - 3.15%\nAtomic bomb - 2.61%\n50 coins - 1.56%\n100 coins - 0.98%",
+        "This tool allow you to fill any area without removing protected pixels",
+        "Welcome to the global chat (shared across all paintings)."
+      ]
+    },
+    "functions": {
+      "added": [
+        "formatElapsedTimeLong",
+        "initializeChatChannel",
+        "keydownValue",
+        "loadAuctionRows",
+        "openGoldShop",
+        "placeCursorPixel",
+        "updateAuctionFee",
+        "updateGoldToolUpgrade"
+      ],
+      "removed": [
+        "chatMessagesLoadedCallback",
+        "encodePayloadPacket"
+      ],
+      "changed": [
+        "animateWeaponExpansion",
+        "api.req",
+        "canvasRenderer.centerPositionTo",
+        "canvasRenderer.checkProtectionFromPainting",
+        "canvasRenderer.drawPixelAt",
+        "canvasRenderer.fetchPaintingAccess",
+        "canvasRenderer.getColorFromPainting",
+        "canvasRenderer.getUrlHash",
+        "canvasRenderer.loadFriends",
+        "canvasRenderer.loadGuildMembers",
+        "canvasRenderer.loadMyPaintings",
+        "canvasRenderer.loadPainting",
+        "canvasRenderer.loadPaintingList",
+        "canvasRenderer.loadPalette",
+        "canvasRenderer.refreshPaintingList",
+        "canvasRenderer.triggerCooldownPanel",
+        "canvasRenderer.useItem",
+        "chat.addMessageRow",
+        "chat.deleteMessagesByUsername",
+        "chat.resize",
+        "chat.sendMessage",
+        "chat.updateNotificationCount",
+        "chat.updateScroll",
+        "connectRealtime",
+        "exports",
+        "fillWeaponArea",
+        "findNearestPaletteColor",
+        "formatElapsedTime",
+        "holidayTextHtml",
+        "idCallback",
+        "initializePainting",
+        "normalizePointerEvent",
+        "object.closeModal",
+        "object.loadGuildData",
+        "object.loadGuilds",
+        "object.loadPaintingCreateOrEdit",
+        "object.loadTopUsers",
+        "object.onChangeTools",
+        "object.openModal",
+        "object.settingsPaintingSelectAccess",
+        "object.settingsPaintingSelectBackground",
+        "object.triggerChooseModal",
+        "object.updateActiveContent",
+        "openCoinIsland",
+        "openGuild",
+        "openProfile",
+        "openSocialPanel",
+        "placeNextImagePixel",
+        "pointer.setCursorCoords",
+        "pointer.setCursorPosition",
+        "pointer.triggerCursor",
+        "removeWarArea",
+        "resizeViewport",
+        "runCaptchaAction",
+        "setPaintingLoading",
+        "showNotification",
+        "value",
+        "zoomAroundViewportCenter"
+      ],
+      "smallNumericOnly": [
+        "colorDifference",
+        "rgbToLab"
+      ]
+    }
+  },
+  "assessment": {
+    "major": [
+      {
+        "area": "Account and access",
+        "evidence": [
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "runCaptchaAction"
+          }
+        ]
+      },
+      {
+        "area": "Canvas and placement",
+        "evidence": [
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": ".display-my-painting-list"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": ".my-paintings-list"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": " my-paintings-list\" style=\"background-color:"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "Everyday, you have a chance to earn one of the following daily reward:\n3 coins - 26.82%\n5 coins - 25.17%\n10 coins - 22.12%\nMissile - 7.35%\nGold ore (8 to 16) - 6.00%\nBomb - 4.24%\n30 coins - 3.15%\nAtomic bomb - 2.61%\n50 coins - 1.56%\n100 coins - 0.98%"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "Welcome to the global chat (shared across all paintings). English only! (use Non-English tab for other languages)"
+          },
+          {
+            "kind": "removed",
+            "key": "text",
+            "value": "Everyday, you have a chance to earn one of the following daily reward:\n3 coins - 28.82%\n5 coins - 26.17%\n10 coins - 23.12%\nMissile - 8.35%\nBomb - 5.24%\n30 coins - 3.15%\nAtomic bomb - 2.61%\n50 coins - 1.56%\n100 coins - 0.98%"
+          },
+          {
+            "kind": "removed",
+            "key": "text",
+            "value": "This tool allow you to fill any area without removing protected pixels"
+          },
+          {
+            "kind": "removed",
+            "key": "text",
+            "value": "Welcome to the global chat (shared across all paintings)."
+          },
+          {
+            "kind": "added",
+            "key": "functions",
+            "value": "placeCursorPixel"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "animateWeaponExpansion"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.centerPositionTo"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.checkProtectionFromPainting"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.drawPixelAt"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.fetchPaintingAccess"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.getColorFromPainting"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.getUrlHash"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadFriends"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadGuildMembers"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadMyPaintings"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadPainting"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadPaintingList"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadPalette"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.refreshPaintingList"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.triggerCooldownPanel"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.useItem"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "fillWeaponArea"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "findNearestPaletteColor"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "initializePainting"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.loadPaintingCreateOrEdit"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.settingsPaintingSelectAccess"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.settingsPaintingSelectBackground"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "placeNextImagePixel"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "setPaintingLoading"
+          }
+        ]
+      },
+      {
+        "area": "Guilds and social features",
+        "evidence": [
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#chat .messages[data-id=\"nonenglish\"]"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#chat .tabs a[data-id=\"nonenglish\"]"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "#chat .messages[data-id=\"nonenglish\"]"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "#chat .tabs a[data-id=\"nonenglish\"]"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "Welcome to the global chat (shared across all paintings). English only! (use Non-English tab for other languages)"
+          },
+          {
+            "kind": "removed",
+            "key": "text",
+            "value": " guild battle points awarded"
+          },
+          {
+            "kind": "removed",
+            "key": "text",
+            "value": " guild battle points awarded (+5 bonus)"
+          },
+          {
+            "kind": "removed",
+            "key": "text",
+            "value": "Welcome to the global chat (shared across all paintings)."
+          },
+          {
+            "kind": "added",
+            "key": "functions",
+            "value": "initializeChatChannel"
+          },
+          {
+            "kind": "removed",
+            "key": "functions",
+            "value": "chatMessagesLoadedCallback"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadFriends"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadGuildMembers"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "chat.addMessageRow"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "chat.deleteMessagesByUsername"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "chat.resize"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "chat.sendMessage"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "chat.updateNotificationCount"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "chat.updateScroll"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.loadGuildData"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.loadGuilds"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "openGuild"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "openSocialPanel"
+          }
+        ]
+      },
+      {
+        "area": "Store and inventory",
+        "evidence": [
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#gold-rush .gold-items-level"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#gold-rush .gold-upgrade .gold-items img"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "#gold-rush .gold-items-level"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "#gold-rush .gold-upgrade .gold-items img"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "/track USERNAME - Filter live tracking users (Premium command). Use /untrack to cancel)"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "Everyday, you have a chance to earn one of the following daily reward:\n3 coins - 26.82%\n5 coins - 25.17%\n10 coins - 22.12%\nMissile - 7.35%\nGold ore (8 to 16) - 6.00%\nBomb - 4.24%\n30 coins - 3.15%\nAtomic bomb - 2.61%\n50 coins - 1.56%\n100 coins - 0.98%"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "Gold bar(s) added to your inventory"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "You are about spend some Gold Bar to upgrade your mining items, would you like to continue?"
+          },
+          {
+            "kind": "removed",
+            "key": "text",
+            "value": "Everyday, you have a chance to earn one of the following daily reward:\n3 coins - 28.82%\n5 coins - 26.17%\n10 coins - 23.12%\nMissile - 8.35%\nBomb - 5.24%\n30 coins - 3.15%\nAtomic bomb - 2.61%\n50 coins - 1.56%\n100 coins - 0.98%"
+          },
+          {
+            "kind": "added",
+            "key": "functions",
+            "value": "openGoldShop"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.useItem"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "openCoinIsland"
+          }
+        ]
+      },
+      {
+        "area": "Realtime and connection handling",
+        "evidence": [
+          {
+            "kind": "removed",
+            "key": "functions",
+            "value": "encodePayloadPacket"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "connectRealtime"
+          }
+        ]
+      },
+      {
+        "area": "Maps and navigation",
+        "evidence": [
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "resizeViewport"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "zoomAroundViewportCenter"
+          }
+        ]
+      },
+      {
+        "area": "Interface and settings",
+        "evidence": [
+          {
+            "kind": "added",
+            "key": "listeners",
+            "value": "golden.notification"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#gold-rush .close-modal"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": ".ah-display-sell"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": ".display-my-painting-list"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "#gold-rush .close-modal"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "Welcome to the global chat (shared across all paintings). English only! (use Non-English tab for other languages)"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "chat.updateNotificationCount"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.closeModal"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.openModal"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.settingsPaintingSelectAccess"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.settingsPaintingSelectBackground"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.triggerChooseModal"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "openProfile"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "showNotification"
+          }
+        ]
+      }
+    ],
+    "security": {
+      "added": [
+        {
+          "fingerprint": "7c64eecd63226fd445b919c1",
+          "line": 5743,
+          "code": "pointer.mobileBrushActivated?(pointer.mobileBrushActivated=false,$(this).find('span').text('Activate Brush?'),$(this).find('div').show()):serverData.painting.cooldown>0?canvasRenderer.drawPixelAt():(pointer.mobileFirstActivation&&(pointer.mobileFirstActivation=false,canvasRenderer.scale=10,zoomAroundViewportCenter(true)),pointer.mobileBrushActivated=true,$(this).find('span').text('Disable Brush?'),$(this).find('div').hide());"
+        },
+        {
+          "fingerprint": "4fbd9ee93bc63970a5f0a7e5",
+          "line": 5997,
+          "code": "showCountdown&&(canvasRenderer.cooldownSetInterval=setInterval(function(){var cooldown=canvasRenderer.cooldown+1000-nowMilliseconds();cooldown<0?(cooldown=0,clearInterval(canvasRenderer.cooldownSetInterval),elements.cooldown.hide()):cooldown=parseInt(cooldown/1000);!dotting&&cooldown>serverData.painting.cooldown&&(cooldown=serverData.painting.cooldown);var number=0,text=0;cooldown>60?(number=parseInt(cooldown/60),text=cooldown-number*60):text=cooldown;number<10&&(number='0'+number);if(text<10){text='0'+text;}elements.cooldown.find('.box .cd').text(number+':'+text);},10),elements.cooldown.find('.head').hide(),elements.cooldown.find('.foot').hide(),dotting?(elements.cooldown.find('.head[data-id=\"dotting\"]').show(),elements.cooldown.find('.foot[data-id=\"dotting\"]').show()):(elements.cooldown.find('.head[data-id=\"painting\"]').show(),elements.cooldown.find('.foot[data-id=\"painting\"]').show()),elements.cooldown.show());"
+        },
+        {
+          "fingerprint": "5a8fab7697ad09d4e273e833",
+          "line": 7895,
+          "code": "argument-countValue0Setting>=serverData.painting.rate*2&&(countValue0Setting=argument,placeCursorPixel());"
+        },
+        {
+          "fingerprint": "ec682c08668cff0e873a8703",
+          "line": 7939,
+          "code": "if(event.originalEvent){event.preventDefault();if(selectedItemId!==null)canvasRenderer.useWeapon();else{!enabled&&(count>5?(enabled=true,localStorage.setItem('know-about-space-bar',true),showNotification('info','Tip: Hold [SPACE BAR] to draw faster!')):count++);if(canvasRenderer.mode===4){if(keydownEnabled)keydownEnabled=false;else!keydownEnabled&&(keydownEnabled=true,countValue0Setting=0,pointerX=pointer.x-1,pointerY=pointer.y-1,localCountValue0Setting=0,branchCountValue0Setting=0,countValue1Setting=1,branchLocalCountValue0Setting=0,alternateCountValue0Setting=0,alternateLocalCountValue0Setting=0,colorFromPaintingResult=canvasRenderer.getColorFromPainting(pointer.x,pointer.y,true),colorFromPaintingResult!==null&&window.requestAnimationFrame(keydownValue));}else canvasRenderer.drawPixelAt();}}"
+        },
+        {
+          "fingerprint": "155690c585ada5b6fc28737c",
+          "line": 9001,
+          "code": "pointerupSetIntervalResult=setInterval(function(){canvasRenderer.drawPixelAt();},serverData.painting.rate);"
+        },
+        {
+          "fingerprint": "7d770ea3ab71ae1e0c1535f4",
+          "line": 9275,
+          "code": "profileElement.find('.profile-name').attr('title','BANNED').removeClass('banned').addClass('banned');"
+        },
+        {
+          "fingerprint": "301f438b697c799f4b6a5d53",
+          "line": 9285,
+          "code": "profileElement.find('.profile-name').attr('title','').removeClass('banned');"
+        },
+        {
+          "fingerprint": "94762afc444991e4d76786a4",
+          "line": 10423,
+          "code": "target==='captcha'?ui.activeCaptcha=true:ui.activeCaptcha=false;"
+        },
+        {
+          "fingerprint": "52190a17d892cc68f9637db4",
+          "line": 11652,
+          "code": "showNotification('success','Permissions updated');"
+        },
+        {
+          "fingerprint": "8f6f99b518bbfa20b67e9eca",
+          "line": 11939,
+          "code": "!ui.activeCaptcha&&!ui.activeAlert&&ui.closeModal();"
+        },
+        {
+          "fingerprint": "78ce3f801c77b9b99f110b0a",
+          "line": 15518,
+          "code": "return(event.pageX===undefined||event.pageY===undefined)&&(event.clientX===undefined||event.clientY===undefined?event.originalEvent.changedTouches[0].clientX===undefined||event.originalEvent.changedTouches[0].clientY===undefined?alert('Browser not supported, please use Chrome (recommended), Safari or Firefox'):(event.pageX=event.originalEvent.changedTouches[0].clientX,event.pageY=event.originalEvent.changedTouches[0].clientY):(event.pageX=event.clientX,event.pageY=event.clientY)),event;"
+        },
+        {
+          "fingerprint": "a54b1b6a66468e7c194ec9f9",
+          "line": 17263,
+          "code": "if(Notification.permission==='granted'){{const notification=new Notification(messageDataMessageData.username+' says: '+messageDataMessageData.message);}}else Notification.permission!=='denied'&&Notification.requestPermission().then(argument=>{if(argument==='granted'){{const notification=new Notification(messageDataMessageData.username+' says: '+messageDataMessageData.message);}}});"
+        },
+        {
+          "fingerprint": "04e3a46ca6ec967edafe8f1b",
+          "line": 17270,
+          "code": "Notification.permission!=='denied'&&Notification.requestPermission().then(argument=>{if(argument==='granted'){{const notification=new Notification(messageDataMessageData.username+' says: '+messageDataMessageData.message);}}});"
+        }
+      ],
+      "removed": [
+        {
+          "fingerprint": "76b81ef471fdb5c7192cd5f7",
+          "line": 5729,
+          "code": "if(serverData.painting.cooldown>0)canvasRenderer.drawPixelAt();else{pointer.mobileFirstActivation&&(pointer.mobileFirstActivation=false,canvasRenderer.scale=10,zoomAroundViewportCenter(true));pointer.mobileBrushActivated=true;$(this).find('span').text('Disable Brush?');$(this).find('div').hide();}"
+        },
+        {
+          "fingerprint": "f6bc796f13f804fc1d56a6ef",
+          "line": 5972,
+          "code": "showCountdown&&(canvasRenderer.cooldownSetInterval=setInterval(function(){var cooldown=canvasRenderer.cooldown+1000-nowMilliseconds();cooldown<0?(cooldown=0,clearInterval(canvasRenderer.cooldownSetInterval),elements.cooldown.hide()):cooldown=parseInt(cooldown/1000);!dotting&&cooldown>serverData.painting.cooldown&&(cooldown=serverData.painting.cooldown);var number=0,text=0;cooldown>60?(number=parseInt(cooldown/60),text=cooldown-number*60):text=cooldown;number<10&&(number='0'+number);text<10&&(text='0'+text);elements.cooldown.find('.box .cd').text(number+':'+text);},10),elements.cooldown.find('.head').hide(),elements.cooldown.find('.foot').hide(),dotting?(elements.cooldown.find('.head[data-id=\"dotting\"]').show(),elements.cooldown.find('.foot[data-id=\"dotting\"]').show()):(elements.cooldown.find('.head[data-id=\"painting\"]').show(),elements.cooldown.find('.foot[data-id=\"painting\"]').show()),elements.cooldown.show());"
+        },
+        {
+          "fingerprint": "ade56a382fd2627932ebdbde",
+          "line": 7767,
+          "code": "if(event.originalEvent){event.preventDefault();if(selectedItemId!==null)canvasRenderer.useWeapon();else{if(!drawingHintAcknowledged){if(drawingHintAttempts>5){drawingHintAcknowledged=true;localStorage.setItem('know-about-space-bar',true);showNotification('info','Tip: Hold [SPACE BAR] to draw faster!');}else drawingHintAttempts++;}canvasRenderer.drawPixelAt();}}"
+        },
+        {
+          "fingerprint": "c0e27c8e0b6ed333da56bf7f",
+          "line": 8728,
+          "code": "selectedItemId===null&&pointerupSetIntervalResult===null&&(!drawingHintAcknowledged&&(localStorage.setItem('know-about-space-bar',true),drawingHintAcknowledged=true),canvasRenderer.drawPixelAt(),pointerupSetIntervalResult=setInterval(function(){canvasRenderer.drawPixelAt();},serverData.painting.rate));"
+        },
+        {
+          "fingerprint": "a585dd2b2fe1383b34d87341",
+          "line": 8995,
+          "code": "parseInt(response.status)===2?(profileElement.find('.profile-name').attr('title','BANNED').removeClass('banned').addClass('banned'),response.banReason&&profileElement.find('.profile-name-ban').text('Ban reason: '+response.banReason).show()):profileElement.find('.profile-name').attr('title','').removeClass('banned');"
+        },
+        {
+          "fingerprint": "e137229f285e549f0d0b4c54",
+          "line": 10131,
+          "code": "if(target==='captcha')ui.activeCaptcha=true;else{ui.activeCaptcha=false;}"
+        },
+        {
+          "fingerprint": "ed5f045b824a8d29eb6b1651",
+          "line": 10131,
+          "code": "ui.activeCaptcha=true;"
+        },
+        {
+          "fingerprint": "303c0ea73c010de2c385c4d9",
+          "line": 10133,
+          "code": "ui.activeCaptcha=false;"
+        },
+        {
+          "fingerprint": "1e7117efec3f98f6ff83cbb3",
+          "line": 11348,
+          "code": "success?(ui.triggerLoader(false),element.text(element.attr('data-text')),element.removeAttr('disabled'),element.removeClass('spin'),canvasRenderer.fetchPaintingModerators(),showNotification('success','Permissions updated')):(ui.triggerLoader(false),element.text(element.attr('data-text')),element.removeAttr('disabled'),element.removeClass('spin'),showNotification('error','Error',response.message));"
+        },
+        {
+          "fingerprint": "29c741630bdaa8011385ba0e",
+          "line": 11639,
+          "code": "ui.activeElement&&$(event.target).attr('id')==='modals'&&!ui.activeCaptcha&&!ui.activeAlert&&ui.closeModal();"
+        },
+        {
+          "fingerprint": "aae230511eea7859b7e35e51",
+          "line": 14274,
+          "code": "if(event.originalEvent.changedTouches[0].clientX===undefined||event.originalEvent.changedTouches[0].clientY===undefined){alert('Browser not supported, please use Chrome (recommended), Safari or Firefox');}else{event.pageX=event.originalEvent.changedTouches[0].clientX;event.pageY=event.originalEvent.changedTouches[0].clientY;}"
+        },
+        {
+          "fingerprint": "1bb7436beffed5da6d4e75bd",
+          "line": 14280,
+          "code": "event.pageX=event.originalEvent.changedTouches[0].clientX;"
+        },
+        {
+          "fingerprint": "adebb1b1670f407b874fa59a",
+          "line": 14281,
+          "code": "event.pageY=event.originalEvent.changedTouches[0].clientY;"
+        },
+        {
+          "fingerprint": "ad6e2c8047faa9fd620ebdc6",
+          "line": 14612,
+          "code": "ui.goBackFromCaptcha();"
+        },
+        {
+          "fingerprint": "654fc2df9c3d81f2da7d3823",
+          "line": 15412,
+          "code": "requestData['g-recaptcha-response']=gRecaptchaResponse;"
+        },
+        {
+          "fingerprint": "7e2670b0106abbb3a2414ecf",
+          "line": 16014,
+          "code": "if(Notification.permission==='granted'){const notification=new Notification(messageDataMessageData.username+' says: '+messageDataMessageData.message);}else Notification.permission!=='denied'&&Notification.requestPermission().then(argument=>{if(argument==='granted'){const notification=new Notification(messageDataMessageData.username+' says: '+messageDataMessageData.message);}});"
+        },
+        {
+          "fingerprint": "f62f2bbc1a8a774a905b29d2",
+          "line": 16019,
+          "code": "Notification.permission!=='denied'&&Notification.requestPermission().then(argument=>{if(argument==='granted'){const notification=new Notification(messageDataMessageData.username+' says: '+messageDataMessageData.message);}});"
+        }
+      ]
+    },
+    "contracts": {
+      "registrations": {
+        "added": [
+          "on(\"click\", \".ah-all\")",
+          "on(\"click\", \".ah-buy\")",
+          "on(\"click\", \".ah-cancel\")",
+          "on(\"click\", \".ah-display-sell\")",
+          "on(\"click\", \".ah-more\")",
+          "on(\"click\", \".ah-my\")",
+          "on(\"click\", \".display-my-painting-list\")",
+          "on(\"click\", \".level-perks\")",
+          "on(\"click\", \".mine-gold\")",
+          "on(\"click\", \".open-gold-rush-island, .open-gold-rush\")",
+          "on(\"click\", \".smelt-gold\")",
+          "on(\"click\", \".upgrade-gold\")",
+          "on(\"golden.notification\")",
+          "on(\"input\", \"[name=\\\"ah_sell\\\"] [name=\\\"ah_sell_amount\\\"]\")",
+          "on(\"input\", \"[name=\\\"ah_sell\\\"] [name=\\\"ah_sell_price\\\"]\")",
+          "on(\"submit\", \"[name=\\\"ah_sell\\\"]\")"
+        ],
+        "removed": []
+      },
+      "requests": {
+        "added": [
+          "GET /api/get-gold-rush-island.php payload keys: (dynamic or none)",
+          "GET /api/relog.php payload keys: (dynamic or none)",
+          "POST /api/get-gold-rush-island.php payload keys: (dynamic or none)"
+        ],
+        "removed": []
+      }
+    },
+    "securityTopics": [
+      {
+        "topic": "CAPTCHA",
+        "added": 2,
+        "removed": 6
+      },
+      {
+        "topic": "synthetic input",
+        "added": 2,
+        "removed": 4
+      },
+      {
+        "topic": "placement cooldown/rate",
+        "added": 4,
+        "removed": 3
+      },
+      {
+        "topic": "permissions/moderation",
+        "added": 5,
+        "removed": 4
+      }
+    ],
+    "bootstrap": {
+      "added": [],
+      "removed": [],
+      "implementationChanged": true
+    },
+    "bootstrapSummary": "Removed obfuscator guard implementation differs; detected guard features are unchanged (possibly obfuscation noise).",
+    "shortSummary": "Security/anticheat: candidates include CAPTCHA (+2/-6); synthetic input (+2/-4); placement cooldown/rate (+4/-3); permissions/moderation (+5/-4). Static observations; review source evidence. Removed obfuscator guard implementation differs; detected guard features are unchanged (possibly obfuscation noise).\nAccount and access: changed runCaptchaAction; Canvas and placement: added .display-my-painting-list, added .my-paintings-list; Guilds and social features: added #chat .messages[data-id=\"nonenglish\"], added #chat .tabs a[data-id=\"nonenglish\"]; Store and inventory: added #gold-rush .gold-items-level, added #gold-rush .gold-upgrade .gold-items img",
+    "limits": "Categories are inferred from public literals, member names and function names. Security entries show exact changed statement fingerprints with source lines; they can include refactoring, renaming and numeric changes. They do not prove an exploit, anticheat bypass, server enforcement, or complete security coverage. Obfuscator bootstrap removal is the same deliberate transform in every generated version; this scan covers retained application code only."
+  }
+}

@@ -5,6 +5,7 @@ const t = require("@babel/types");
 const { createTwoFilesPatch } = require("diff");
 const { parse, sha256 } = require("./common.cjs");
 const { digest } = require("./name-model.cjs");
+const { assess, describe } = require("./report-analysis.cjs");
 function inventory(source) {
   const endpoints = new Set(),
     emits = new Set(),
@@ -53,6 +54,7 @@ function inventory(source) {
         value.length > 20 &&
         value.length < 500 &&
         !/[<>]/.test(value) &&
+        !/^LLM NOTICE:/i.test(value) &&
         /\s/.test(value) &&
         !/^https?:/.test(value)
       )
@@ -80,17 +82,15 @@ function inventory(source) {
     selectors: [...selectors].sort(),
     text: [...text].sort(),
     functions: Object.fromEntries(
-      [...functions]
-        .sort()
-        .map(([key, values]) => [
-          key,
-          {
-            strict: sha256(JSON.stringify(values.map((x) => x.strict))),
-            numericTolerant: sha256(
-              JSON.stringify(values.map((x) => x.numericTolerant)),
-            ),
-          },
-        ]),
+      [...functions].sort().map(([key, values]) => [
+        key,
+        {
+          strict: sha256(JSON.stringify(values.map((x) => x.strict))),
+          numericTolerant: sha256(
+            JSON.stringify(values.map((x) => x.numericTolerant)),
+          ),
+        },
+      ]),
     ),
   };
 }
@@ -162,8 +162,7 @@ function writeHistory(out, manifest) {
     ),
     directory = path.join(out, "diffs");
   fs.mkdirSync(directory, { recursive: true });
-  let changelog =
-    "# Observed Pixelplace script changes in 2026\n\nThese are capture-to-capture observations, not release dates or a complete release history. Query parameter names/values are preserved, never used to infer chronology. The live snapshot is separate from Internet Archive captures.\n\n";
+  let changelog = `# Observed Pixelplace script changes in ${manifest.range || manifest.year}\n\nThese are capture-to-capture observations, not release dates or a complete release history. Query parameter names/values are preserved, never used to infer chronology. The live snapshot is separate from Internet Archive captures.\n\n`;
   changelog += `Discovery: ${manifest.discoveryComplete ? "complete for the recorded CDX queries" : "INCOMPLETE"}. Indexed captures: ${manifest.captures.length}. Verified unique snapshots: ${versions.length}.\n\n`;
   changelog +=
     "| Snapshot | Query | Result | Readable source |\n| --- | --- | --- | --- |\n";
@@ -172,38 +171,89 @@ function writeHistory(out, manifest) {
   changelog +=
     "\nSnapshots are sorted by capture timestamp, even when a later capture has a lower version number. Failed captures are not silently skipped: any comparison spanning one is a comparison of the available verified snapshots only.\n";
   manifest.comparisons = [];
+  if (versions.length) {
+    const first = versions[0],
+      baseline = inventory(fs.readFileSync(path.join(out, first.file), "utf8"));
+    const shortSummary =
+      "Initial observed baseline " +
+      first.id +
+      ". Security/anticheat: no earlier verified snapshot is available for comparison; security changes before this capture are unknown.";
+    const report =
+      "# Initial observed baseline\n\n" +
+      shortSummary +
+      "\n\n[Readable source](" +
+      first.file +
+      "). This is a baseline, not an inferred release or update.\n\n" +
+      baseline.endpoints
+        .map((value) => "- HTTP endpoint literal: `" + safe(value) + "`")
+        .join("\n") +
+      "\n";
+    fs.writeFileSync(path.join(out, "BASELINE.md"), report.trimEnd()+'\n');
+    manifest.baseline = { id: first.id, summary: "BASELINE.md", shortSummary };
+    changelog +=
+      "\n[Initial observed baseline](BASELINE.md). Security changes before the earliest verified capture are unknown.\n";
+  }
   for (let index = 1; index < versions.length; index++) {
+    const reused = manifest.existingComparisons?.find(
+      (item) =>
+        item.before === versions[index - 1].id &&
+        item.after === versions[index].id,
+    );
+    if (reused) {
+      manifest.comparisons.push(reused);
+      changelog += `\n## ${reused.before} → ${reused.after}\n\n[Detailed changes](${reused.summary}) · [Readable patch](${reused.patch})\n\n${reused.shortSummary}\n`;
+      continue;
+    }
     const previous = versions[index - 1],
       current = versions[index],
       before = fs.readFileSync(path.join(out, previous.file), "utf8"),
       after = fs.readFileSync(path.join(out, current.file), "utf8");
     const id = previous.id + "--" + current.id,
-      changes = compareVersions(before, after);
-    const patch = createTwoFilesPatch(
-      previous.file,
-      current.file,
-      before,
-      after,
-      "",
-      "",
-      { context: 3, timeout: 10000 },
-    );
+      changes = compareVersions(before, after),
+      assessment = assess(before, after, changes, {
+        before: previous.report
+          ? JSON.parse(fs.readFileSync(path.join(out, previous.report), "utf8"))
+              .bootstrapProtection
+          : null,
+        after: current.report
+          ? JSON.parse(fs.readFileSync(path.join(out, current.report), "utf8"))
+              .bootstrapProtection
+          : null,
+      });
+    const patch =
+      manifest.reusePatches &&
+      fs.existsSync(path.join(directory, id + ".patch"))
+        ? fs.readFileSync(path.join(directory, id + ".patch"), "utf8")
+        : createTwoFilesPatch(
+            previous.file,
+            current.file,
+            before,
+            after,
+            "",
+            "",
+            { context: 3, timeout: 10000 },
+          );
     if (typeof patch !== "string" || Buffer.byteLength(patch) > 20_000_000)
       throw Error("Diff exceeds the configured resource limit");
     fs.writeFileSync(path.join(directory, id + ".patch"), patch);
     fs.writeFileSync(
       path.join(directory, id + ".json"),
       JSON.stringify(
-        { before: previous.id, after: current.id, changes },
+        { before: previous.id, after: current.id, changes, assessment },
         null,
         2,
       ) + "\n",
     );
     const summary =
       `# ${previous.id} → ${current.id}\n\nObserved between [before](${previous.sourceUrl}) and [after](${current.sourceUrl}). [Full readable patch](${id}.patch), [complete machine-readable changes](${id}.json).\n\nRenaming/formatting can contribute to the patch. The summary compares public strings/properties and implementation fingerprints with local identifier spelling ignored. Tiny numeric changes are retained, not rounded away. Added/removed endpoint literals do not alone prove a new/removed server capability.\n` +
+      describe(assessment, previous.file, current.file) +
       markdownChanges(changes);
-    fs.writeFileSync(path.join(directory, id + ".md"), summary.trimEnd() + '\n');
+    fs.writeFileSync(
+      path.join(directory, id + ".md"),
+      summary.trimEnd() + "\n",
+    );
     changelog += `\n## ${previous.id} → ${current.id}\n\n[Detailed changes](diffs/${id}.md) · [Readable patch](diffs/${id}.patch)\n\n${changes.endpoints.added.length} endpoint literals added, ${changes.endpoints.removed.length} removed; ${changes.emits.added.length} outgoing events added, ${changes.emits.removed.length} removed; ${changes.functions.changed.length} named implementations changed.\n`;
+    changelog += "\n" + assessment.shortSummary + "\n";
     const noteworthy = [
       ...changes.endpoints.added.map(
         (x) => "Added endpoint literal `" + safe(x) + "`",
@@ -220,10 +270,11 @@ function writeHistory(out, manifest) {
       summary: "diffs/" + id + ".md",
       patch: "diffs/" + id + ".patch",
       details: "diffs/" + id + ".json",
+      shortSummary: assessment.shortSummary,
     });
   }
   changelog +=
     "\n## Coverage and limits\n\nOnly the exact `/js/script.min.js` pathname on pixelplace.io/www.pixelplace.io is in scope, with every indexed query string. This is not a crawl of vendor bundles, other JavaScript paths, or unarchived releases. Automatic names are inferred/aligned and can need editorial review; they are not recovered author names. The obfuscator bootstrap is deliberately removed; application networking/UI code is structurally checked. No live application/backend flow is executed. Original notice headers are retained.\n";
-  fs.writeFileSync(path.join(out, "CHANGELOG.md"), changelog);
+  fs.writeFileSync(path.join(out, "CHANGELOG.md"), changelog.replace(/[ \t]+$/gm,'').trimEnd()+'\n');
 }
 module.exports = { inventory, compareVersions, writeHistory };
