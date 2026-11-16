@@ -1,5 +1,14 @@
 # Supplied JavaScript: deobfuscated reference
 
+The latest readable source includes explanatory comments for protocol-sensitive
+code, coordinate transforms, rendering, HTTP/realtime handling, and UI state.
+Its comment-only update was checked against the previous version's parsed code.
+
+For recovered 2026 captures and the separate live snapshot, see the
+[observed changelog](history/2026/CHANGELOG.md). The
+[archive deobfuscator documentation](../tools/deobfuscate/README.md) describes
+query-independent discovery, regeneration, verification, and coverage limits.
+
 ## Readable version
 
 Use **[`script.readable.js`](script.readable.js)** for the full application cleanup.

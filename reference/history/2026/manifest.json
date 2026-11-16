@@ -1,0 +1,178 @@
+{
+  "year": 2026,
+  "discoveredAt": "2026-11-16T18:29:44.765Z",
+  "discoveryComplete": true,
+  "coverage": "Exact script pathname, all query strings; only captures indexed by the recorded CDX queries",
+  "queries": [
+    {
+      "url": "https://web.archive.org/cdx/search/cdx?url=pixelplace.io%2Fjs%2Fscript.min.js&matchType=prefix&from=2026&to=2026&output=json&filter=statuscode%3A200&fl=urlkey%2Ctimestamp%2Coriginal%2Cdigest%2Cstatuscode%2Cmimetype&limit=500&showResumeKey=true",
+      "rows": 4,
+      "responseSha256": "b41ae609c780d05dc13a2feca099313845c319db3dda0933efde87a65f7b5518",
+      "resumeKey": null
+    },
+    {
+      "url": "https://web.archive.org/cdx/search/cdx?url=www.pixelplace.io%2Fjs%2Fscript.min.js&matchType=prefix&from=2026&to=2026&output=json&filter=statuscode%3A200&fl=urlkey%2Ctimestamp%2Coriginal%2Cdigest%2Cstatuscode%2Cmimetype&limit=500&showResumeKey=true",
+      "rows": 4,
+      "responseSha256": "b41ae609c780d05dc13a2feca099313845c319db3dda0933efde87a65f7b5518",
+      "resumeKey": null
+    }
+  ],
+  "captures": [
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=85030",
+      "timestamp": "20260103192131",
+      "original": "https://pixelplace.io/js/script.min.js?v3=85030",
+      "digest": "6T4P7FTLGI7G7FJQ4PZHCLG73NCS7KVR",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=85049",
+      "timestamp": "20260227071834",
+      "original": "https://pixelplace.io/js/script.min.js?v3=85049",
+      "digest": "PUAG7O6NAZRB76B7FATOQALXMXTYZPIF",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=84338",
+      "timestamp": "20260524052024",
+      "original": "https://pixelplace.io/js/script.min.js?v3=84338",
+      "digest": "C45MF32OROZ5TIDBSFIKOF7OAVLXPALC",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=85291",
+      "timestamp": "20260824144436",
+      "original": "https://pixelplace.io/js/script.min.js?v3=85291",
+      "digest": "TRYVUEXA3SXHHRRD4VFZ7PGOQZRINRPZ",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    }
+  ],
+  "toolFingerprint": "c5e5a0cbb55c5f33da5f07cb49bb4325bbf63afcc26d27db3421a8146e2ddbc0",
+  "versions": [
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=85030",
+      "timestamp": "20260103192131",
+      "original": "https://pixelplace.io/js/script.min.js?v3=85030",
+      "digest": "6T4P7FTLGI7G7FJQ4PZHCLG73NCS7KVR",
+      "statuscode": "200",
+      "mimetype": "application/javascript",
+      "id": "20260103192131-7c807d1b",
+      "status": "verified",
+      "sourceUrl": "https://web.archive.org/web/20260103192131id_/https://pixelplace.io/js/script.min.js?v3=85030",
+      "finalUrl": "https://web.archive.org/web/20260103192131id_/https://pixelplace.io/js/script.min.js?v3=85030",
+      "retrievedAt": "2026-11-16T18:29:47.901Z",
+      "inputSha256": "a7be64ec2d8cb8802e2b42c2852c96c9b7e939108a5c74ee95a5da27d9bab537",
+      "bytes": 1330793,
+      "file": "versions/20260103192131-7c807d1b.js",
+      "outputSha256": "bdf8f1d74bbb348238976a108649b261083ca9fb1c290c57cdfe830e9344a660",
+      "report": "versions/20260103192131-7c807d1b.js.report.json",
+      "names": "versions/20260103192131-7c807d1b.js.names.json"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=85049",
+      "timestamp": "20260227071834",
+      "original": "https://pixelplace.io/js/script.min.js?v3=85049",
+      "digest": "PUAG7O6NAZRB76B7FATOQALXMXTYZPIF",
+      "statuscode": "200",
+      "mimetype": "application/javascript",
+      "id": "20260227071834-18cc5114",
+      "status": "verified",
+      "sourceUrl": "https://web.archive.org/web/20260227071834id_/https://pixelplace.io/js/script.min.js?v3=85049",
+      "finalUrl": "https://web.archive.org/web/20260227071834id_/https://pixelplace.io/js/script.min.js?v3=85049",
+      "retrievedAt": "2026-11-16T18:30:13.098Z",
+      "inputSha256": "13030f9b57ccfdb2c5495e42aec4ff3d0c49731ce40e46c802f677edf757f765",
+      "bytes": 1365851,
+      "file": "versions/20260227071834-18cc5114.js",
+      "outputSha256": "f78c84081df2cffb5cd6803da0f134ad2c747f22ad13012eee3559bc63779ea3",
+      "report": "versions/20260227071834-18cc5114.js.report.json",
+      "names": "versions/20260227071834-18cc5114.js.names.json"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=84338",
+      "timestamp": "20260524052024",
+      "original": "https://pixelplace.io/js/script.min.js?v3=84338",
+      "digest": "C45MF32OROZ5TIDBSFIKOF7OAVLXPALC",
+      "statuscode": "200",
+      "mimetype": "application/javascript",
+      "id": "20260524052024-c5d5ffa7",
+      "status": "verified",
+      "sourceUrl": "https://web.archive.org/web/20260524052024id_/https://pixelplace.io/js/script.min.js?v3=84338",
+      "finalUrl": "https://web.archive.org/web/20260524052024id_/https://pixelplace.io/js/script.min.js?v3=84338",
+      "retrievedAt": "2026-11-16T18:30:36.883Z",
+      "inputSha256": "88d77d3c9be4c715d5814329a49843d72b98f6c45479346bbfacbdadfe714100",
+      "bytes": 1373269,
+      "file": "versions/20260524052024-c5d5ffa7.js",
+      "outputSha256": "47aa22e4dcbf376152da071af2403a8ba54db340a42813b68f79936cc2d7ac34",
+      "report": "versions/20260524052024-c5d5ffa7.js.report.json",
+      "names": "versions/20260524052024-c5d5ffa7.js.names.json"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=85291",
+      "timestamp": "20260824144436",
+      "original": "https://pixelplace.io/js/script.min.js?v3=85291",
+      "digest": "TRYVUEXA3SXHHRRD4VFZ7PGOQZRINRPZ",
+      "statuscode": "200",
+      "mimetype": "application/javascript",
+      "id": "20260824144436-501ca950",
+      "status": "verified",
+      "sourceUrl": "https://web.archive.org/web/20260824144436id_/https://pixelplace.io/js/script.min.js?v3=85291",
+      "finalUrl": "https://web.archive.org/web/20260824144436id_/https://pixelplace.io/js/script.min.js?v3=85291",
+      "retrievedAt": "2026-11-16T18:31:09.515Z",
+      "inputSha256": "63b1d63cd99f2563b7e4ca7b8cfb9ccfef21cc4b73c918b6febd3ea0e5209916",
+      "bytes": 1375353,
+      "file": "versions/20260824144436-501ca950.js",
+      "outputSha256": "cb791aabf939702f00fb9e1d4a8d7ab4d04dce3af2acfc2d0d26decffb74c68f",
+      "report": "versions/20260824144436-501ca950.js.report.json",
+      "names": "versions/20260824144436-501ca950.js.names.json"
+    },
+    {
+      "live": true,
+      "original": "https://pixelplace.io/js/script.min.js?v3=85301",
+      "id": "live",
+      "status": "verified",
+      "sourceUrl": "https://pixelplace.io/js/script.min.js?v3=85301",
+      "finalUrl": "https://pixelplace.io/js/script.min.js?v3=85301",
+      "retrievedAt": "2026-11-16T18:31:37.098Z",
+      "inputSha256": "b167480edb4b7ecf1a72edf006841a334d332727e933c0f9b9651646a1b5f220",
+      "bytes": 1358228,
+      "file": "versions/live.js",
+      "outputSha256": "c8235a5217da0cdaa3ed293e76a31320220692cad9d0ae4344a624b6e1b68d6d",
+      "report": "versions/live.js.report.json",
+      "names": "versions/live.js.names.json"
+    }
+  ],
+  "comparisons": [
+    {
+      "before": "20260103192131-7c807d1b",
+      "after": "20260227071834-18cc5114",
+      "summary": "diffs/20260103192131-7c807d1b--20260227071834-18cc5114.md",
+      "patch": "diffs/20260103192131-7c807d1b--20260227071834-18cc5114.patch",
+      "details": "diffs/20260103192131-7c807d1b--20260227071834-18cc5114.json"
+    },
+    {
+      "before": "20260227071834-18cc5114",
+      "after": "20260524052024-c5d5ffa7",
+      "summary": "diffs/20260227071834-18cc5114--20260524052024-c5d5ffa7.md",
+      "patch": "diffs/20260227071834-18cc5114--20260524052024-c5d5ffa7.patch",
+      "details": "diffs/20260227071834-18cc5114--20260524052024-c5d5ffa7.json"
+    },
+    {
+      "before": "20260524052024-c5d5ffa7",
+      "after": "20260824144436-501ca950",
+      "summary": "diffs/20260524052024-c5d5ffa7--20260824144436-501ca950.md",
+      "patch": "diffs/20260524052024-c5d5ffa7--20260824144436-501ca950.patch",
+      "details": "diffs/20260524052024-c5d5ffa7--20260824144436-501ca950.json"
+    },
+    {
+      "before": "20260824144436-501ca950",
+      "after": "live",
+      "summary": "diffs/20260824144436-501ca950--live.md",
+      "patch": "diffs/20260824144436-501ca950--live.patch",
+      "details": "diffs/20260824144436-501ca950--live.json"
+    }
+  ]
+}

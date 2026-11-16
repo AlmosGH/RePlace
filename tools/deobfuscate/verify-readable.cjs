@@ -121,6 +121,12 @@ function normalize(node) {
   for (const key of Object.keys(node).sort()) {
     if (metadata.has(key)) continue;
     if (
+      node.type === "ObjectProperty" &&
+      key === "method" &&
+      node[key] === false
+    )
+      continue;
+    if (
       key === "key" &&
       ["ObjectProperty", "ObjectMethod"].includes(node.type) &&
       !node.computed &&
@@ -215,7 +221,9 @@ function restoreNames(ast, manifest) {
 function compare(a, b, path = "application") {
   if (a === b) return;
   if (!a || !b || typeof a !== "object" || typeof b !== "object")
-    throw new Error(`Unexpected application change at ${path}`);
+    throw new Error(
+      `Unexpected application change at ${path}${path.endsWith(".name") ? ": " + JSON.stringify(a) + " versus " + JSON.stringify(b) : ""}`,
+    );
   assert.deepEqual(
     Object.keys(a).sort(),
     Object.keys(b).sort(),
@@ -332,4 +340,10 @@ if (require.main === module) {
   }
   console.log(JSON.stringify(result, null, 2));
 }
-module.exports = { verifyReadable };
+module.exports = {
+  verifyReadable,
+  restoreNames,
+  annotateBindings,
+  compare,
+  statements,
+};

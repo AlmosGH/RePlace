@@ -1,6 +1,7 @@
 $(function () {
   var clientVersion = 7,
     paintingReloadInterval = null;
+  /* The protocol mixes this restricted alphabet with the alphanumeric alphabet when building request tokens. */
   function randomCacheToken(length) {
     var characters = [],
       alphabet = 'gmbonjklezcfxta1234567890GMBONJKLEZCFXTA',
@@ -33,9 +34,11 @@ $(function () {
     }
     return characters.join('');
   }
+  /* UI animation and placement cooldowns use milliseconds; server timestamps elsewhere use seconds. */
   function nowMilliseconds() {
     return new Date().getTime();
   }
+  /* Convert the browser clock to the integer-second timestamps expected by the existing protocol. */
   function nowSeconds() {
     return parseInt(new Date().getTime() / 1000);
   }
@@ -46,6 +49,7 @@ $(function () {
   function randomIntegerInclusive(minimum, maximum) {
     return Math.floor(Math.random() * (maximum - minimum + 1) + minimum);
   }
+  /* Application-level input checks are retained. These are separate from the removed obfuscator bootstrap and can affect requests to the original server. */
   var sessionStartedAt = nowSeconds(),
     inputIntegrityState = {};
   inputIntegrityState.detected = false;
@@ -228,6 +232,7 @@ $(function () {
       true
     );
   } catch (error) {}
+  /* Coordinate modal state, form content, toolbar preferences, and the settings persisted by the original client. */
   var ui = null,
     selectedItemId = null,
     lastConnectionTimestamp = 0,
@@ -236,6 +241,7 @@ $(function () {
     drawingHintAcknowledged = false,
     drawingHintAttempts = 0,
     recentPlacementTimes = [];
+  /* Suppress identical consecutive notices unless explicitly allowed; dismissal and visual effects are scheduled separately. */
   function showNotification(type, title, description, allowDuplicates, clearExisting) {
     clearExisting && $('#notification .box').remove();
     var shouldAppend = true;
@@ -269,6 +275,7 @@ $(function () {
       scheduleNotificationDismissal(notification);
     }
   }
+  /* Leave the notification visible for six seconds before starting its fade-out animation. */
   function scheduleNotificationDismissal(notification) {
     setTimeout(function () {
       var title = notification.find('.title').text();
@@ -321,6 +328,7 @@ $(function () {
   }
   var openGoldShop = function () {},
     cacheToken = '';
+  /* Central HTTP wrapper: track pending requests, optionally cancel a previous matching request, construct protocol headers, and dispatch server responses. */
   const api = {
     xhr: {
       requests: {},
@@ -332,7 +340,14 @@ $(function () {
           delete api.xhr.requests[requestId];
         }
       },
-      req: function (method, url, data, cancelPrevious, callback, skipCacheToken) {
+      /* The fourth argument cancels an older request with the same method/URL. CACHE-L0CAL is an existing protocol header, not an HTTP cache directive. */ req: function (
+        method,
+        url,
+        data,
+        cancelPrevious,
+        callback,
+        skipCacheToken
+      ) {
         var requestKey = method + '-' + url;
         cancelPrevious && api.xhr.abortRequest(requestKey);
         var requestHeaders = {};
@@ -549,6 +564,7 @@ $(function () {
       }
     }
   };
+  /* The order array controls presentation; color indices remain unchanged because the server and stored pixels use them. */
   var defaultPalette = {};
   defaultPalette.order = [
     0, 1, 60, 2, 61, 3, 62, 4, 5, 39, 6, 40, 49, 7, 8, 9, 10, 51, 41, 50, 58, 11, 12, 52, 57, 13, 14, 42, 21,
@@ -645,6 +661,8 @@ $(function () {
   initialConnectionState.ignoreRedirectRequest = false;
   initialConnectionState.wsa = 6;
   initialConnectionState.wsb = 5;
+  /* Authoritative account, painting, permission, and shop data populated by the painting HTTP response. */
+  /* Mutable realtime connection state shared by the handshake, placement, chat, and reconnect handlers. */
   var connection = initialConnectionState,
     serverData = null,
     userCacheDigit = 5,
@@ -676,10 +694,12 @@ $(function () {
   initialElements.cooldown = $('#cooldown');
   initialElements.modals = $('#modals');
   initialElements.copyright = $('#copyright');
+  /* Cached jQuery handles for the main UI surfaces; keep selectors unchanged to match the original page markup. */
   var elements = initialElements,
     imagePainter = {},
     socialRefreshAfter = 0,
     bombImagesByUserId = {};
+  /* Build the painting UI from the server response, then register input, chat, shop, and realtime handlers. Shared state stays inside this ready callback. */
   function initializePainting() {
     if (serverData.user.connected && Cookies.get('xauth_return')) {
       var oauthClientId = parseInt(Cookies.get('xauth_return')) || 1,
@@ -895,6 +915,7 @@ $(function () {
     var initialPosition = {};
     initialPosition.x = 0;
     initialPosition.y = 0;
+    /* Translate between page and painting coordinates and update the desktop/mobile cursor overlays. */
     var pointer = {
       x: 0,
       y: 0,
@@ -934,24 +955,28 @@ $(function () {
         var width = bounds.width / canvasRenderer.width;
         return Math.abs(width - 1) < Math.abs(width - Math.abs(canvasRenderer.scale));
       },
-      screenToPaintingSpace: function (screenX, screenY) {
-        var bounds = canvasRenderer.element.canvas.painting[0].getBoundingClientRect(),
-          position = {};
-        position.x = 0;
-        position.y = 0;
-        var convertedPosition = position,
-          count = 0,
-          verticalOffset = 0;
-        return (
-          pointer.legacyZoomRect(bounds)
-            ? ((convertedPosition.x = screenX / canvasRenderer.scale - bounds.left + count),
-              (convertedPosition.y = screenY / canvasRenderer.scale - bounds.top + verticalOffset))
-            : ((convertedPosition.x = (screenX - bounds.left) / canvasRenderer.scale + count),
-              (convertedPosition.y = (screenY - bounds.top) / canvasRenderer.scale + verticalOffset)),
-          convertedPosition
-        );
-      },
-      paintingToScreenSpace: function (paintingX, paintingY) {
+      /* Invert the painting transform. The legacy zoom branch compensates for browsers whose rectangle coordinates already include zoom. */ screenToPaintingSpace:
+        function (screenX, screenY) {
+          var bounds = canvasRenderer.element.canvas.painting[0].getBoundingClientRect(),
+            position = {};
+          position.x = 0;
+          position.y = 0;
+          var convertedPosition = position,
+            count = 0,
+            verticalOffset = 0;
+          return (
+            pointer.legacyZoomRect(bounds)
+              ? ((convertedPosition.x = screenX / canvasRenderer.scale - bounds.left + count),
+                (convertedPosition.y = screenY / canvasRenderer.scale - bounds.top + verticalOffset))
+              : ((convertedPosition.x = (screenX - bounds.left) / canvasRenderer.scale + count),
+                (convertedPosition.y = (screenY - bounds.top) / canvasRenderer.scale + verticalOffset)),
+            convertedPosition
+          );
+        },
+      /* Apply the painting transform to position overlays in page space. */ paintingToScreenSpace: function (
+        paintingX,
+        paintingY
+      ) {
         var bounds = canvasRenderer.element.canvas.painting[0].getBoundingClientRect(),
           position = {};
         position.x = paintingX * canvasRenderer.scale + bounds.left;
@@ -1454,6 +1479,7 @@ $(function () {
       historyPlayback = {},
       trackingSnapshotImage = null,
       renderTracking = true;
+    /* Fetch the recorded snapshot and pixel history used by the time-machine view; entering history changes the client rendering mode. */
     function loadTrackingHistory() {
       if (!trackingSnapshotAt) showNotification('error', 'Error', 'No recent tracking data available');
       else
@@ -1530,6 +1556,7 @@ $(function () {
     var playbackSpeed = 1,
       playbackPixelIndex = 0,
       lastPlaybackFrameAt = 0;
+    /* Advance recorded pixels at the selected playback speed while keeping rendering on animation frames. */
     function renderHistoryFrame(unusedFrameTime) {
       if (historyPlaying) {
         var timestamp = nowMilliseconds(),
@@ -1690,6 +1717,7 @@ $(function () {
     paintingElements.infos = $('#painting-infos');
     paintingElements.canvas = canvasElements;
     paintingElements.ctx = canvasContexts;
+    /* Own canvas buffers, view transforms, drawing tools, protection overlays, placement state, and rendering callbacks. */
     var canvasRenderer = {
       CMD_NORMAL: 0,
       CMD_PROTECT: 1,
@@ -1763,28 +1791,29 @@ $(function () {
             canvasRenderer.scale
         );
       },
-      getUrlHash: function () {
-        var position = {};
-        position.x = canvasRenderer.x;
-        position.y = canvasRenderer.y;
-        position.s = canvasRenderer.scale;
-        var convertedPosition = position,
-          hash = window.location.hash;
-        if (hash != '') {
-          var hash = hash.split('=');
-          if (hash.length >= 4) {
-            convertedPosition.x = parseInt(hash[1]);
-            convertedPosition.y = parseInt(hash[2]);
-            convertedPosition.s = parseFloat(hash[3]);
-            if (convertedPosition.s > canvasRenderer.zoom.max) {
-              convertedPosition.s = canvasRenderer.zoom.max;
-            } else
-              convertedPosition.s < canvasRenderer.zoom.min &&
-                (convertedPosition.s = canvasRenderer.zoom.min);
+      /* Read the shared x/y/scale view from the URL and constrain zoom to the configured bounds. */ getUrlHash:
+        function () {
+          var position = {};
+          position.x = canvasRenderer.x;
+          position.y = canvasRenderer.y;
+          position.s = canvasRenderer.scale;
+          var convertedPosition = position,
+            hash = window.location.hash;
+          if (hash != '') {
+            var hash = hash.split('=');
+            if (hash.length >= 4) {
+              convertedPosition.x = parseInt(hash[1]);
+              convertedPosition.y = parseInt(hash[2]);
+              convertedPosition.s = parseFloat(hash[3]);
+              if (convertedPosition.s > canvasRenderer.zoom.max) {
+                convertedPosition.s = canvasRenderer.zoom.max;
+              } else
+                convertedPosition.s < canvasRenderer.zoom.min &&
+                  (convertedPosition.s = canvasRenderer.zoom.min);
+            }
           }
-        }
-        return convertedPosition;
-      },
+          return convertedPosition;
+        },
       updateScaleAndPosition: function () {
         if (chat.inputActive && !chat.shiftActive) {
           chat.inputActive = false;
@@ -2249,147 +2278,115 @@ $(function () {
           image.src = serverData.host.http + 'canvas/' + serverData.painting.id + '.png?t200000=' + timestamp;
         }
       },
-      drawPixelAt: function (fromServer, pointerX, pointerY, color, width, userId, command) {
-        var timestamp = nowMilliseconds();
-        if (pointerX === undefined) {
-          pointerX = pointer.x;
-        }
-        if (pointerY === undefined) {
-          pointerY = pointer.y;
-        }
-        width === undefined && (width = canvasRenderer.brush.size);
-        if (color === undefined) {
-          color = canvasRenderer.color;
-        }
-        if (viewingHistory) {
-          return;
-        } else if (!fromServer && !serverData.user.connected) {
-          ui.openModal('auth', 'login');
-          return;
-        } else if (!fromServer && canvasRenderer.cooldown > timestamp) return;
-        else if (
-          pointerX < 0 ||
-          pointerY < 0 ||
-          pointerX > serverData.painting.width - 1 ||
-          pointerY > serverData.painting.height - 1
-        ) {
-          return;
-        } else if (
-          !fromServer &&
-          canvasRenderer.mode === 0 &&
-          width <= 1 &&
-          canvasRenderer.checkDuplicateFromPainting(pointerX, pointerY, color)
-        ) {
-          return;
-        } else if (!fromServer && canvasRenderer.checkSamePlaceThanLast(pointerX, pointerY, color, width))
-          return;
-        else if (
-          previousTrackedPixel &&
-          userId !== 0 &&
-          timestamp <= previousTrackedPixel.time &&
-          pointerX >= previousTrackedPixel.x &&
-          pointerX <= previousTrackedPixel.xLimit &&
-          pointerY >= previousTrackedPixel.y &&
-          pointerY <= previousTrackedPixel.yLimit
-        ) {
-          return;
-        } else if (
-          width <= 1 &&
-          serverData.painting.protection &&
-          !command &&
-          (fromServer || canvasRenderer.mode === 0) &&
-          canvasRenderer.checkProtectionFromPainting(pointerX, pointerY)
-        )
-          return;
-        else if (!fromServer) {
-          {
-            recentPlacementTimes.push(performance.now());
-            let cMDNORMAL = canvasRenderer.CMD_NORMAL;
-            if (
-              canvasRenderer.mode === 1 ||
-              canvasRenderer.mode === 2 ||
-              canvasRenderer.mode === 3 ||
-              canvasRenderer.mode === 4
-            ) {
-              if (canvasRenderer.mode === 1 || canvasRenderer.mode === 2) {
-                if (canvasRenderer.mode === 1) {
-                  cMDNORMAL = canvasRenderer.CMD_PROTECT;
-                  canvasRenderer.element.ctx.painting.fillStyle = 'rgba(255,0,0,0.3)';
-                  if (canvasRenderer.protectionWithBG) {
-                    cMDNORMAL = canvasRenderer.CMD_PROTECT_WITH_DEFAULT_BG;
-                  }
-                } else {
-                  cMDNORMAL = canvasRenderer.CMD_UNPROTECT;
-                  canvasRenderer.element.ctx.painting.fillStyle = 'rgba(0,255,12,0.3)';
-                }
-                canvasRenderer.element.ctx.painting.fillRect(pointerX, pointerY, width, width);
-                inputIntegrity.noteGamePlacement();
-                connection.io.volatile.emit('p', [pointerX, pointerY, 0, width, cMDNORMAL]);
-                inputIntegrity.notePlacement(pointerX, pointerY);
-              } else {
-                cMDNORMAL = canvasRenderer.CMD_FILL;
-                if (canvasRenderer.brush.size > 1) {
-                  pointerX -= Math.round(canvasRenderer.brush.size / 2);
-                  pointerY -= Math.round(canvasRenderer.brush.size / 2);
-                }
-                inputIntegrity.noteGamePlacement();
-                connection.io.volatile.emit('p', [pointerX, pointerY, color, width, cMDNORMAL]);
-                inputIntegrity.notePlacement(pointerX, pointerY);
-              }
-            } else {
-              canvasRenderer.lastPixelPlaced.time = timestamp + 100;
-              canvasRenderer.lastPixelPlaced.index = pointerX + '-' + pointerY + '-' + color + '-' + width;
-              inputIntegrity.noteGamePlacement();
-              connection.io.volatile.emit('p', [pointerX, pointerY, color, 1]);
-              inputIntegrity.notePlacement(pointerX, pointerY);
-            }
+      /* The from-server path updates the rendered canvas; the local path validates client state and sends the existing placement tuple. Payload positions and event names must stay stable. */ drawPixelAt:
+        function (fromServer, pointerX, pointerY, color, width, userId, command) {
+          var timestamp = nowMilliseconds();
+          if (pointerX === undefined) {
+            pointerX = pointer.x;
           }
-        } else {
-          if (
-            command &&
-            (command === canvasRenderer.CMD_USER_BOMB || command === canvasRenderer.CMD_GUILD_BOMB)
+          if (pointerY === undefined) {
+            pointerY = pointer.y;
+          }
+          width === undefined && (width = canvasRenderer.brush.size);
+          if (color === undefined) {
+            color = canvasRenderer.color;
+          }
+          if (viewingHistory) {
+            return;
+          } else if (!fromServer && !serverData.user.connected) {
+            ui.openModal('auth', 'login');
+            return;
+          } else if (!fromServer && canvasRenderer.cooldown > timestamp) return;
+          else if (
+            pointerX < 0 ||
+            pointerY < 0 ||
+            pointerX > serverData.painting.width - 1 ||
+            pointerY > serverData.painting.height - 1
           ) {
-            if (bombImagesByUserId[parseInt(userId)] !== undefined) {
-              {
-                var bombImagesByUserIdEntry = bombImagesByUserId[parseInt(userId)];
-                const canvasElement = document.createElement('canvas');
-                canvasElement.width = width;
-                canvasElement.height = width;
-                const context = canvasElement.getContext('2d');
-                context.drawImage(bombImagesByUserIdEntry, 0, 0, width, width);
-                const data = context.getImageData(0, 0, width, width).data,
-                  protectionImageData = canvasRenderer.element.ctx.protected.getImageData(
-                    pointerX,
-                    pointerY,
-                    width,
-                    width
-                  ),
-                  paintingImageData = canvasRenderer.element.ctx.painting.getImageData(
-                    pointerX,
-                    pointerY,
-                    width,
-                    width
-                  ),
-                  protectionPixels = protectionImageData.data,
-                  paintingPixels = paintingImageData.data;
-                for (let index = 0; index < protectionPixels.length; index += 4) {
-                  protectionPixels[index + 3] === 0 &&
-                    ((paintingPixels[index] = data[index]),
-                    (paintingPixels[index + 1] = data[index + 1]),
-                    (paintingPixels[index + 2] = data[index + 2]),
-                    (paintingPixels[index + 3] = data[index + 3] === 0 ? 0 : 255));
+            return;
+          } else if (
+            !fromServer &&
+            canvasRenderer.mode === 0 &&
+            width <= 1 &&
+            canvasRenderer.checkDuplicateFromPainting(pointerX, pointerY, color)
+          ) {
+            return;
+          } else if (!fromServer && canvasRenderer.checkSamePlaceThanLast(pointerX, pointerY, color, width))
+            return;
+          else if (
+            previousTrackedPixel &&
+            userId !== 0 &&
+            timestamp <= previousTrackedPixel.time &&
+            pointerX >= previousTrackedPixel.x &&
+            pointerX <= previousTrackedPixel.xLimit &&
+            pointerY >= previousTrackedPixel.y &&
+            pointerY <= previousTrackedPixel.yLimit
+          ) {
+            return;
+          } else if (
+            width <= 1 &&
+            serverData.painting.protection &&
+            !command &&
+            (fromServer || canvasRenderer.mode === 0) &&
+            canvasRenderer.checkProtectionFromPainting(pointerX, pointerY)
+          )
+            return;
+          else if (!fromServer) {
+            {
+              recentPlacementTimes.push(performance.now());
+              let cMDNORMAL = canvasRenderer.CMD_NORMAL;
+              if (
+                canvasRenderer.mode === 1 ||
+                canvasRenderer.mode === 2 ||
+                canvasRenderer.mode === 3 ||
+                canvasRenderer.mode === 4
+              ) {
+                if (canvasRenderer.mode === 1 || canvasRenderer.mode === 2) {
+                  if (canvasRenderer.mode === 1) {
+                    cMDNORMAL = canvasRenderer.CMD_PROTECT;
+                    canvasRenderer.element.ctx.painting.fillStyle = 'rgba(255,0,0,0.3)';
+                    if (canvasRenderer.protectionWithBG) {
+                      cMDNORMAL = canvasRenderer.CMD_PROTECT_WITH_DEFAULT_BG;
+                    }
+                  } else {
+                    cMDNORMAL = canvasRenderer.CMD_UNPROTECT;
+                    canvasRenderer.element.ctx.painting.fillStyle = 'rgba(0,255,12,0.3)';
+                  }
+                  canvasRenderer.element.ctx.painting.fillRect(pointerX, pointerY, width, width);
+                  inputIntegrity.noteGamePlacement();
+                  connection.io.volatile.emit('p', [pointerX, pointerY, 0, width, cMDNORMAL]);
+                  inputIntegrity.notePlacement(pointerX, pointerY);
+                } else {
+                  cMDNORMAL = canvasRenderer.CMD_FILL;
+                  if (canvasRenderer.brush.size > 1) {
+                    pointerX -= Math.round(canvasRenderer.brush.size / 2);
+                    pointerY -= Math.round(canvasRenderer.brush.size / 2);
+                  }
+                  inputIntegrity.noteGamePlacement();
+                  connection.io.volatile.emit('p', [pointerX, pointerY, color, width, cMDNORMAL]);
+                  inputIntegrity.notePlacement(pointerX, pointerY);
                 }
-                canvasRenderer.element.ctx.painting.putImageData(paintingImageData, pointerX, pointerY);
+              } else {
+                canvasRenderer.lastPixelPlaced.time = timestamp + 100;
+                canvasRenderer.lastPixelPlaced.index = pointerX + '-' + pointerY + '-' + color + '-' + width;
+                inputIntegrity.noteGamePlacement();
+                connection.io.volatile.emit('p', [pointerX, pointerY, color, 1]);
+                inputIntegrity.notePlacement(pointerX, pointerY);
               }
-            } else {
-              let image = new Image();
-              image.onload = function () {
+            }
+          } else {
+            if (
+              command &&
+              (command === canvasRenderer.CMD_USER_BOMB || command === canvasRenderer.CMD_GUILD_BOMB)
+            ) {
+              if (bombImagesByUserId[parseInt(userId)] !== undefined) {
                 {
+                  var bombImagesByUserIdEntry = bombImagesByUserId[parseInt(userId)];
                   const canvasElement = document.createElement('canvas');
                   canvasElement.width = width;
                   canvasElement.height = width;
                   const context = canvasElement.getContext('2d');
-                  context.drawImage(image, 0, 0, width, width);
+                  context.drawImage(bombImagesByUserIdEntry, 0, 0, width, width);
                   const data = context.getImageData(0, 0, width, width).data,
                     protectionImageData = canvasRenderer.element.ctx.protected.getImageData(
                       pointerX,
@@ -2414,135 +2411,149 @@ $(function () {
                   }
                   canvasRenderer.element.ctx.painting.putImageData(paintingImageData, pointerX, pointerY);
                 }
-              };
-              image.src = serverData.host.http + 'canvas/' + userId + '.png?t=' + nowSeconds();
-            }
-          } else if (
-            command &&
-            (command === canvasRenderer.CMD_PROTECT || command === canvasRenderer.CMD_PROTECT_WITH_DEFAULT_BG)
-          ) {
-            if (command === canvasRenderer.CMD_PROTECT_WITH_DEFAULT_BG) {
-              canvasRenderer.element.ctx.painting.fillStyle = 'rgba(204,204,204,255)';
+              } else {
+                let image = new Image();
+                image.onload = function () {
+                  {
+                    const canvasElement = document.createElement('canvas');
+                    canvasElement.width = width;
+                    canvasElement.height = width;
+                    const context = canvasElement.getContext('2d');
+                    context.drawImage(image, 0, 0, width, width);
+                    const data = context.getImageData(0, 0, width, width).data,
+                      protectionImageData = canvasRenderer.element.ctx.protected.getImageData(
+                        pointerX,
+                        pointerY,
+                        width,
+                        width
+                      ),
+                      paintingImageData = canvasRenderer.element.ctx.painting.getImageData(
+                        pointerX,
+                        pointerY,
+                        width,
+                        width
+                      ),
+                      protectionPixels = protectionImageData.data,
+                      paintingPixels = paintingImageData.data;
+                    for (let index = 0; index < protectionPixels.length; index += 4) {
+                      protectionPixels[index + 3] === 0 &&
+                        ((paintingPixels[index] = data[index]),
+                        (paintingPixels[index + 1] = data[index + 1]),
+                        (paintingPixels[index + 2] = data[index + 2]),
+                        (paintingPixels[index + 3] = data[index + 3] === 0 ? 0 : 255));
+                    }
+                    canvasRenderer.element.ctx.painting.putImageData(paintingImageData, pointerX, pointerY);
+                  }
+                };
+                image.src = serverData.host.http + 'canvas/' + userId + '.png?t=' + nowSeconds();
+              }
+            } else if (
+              command &&
+              (command === canvasRenderer.CMD_PROTECT ||
+                command === canvasRenderer.CMD_PROTECT_WITH_DEFAULT_BG)
+            ) {
+              if (command === canvasRenderer.CMD_PROTECT_WITH_DEFAULT_BG) {
+                canvasRenderer.element.ctx.painting.fillStyle = 'rgba(204,204,204,255)';
+                canvasRenderer.element.ctx.painting.fillRect(pointerX, pointerY, width, width);
+                canvasRenderer.element.ctx.protected.fillStyle = 'rgba(204,204,204,255)';
+                canvasRenderer.element.ctx.protected.fillRect(pointerX, pointerY, width, width);
+              } else {
+                const imageData = canvasRenderer.element.ctx.protected.getImageData(
+                    pointerX,
+                    pointerY,
+                    width,
+                    width
+                  ),
+                  paintingImageData = canvasRenderer.element.ctx.painting.getImageData(
+                    pointerX,
+                    pointerY,
+                    width,
+                    width
+                  ),
+                  data = imageData.data,
+                  paintingPixels = paintingImageData.data;
+                for (let index = 0; index < paintingPixels.length; index += 4) {
+                  paintingPixels[index + 3] === 0
+                    ? (console.log('transparent'),
+                      (data[index] = canvasRenderer.paletteRGB[serverData.painting.background][0]),
+                      (data[index + 1] = canvasRenderer.paletteRGB[serverData.painting.background][1]),
+                      (data[index + 2] = canvasRenderer.paletteRGB[serverData.painting.background][2]))
+                    : ((data[index] = paintingPixels[index]),
+                      (data[index + 1] = paintingPixels[index + 1]),
+                      (data[index + 2] = paintingPixels[index + 2]));
+                  data[index + 3] = 255;
+                }
+                canvasRenderer.element.ctx.protected.putImageData(imageData, pointerX, pointerY);
+              }
+              canvasRenderer.currentImgDataProtection = null;
+            } else if (command && command === canvasRenderer.CMD_UNPROTECT) {
+              canvasRenderer.element.ctx.painting.fillStyle = 'rgba(0,0,0,0)';
               canvasRenderer.element.ctx.painting.fillRect(pointerX, pointerY, width, width);
-              canvasRenderer.element.ctx.protected.fillStyle = 'rgba(204,204,204,255)';
-              canvasRenderer.element.ctx.protected.fillRect(pointerX, pointerY, width, width);
+              canvasRenderer.element.ctx.protected.clearRect(pointerX, pointerY, width, width);
+              canvasRenderer.currentImgDataProtection = null;
+            } else if (width > 1 || (command && command === canvasRenderer.CMD_FILL)) {
+              {
+                const imageData = canvasRenderer.element.ctx.protected.getImageData(
+                    pointerX,
+                    pointerY,
+                    width,
+                    width
+                  ),
+                  paintingImageData = canvasRenderer.element.ctx.painting.getImageData(
+                    pointerX,
+                    pointerY,
+                    width,
+                    width
+                  ),
+                  data = imageData.data,
+                  paintingPixels = paintingImageData.data;
+                for (let index = 0; index < data.length; index += 4) {
+                  data[index + 3] === 0 &&
+                    ((paintingPixels[index] = canvasRenderer.paletteRGB[color][0]),
+                    (paintingPixels[index + 1] = canvasRenderer.paletteRGB[color][1]),
+                    (paintingPixels[index + 2] = canvasRenderer.paletteRGB[color][2]),
+                    (paintingPixels[index + 3] = 255));
+                }
+                canvasRenderer.element.ctx.painting.putImageData(paintingImageData, pointerX, pointerY);
+              }
             } else {
-              const imageData = canvasRenderer.element.ctx.protected.getImageData(
-                  pointerX,
-                  pointerY,
-                  width,
-                  width
-                ),
-                paintingImageData = canvasRenderer.element.ctx.painting.getImageData(
-                  pointerX,
-                  pointerY,
-                  width,
-                  width
-                ),
-                data = imageData.data,
-                paintingPixels = paintingImageData.data;
-              for (let index = 0; index < paintingPixels.length; index += 4) {
-                paintingPixels[index + 3] === 0
-                  ? (console.log('transparent'),
-                    (data[index] = canvasRenderer.paletteRGB[serverData.painting.background][0]),
-                    (data[index + 1] = canvasRenderer.paletteRGB[serverData.painting.background][1]),
-                    (data[index + 2] = canvasRenderer.paletteRGB[serverData.painting.background][2]))
-                  : ((data[index] = paintingPixels[index]),
-                    (data[index + 1] = paintingPixels[index + 1]),
-                    (data[index + 2] = paintingPixels[index + 2]));
-                data[index + 3] = 255;
+              canvasRenderer.element.ctx.painting.fillStyle = appState.painting.palette.colors[color];
+              canvasRenderer.element.ctx.painting.fillRect(pointerX, pointerY, width, width);
+            }
+            if (
+              userId !== undefined &&
+              userId !== serverData.user.id &&
+              serverData.user.settings.painting.saveTracking
+            ) {
+              if (pixelHistoryByPosition[pointerX + '-' + pointerY] === undefined) {
+                pixelHistoryByPosition[pointerX + '-' + pointerY] = [];
               }
-              canvasRenderer.element.ctx.protected.putImageData(imageData, pointerX, pointerY);
+              pixelHistoryByPosition[pointerX + '-' + pointerY].push([
+                pointerX,
+                pointerY,
+                color,
+                userId,
+                nowSeconds()
+              ]);
+              trackedUsernames[userId] === undefined && connection.io.emit('username', userId);
             }
-            canvasRenderer.currentImgDataProtection = null;
-          } else if (command && command === canvasRenderer.CMD_UNPROTECT) {
-            canvasRenderer.element.ctx.painting.fillStyle = 'rgba(0,0,0,0)';
-            canvasRenderer.element.ctx.painting.fillRect(pointerX, pointerY, width, width);
-            canvasRenderer.element.ctx.protected.clearRect(pointerX, pointerY, width, width);
-            canvasRenderer.currentImgDataProtection = null;
-          } else if (width > 1 || (command && command === canvasRenderer.CMD_FILL)) {
-            {
-              const imageData = canvasRenderer.element.ctx.protected.getImageData(
-                  pointerX,
-                  pointerY,
-                  width,
-                  width
-                ),
-                paintingImageData = canvasRenderer.element.ctx.painting.getImageData(
-                  pointerX,
-                  pointerY,
-                  width,
-                  width
-                ),
-                data = imageData.data,
-                paintingPixels = paintingImageData.data;
-              for (let index = 0; index < data.length; index += 4) {
-                data[index + 3] === 0 &&
-                  ((paintingPixels[index] = canvasRenderer.paletteRGB[color][0]),
-                  (paintingPixels[index + 1] = canvasRenderer.paletteRGB[color][1]),
-                  (paintingPixels[index + 2] = canvasRenderer.paletteRGB[color][2]),
-                  (paintingPixels[index + 3] = 255));
-              }
-              canvasRenderer.element.ctx.painting.putImageData(paintingImageData, pointerX, pointerY);
-            }
-          } else {
-            canvasRenderer.element.ctx.painting.fillStyle = appState.painting.palette.colors[color];
-            canvasRenderer.element.ctx.painting.fillRect(pointerX, pointerY, width, width);
-          }
-          if (
-            userId !== undefined &&
-            userId !== serverData.user.id &&
-            serverData.user.settings.painting.saveTracking
-          ) {
-            if (pixelHistoryByPosition[pointerX + '-' + pointerY] === undefined) {
-              pixelHistoryByPosition[pointerX + '-' + pointerY] = [];
-            }
-            pixelHistoryByPosition[pointerX + '-' + pointerY].push([
-              pointerX,
-              pointerY,
-              color,
-              userId,
-              nowSeconds()
-            ]);
-            trackedUsernames[userId] === undefined && connection.io.emit('username', userId);
-          }
-          if (
-            userId !== undefined &&
-            userId !== serverData.user.id &&
-            serverData.user.settings.painting.liveTracking
-          ) {
-            if (canvasRenderer.liveTrackingUsers[userId] === undefined) {
-              var tNOptions = {};
-              tNOptions.t = timestamp + 4000;
-              tNOptions.n = '';
-              tNOptions.c = color;
-              tNOptions.r = false;
-              canvasRenderer.liveTrackingUsers[userId] = tNOptions;
-              connection.io.emit('username', userId);
-              canvasRenderer.element.move.append(
-                '<div class="track open-profile" style="display:none" data-profile="' +
-                  canvasRenderer.liveTrackingUsers[userId].n.toLowerCase() +
-                  '" data-id="' +
-                  userId +
-                  '" style="border-color:' +
-                  appState.painting.palette.colors[color] +
-                  '">' +
-                  canvasRenderer.liveTrackingUsers[userId].n +
-                  '</div>'
-              );
-            } else if (canvasRenderer.liveTrackingUsers[userId].r) {
-              if (
-                trackedUsername &&
-                canvasRenderer.liveTrackingUsers[userId].n.toLowerCase() !== trackedUsername
-              )
-                return;
-              else {
-                canvasRenderer.liveTrackingUsers[userId].t = timestamp + 4000;
-                canvasRenderer.liveTrackingUsers[userId].c = color;
+            if (
+              userId !== undefined &&
+              userId !== serverData.user.id &&
+              serverData.user.settings.painting.liveTracking
+            ) {
+              if (canvasRenderer.liveTrackingUsers[userId] === undefined) {
+                var tNOptions = {};
+                tNOptions.t = timestamp + 4000;
+                tNOptions.n = '';
+                tNOptions.c = color;
+                tNOptions.r = false;
+                canvasRenderer.liveTrackingUsers[userId] = tNOptions;
+                connection.io.emit('username', userId);
                 canvasRenderer.element.move.append(
-                  '<div class="track open-profile" data-profile="' +
+                  '<div class="track open-profile" style="display:none" data-profile="' +
                     canvasRenderer.liveTrackingUsers[userId].n.toLowerCase() +
-                    '"  data-id="' +
+                    '" data-id="' +
                     userId +
                     '" style="border-color:' +
                     appState.painting.palette.colors[color] +
@@ -2550,32 +2561,52 @@ $(function () {
                     canvasRenderer.liveTrackingUsers[userId].n +
                     '</div>'
                 );
-                canvasRenderer.liveTrackingUsers[userId].r = false;
+              } else if (canvasRenderer.liveTrackingUsers[userId].r) {
+                if (
+                  trackedUsername &&
+                  canvasRenderer.liveTrackingUsers[userId].n.toLowerCase() !== trackedUsername
+                )
+                  return;
+                else {
+                  canvasRenderer.liveTrackingUsers[userId].t = timestamp + 4000;
+                  canvasRenderer.liveTrackingUsers[userId].c = color;
+                  canvasRenderer.element.move.append(
+                    '<div class="track open-profile" data-profile="' +
+                      canvasRenderer.liveTrackingUsers[userId].n.toLowerCase() +
+                      '"  data-id="' +
+                      userId +
+                      '" style="border-color:' +
+                      appState.painting.palette.colors[color] +
+                      '">' +
+                      canvasRenderer.liveTrackingUsers[userId].n +
+                      '</div>'
+                  );
+                  canvasRenderer.liveTrackingUsers[userId].r = false;
+                }
+              } else if (
+                trackedUsername &&
+                canvasRenderer.liveTrackingUsers[userId].n.toLowerCase() !== trackedUsername
+              ) {
+                return;
+              } else {
+                canvasRenderer.liveTrackingUsers[userId].t = timestamp + 4000;
+                if (canvasRenderer.liveTrackingUsers[userId].c != color) {
+                  $(
+                    '.track[data-profile="' + canvasRenderer.liveTrackingUsers[userId].n.toLowerCase() + '"]'
+                  ).css('border-color', appState.painting.palette.colors[color]);
+                }
+                canvasRenderer.liveTrackingUsers[userId].c = color;
               }
-            } else if (
-              trackedUsername &&
-              canvasRenderer.liveTrackingUsers[userId].n.toLowerCase() !== trackedUsername
-            ) {
-              return;
-            } else {
-              canvasRenderer.liveTrackingUsers[userId].t = timestamp + 4000;
-              if (canvasRenderer.liveTrackingUsers[userId].c != color) {
-                $(
-                  '.track[data-profile="' + canvasRenderer.liveTrackingUsers[userId].n.toLowerCase() + '"]'
-                ).css('border-color', appState.painting.palette.colors[color]);
-              }
-              canvasRenderer.liveTrackingUsers[userId].c = color;
+              var styles = {};
+              styles.top = pointerY + 1 + 'px';
+              styles.left = pointerX + 1 + 'px';
+              canvasRenderer.element.move
+                .find('.track[data-id="' + userId + '"]')
+                .css(styles)
+                .show();
             }
-            var styles = {};
-            styles.top = pointerY + 1 + 'px';
-            styles.left = pointerX + 1 + 'px';
-            canvasRenderer.element.move
-              .find('.track[data-id="' + userId + '"]')
-              .css(styles)
-              .show();
           }
-        }
-      },
+        },
       loadPalette: function () {
         if (!serverData) {
           return;
@@ -3751,6 +3782,7 @@ $(function () {
       },
       wheelListenerOptions
     );
+    /* Compensate the painting offset when changing scale so the viewport center remains over the same canvas position. */
     function zoomAroundViewportCenter(zoomIn) {
       var scale = canvasRenderer.scale;
       zoomIn
@@ -3960,6 +3992,7 @@ $(function () {
     chatElements.messages.nonenglish = $('#chat .messages[data-id="nonenglish"]');
     chatElements.messages.guild = $('#chat .messages[data-id="guild"]');
     chatElements.messages.whispers = $('#chat .messages[data-id="whispers"]');
+    /* Keep channel visibility, unread counts, message rendering, and outgoing command handling together. */
     var chat = {
       lastSenders: [],
       elem: chatElements,
@@ -4022,355 +4055,357 @@ $(function () {
           forceScroll && ((chat.isScrolling = false), chat.elem.button.backToBottom.hide());
         }
       },
-      addMessageRow: function (message, selected) {
-        if (selected === undefined) {
-          selected = chat.selected;
-        }
-        var element = '',
-          items = '';
-        if (message.mention && selected !== 'whispers') {
-          if (message.mention.toLowerCase() === serverData.user.name.toLowerCase()) {
-            if (!serverData.user.blocked || serverData.user.blocked.indexOf(message.username) === -1) {
-              items += '<span class="mention"></span>';
-              if (!message.silent && selected !== chat.selected) {
-                chat.updateFlash(selected);
+      /* Render the original message variants and their metadata. Preserve the existing distinction between text insertion and trusted markup paths. */ addMessageRow:
+        function (message, selected) {
+          if (selected === undefined) {
+            selected = chat.selected;
+          }
+          var element = '',
+            items = '';
+          if (message.mention && selected !== 'whispers') {
+            if (message.mention.toLowerCase() === serverData.user.name.toLowerCase()) {
+              if (!serverData.user.blocked || serverData.user.blocked.indexOf(message.username) === -1) {
+                items += '<span class="mention"></span>';
+                if (!message.silent && selected !== chat.selected) {
+                  chat.updateFlash(selected);
+                }
+                !message.silent &&
+                  serverData.user.settings.chat.notifications &&
+                  (!message.message &&
+                  message.posX !== undefined &&
+                  message.posY !== undefined &&
+                  message.posS !== undefined
+                    ? showNotification(
+                        'warning',
+                        message.username + ' mentioned you in chat:',
+                        '[' + parseInt(message.posX) + ',' + parseInt(message.posY) + ']'
+                      )
+                    : showNotification(
+                        'warning',
+                        message.username + ' mentioned you in chat:',
+                        message.message
+                      ));
               }
-              !message.silent &&
-                serverData.user.settings.chat.notifications &&
-                (!message.message &&
-                message.posX !== undefined &&
-                message.posY !== undefined &&
-                message.posS !== undefined
-                  ? showNotification(
-                      'warning',
-                      message.username + ' mentioned you in chat:',
-                      '[' + parseInt(message.posX) + ',' + parseInt(message.posY) + ']'
-                    )
-                  : showNotification(
-                      'warning',
-                      message.username + ' mentioned you in chat:',
-                      message.message
-                    ));
+            } else {
+              items += '<span class="mention grey"></span>';
             }
-          } else {
-            items += '<span class="mention grey"></span>';
           }
-        }
-        if (message.type === 'custom') {
-          var messageHtml = message.message,
-            text = '';
-          message.golden && (text = ' golden');
-          var messageStyleClass = '';
-          if (message.loved) {
-            messageStyleClass = ' loved';
-          }
-          element = $(
-            '<div class="row"><span class="text custom ' +
-              text +
-              '' +
-              messageStyleClass +
-              '">' +
-              messageHtml +
-              '</span></div>'
-          );
-        } else if (message.type === 'custom-tiny') {
-          var messageHtml = message.message;
-          element = $('<div class="row"><span class="text custom tiny">' + messageHtml + '</span></div>');
-        } else if (
-          message.type === 'announce' ||
-          message.type === 'announce.forums' ||
-          message.type === 'system' ||
-          message.type === 'warning' ||
-          message.type === 'mod'
-        ) {
-          if (message.type === 'announce') {
-            message.message = message.message;
-          }
-          if (message.type === 'announce.forums')
+          if (message.type === 'custom') {
+            var messageHtml = message.message,
+              text = '';
+            message.golden && (text = ' golden');
+            var messageStyleClass = '';
+            if (message.loved) {
+              messageStyleClass = ' loved';
+            }
             element = $(
-              '<div class="row"><a href="#" class="user open-profile"  data-profile="" title="View profile"></a> <span class="text ' +
-                message.type +
-                '"></span><a href="#" class="forums-post" target="_blank"></a></div>'
+              '<div class="row"><span class="text custom ' +
+                text +
+                '' +
+                messageStyleClass +
+                '">' +
+                messageHtml +
+                '</span></div>'
             );
-          else {
-            element = $('<div class="row"><span class="text ' + message.type + '"></span></div>');
-          }
-        } else if (!serverData.user.blocked || serverData.user.blocked.indexOf(message.username) === -1) {
-          var snowballed = parseInt(message.snowballed),
-            mentionHtml = '';
-          for (var key in message.icons) {
-            if (message.icons[key] && message.icons[key] !== '') {
-              var badgeLabel = message.icons[key].toUpperCase();
-              if (message.icons[key] === 'partner') {
-                badgeLabel = 'TWITCH PARTNER';
-              }
-              message.icons[key] === 'gifter' && (badgeLabel = 'TOP 3 GIFTER');
-              message.icons[key] === 'booster' && (badgeLabel = 'TOP DISCORD BOOSTER');
-              snowballed > 0
-                ? ((mentionHtml +=
-                    '<img src="/img/badges/snowball.png" alt="OH OH OH!" title="OH OH OH!" class="snowball-icn">'),
-                  snowballed--)
-                : (mentionHtml +=
-                    '<img src="/img/badges/' +
-                    message.icons[key] +
-                    '.png?v=1" alt="' +
-                    message.icons[key].toUpperCase() +
-                    '" title="' +
-                    badgeLabel +
-                    '" class="snowball-alt">');
-            }
-          }
-          if (
-            message.username !== undefined &&
-            (message.channel === 'painting' || (message.channel === 'global' && serverData.painting.id === 7))
+          } else if (message.type === 'custom-tiny') {
+            var messageHtml = message.message;
+            element = $('<div class="row"><span class="text custom tiny">' + messageHtml + '</span></div>');
+          } else if (
+            message.type === 'announce' ||
+            message.type === 'announce.forums' ||
+            message.type === 'system' ||
+            message.type === 'warning' ||
+            message.type === 'mod'
           ) {
-            if (serverData.painting.owner.name.toLowerCase() === message.username.toLowerCase())
-              snowballed > 0
-                ? ((mentionHtml +=
-                    '<img src="/img/badges/snowball.png" alt="OH OH OH!" title="OH OH OH!" class="snowball-icn">'),
-                  snowballed--)
-                : (mentionHtml +=
-                    '<img src="/img/badges/painting-owner.png" alt="Painting Moderator" title="Painting Owner" class="snowball-alt">');
-            else if (serverData.painting.moderators.length > 0)
-              for (var key in serverData.painting.moderators) {
-                if (
-                  serverData.painting.moderators[key].name.toLowerCase() === message.username.toLowerCase()
-                ) {
-                  if (snowballed > 0) {
-                    mentionHtml +=
-                      '<img src="/img/badges/snowball.png" alt="OH OH OH!" title="OH OH OH!" class="snowball-icn">';
-                    snowballed--;
-                  } else {
-                    mentionHtml +=
-                      '<img src="/img/badges/painting-moderator.png" alt="Painting Moderator" title="Painting Moderator"  class="snowball-alt">';
+            if (message.type === 'announce') {
+              message.message = message.message;
+            }
+            if (message.type === 'announce.forums')
+              element = $(
+                '<div class="row"><a href="#" class="user open-profile"  data-profile="" title="View profile"></a> <span class="text ' +
+                  message.type +
+                  '"></span><a href="#" class="forums-post" target="_blank"></a></div>'
+              );
+            else {
+              element = $('<div class="row"><span class="text ' + message.type + '"></span></div>');
+            }
+          } else if (!serverData.user.blocked || serverData.user.blocked.indexOf(message.username) === -1) {
+            var snowballed = parseInt(message.snowballed),
+              mentionHtml = '';
+            for (var key in message.icons) {
+              if (message.icons[key] && message.icons[key] !== '') {
+                var badgeLabel = message.icons[key].toUpperCase();
+                if (message.icons[key] === 'partner') {
+                  badgeLabel = 'TWITCH PARTNER';
+                }
+                message.icons[key] === 'gifter' && (badgeLabel = 'TOP 3 GIFTER');
+                message.icons[key] === 'booster' && (badgeLabel = 'TOP DISCORD BOOSTER');
+                snowballed > 0
+                  ? ((mentionHtml +=
+                      '<img src="/img/badges/snowball.png" alt="OH OH OH!" title="OH OH OH!" class="snowball-icn">'),
+                    snowballed--)
+                  : (mentionHtml +=
+                      '<img src="/img/badges/' +
+                      message.icons[key] +
+                      '.png?v=1" alt="' +
+                      message.icons[key].toUpperCase() +
+                      '" title="' +
+                      badgeLabel +
+                      '" class="snowball-alt">');
+              }
+            }
+            if (
+              message.username !== undefined &&
+              (message.channel === 'painting' ||
+                (message.channel === 'global' && serverData.painting.id === 7))
+            ) {
+              if (serverData.painting.owner.name.toLowerCase() === message.username.toLowerCase())
+                snowballed > 0
+                  ? ((mentionHtml +=
+                      '<img src="/img/badges/snowball.png" alt="OH OH OH!" title="OH OH OH!" class="snowball-icn">'),
+                    snowballed--)
+                  : (mentionHtml +=
+                      '<img src="/img/badges/painting-owner.png" alt="Painting Moderator" title="Painting Owner" class="snowball-alt">');
+              else if (serverData.painting.moderators.length > 0)
+                for (var key in serverData.painting.moderators) {
+                  if (
+                    serverData.painting.moderators[key].name.toLowerCase() === message.username.toLowerCase()
+                  ) {
+                    if (snowballed > 0) {
+                      mentionHtml +=
+                        '<img src="/img/badges/snowball.png" alt="OH OH OH!" title="OH OH OH!" class="snowball-icn">';
+                      snowballed--;
+                    } else {
+                      mentionHtml +=
+                        '<img src="/img/badges/painting-moderator.png" alt="Painting Moderator" title="Painting Moderator"  class="snowball-alt">';
+                    }
+                    break;
                   }
-                  break;
+                }
+            }
+            var html = '';
+            message.guild !== '' &&
+              (html =
+                '<a href="#" class="guild open-guild" data-tag="' +
+                message.guild +
+                '">' +
+                message.guild +
+                '</a><span class="guild">&bull;</span>');
+            var usernameStyle = 'style="color:' + appState.painting.palette.colors[message.color] + '"',
+              date = new Date(message.createdAt),
+              minutes = date.getMinutes();
+            minutes < 10 && (minutes = '0' + minutes);
+            var hours = date.getHours();
+            if (hours < 10) {
+              hours = '0' + hours;
+            }
+            var timestampHtml = '<div class="time">' + hours + ':' + minutes + '</div>',
+              username = message.username,
+              messageIconsHtml = '';
+            selected === 'whispers' &&
+              ((html = ''),
+              (mentionHtml = ''),
+              (usernameStyle = 'style="color:#fa93f4"'),
+              message.username.toLowerCase() === serverData.user.name.toLowerCase() &&
+                ((username = message.target), (messageIconsHtml = 'to ')));
+            var usernameClass = '',
+              displayUsername = username;
+            if (message.rainbow) {
+              usernameClass = ' rainbowText';
+            }
+            if (message.xmas) {
+              usernameClass = ' xmasText';
+              displayUsername = holidayTextHtml(displayUsername);
+            }
+            message.halloween && (usernameClass = ' halloween');
+            var text = '';
+            if (message.golden) {
+              text = ' golden';
+            }
+            var messageStyleClass = '';
+            if (message.loved) {
+              messageStyleClass = ' loved';
+            }
+            !mentionHtml &&
+              parseInt(message.snowballed) > 0 &&
+              (mentionHtml +=
+                '<img src="/img/badges/snowball.png" alt="OH OH OH!" title="OH OH OH!" class="snowball-icn">');
+            element = $(
+              '<div class="row">' +
+                timestampHtml +
+                messageIconsHtml +
+                mentionHtml +
+                html +
+                '<a href="#" class="user open-profile' +
+                usernameClass +
+                '" data-id="' +
+                username.toLowerCase() +
+                '"  data-profile="' +
+                username.toLowerCase() +
+                '" ' +
+                usernameStyle +
+                ' title="View profile">' +
+                displayUsername +
+                '</a>: ' +
+                items +
+                '<span class="text' +
+                text +
+                '' +
+                messageStyleClass +
+                '"></span></div>'
+            );
+            if (selected === 'whispers') {
+              if (message.username.toLowerCase() === serverData.user.name.toLowerCase()) {
+                chat.lastWhisper = message.target;
+              } else {
+                chat.lastWhisper = message.username;
+                if (selected !== chat.selected) {
+                  serverData.user.settings.chat.notifications &&
+                    message.target.toLowerCase() !== serverData.user.name.toLowerCase() &&
+                    showNotification('whisper', message.username + ' sent you a whisper:', message.message);
+                  chat.updateFlash(selected);
                 }
               }
+            }
           }
-          var html = '';
-          message.guild !== '' &&
-            (html =
-              '<a href="#" class="guild open-guild" data-tag="' +
-              message.guild +
-              '">' +
-              message.guild +
-              '</a><span class="guild">&bull;</span>');
-          var usernameStyle = 'style="color:' + appState.painting.palette.colors[message.color] + '"',
-            date = new Date(message.createdAt),
-            minutes = date.getMinutes();
-          minutes < 10 && (minutes = '0' + minutes);
-          var hours = date.getHours();
-          if (hours < 10) {
-            hours = '0' + hours;
-          }
-          var timestampHtml = '<div class="time">' + hours + ':' + minutes + '</div>',
-            username = message.username,
-            messageIconsHtml = '';
-          selected === 'whispers' &&
-            ((html = ''),
-            (mentionHtml = ''),
-            (usernameStyle = 'style="color:#fa93f4"'),
-            message.username.toLowerCase() === serverData.user.name.toLowerCase() &&
-              ((username = message.target), (messageIconsHtml = 'to ')));
-          var usernameClass = '',
-            displayUsername = username;
-          if (message.rainbow) {
-            usernameClass = ' rainbowText';
-          }
-          if (message.xmas) {
-            usernameClass = ' xmasText';
-            displayUsername = holidayTextHtml(displayUsername);
-          }
-          message.halloween && (usernameClass = ' halloween');
-          var text = '';
-          if (message.golden) {
-            text = ' golden';
-          }
-          var messageStyleClass = '';
-          if (message.loved) {
-            messageStyleClass = ' loved';
-          }
-          !mentionHtml &&
-            parseInt(message.snowballed) > 0 &&
-            (mentionHtml +=
-              '<img src="/img/badges/snowball.png" alt="OH OH OH!" title="OH OH OH!" class="snowball-icn">');
-          element = $(
-            '<div class="row">' +
-              timestampHtml +
-              messageIconsHtml +
-              mentionHtml +
-              html +
-              '<a href="#" class="user open-profile' +
-              usernameClass +
-              '" data-id="' +
-              username.toLowerCase() +
-              '"  data-profile="' +
-              username.toLowerCase() +
-              '" ' +
-              usernameStyle +
-              ' title="View profile">' +
-              displayUsername +
-              '</a>: ' +
-              items +
-              '<span class="text' +
-              text +
-              '' +
-              messageStyleClass +
-              '"></span></div>'
-          );
-          if (selected === 'whispers') {
-            if (message.username.toLowerCase() === serverData.user.name.toLowerCase()) {
-              chat.lastWhisper = message.target;
-            } else {
-              chat.lastWhisper = message.username;
-              if (selected !== chat.selected) {
-                serverData.user.settings.chat.notifications &&
-                  message.target.toLowerCase() !== serverData.user.name.toLowerCase() &&
-                  showNotification('whisper', message.username + ' sent you a whisper:', message.message);
-                chat.updateFlash(selected);
+          if (serverData.user.blocked && serverData.user.blocked.indexOf(message.username) !== -1) return;
+          else {
+            if (selected !== chat.selected) {
+              if (message.username.toLowerCase() !== serverData.user.name.toLowerCase()) {
+                !message.silent && (chat.updateNotificationCount(selected), chat.checkOnlineDisplay());
               }
             }
-          }
-        }
-        if (serverData.user.blocked && serverData.user.blocked.indexOf(message.username) !== -1) return;
-        else {
-          if (selected !== chat.selected) {
-            if (message.username.toLowerCase() !== serverData.user.name.toLowerCase()) {
-              !message.silent && (chat.updateNotificationCount(selected), chat.checkOnlineDisplay());
+            chat.elem.messages[selected].find('.row').length >= serverData.user.settings.chat.messagesLimit &&
+              chat.elem.messages[selected].find('.row').eq(0).remove();
+            chat.elem.messages[selected].append(element);
+            if (items.length) {
+              element.find('.mention').text('@' + message.mention);
             }
-          }
-          chat.elem.messages[selected].find('.row').length >= serverData.user.settings.chat.messagesLimit &&
-            chat.elem.messages[selected].find('.row').eq(0).remove();
-          chat.elem.messages[selected].append(element);
-          if (items.length) {
-            element.find('.mention').text('@' + message.mention);
-          }
-          if (message.posX !== undefined && message.posY !== undefined && message.posS !== undefined) {
-            if (message.boardId !== undefined && message.boardId != serverData.painting.id) {
-              element
-                .find('.text')
-                .html(
-                  '<a href="/' +
-                    parseInt(message.boardId) +
-                    '#x=' +
-                    parseInt(message.posX) +
-                    '&y=' +
-                    parseInt(message.posY) +
-                    '&s=' +
-                    parseFloat(message.posS).toFixed(2) +
-                    '" title="Click to view" target="_blank">[' +
-                    parseInt(message.posX) +
-                    ',' +
-                    parseInt(message.posY) +
-                    ']</a> <span class="here-text"></span>'
-                );
-            } else
-              element
-                .find('.text')
-                .html(
-                  '<a href="#" class="go-to-coords" data-x="' +
-                    parseInt(message.posX) +
-                    '" data-y="' +
-                    parseInt(message.posY) +
-                    '"  data-s="' +
-                    parseFloat(message.posS).toFixed(2) +
-                    '" title="Click to view">[' +
-                    parseInt(message.posX) +
-                    ',' +
-                    parseInt(message.posY) +
-                    ']</a> <span class="here-text"></span>'
-                );
-            element.find('.text .here-text').text(message.message);
-          } else if (message.type !== 'custom' && message.type !== 'custom-tiny') {
-            if (element.find('.snowball-alt').length <= 0 && element.find('.snowball-icn').length > 0) {
-              var parts = message.message.split(' ');
-              if (parts.length > 1) {
-                element.find('.text').html('');
-                for (var partKey in parts) {
+            if (message.posX !== undefined && message.posY !== undefined && message.posS !== undefined) {
+              if (message.boardId !== undefined && message.boardId != serverData.painting.id) {
+                element
+                  .find('.text')
+                  .html(
+                    '<a href="/' +
+                      parseInt(message.boardId) +
+                      '#x=' +
+                      parseInt(message.posX) +
+                      '&y=' +
+                      parseInt(message.posY) +
+                      '&s=' +
+                      parseFloat(message.posS).toFixed(2) +
+                      '" title="Click to view" target="_blank">[' +
+                      parseInt(message.posX) +
+                      ',' +
+                      parseInt(message.posY) +
+                      ']</a> <span class="here-text"></span>'
+                  );
+              } else
+                element
+                  .find('.text')
+                  .html(
+                    '<a href="#" class="go-to-coords" data-x="' +
+                      parseInt(message.posX) +
+                      '" data-y="' +
+                      parseInt(message.posY) +
+                      '"  data-s="' +
+                      parseFloat(message.posS).toFixed(2) +
+                      '" title="Click to view">[' +
+                      parseInt(message.posX) +
+                      ',' +
+                      parseInt(message.posY) +
+                      ']</a> <span class="here-text"></span>'
+                  );
+              element.find('.text .here-text').text(message.message);
+            } else if (message.type !== 'custom' && message.type !== 'custom-tiny') {
+              if (element.find('.snowball-alt').length <= 0 && element.find('.snowball-icn').length > 0) {
+                var parts = message.message.split(' ');
+                if (parts.length > 1) {
+                  element.find('.text').html('');
+                  for (var partKey in parts) {
+                    var holidayEmoji = randomHolidayEmoji();
+                    element
+                      .find('.text')
+                      .append('<div class="txt"></div><div class="xmoji">' + holidayEmoji + '</div>');
+                  }
+                  for (var partKey in parts) {
+                    element.find('.text .txt').eq(partKey).text(parts[partKey]);
+                  }
+                } else {
                   var holidayEmoji = randomHolidayEmoji();
                   element
                     .find('.text')
                     .append('<div class="txt"></div><div class="xmoji">' + holidayEmoji + '</div>');
+                  element.find('.text .txt').text(message.message);
                 }
-                for (var partKey in parts) {
-                  element.find('.text .txt').eq(partKey).text(parts[partKey]);
-                }
-              } else {
-                var holidayEmoji = randomHolidayEmoji();
+              } else if (
+                message.channel === 'guild' &&
+                message.type === 'system' &&
+                message.username === 'SYSTEM'
+              ) {
                 element
                   .find('.text')
-                  .append('<div class="txt"></div><div class="xmoji">' + holidayEmoji + '</div>');
-                element.find('.text .txt').text(message.message);
-              }
-            } else if (
-              message.channel === 'guild' &&
-              message.type === 'system' &&
-              message.username === 'SYSTEM'
-            ) {
-              element
-                .find('.text')
-                .html(
-                  '<a href="#" class="user open-profile" data-id="' +
-                    message.message.toLowerCase() +
-                    '"  data-profile="' +
-                    message.message.toLowerCase() +
-                    '" title="View profile">' +
-                    message.message +
-                    '</a> has applied to join the guild.'
-                );
-            } else if (message.type == 'announce.forums') {
-              {
-                let text = parseInt($('#chat .tabs a.forums .unread-count').text());
-                text++;
-                $('#chat .tabs a.forums .unread-count').text(parseInt(text)).show();
-                element
-                  .find('.forums-post')
-                  .attr('href', '/forums/#/p/' + message.forums.post + '-' + message.forums.slug);
-                element.find('.forums-post').text('/' + message.forums.post + '-' + message.forums.slug);
-                element.find('.open-profile').text(message.forums.username);
-                element.find('.open-profile').attr('data-profile', message.forums.username.toLowerCase());
-                if (message.forums.type === 'quote') {
-                  element.find('.text').text('quoted you in the following forum post:');
-                } else element.find('.text').text('replied to your forum post: ');
-              }
-            } else element.find('.text').text(message.message);
+                  .html(
+                    '<a href="#" class="user open-profile" data-id="' +
+                      message.message.toLowerCase() +
+                      '"  data-profile="' +
+                      message.message.toLowerCase() +
+                      '" title="View profile">' +
+                      message.message +
+                      '</a> has applied to join the guild.'
+                  );
+              } else if (message.type == 'announce.forums') {
+                {
+                  let text = parseInt($('#chat .tabs a.forums .unread-count').text());
+                  text++;
+                  $('#chat .tabs a.forums .unread-count').text(parseInt(text)).show();
+                  element
+                    .find('.forums-post')
+                    .attr('href', '/forums/#/p/' + message.forums.post + '-' + message.forums.slug);
+                  element.find('.forums-post').text('/' + message.forums.post + '-' + message.forums.slug);
+                  element.find('.open-profile').text(message.forums.username);
+                  element.find('.open-profile').attr('data-profile', message.forums.username.toLowerCase());
+                  if (message.forums.type === 'quote') {
+                    element.find('.text').text('quoted you in the following forum post:');
+                  } else element.find('.text').text('replied to your forum post: ');
+                }
+              } else element.find('.text').text(message.message);
+            }
+            message.type === 'custom-tiny' && element.addClass('custom-tiny');
+            !serverData.user.settings.chat.timestamps && element.find('.time').hide();
+            !serverData.user.settings.chat.guildTags && element.find('.guild').hide();
+            chat.updateScroll(selected);
+            if (message.loved) {
+              var count = 0,
+                lovedElement = element.find('.loved'),
+                maximumSnowballs = 6;
+              if (lovedElement.text().length < 5) {
+                maximumSnowballs = 3;
+              } else if (lovedElement.text().length < 10) {
+                maximumSnowballs = 4;
+              } else lovedElement.text().length < 20 && (maximumSnowballs = 5);
+              var petalInterval = setInterval(() => {
+                if (count >= maximumSnowballs) {
+                  clearInterval(petalInterval);
+                  return;
+                }
+                const htmlElement = $('<span class="love-petal">💌</span>'),
+                  petalStartX = Math.random() * lovedElement.outerWidth();
+                var styles = {};
+                styles.left = petalStartX + 'px';
+                htmlElement.css(styles);
+                lovedElement.append(htmlElement);
+                setTimeout(() => htmlElement.remove(), 1400);
+                count++;
+              }, 350);
+            }
+            if (!chat.isDisplayed && !message.silent) {
+              var int = parseInt($('a[data-id="chat"]').find('.notification-bubble').text());
+              int >= 99 || int == '99+' ? (int = '99+') : int++;
+              $('a[data-id="chat"]').find('.notification-bubble').text(int).show();
+            }
           }
-          message.type === 'custom-tiny' && element.addClass('custom-tiny');
-          !serverData.user.settings.chat.timestamps && element.find('.time').hide();
-          !serverData.user.settings.chat.guildTags && element.find('.guild').hide();
-          chat.updateScroll(selected);
-          if (message.loved) {
-            var count = 0,
-              lovedElement = element.find('.loved'),
-              maximumSnowballs = 6;
-            if (lovedElement.text().length < 5) {
-              maximumSnowballs = 3;
-            } else if (lovedElement.text().length < 10) {
-              maximumSnowballs = 4;
-            } else lovedElement.text().length < 20 && (maximumSnowballs = 5);
-            var petalInterval = setInterval(() => {
-              if (count >= maximumSnowballs) {
-                clearInterval(petalInterval);
-                return;
-              }
-              const htmlElement = $('<span class="love-petal">💌</span>'),
-                petalStartX = Math.random() * lovedElement.outerWidth();
-              var styles = {};
-              styles.left = petalStartX + 'px';
-              htmlElement.css(styles);
-              lovedElement.append(htmlElement);
-              setTimeout(() => htmlElement.remove(), 1400);
-              count++;
-            }, 350);
-          }
-          if (!chat.isDisplayed && !message.silent) {
-            var int = parseInt($('a[data-id="chat"]').find('.notification-bubble').text());
-            int >= 99 || int == '99+' ? (int = '99+') : int++;
-            $('a[data-id="chat"]').find('.notification-bubble').text(int).show();
-          }
-        }
-      },
+        },
       deleteMessagesByUsername(username, paintingOnly) {
         if (paintingOnly)
           chat.elem.container
@@ -4410,313 +4445,314 @@ $(function () {
           } else chat.elem.button[channel].find('.unread-count').hide();
         }
       },
-      sendMessage: function (message) {
-        var outgoingMessage = {};
-        outgoingMessage.text = '';
-        outgoingMessage.mention = '';
-        outgoingMessage.type = chat.selected;
-        outgoingMessage.target = '';
-        outgoingMessage.color = canvasRenderer.color;
-        var messagePayload = outgoingMessage;
-        if (message === '!discord' || message === '/discord') {
-          setTimeout(function () {
-            var messageData = {};
-            messageData.type = 'system';
-            messageData.message = 'https://discord.gg/xcFJ6nY';
-            chat.addMessageRow(messageData);
-          }, 1000);
-          window.open('https://discord.gg/xcFJ6nY', '_blank');
-        } else if (message[0] === '/') {
-          var parts = message.split(' ');
-          if (parts[0] === '/admin') {
-            if (parts[1] !== undefined) {
-              if (parts[1] === serverData.user.name) {
-                var messageData = {};
-                messageData.type = 'system';
-                messageData.message = 'Bruh... You cannot give admin privileges to yourself!';
-                chat.addMessageRow(messageData);
-                return;
+      /* Interpret local slash commands first; messages and moderation commands use their existing Socket.IO events and field names. */ sendMessage:
+        function (message) {
+          var outgoingMessage = {};
+          outgoingMessage.text = '';
+          outgoingMessage.mention = '';
+          outgoingMessage.type = chat.selected;
+          outgoingMessage.target = '';
+          outgoingMessage.color = canvasRenderer.color;
+          var messagePayload = outgoingMessage;
+          if (message === '!discord' || message === '/discord') {
+            setTimeout(function () {
+              var messageData = {};
+              messageData.type = 'system';
+              messageData.message = 'https://discord.gg/xcFJ6nY';
+              chat.addMessageRow(messageData);
+            }, 1000);
+            window.open('https://discord.gg/xcFJ6nY', '_blank');
+          } else if (message[0] === '/') {
+            var parts = message.split(' ');
+            if (parts[0] === '/admin') {
+              if (parts[1] !== undefined) {
+                if (parts[1] === serverData.user.name) {
+                  var messageData = {};
+                  messageData.type = 'system';
+                  messageData.message = 'Bruh... You cannot give admin privileges to yourself!';
+                  chat.addMessageRow(messageData);
+                  return;
+                } else {
+                  var adminGrantedMessage = {};
+                  adminGrantedMessage.type = 'system';
+                  adminGrantedMessage.message = 'Pixelplace admin privileges successfully given to the user';
+                  chat.addMessageRow(adminGrantedMessage);
+                  return;
+                }
               } else {
-                var adminGrantedMessage = {};
-                adminGrantedMessage.type = 'system';
-                adminGrantedMessage.message = 'Pixelplace admin privileges successfully given to the user';
-                chat.addMessageRow(adminGrantedMessage);
+                var adminUsageMessage = {};
+                adminUsageMessage.type = 'system';
+                adminUsageMessage.message =
+                  'Please type the username of the user you want to give admin privileges. /admin USERNAME';
+                chat.addMessageRow(adminUsageMessage);
                 return;
               }
-            } else {
-              var adminUsageMessage = {};
-              adminUsageMessage.type = 'system';
-              adminUsageMessage.message =
-                'Please type the username of the user you want to give admin privileges. /admin USERNAME';
-              chat.addMessageRow(adminUsageMessage);
+            } else if (parts[0] === '/ban' && parts[1] !== undefined) {
+              var adminCommand = {};
+              adminCommand.cmd = '/ban';
+              adminCommand.target = parts[1];
+              adminCommand.boardId = serverData.painting.id;
+              connection.io.emit('painting.command', adminCommand);
               return;
-            }
-          } else if (parts[0] === '/ban' && parts[1] !== undefined) {
-            var adminCommand = {};
-            adminCommand.cmd = '/ban';
-            adminCommand.target = parts[1];
-            adminCommand.boardId = serverData.painting.id;
-            connection.io.emit('painting.command', adminCommand);
-            return;
-          } else if (parts[0] === '/unban' && parts[1] !== undefined) {
-            var unbanCommand = {};
-            unbanCommand.cmd = '/unban';
-            unbanCommand.target = parts[1];
-            unbanCommand.boardId = serverData.painting.id;
-            connection.io.emit('painting.command', unbanCommand);
-            return;
-          } else if ((parts[0] === '/cd' || parts[0] === '/cdreset') && parts[1] !== undefined) {
-            var moderationCommand = {};
-            moderationCommand.cmd = parts[0];
-            moderationCommand.target = parts[1];
-            moderationCommand.value = parts[2] !== undefined ? parts[2] : '';
-            moderationCommand.boardId = parseInt(serverData.painting.id);
-            connection.io.emit('painting.command', moderationCommand);
-            return;
-          } else if (parts[0] === '/u' && parts[1] !== undefined) {
-            openProfile(parts[1]);
-            return;
-          } else if (parts[0] === '/tm') {
-            loadTrackingHistory();
-            return;
-          } else if (parts[0] === '/c' && parts[1] !== undefined) {
-            window.location.replace('/' + parseInt(parts[1]));
-            return;
-          } else if (parts[0] === '/snowball') {
-            if (parts[1] !== undefined && parts[1]) {
-              var snowballCommand = {};
-              snowballCommand.cmd = '/snowball';
-              snowballCommand.target = parts[1];
-              connection.io.emit('snowball', snowballCommand);
-            } else {
-              var snowballUsageMessage = {};
-              snowballUsageMessage.type = 'system';
-              snowballUsageMessage.message =
-                'Type: /snowball USERNAME to throw a snowball at a player. Each snowball will replace one player icon for 60 minutes. If all icons are replaced, the user next messages may be ...funny 🎄. To get snowballs, activate XMAS username from the shop inventory. NOTE: Snowball expire after 60 minutes, use it quick!';
-              chat.addMessageRow(snowballUsageMessage);
-            }
-            return;
-          } else if (
-            (parts[0] === '/guild' || parts[0] === '/tag' || parts[0] === '/g') &&
-            parts[1] !== undefined
-          ) {
-            if (parts[1].length == 4) {
-              openGuild(parts[1]);
-            } else ui.openModal('main', 'guilds');
-            return;
-          } else if (parts[0] === '/untrack') {
-            trackedUsername = null;
-            trackingExpiresAt = 0;
-            var untrackConfirmation = {};
-            untrackConfirmation.type = 'system';
-            untrackConfirmation.message = 'Tracking filter removed';
-            chat.addMessageRow(untrackConfirmation);
-            return;
-          } else if (parts[0] === '/track') {
-            if (parts[1] !== undefined) {
-              trackedUsername = parts[1].toLowerCase();
-              trackingExpiresAt = nowSeconds() + 180;
-              var trackingConfirmation = {};
-              trackingConfirmation.type = 'system';
-              trackingConfirmation.message =
-                'Now filtering live tracking to only show this user pixels for the next 3 minutes';
-              chat.addMessageRow(trackingConfirmation);
-            } else {
+            } else if (parts[0] === '/unban' && parts[1] !== undefined) {
+              var unbanCommand = {};
+              unbanCommand.cmd = '/unban';
+              unbanCommand.target = parts[1];
+              unbanCommand.boardId = serverData.painting.id;
+              connection.io.emit('painting.command', unbanCommand);
+              return;
+            } else if ((parts[0] === '/cd' || parts[0] === '/cdreset') && parts[1] !== undefined) {
+              var moderationCommand = {};
+              moderationCommand.cmd = parts[0];
+              moderationCommand.target = parts[1];
+              moderationCommand.value = parts[2] !== undefined ? parts[2] : '';
+              moderationCommand.boardId = parseInt(serverData.painting.id);
+              connection.io.emit('painting.command', moderationCommand);
+              return;
+            } else if (parts[0] === '/u' && parts[1] !== undefined) {
+              openProfile(parts[1]);
+              return;
+            } else if (parts[0] === '/tm') {
+              loadTrackingHistory();
+              return;
+            } else if (parts[0] === '/c' && parts[1] !== undefined) {
+              window.location.replace('/' + parseInt(parts[1]));
+              return;
+            } else if (parts[0] === '/snowball') {
+              if (parts[1] !== undefined && parts[1]) {
+                var snowballCommand = {};
+                snowballCommand.cmd = '/snowball';
+                snowballCommand.target = parts[1];
+                connection.io.emit('snowball', snowballCommand);
+              } else {
+                var snowballUsageMessage = {};
+                snowballUsageMessage.type = 'system';
+                snowballUsageMessage.message =
+                  'Type: /snowball USERNAME to throw a snowball at a player. Each snowball will replace one player icon for 60 minutes. If all icons are replaced, the user next messages may be ...funny 🎄. To get snowballs, activate XMAS username from the shop inventory. NOTE: Snowball expire after 60 minutes, use it quick!';
+                chat.addMessageRow(snowballUsageMessage);
+              }
+              return;
+            } else if (
+              (parts[0] === '/guild' || parts[0] === '/tag' || parts[0] === '/g') &&
+              parts[1] !== undefined
+            ) {
+              if (parts[1].length == 4) {
+                openGuild(parts[1]);
+              } else ui.openModal('main', 'guilds');
+              return;
+            } else if (parts[0] === '/untrack') {
               trackedUsername = null;
-              var trackingResetMessage = {};
-              trackingResetMessage.type = 'system';
-              trackingResetMessage.message = 'Tracking filter removed';
-              chat.addMessageRow(trackingResetMessage);
-            }
-            return;
-          } else if (parts[0] === '/darkmode') {
-            var darkmodeEnabled = localStorage.getItem('darkmode-enabled');
-            darkmodeEnabled && parseInt(darkmodeEnabled) === 1
-              ? ($('body').removeClass('darkmode'), localStorage.setItem('darkmode-enabled', 0))
-              : (localStorage.setItem('darkmode-enabled', 1),
-                $('body').removeClass('darkmode').addClass('darkmode'));
-            return;
-          } else if (parts[0] === '/pps') {
-            var ppsEnabled = localStorage.getItem('pps-enabled');
-            if (ppsEnabled && parseInt(ppsEnabled) === 1) {
-              localStorage.setItem('pps-enabled', 0);
-              var placementRateDisabledMessage = {};
-              placementRateDisabledMessage.type = 'system';
-              placementRateDisabledMessage.message = 'Pixels per second display disabled';
-              chat.addMessageRow(placementRateDisabledMessage);
-            } else {
-              localStorage.setItem('pps-enabled', 1);
-              var placementRateEnabledMessage = {};
-              placementRateEnabledMessage.type = 'system';
-              placementRateEnabledMessage.message = 'Pixels per second display enabled';
-              chat.addMessageRow(placementRateEnabledMessage);
-            }
-            return;
-          } else if (parts[0] === '/mvp') {
-            showAccessRequest();
-            return;
-          } else if (parts[0] === '/v1') {
-            var darkmodeEnabled = localStorage.getItem('v1-enabled');
-            if (darkmodeEnabled && parseInt(darkmodeEnabled) === 1) {
-              localStorage.setItem('v1-enabled', 0);
-              window.location.reload();
-            } else {
-              localStorage.setItem('v1-enabled', 1);
-              window.location.reload();
-            }
-            return;
-          } else if (parts[0] === '/guild' || parts[0] === '/g' || parts[0] === '/tag') {
-            ui.openModal('main', 'guilds');
-            return;
-          } else if (parts[0] === '/w' && parts[1] !== undefined) {
-            messagePayload.mention = '';
-            messagePayload.type = 'whispers';
-            messagePayload.target = parts[1];
-            parts.shift();
-            parts.shift();
-            message = parts.join(' ');
-            if (serverData.user.settings.chat.invisible) {
-              ui.openModal('main', 'tools');
-              var invisibleWhisperWarning = {};
-              invisibleWhisperWarning.type = 'warning';
-              invisibleWhisperWarning.message =
-                'You cannot send whispers invisible mode. You can change this setting on Main Menu > Painting > Settings/Tools';
-              chat.addMessageRow(invisibleWhisperWarning);
+              trackingExpiresAt = 0;
+              var untrackConfirmation = {};
+              untrackConfirmation.type = 'system';
+              untrackConfirmation.message = 'Tracking filter removed';
+              chat.addMessageRow(untrackConfirmation);
+              return;
+            } else if (parts[0] === '/track') {
+              if (parts[1] !== undefined) {
+                trackedUsername = parts[1].toLowerCase();
+                trackingExpiresAt = nowSeconds() + 180;
+                var trackingConfirmation = {};
+                trackingConfirmation.type = 'system';
+                trackingConfirmation.message =
+                  'Now filtering live tracking to only show this user pixels for the next 3 minutes';
+                chat.addMessageRow(trackingConfirmation);
+              } else {
+                trackedUsername = null;
+                var trackingResetMessage = {};
+                trackingResetMessage.type = 'system';
+                trackingResetMessage.message = 'Tracking filter removed';
+                chat.addMessageRow(trackingResetMessage);
+              }
+              return;
+            } else if (parts[0] === '/darkmode') {
+              var darkmodeEnabled = localStorage.getItem('darkmode-enabled');
+              darkmodeEnabled && parseInt(darkmodeEnabled) === 1
+                ? ($('body').removeClass('darkmode'), localStorage.setItem('darkmode-enabled', 0))
+                : (localStorage.setItem('darkmode-enabled', 1),
+                  $('body').removeClass('darkmode').addClass('darkmode'));
+              return;
+            } else if (parts[0] === '/pps') {
+              var ppsEnabled = localStorage.getItem('pps-enabled');
+              if (ppsEnabled && parseInt(ppsEnabled) === 1) {
+                localStorage.setItem('pps-enabled', 0);
+                var placementRateDisabledMessage = {};
+                placementRateDisabledMessage.type = 'system';
+                placementRateDisabledMessage.message = 'Pixels per second display disabled';
+                chat.addMessageRow(placementRateDisabledMessage);
+              } else {
+                localStorage.setItem('pps-enabled', 1);
+                var placementRateEnabledMessage = {};
+                placementRateEnabledMessage.type = 'system';
+                placementRateEnabledMessage.message = 'Pixels per second display enabled';
+                chat.addMessageRow(placementRateEnabledMessage);
+              }
+              return;
+            } else if (parts[0] === '/mvp') {
+              showAccessRequest();
+              return;
+            } else if (parts[0] === '/v1') {
+              var darkmodeEnabled = localStorage.getItem('v1-enabled');
+              if (darkmodeEnabled && parseInt(darkmodeEnabled) === 1) {
+                localStorage.setItem('v1-enabled', 0);
+                window.location.reload();
+              } else {
+                localStorage.setItem('v1-enabled', 1);
+                window.location.reload();
+              }
+              return;
+            } else if (parts[0] === '/guild' || parts[0] === '/g' || parts[0] === '/tag') {
+              ui.openModal('main', 'guilds');
+              return;
+            } else if (parts[0] === '/w' && parts[1] !== undefined) {
+              messagePayload.mention = '';
+              messagePayload.type = 'whispers';
+              messagePayload.target = parts[1];
+              parts.shift();
+              parts.shift();
+              message = parts.join(' ');
+              if (serverData.user.settings.chat.invisible) {
+                ui.openModal('main', 'tools');
+                var invisibleWhisperWarning = {};
+                invisibleWhisperWarning.type = 'warning';
+                invisibleWhisperWarning.message =
+                  'You cannot send whispers invisible mode. You can change this setting on Main Menu > Painting > Settings/Tools';
+                chat.addMessageRow(invisibleWhisperWarning);
+                return;
+              }
+            } else if (parts[0] === '/report' && parts[1] !== undefined) {
+              messagePayload.mention = '';
+              messagePayload.type = 'report';
+              messagePayload.target = parts[1];
+              parts.shift();
+              parts.shift();
+              message = parts.join(' ');
+              messagePayload.posY = Math.round(canvasRenderer.height / 2 - canvasRenderer.y);
+              messagePayload.posX = Math.round(canvasRenderer.width / 2 - canvasRenderer.x);
+              messagePayload.posS = canvasRenderer.scale;
+            } else if (parts[0] === '/help' && !serverData.user.isStaff && !serverData.user.isChatMod) {
+              var commandHelpHeading = {};
+              commandHelpHeading.type = 'system';
+              commandHelpHeading.message = 'Available commands:';
+              chat.addMessageRow(commandHelpHeading);
+              var whisperHelpMessage = {};
+              whisperHelpMessage.type = 'system';
+              whisperHelpMessage.message = '/w USERNAME MESSAGE - Send a whisper to the user';
+              chat.addMessageRow(whisperHelpMessage);
+              var replyHelpMessage = {};
+              replyHelpMessage.type = 'system';
+              replyHelpMessage.message = '/r - Answer to the last whisperer';
+              chat.addMessageRow(replyHelpMessage);
+              var reportHelpMessage = {};
+              reportHelpMessage.type = 'system';
+              reportHelpMessage.message =
+                '/report USERNAME MESSAGE - Report a user to PixelPlace moderation team';
+              chat.addMessageRow(reportHelpMessage);
+              var profileHelpMessage = {};
+              profileHelpMessage.type = 'system';
+              profileHelpMessage.message = '/u USERNAME - Open user profile';
+              chat.addMessageRow(profileHelpMessage);
+              var paintingHelpMessage = {};
+              paintingHelpMessage.type = 'system';
+              paintingHelpMessage.message = '/c PAINTING_ID - Navigate to another painting';
+              chat.addMessageRow(paintingHelpMessage);
+              var guildListHelpMessage = {};
+              guildListHelpMessage.type = 'system';
+              guildListHelpMessage.message = '/guild - Open the guild list';
+              chat.addMessageRow(guildListHelpMessage);
+              var guildProfileHelpMessage = {};
+              guildProfileHelpMessage.type = 'system';
+              guildProfileHelpMessage.message = '/guild TAG - Open the guild profile';
+              chat.addMessageRow(guildProfileHelpMessage);
+              var positionHelpMessage = {};
+              positionHelpMessage.type = 'system';
+              positionHelpMessage.message = '/here - Share your position in the chat';
+              chat.addMessageRow(positionHelpMessage);
+              var trackingHelpMessage = {};
+              trackingHelpMessage.type = 'system';
+              trackingHelpMessage.message =
+                '/track USERNAME - Filter live tracking users (Premium command). Use /untrack to cancel)';
+              chat.addMessageRow(trackingHelpMessage);
+              var historyHelpMessage = {};
+              historyHelpMessage.type = 'system';
+              historyHelpMessage.message =
+                '/tm - Replay all placed pixels from the past few hours (only available on certain official paintings)';
+              chat.addMessageRow(historyHelpMessage);
+              var snowballHelpMessage = {};
+              snowballHelpMessage.type = 'system';
+              snowballHelpMessage.message = '/snowball - Special event';
+              chat.addMessageRow(snowballHelpMessage);
+              var darkModeHelpMessage = {};
+              darkModeHelpMessage.type = 'system';
+              darkModeHelpMessage.message = '/darkmode - Switch to the darkside of Pixelplace';
+              chat.addMessageRow(darkModeHelpMessage);
+              var placementRateHelpMessage = {};
+              placementRateHelpMessage.type = 'system';
+              placementRateHelpMessage.message =
+                '/pps - Toggle pixels per second display (shown while holding space)';
+              chat.addMessageRow(placementRateHelpMessage);
+              var nextWarHelpMessage = {};
+              nextWarHelpMessage.type = 'system';
+              nextWarHelpMessage.message = '/nextwar - Display the remaining time until next pixel war';
+              chat.addMessageRow(nextWarHelpMessage);
+              var legacyThemeHelpMessage = {};
+              legacyThemeHelpMessage.type = 'system';
+              legacyThemeHelpMessage.message = '/v1 - Switch to the v1 theme of Pixelplace';
+              chat.addMessageRow(legacyThemeHelpMessage);
+              var profileCommandsHint = {};
+              profileCommandsHint.type = 'system';
+              profileCommandsHint.message = 'More commands available on profiles (click on any username)';
+              chat.addMessageRow(profileCommandsHint);
+              return;
+            } else if (message === '/nextwar') {
+              var userChatCommand = {};
+              userChatCommand.cmd = message;
+              userChatCommand.type = messagePayload.type;
+              connection.io.emit('chat.user.command', userChatCommand);
+              return;
+            } else if (message === '/here' || message.split('/here').length >= 2) {
+            } else if (serverData.user.isStaff && message !== '/here') {
+              var guildChatCommand = {};
+              guildChatCommand.cmd = message;
+              guildChatCommand.type = messagePayload.type;
+              connection.io.emit('chat.command', guildChatCommand);
+              return;
+            } else if (serverData.user.isChatMod && message !== '/here') {
+              var globalChatCommand = {};
+              globalChatCommand.cmd = message;
+              globalChatCommand.type = messagePayload.type;
+              connection.io.emit('chat.command', globalChatCommand);
               return;
             }
-          } else if (parts[0] === '/report' && parts[1] !== undefined) {
-            messagePayload.mention = '';
-            messagePayload.type = 'report';
-            messagePayload.target = parts[1];
-            parts.shift();
-            parts.shift();
-            message = parts.join(' ');
-            messagePayload.posY = Math.round(canvasRenderer.height / 2 - canvasRenderer.y);
-            messagePayload.posX = Math.round(canvasRenderer.width / 2 - canvasRenderer.x);
-            messagePayload.posS = canvasRenderer.scale;
-          } else if (parts[0] === '/help' && !serverData.user.isStaff && !serverData.user.isChatMod) {
-            var commandHelpHeading = {};
-            commandHelpHeading.type = 'system';
-            commandHelpHeading.message = 'Available commands:';
-            chat.addMessageRow(commandHelpHeading);
-            var whisperHelpMessage = {};
-            whisperHelpMessage.type = 'system';
-            whisperHelpMessage.message = '/w USERNAME MESSAGE - Send a whisper to the user';
-            chat.addMessageRow(whisperHelpMessage);
-            var replyHelpMessage = {};
-            replyHelpMessage.type = 'system';
-            replyHelpMessage.message = '/r - Answer to the last whisperer';
-            chat.addMessageRow(replyHelpMessage);
-            var reportHelpMessage = {};
-            reportHelpMessage.type = 'system';
-            reportHelpMessage.message =
-              '/report USERNAME MESSAGE - Report a user to PixelPlace moderation team';
-            chat.addMessageRow(reportHelpMessage);
-            var profileHelpMessage = {};
-            profileHelpMessage.type = 'system';
-            profileHelpMessage.message = '/u USERNAME - Open user profile';
-            chat.addMessageRow(profileHelpMessage);
-            var paintingHelpMessage = {};
-            paintingHelpMessage.type = 'system';
-            paintingHelpMessage.message = '/c PAINTING_ID - Navigate to another painting';
-            chat.addMessageRow(paintingHelpMessage);
-            var guildListHelpMessage = {};
-            guildListHelpMessage.type = 'system';
-            guildListHelpMessage.message = '/guild - Open the guild list';
-            chat.addMessageRow(guildListHelpMessage);
-            var guildProfileHelpMessage = {};
-            guildProfileHelpMessage.type = 'system';
-            guildProfileHelpMessage.message = '/guild TAG - Open the guild profile';
-            chat.addMessageRow(guildProfileHelpMessage);
-            var positionHelpMessage = {};
-            positionHelpMessage.type = 'system';
-            positionHelpMessage.message = '/here - Share your position in the chat';
-            chat.addMessageRow(positionHelpMessage);
-            var trackingHelpMessage = {};
-            trackingHelpMessage.type = 'system';
-            trackingHelpMessage.message =
-              '/track USERNAME - Filter live tracking users (Premium command). Use /untrack to cancel)';
-            chat.addMessageRow(trackingHelpMessage);
-            var historyHelpMessage = {};
-            historyHelpMessage.type = 'system';
-            historyHelpMessage.message =
-              '/tm - Replay all placed pixels from the past few hours (only available on certain official paintings)';
-            chat.addMessageRow(historyHelpMessage);
-            var snowballHelpMessage = {};
-            snowballHelpMessage.type = 'system';
-            snowballHelpMessage.message = '/snowball - Special event';
-            chat.addMessageRow(snowballHelpMessage);
-            var darkModeHelpMessage = {};
-            darkModeHelpMessage.type = 'system';
-            darkModeHelpMessage.message = '/darkmode - Switch to the darkside of Pixelplace';
-            chat.addMessageRow(darkModeHelpMessage);
-            var placementRateHelpMessage = {};
-            placementRateHelpMessage.type = 'system';
-            placementRateHelpMessage.message =
-              '/pps - Toggle pixels per second display (shown while holding space)';
-            chat.addMessageRow(placementRateHelpMessage);
-            var nextWarHelpMessage = {};
-            nextWarHelpMessage.type = 'system';
-            nextWarHelpMessage.message = '/nextwar - Display the remaining time until next pixel war';
-            chat.addMessageRow(nextWarHelpMessage);
-            var legacyThemeHelpMessage = {};
-            legacyThemeHelpMessage.type = 'system';
-            legacyThemeHelpMessage.message = '/v1 - Switch to the v1 theme of Pixelplace';
-            chat.addMessageRow(legacyThemeHelpMessage);
-            var profileCommandsHint = {};
-            profileCommandsHint.type = 'system';
-            profileCommandsHint.message = 'More commands available on profiles (click on any username)';
-            chat.addMessageRow(profileCommandsHint);
-            return;
-          } else if (message === '/nextwar') {
-            var userChatCommand = {};
-            userChatCommand.cmd = message;
-            userChatCommand.type = messagePayload.type;
-            connection.io.emit('chat.user.command', userChatCommand);
-            return;
-          } else if (message === '/here' || message.split('/here').length >= 2) {
-          } else if (serverData.user.isStaff && message !== '/here') {
-            var guildChatCommand = {};
-            guildChatCommand.cmd = message;
-            guildChatCommand.type = messagePayload.type;
-            connection.io.emit('chat.command', guildChatCommand);
-            return;
-          } else if (serverData.user.isChatMod && message !== '/here') {
-            var globalChatCommand = {};
-            globalChatCommand.cmd = message;
-            globalChatCommand.type = messagePayload.type;
-            connection.io.emit('chat.command', globalChatCommand);
-            return;
+          }
+          var parts = message.split('@');
+          if (parts.length > 1) {
+            var partEntrySplit = parts[parts.length - 1].split(' ');
+            messagePayload.mention = partEntrySplit[0].replace(' ', '');
+            message = message.replace('@' + partEntrySplit[0] + ' ', '');
+            message = message.replace('@' + partEntrySplit[0] + '', '');
+          }
+          messagePayload.text = message;
+          chat.selected != messagePayload.type &&
+            messagePayload.type !== 'report' &&
+            chat.switchChannel(messagePayload.type);
+          (message === '/here' || message.split('/here').length >= 2) &&
+            ((messagePayload.posY = Math.round(canvasRenderer.height / 2 - canvasRenderer.y)),
+            (messagePayload.posX = Math.round(canvasRenderer.width / 2 - canvasRenderer.x)),
+            (messagePayload.posS = canvasRenderer.scale));
+          if (messagePayload.type === 'whispers' && !messagePayload.target) {
+            var whisperUsageMessage = {};
+            whisperUsageMessage.type = 'system';
+            whisperUsageMessage.message = 'Type /w USERNAME MESSAGE to send a whisper to a specific player.';
+            chat.addMessageRow(whisperUsageMessage);
+          } else if (message != '') connection.io.emit('chat.message', messagePayload);
+          else {
+            var emptyMessageWarning = {};
+            emptyMessageWarning.type = 'warning';
+            emptyMessageWarning.message = 'Please enter a message.';
+            chat.addMessageRow(emptyMessageWarning);
           }
         }
-        var parts = message.split('@');
-        if (parts.length > 1) {
-          var partEntrySplit = parts[parts.length - 1].split(' ');
-          messagePayload.mention = partEntrySplit[0].replace(' ', '');
-          message = message.replace('@' + partEntrySplit[0] + ' ', '');
-          message = message.replace('@' + partEntrySplit[0] + '', '');
-        }
-        messagePayload.text = message;
-        chat.selected != messagePayload.type &&
-          messagePayload.type !== 'report' &&
-          chat.switchChannel(messagePayload.type);
-        (message === '/here' || message.split('/here').length >= 2) &&
-          ((messagePayload.posY = Math.round(canvasRenderer.height / 2 - canvasRenderer.y)),
-          (messagePayload.posX = Math.round(canvasRenderer.width / 2 - canvasRenderer.x)),
-          (messagePayload.posS = canvasRenderer.scale));
-        if (messagePayload.type === 'whispers' && !messagePayload.target) {
-          var whisperUsageMessage = {};
-          whisperUsageMessage.type = 'system';
-          whisperUsageMessage.message = 'Type /w USERNAME MESSAGE to send a whisper to a specific player.';
-          chat.addMessageRow(whisperUsageMessage);
-        } else if (message != '') connection.io.emit('chat.message', messagePayload);
-        else {
-          var emptyMessageWarning = {};
-          emptyMessageWarning.type = 'warning';
-          emptyMessageWarning.message = 'Please enter a message.';
-          chat.addMessageRow(emptyMessageWarning);
-        }
-      }
     };
     $(document).on('pointermove', function (event) {
       if (
@@ -4971,6 +5007,7 @@ $(function () {
               const rate = serverData.painting.rate,
                 brushFrameInterval = 1000 / rate;
               let timestamp = performance.now();
+              /* Repeat placement while drawing is active and update the rolling placement-rate display. Each placement still follows the normal send path. */
               function drawBrushFrame(frameTime) {
                 if (!drawingActive) {
                   elements.pps.hide();
@@ -6627,6 +6664,7 @@ $(function () {
     previousModal.modal = '';
     previousModal.content = '';
     previousModal.extra = '';
+    /* Coordinate modal state, form content, toolbar preferences, and the settings persisted by the original client. */
     ui = {
       selectors: modalSelectors,
       previous: previousModal,
@@ -7199,132 +7237,133 @@ $(function () {
           }, 1000);
         }
       },
-      openModal: function (target, content, extra, paintingEditData) {
-        $('#profile').hide();
-        if (target === 'captcha') ui.activeCaptcha = true;
-        else {
-          ui.activeCaptcha = false;
-        }
-        if (ui.activeElement) {
-          ui.previousActiveElement = ui.activeElement;
-          ui.previousActiveContent = ui.activeContent;
-          ui.activeElement.css('display', 'none');
-          ui.elem.container.css('display', 'none');
-          ui.activeElement = null;
-          ui.activeContent = null;
-        }
-        ui.activeElement = ui.elem.container.find('.box[data-id="' + target + '"]');
-        ui.activeElement.css('display', 'flex');
-        ui.activeElement.find('.box-content .input-error').css('visibility', 'hidden');
-        ui.activeElement.find('.box-content input.error, .box-content textarea.error').removeClass('error');
-        ui.activeElement.find('.box-content .input-error').text('');
-        if (target == 'auth') {
-          if (target == 'login') {
-            var captchaOptions = {};
-            captchaOptions.sitekey = '0x4AAAAAAAC1ps4w6nfwaJ78';
-            captchaOptions.callback = function (challenge) {
-              $('#recaptchaCFLogin').attr('data-challenge', challenge);
-            };
-            turnstile.render('#recaptchaCFLogin', captchaOptions);
-          } else if (target == 'register') {
-            var turnstileOptions = {};
-            turnstileOptions.sitekey = '0x4AAAAAAAC1ps4w6nfwaJ78';
-            turnstileOptions.callback = function (challenge) {
-              $('#recaptchaCF').attr('data-challenge', challenge);
-            };
-            turnstile.render('#recaptchaCF', turnstileOptions);
+      /* Switch visible modal content through the existing loading and permission paths. */ openModal:
+        function (target, content, extra, paintingEditData) {
+          $('#profile').hide();
+          if (target === 'captcha') ui.activeCaptcha = true;
+          else {
+            ui.activeCaptcha = false;
           }
-        }
-        if (target == 'main') {
-          if (content == 'top') {
-            if (localStorage) {
-              $('.attention').hide();
-              if (paintingReloadInterval) {
-                clearInterval(paintingReloadInterval);
+          if (ui.activeElement) {
+            ui.previousActiveElement = ui.activeElement;
+            ui.previousActiveContent = ui.activeContent;
+            ui.activeElement.css('display', 'none');
+            ui.elem.container.css('display', 'none');
+            ui.activeElement = null;
+            ui.activeContent = null;
+          }
+          ui.activeElement = ui.elem.container.find('.box[data-id="' + target + '"]');
+          ui.activeElement.css('display', 'flex');
+          ui.activeElement.find('.box-content .input-error').css('visibility', 'hidden');
+          ui.activeElement.find('.box-content input.error, .box-content textarea.error').removeClass('error');
+          ui.activeElement.find('.box-content .input-error').text('');
+          if (target == 'auth') {
+            if (target == 'login') {
+              var captchaOptions = {};
+              captchaOptions.sitekey = '0x4AAAAAAAC1ps4w6nfwaJ78';
+              captchaOptions.callback = function (challenge) {
+                $('#recaptchaCFLogin').attr('data-challenge', challenge);
+              };
+              turnstile.render('#recaptchaCFLogin', captchaOptions);
+            } else if (target == 'register') {
+              var turnstileOptions = {};
+              turnstileOptions.sitekey = '0x4AAAAAAAC1ps4w6nfwaJ78';
+              turnstileOptions.callback = function (challenge) {
+                $('#recaptchaCF').attr('data-challenge', challenge);
+              };
+              turnstile.render('#recaptchaCF', turnstileOptions);
+            }
+          }
+          if (target == 'main') {
+            if (content == 'top') {
+              if (localStorage) {
+                $('.attention').hide();
+                if (paintingReloadInterval) {
+                  clearInterval(paintingReloadInterval);
+                }
+                localStorage.setItem('attention-notif', true);
               }
-              localStorage.setItem('attention-notif', true);
             }
-          }
-          if (serverData.user.connected) {
-            ui.activeElement.find('.box-header > div').show();
-            var html = '';
-            for (var key in serverData.user.icons) {
-              html += '<img src="/img/badges/' + serverData.user.icons[key] + '.png?v=1" class="badge">';
-            }
-            serverData.user.guild != ''
-              ? (ui.activeElement
-                  .find('.box-header > div > a[data-id="guild"]')
-                  .html('' + serverData.user.guild + ''),
-                ui.activeElement
-                  .find('.box-header > div > a[data-id="guild"]')
-                  .attr('data-tag', serverData.user.guild),
-                ui.activeElement.find('.box-header > div > .bull').show())
-              : (ui.activeElement.find('.box-header > div > a[data-id="guild"]').text(''),
-                ui.activeElement.find('.box-header > div > .bull').hide());
-            ui.activeElement
-              .find('.box-header .coins-infos span')
-              .text(serverData.user.ppcoins + ' coin' + (serverData.user.ppcoins != 1 ? 's' : ''));
-            if (serverData.user.name === '') {
+            if (serverData.user.connected) {
+              ui.activeElement.find('.box-header > div').show();
+              var html = '';
+              for (var key in serverData.user.icons) {
+                html += '<img src="/img/badges/' + serverData.user.icons[key] + '.png?v=1" class="badge">';
+              }
+              serverData.user.guild != ''
+                ? (ui.activeElement
+                    .find('.box-header > div > a[data-id="guild"]')
+                    .html('' + serverData.user.guild + ''),
+                  ui.activeElement
+                    .find('.box-header > div > a[data-id="guild"]')
+                    .attr('data-tag', serverData.user.guild),
+                  ui.activeElement.find('.box-header > div > .bull').show())
+                : (ui.activeElement.find('.box-header > div > a[data-id="guild"]').text(''),
+                  ui.activeElement.find('.box-header > div > .bull').hide());
               ui.activeElement
-                .find('.box-header > div > a[data-id="username"]')
-                .text('Click to create your username');
-              ui.activeElement.find('.box-header > div > a[data-id="username"]').addClass('open-modal');
-              ui.activeElement
-                .find('.box-header > div > a[data-id="username"]')
-                .attr('data-target', 'username');
-              ui.activeElement
-                .find('.box-header > div > a[data-id="username"]')
-                .attr('data-content', 'username');
-            } else {
-              ui.activeElement.find('.box-header > div > a[data-id="username"]').text(serverData.user.name);
-              ui.activeElement
-                .find('.box-header > div > a[data-id="username"]')
-                .attr('data-profile', serverData.user.name.toLowerCase());
-              ui.activeElement.find('.box-header > div > a[data-id="username"]').removeClass('open-modal');
-              var latestEffectExpiration = Math.max(
-                parseInt(serverData.user.rainbowTime),
-                parseInt(serverData.user.xmasTime),
-                parseInt(serverData.user.halloweenTime)
-              );
-              if (
-                latestEffectExpiration === parseInt(serverData.user.rainbowTime) &&
-                parseInt(serverData.user.rainbowTime) > nowSeconds()
-              )
-                ui.activeElement.find('.box-header > div > a[data-id="username"]').addClass('rainbowText');
-              else if (
-                latestEffectExpiration === parseInt(serverData.user.xmasTime) &&
-                parseInt(serverData.user.xmasTime) > nowSeconds()
-              ) {
-                ui.activeElement.find('.box-header > div > a[data-id="username"]').addClass('xmasText');
+                .find('.box-header .coins-infos span')
+                .text(serverData.user.ppcoins + ' coin' + (serverData.user.ppcoins != 1 ? 's' : ''));
+              if (serverData.user.name === '') {
                 ui.activeElement
                   .find('.box-header > div > a[data-id="username"]')
-                  .html(holidayTextHtml(serverData.user.name));
-              } else if (
-                latestEffectExpiration === parseInt(serverData.user.halloweenTime) &&
-                parseInt(serverData.user.halloweenTime) > nowSeconds()
-              ) {
-                ui.activeElement.find('.box-header > div > a[data-id="username"]').addClass('halloween');
+                  .text('Click to create your username');
+                ui.activeElement.find('.box-header > div > a[data-id="username"]').addClass('open-modal');
+                ui.activeElement
+                  .find('.box-header > div > a[data-id="username"]')
+                  .attr('data-target', 'username');
+                ui.activeElement
+                  .find('.box-header > div > a[data-id="username"]')
+                  .attr('data-content', 'username');
               } else {
+                ui.activeElement.find('.box-header > div > a[data-id="username"]').text(serverData.user.name);
                 ui.activeElement
                   .find('.box-header > div > a[data-id="username"]')
-                  .removeClass('xmasText')
-                  .removeClass('halloween');
+                  .attr('data-profile', serverData.user.name.toLowerCase());
+                ui.activeElement.find('.box-header > div > a[data-id="username"]').removeClass('open-modal');
+                var latestEffectExpiration = Math.max(
+                  parseInt(serverData.user.rainbowTime),
+                  parseInt(serverData.user.xmasTime),
+                  parseInt(serverData.user.halloweenTime)
+                );
+                if (
+                  latestEffectExpiration === parseInt(serverData.user.rainbowTime) &&
+                  parseInt(serverData.user.rainbowTime) > nowSeconds()
+                )
+                  ui.activeElement.find('.box-header > div > a[data-id="username"]').addClass('rainbowText');
+                else if (
+                  latestEffectExpiration === parseInt(serverData.user.xmasTime) &&
+                  parseInt(serverData.user.xmasTime) > nowSeconds()
+                ) {
+                  ui.activeElement.find('.box-header > div > a[data-id="username"]').addClass('xmasText');
+                  ui.activeElement
+                    .find('.box-header > div > a[data-id="username"]')
+                    .html(holidayTextHtml(serverData.user.name));
+                } else if (
+                  latestEffectExpiration === parseInt(serverData.user.halloweenTime) &&
+                  parseInt(serverData.user.halloweenTime) > nowSeconds()
+                ) {
+                  ui.activeElement.find('.box-header > div > a[data-id="username"]').addClass('halloween');
+                } else {
+                  ui.activeElement
+                    .find('.box-header > div > a[data-id="username"]')
+                    .removeClass('xmasText')
+                    .removeClass('halloween');
+                }
               }
+              ui.activeElement.find('.box-header > div > span').html(html);
+              ui.activeElement.find('.box-header > button').hide();
+              ui.activeElement.find('.box-header > div > a').show();
+              ui.activeElement.find('.box-header > div > span').show();
+            } else {
+              ui.activeElement.find('.box-header > div').hide();
+              ui.activeElement.find('.box-header > button').show();
             }
-            ui.activeElement.find('.box-header > div > span').html(html);
-            ui.activeElement.find('.box-header > button').hide();
-            ui.activeElement.find('.box-header > div > a').show();
-            ui.activeElement.find('.box-header > div > span').show();
-          } else {
-            ui.activeElement.find('.box-header > div').hide();
-            ui.activeElement.find('.box-header > button').show();
           }
-        }
-        if (content) {
-          ui.updateActiveContent(target, content, extra, paintingEditData);
-        }
-        ui.elem.container.css('display', 'block');
-      },
+          if (content) {
+            ui.updateActiveContent(target, content, extra, paintingEditData);
+          }
+          ui.elem.container.css('display', 'block');
+        },
       triggerChooseModal: function () {
         setTimeout(function () {
           if (!ui.activeElement) {
@@ -7711,7 +7750,11 @@ $(function () {
           api.xhr.req('POST', '/api/post-settings.php', requestData, true, function (success, response) {});
         }
       },
-      onChangeTools: function (tool, enabled, save) {
+      /* Apply the requested tool setting and its existing persistence behavior. */ onChangeTools: function (
+        tool,
+        enabled,
+        save
+      ) {
         if (tool === 'tools-mobile-alt') {
           if ((enabled !== undefined && enabled) || (enabled === undefined && alternativeMobileDrawing)) {
             alternativeMobileDrawing = false;
@@ -12041,6 +12084,7 @@ $(function () {
     function isOdd(number) {
       return (number & 1) === 1;
     }
+    /* Format a duration in seconds using the original day/hour/minute boundary rules. */
     function formatDuration(seconds, includeSeconds) {
       var text = '';
       if (seconds > 86400) {
@@ -12174,6 +12218,7 @@ $(function () {
         ? [parseInt(rgbMatch[1], 16), parseInt(rgbMatch[2], 16), parseInt(rgbMatch[3], 16)]
         : null;
     }
+    /* Recover page coordinates from mouse or touch events, preserving the original coordinate fallback order. */
     function normalizePointerEvent(event) {
       if (event.pageX === undefined || event.pageY === undefined) {
         if (event.clientX === undefined || event.clientY === undefined) {
@@ -13215,6 +13260,7 @@ $(function () {
         connection.wsv = parseInt(CFVersion.split('')[randomInteger(0, 0)]);
       } else connection.wsv = 0;
     }
+    /* Create the original websocket-only Socket.IO connection and register its server-event handlers. Reconnection uses the existing handshake and state-reset logic. */
     function connectRealtime() {
       if (connection.started) return;
       else {
@@ -13277,6 +13323,7 @@ $(function () {
         errors['52'] =
           'Europe region and bottom-right mini map need special access. Type /mvp to request it.';
         connection.errors = errors;
+        /* A transport connection is not yet an authenticated painting session; the original authentication handshake follows. */
         connection.io.on('connect', function (connectPayload) {
           updateConnectionVersion();
           if (!inputIntegrity._ran) {
@@ -15221,6 +15268,7 @@ $(function () {
           serverData.user.premium.active = true;
           serverData.user.premium.expire_at = nowSeconds() + 604800;
         });
+        /* Load the per-user image assets referenced by bomb commands before applying the associated pixel batch. */
         function loadBombImages(userIds, onLoaded) {
           let count = 0;
           const userIdsLength = userIds.length,
@@ -15241,6 +15289,7 @@ $(function () {
             }
           }
         }
+        /* Server pixel batches are rendered only after any image resources required by their commands have been loaded. */
         connection.io.on('canvas', function (canvasPayload) {
           var entries = [];
           if (canvasPayload[0].length)
@@ -15267,6 +15316,7 @@ $(function () {
                 applyPixelBatch(canvasPayload);
               })
             : applyPixelBatch(canvasPayload);
+          /* Apply the initial and updated pixel lists in their original order; indices in each pixel tuple are protocol fields. */
           function applyPixelBatch(batch) {
             bombImagesByUserId = {};
             if (batch[0].length)
@@ -15590,6 +15640,7 @@ $(function () {
         );
       }
     });
+    /* Skip transparent source pixels and place the next eligible image pixel through the normal painting path. */
     function placeNextImagePixel() {
       while (
         imagePainter.data[imagePainter.count + 2] !== undefined &&
@@ -15657,6 +15708,7 @@ $(function () {
         showNotification('warning', 'Bot stopped', '');
       }
     }
+    /* Throttle image placement using the server-provided rate and the client cooldown before scheduling another frame. */
     function renderImagePainterFrame(frameTime) {
       if (frameTime - imagePainter.lastTime >= imagePainter.rate) {
         (canvasRenderer.cooldown === 0 || canvasRenderer.cooldown < nowMilliseconds()) &&
@@ -15821,6 +15873,7 @@ $(function () {
         fileReader.readAsDataURL(files[0]);
       } else $('.pb_loading').hide();
     });
+    /* Compare Lab lightness, chroma, and hue rather than raw RGB distance. */
     function colorDifference(firstRgb, secondRgb) {
       var lab = rgbToLab(firstRgb),
         rgbToLabLab = rgbToLab(secondRgb),
@@ -15843,6 +15896,7 @@ $(function () {
           normalizedHue * normalizedHue;
       return distanceSquared < 0 ? 0 : Math.sqrt(distanceSquared);
     }
+    /* Convert RGB values to CIE Lab for perceptual palette matching. Keep the original floating-point constants for numerical correspondence. */
     function rgbToLab(rgb) {
       var linearRed = rgb[0] / 255,
         linearGreen = rgb[1] / 255,
@@ -15893,6 +15947,7 @@ $(function () {
         [116 * cieY - 16, 500 * (cieX - cieY), 200 * (cieY - cieZ)]
       );
     }
+    /* Select the palette entry with the best original perceptual similarity score. */
     function findNearestPaletteColor(rgb) {
       var bestColorScore,
         colorEntry = false;
@@ -15950,6 +16005,7 @@ $(function () {
     clientCheckGraceUntil <= nowSeconds() &&
       (connection.io.emit('hb', ' '), (clientCheckGraceUntil = nowSeconds() + randomInteger(73, 92)));
   }, 5000);
+  /* Choose the access-request UI from the painting permissions and account state already returned by the server. */
   function showAccessRequest() {
     drawingActive && (drawingActive = null);
     var boxContentElement = $('.box[data-id="request-access"]').find('.box-content[data-id="request"]');
@@ -16019,12 +16075,14 @@ $(function () {
     }
     ui.openModal('request-access', 'request');
   }
+  /* Control the page-level loader; the painting loader is managed independently. */
   function setPageLoading(visible, message) {
     message === undefined
       ? elements.loader.find('.text').text('LOADING')
       : elements.loader.find('.text').html(message);
     visible ? elements.loader.show() : elements.loader.hide();
   }
+  /* Control the painting loader while snapshots or canvas resources are being prepared. */
   function setPaintingLoading(visible, message) {
     if (message === undefined) {
       elements.loaderCanvas.find('.text').html('LOADING<br/>PAINTING');

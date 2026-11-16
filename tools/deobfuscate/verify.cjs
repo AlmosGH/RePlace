@@ -104,4 +104,4 @@ if (require.main === module) {
   console.log(JSON.stringify(result, null, 2));
 }
 
-module.exports = { verify };
+module.exports = { verify, normalize };

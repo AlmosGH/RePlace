@@ -103,4 +103,4 @@ if (require.main === module) {
   console.log(JSON.stringify({ output, ...counts }));
 }
 
-module.exports = { transform };
+module.exports = { transform, fold };

@@ -1,0 +1,164 @@
+{
+  "before": "20260103192131-7c807d1b",
+  "after": "20260227071834-18cc5114",
+  "changes": {
+    "endpoints": {
+      "added": [
+        "/api/get-lovemail.php"
+      ],
+      "removed": []
+    },
+    "emits": {
+      "added": [],
+      "removed": []
+    },
+    "listeners": {
+      "added": [
+        "item.notification.lovemail",
+        "loved.notification"
+      ],
+      "removed": []
+    },
+    "selectors": {
+      "added": [
+        "#profile .user-lovemail",
+        "#profile .user-lovemail .lovemails",
+        ".lovemail-btn",
+        ".lovemail-btn .notification-bubble",
+        "[data-id=\"username-init\"]"
+      ],
+      "removed": [
+        ".odds"
+      ]
+    },
+    "text": {
+      "added": [
+        "#profile .user-lovemail",
+        "#profile .user-lovemail .lovemails",
+        ".lovemail-btn .notification-bubble",
+        ".top table[data-id=\"lovemails\"]",
+        "Are you sure you want to delete this message?",
+        "Enter the content of your letter (max 255 characters)",
+        "Enter the username of the player who should receive the letter",
+        "LoveMail sent! The recipient must open it and can choose to keep it on their profile or discard it.",
+        "Message removed from your profile",
+        "Message too long (max. 255 characters)"
+      ],
+      "removed": [
+        "Everyday, you have a chance to earn one of the following daily reward:\n3 coins - 26.82%\n5 coins - 25.17%\n10 coins - 22.12%\nMissile - 7.35%\nGold ore (8 to 16) - 6.00%\nBomb - 4.24%\n30 coins - 3.15%\nAtomic bomb - 2.61%\n50 coins - 1.56%\n100 coins - 0.98%"
+      ]
+    },
+    "functions": {
+      "added": [
+        "value"
+      ],
+      "removed": [
+        "drawBrushFrame"
+      ],
+      "changed": [
+        "animateCrateOpening",
+        "animateCrateRank",
+        "api.abortRequest",
+        "api.error",
+        "api.removeRequest",
+        "api.req",
+        "applyPixelBatch",
+        "callback",
+        "canvasRenderer.checkDuplicateFromPainting",
+        "canvasRenderer.checkSamePlaceThanLast",
+        "canvasRenderer.drawPixelAt",
+        "canvasRenderer.fetchPaintingAccess",
+        "canvasRenderer.fetchPaintingModerators",
+        "canvasRenderer.formatScale",
+        "canvasRenderer.getUrlHash",
+        "canvasRenderer.loadBlocked",
+        "canvasRenderer.loadFreeCoins",
+        "canvasRenderer.loadFriends",
+        "canvasRenderer.loadGuildMembers",
+        "canvasRenderer.loadGuildMembersRequests",
+        "canvasRenderer.loadMyPaintings",
+        "canvasRenderer.loadPainting",
+        "canvasRenderer.loadPalette",
+        "canvasRenderer.loadUserItems",
+        "canvasRenderer.refreshPaintingList",
+        "canvasRenderer.triggerCooldownPanel",
+        "canvasRenderer.updateScaleAndPosition",
+        "canvasRenderer.useItem",
+        "canvasRenderer.useWeapon",
+        "chat.addMessageRow",
+        "chat.checkOnlineDisplay",
+        "chat.deleteMessagesByUsername",
+        "chat.display",
+        "chat.resize",
+        "chat.sendMessage",
+        "chat.updateFlash",
+        "chat.updateScroll",
+        "collectGemBoxLoot",
+        "connectRealtime",
+        "findNearestPaletteColor",
+        "formatDuration",
+        "formatElapsedTime",
+        "formatElapsedTimeLong",
+        "holidayTextHtml",
+        "initializeChatChannel",
+        "initializePainting",
+        "isTouchDevice",
+        "loadAuctionRows",
+        "loadFramedArtAuctions",
+        "loadFramedArtForSale",
+        "loadUserProfile",
+        "normalizePointerEvent",
+        "object.closeModal",
+        "object.goBackFromCaptcha",
+        "object.loadGuilds",
+        "object.loadPaintingCreateOrEdit",
+        "object.loadTopUsers",
+        "object.onChangeTools",
+        "object.openModal",
+        "object.resize",
+        "object.settingsPaintingSelectAccess",
+        "object.settingsPaintingSelectBackground",
+        "object.step",
+        "object.triggerChooseModal",
+        "object.triggerLoader",
+        "object.updateActiveContent",
+        "openAuction",
+        "openCoinIsland",
+        "openCrateDialog",
+        "openDailyReward",
+        "openGemBox",
+        "openGuild",
+        "openPlayerNews",
+        "openProfile",
+        "openSocialPanel",
+        "placeNextImagePixel",
+        "pointer.screenToPaintingSpace",
+        "pointer.setCursorPosition",
+        "pointer.triggerCursor",
+        "randomHolidayEmoji",
+        "refreshFriends",
+        "refreshGuildMembers",
+        "refreshGuildRequests",
+        "renderGemBoxLoot",
+        "renderHistoryFrame",
+        "renderImagePainterFrame",
+        "resizeViewport",
+        "runCaptchaAction",
+        "setPageLoading",
+        "setPaintingLoading",
+        "showAccessRequest",
+        "showNotification",
+        "showWarArea",
+        "updateAuctionFee",
+        "updateConnectionVersion",
+        "updateDynamiteUpgrade",
+        "updatePaletteScrollButtons",
+        "zoomAroundViewportCenter"
+      ],
+      "smallNumericOnly": [
+        "colorDifference",
+        "rgbToLab"
+      ]
+    }
+  }
+}

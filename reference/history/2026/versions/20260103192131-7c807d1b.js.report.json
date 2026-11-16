@@ -1,0 +1,22 @@
+{
+  "decoderFamily": "rotated-custom-base64",
+  "bodySha256": "a7be64ec2d8cb8802e2b42c2852c96c9b7e939108a5c74ee95a5da27d9bab537",
+  "stringTableEntries": 7443,
+  "decodedCalls": 35425,
+  "foldedExpressions": 29329,
+  "decoderAudited": true,
+  "expandedApplicationVerified": true,
+  "removedBootstrapBytes": 126035,
+  "constantBranchesRemoved": 1232,
+  "preservedHoistedBindings": 1232,
+  "sequencesExpanded": 1793,
+  "explanatoryComments": 43,
+  "renamedBindings": 2044,
+  "transferredNameHints": 1867,
+  "readableApplicationVerified": true,
+  "naming": "Heuristic structural alignment, inferred roles, and contextual fallback; not recovered author names",
+  "outputSha256": "bdf8f1d74bbb348238976a108649b261083ca9fb1c290c57cdfe830e9344a660",
+  "toolFingerprint": "c5e5a0cbb55c5f33da5f07cb49bb4325bbf63afcc26d27db3421a8146e2ddbc0",
+  "inputSha256": "a7be64ec2d8cb8802e2b42c2852c96c9b7e939108a5c74ee95a5da27d9bab537",
+  "namesSha256": "d9dcbfcdb662a6181a649b1ce5850e5df8c0dfe70be547c48a10d8f95f2c73c8"
+}

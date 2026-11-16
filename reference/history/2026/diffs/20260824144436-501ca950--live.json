@@ -1,0 +1,141 @@
+{
+  "before": "20260824144436-501ca950",
+  "after": "live",
+  "changes": {
+    "endpoints": {
+      "added": [],
+      "removed": []
+    },
+    "emits": {
+      "added": [],
+      "removed": []
+    },
+    "listeners": {
+      "added": [],
+      "removed": []
+    },
+    "selectors": {
+      "added": [
+        "#guild .edit-guild-desc"
+      ],
+      "removed": []
+    },
+    "text": {
+      "added": [
+        "#guild .edit-guild-desc",
+        "Enter a description (max 250 characters)"
+      ],
+      "removed": []
+    },
+    "functions": {
+      "added": [
+        "loadTrackingHistory",
+        "pointer.legacyZoomRect",
+        "renderLoveMailRow"
+      ],
+      "removed": [
+        "callback"
+      ],
+      "changed": [
+        "animateCrateOpening",
+        "animateCrateRank",
+        "animateWeaponEffect",
+        "api.error",
+        "api.req",
+        "applyPixelBatch",
+        "canvasRenderer.centerPositionTo",
+        "canvasRenderer.checkDuplicateFromPainting",
+        "canvasRenderer.checkProtectionFromPainting",
+        "canvasRenderer.checkSamePlaceThanLast",
+        "canvasRenderer.drawPixelAt",
+        "canvasRenderer.fetchPaintingAccess",
+        "canvasRenderer.fetchPaintingModerators",
+        "canvasRenderer.getColorFromPainting",
+        "canvasRenderer.getUrlHash",
+        "canvasRenderer.loadBlocked",
+        "canvasRenderer.loadFreeCoins",
+        "canvasRenderer.loadFriends",
+        "canvasRenderer.loadGuildMembers",
+        "canvasRenderer.loadGuildMembersRequests",
+        "canvasRenderer.loadMyPaintings",
+        "canvasRenderer.loadPainting",
+        "canvasRenderer.loadPaintingList",
+        "canvasRenderer.loadPalette",
+        "canvasRenderer.loadUserItems",
+        "canvasRenderer.refreshPaintingList",
+        "canvasRenderer.triggerCooldownPanel",
+        "canvasRenderer.updateScaleAndPosition",
+        "canvasRenderer.useWeapon",
+        "chat.addMessageRow",
+        "chat.checkOnlineDisplay",
+        "chat.deleteMessagesByUsername",
+        "chat.resize",
+        "chat.sendMessage",
+        "chat.updateNotificationCount",
+        "closeSocialPanel",
+        "collectGemBoxLoot",
+        "connectRealtime",
+        "drawBrushFrame",
+        "findNearestPaletteColor",
+        "formatDuration",
+        "formatElapsedTime",
+        "formatElapsedTimeLong",
+        "holidayTextHtml",
+        "initializeChatChannel",
+        "initializePainting",
+        "loadAuctionRows",
+        "loadBombImages",
+        "loadFramedArtAuctions",
+        "loadFramedArtForSale",
+        "loadUserProfile",
+        "normalizePointerEvent",
+        "object.addLoaderToBox",
+        "object.closeModal",
+        "object.loadGuildData",
+        "object.loadGuilds",
+        "object.loadPaintingCreateOrEdit",
+        "object.loadTopUsers",
+        "object.onChangeTools",
+        "object.openModal",
+        "object.resize",
+        "object.settingsPaintingSelectAccess",
+        "object.step",
+        "object.triggerChooseModal",
+        "object.triggerFormInputError",
+        "object.updateActiveContent",
+        "openArtistIsland",
+        "openCoinIsland",
+        "openCrateDialog",
+        "openGuild",
+        "openPlayerNews",
+        "openProfile",
+        "openSocialPanel",
+        "placeNextImagePixel",
+        "pointer.screenToPaintingSpace",
+        "pointer.setCursorPosition",
+        "pointer.triggerCursor",
+        "randomHolidayEmoji",
+        "refreshFriends",
+        "refreshGuildRequests",
+        "removeWarArea",
+        "renderActiveEffects",
+        "renderCrateSpinFrame",
+        "renderGemBoxLoot",
+        "resizeViewport",
+        "setPageLoading",
+        "setPaintingLoading",
+        "showAccessRequest",
+        "showNotification",
+        "showWarArea",
+        "toggleArtistSetting",
+        "toggleImagePainterPreview",
+        "updatePaletteScrollButtons",
+        "zoomAroundViewportCenter"
+      ],
+      "smallNumericOnly": [
+        "colorDifference",
+        "rgbToLab"
+      ]
+    }
+  }
+}

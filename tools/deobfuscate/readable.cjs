@@ -5,6 +5,7 @@ const generate = require("@babel/generator").default;
 const t = require("@babel/types");
 const { parse, sha256 } = require("./common.cjs");
 const { rename } = require("./rename.cjs");
+const { annotate } = require("./annotate.cjs");
 
 function literal(node) {
   if (
@@ -208,6 +209,7 @@ if (require.main === module) {
     const ast = application(fs.readFileSync(input, "utf8"));
     const counts = simplify(ast);
     const names = rename(ast);
+    const explanatoryComments = annotate(ast);
     traverse(ast, {
       NumericLiteral(p) {
         delete p.node.extra;
@@ -236,6 +238,7 @@ if (require.main === module) {
           outputSha256: sha256(code),
           ...counts,
           renamedBindings: names.length,
+          explanatoryComments,
           removedBootstrapBytes: 127995,
           removedConsoleSuppression: true,
           bytes: Buffer.byteLength(code),

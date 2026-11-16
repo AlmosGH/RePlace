@@ -1,10 +1,11 @@
 const traverse = require("@babel/traverse").default;
 const t = require("@babel/types");
-const reviewed = {
+const defaultReviewed = {
   ...require("./names.json"),
   ...require("./reviewed-locals.json"),
   ...require("./semantic-names.json"),
 };
+let reviewed = defaultReviewed;
 
 const camel = (text) => {
   const words =
@@ -397,7 +398,8 @@ function infer(binding) {
   };
 }
 
-function rename(ast) {
+function rename(ast, options = {}) {
+  reviewed = options.reviewed || defaultReviewed;
   traverse(ast, {
     Program(p) {
       p.scope.crawl();
@@ -534,6 +536,95 @@ function rename(ast) {
         if (collection) names.push(camel(singular(collection) + " key"));
       }
     }
+    if (options.contextualFallback) {
+      const texts = [];
+      function collect(node) {
+        if (!node) return;
+        if (t.isStringLiteral(node) && node.value && !/^_0x/.test(node.value))
+          texts.push(node.value);
+        for (const key of t.VISITOR_KEYS[node.type] || []) {
+          const value = node[key];
+          if (Array.isArray(value)) value.forEach(collect);
+          else collect(value);
+        }
+      }
+      const label = (text) =>
+        camel(
+          text
+            .replace(/https?:\/\/[^/]+/g, "")
+            .replace(/[^a-zA-Z0-9]+/g, " ")
+            .split(/\s+/)
+            .filter(Boolean)
+            .slice(0, 7)
+            .join(" "),
+        );
+      const literals = [];
+      for (const ref of binding.referencePaths) {
+        const parent = ref.parentPath;
+        if (
+          parent.isMemberExpression() &&
+          ref.key === "object" &&
+          parent.parentPath.isAssignmentExpression() &&
+          parent.key === "left"
+        ) {
+          const field = property(parent.node),
+            value = parent.parentPath.node.right;
+          collect(value);
+          if (t.isStringLiteral(value) && ["message", "cmd"].includes(field))
+            names.push(label(value.value) + "Message");
+        }
+        const fn = ref.findParent((p) => p.isFunction());
+        const call = fn?.parentPath;
+        if (call?.isCallExpression())
+          for (const arg of call.node.arguments)
+            if (t.isStringLiteral(arg)) literals.push(arg.value);
+        let branch = ref.findParent((p) => p.isIfStatement());
+        if (branch) collect(branch.node.test);
+        const enclosing = ref.findParent((p) => p.isCallExpression());
+        if (enclosing) collect(enclosing.node.callee);
+        const binary = ref.findParent((p) => p.isBinaryExpression());
+        if (binary) collect(binary.node);
+      }
+      for (const violation of binding.constantViolations)
+        if (violation.isAssignmentExpression()) collect(violation.node.right);
+      if (init) collect(init);
+      for (const text of [...literals, ...texts]) {
+        const value = label(text);
+        if (value) names.push(value + base[0].toUpperCase() + base.slice(1));
+      }
+      const fields = [];
+      for (const ref of binding.referencePaths) {
+        const parent = ref.parentPath;
+        if (
+          parent.isMemberExpression() &&
+          ref.key === "object" &&
+          parent.parentPath.isAssignmentExpression() &&
+          parent.key === "left"
+        )
+          fields.push(
+            property(parent.node) +
+              ":" +
+              require("@babel/generator")
+                .default(parent.parentPath.node.right)
+                .code.replace(/_0x[\da-f]+/g, ""),
+          );
+      }
+      if (fields.length) {
+        const signature = label(fields.join(" "));
+        names.push(signature + base[0].toUpperCase() + base.slice(1));
+        for (const context of literals)
+          names.push(
+            label(context) + signature + base[0].toUpperCase() + base.slice(1),
+          );
+      }
+      if (t.isNumericLiteral(init))
+        names.push(
+          base + "Value" + String(init.value).replace("-", "Minus") + "Setting",
+        );
+      for (const prefix of ["local", "branch", "alternate"])
+        for (const name of names.slice(1))
+          names.push(prefix + name[0].toUpperCase() + name.slice(1));
+    }
     return [
       ...new Set(
         names.map(camel).filter((name) => name && t.isValidIdentifier(name)),
@@ -552,14 +643,14 @@ function rename(ast) {
       if (other.scope === binding.scope) return true;
       if (
         containsScope(other.scope, binding.scope) &&
-        other.referencePaths.some((ref) =>
+        [...other.referencePaths, ...other.constantViolations].some((ref) =>
           containsScope(binding.scope, ref.scope),
         )
       )
         return true;
       if (
         containsScope(binding.scope, other.scope) &&
-        binding.referencePaths.some((ref) =>
+        [...binding.referencePaths, ...binding.constantViolations].some((ref) =>
           containsScope(other.scope, ref.scope),
         )
       )
@@ -593,6 +684,13 @@ function rename(ast) {
     });
   }
   if (collisions.length) {
+    if (options.reviewPath === false) {
+      const error = new Error(
+        `Semantic naming requires review for ${collisions.length} bindings`,
+      );
+      error.collisions = collisions;
+      throw error;
+    }
     require("node:fs").writeFileSync(
       require("node:path").join(__dirname, "naming-review.json"),
       JSON.stringify(collisions, null, 2),

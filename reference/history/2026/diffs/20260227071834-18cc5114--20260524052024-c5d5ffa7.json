@@ -1,0 +1,147 @@
+{
+  "before": "20260227071834-18cc5114",
+  "after": "20260524052024-c5d5ffa7",
+  "changes": {
+    "endpoints": {
+      "added": [],
+      "removed": []
+    },
+    "emits": {
+      "added": [],
+      "removed": []
+    },
+    "listeners": {
+      "added": [
+        "chat.report.message"
+      ],
+      "removed": []
+    },
+    "selectors": {
+      "added": [
+        "#pps"
+      ],
+      "removed": []
+    },
+    "text": {
+      "added": [
+        "/pps - Toggle pixels per second display (shown while holding space)",
+        "Pixels per second display disabled",
+        "Pixels per second display enabled"
+      ],
+      "removed": []
+    },
+    "functions": {
+      "added": [
+        "drawBrushFrame",
+        "renderActiveEffects"
+      ],
+      "removed": [
+        "value"
+      ],
+      "changed": [
+        "animateCrateOpening",
+        "animateCrateRank",
+        "animateWeaponEffect",
+        "api.abortRequest",
+        "api.error",
+        "api.removeRequest",
+        "api.req",
+        "applyPixelBatch",
+        "callback",
+        "canvasRenderer.centerPositionTo",
+        "canvasRenderer.checkDuplicateFromPainting",
+        "canvasRenderer.checkProtectionFromPainting",
+        "canvasRenderer.checkSamePlaceThanLast",
+        "canvasRenderer.drawPixelAt",
+        "canvasRenderer.fetchPaintingAccess",
+        "canvasRenderer.fetchPaintingModerators",
+        "canvasRenderer.formatScale",
+        "canvasRenderer.loadBlocked",
+        "canvasRenderer.loadFreeCoins",
+        "canvasRenderer.loadFriends",
+        "canvasRenderer.loadGuildMembers",
+        "canvasRenderer.loadGuildMembersRequests",
+        "canvasRenderer.loadMyPaintings",
+        "canvasRenderer.loadPainting",
+        "canvasRenderer.loadPaintingList",
+        "canvasRenderer.loadPalette",
+        "canvasRenderer.loadUserItems",
+        "canvasRenderer.refreshPaintingList",
+        "canvasRenderer.selectPaletteColor",
+        "canvasRenderer.triggerCooldownPanel",
+        "canvasRenderer.updateScaleAndPosition",
+        "canvasRenderer.useItem",
+        "canvasRenderer.useWeapon",
+        "chat.addMessageRow",
+        "chat.checkOnlineDisplay",
+        "chat.resize",
+        "chat.sendMessage",
+        "chat.updateFlash",
+        "chat.updateNotificationCount",
+        "collectGemBoxLoot",
+        "connectRealtime",
+        "findNearestPaletteColor",
+        "formatDuration",
+        "formatElapsedTime",
+        "formatElapsedTimeLong",
+        "holidayTextHtml",
+        "initializeChatChannel",
+        "initializePainting",
+        "loadAuctionRows",
+        "loadBombImages",
+        "loadFramedArtAuctions",
+        "loadFramedArtForSale",
+        "loadUserProfile",
+        "normalizePointerEvent",
+        "object.addLoaderToBox",
+        "object.closeModal",
+        "object.loadGuilds",
+        "object.loadPaintingCreateOrEdit",
+        "object.loadTopUsers",
+        "object.onChangeTools",
+        "object.openModal",
+        "object.resize",
+        "object.settingsPaintingSelectAccess",
+        "object.settingsPaintingSelectBackground",
+        "object.step",
+        "object.updateActiveContent",
+        "openAuction",
+        "openCoinIsland",
+        "openCrateDialog",
+        "openDailyReward",
+        "openGemBox",
+        "openGuild",
+        "openPlayerNews",
+        "openProfile",
+        "openSocialPanel",
+        "placeNextImagePixel",
+        "pointer.setCursorPosition",
+        "pointer.triggerCursor",
+        "randomHolidayEmoji",
+        "refreshFriends",
+        "refreshGuildMembers",
+        "refreshGuildRequests",
+        "removeWarArea",
+        "renderHistoryFrame",
+        "renderImagePainterFrame",
+        "requestCaptcha",
+        "resizeViewport",
+        "runCaptchaAction",
+        "setPageLoading",
+        "setPaintingLoading",
+        "showAccessRequest",
+        "showNotification",
+        "showWarArea",
+        "toggleArtistSetting",
+        "updateAuctionFee",
+        "updateConnectionVersion",
+        "updatePaletteScrollButtons"
+      ],
+      "smallNumericOnly": [
+        "colorDifference",
+        "renderCrateSpinFrame",
+        "rgbToLab"
+      ]
+    }
+  }
+}

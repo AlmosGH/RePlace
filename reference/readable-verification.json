@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "outputSha256": "e34ee7dbd28ca577f8cddb6f1b75feb16072ea215d0f9f1608a919d4522d240f",
+  "outputSha256": "e377bea924ae60c38e9719a519ad656a47530299b1044430b5ac119336ad1991",
   "checkedRenamedBindings": 2152,
   "authorizedChanges": [
     "Removed encoded table and decoder",
