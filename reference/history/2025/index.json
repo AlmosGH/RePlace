@@ -1,0 +1,253 @@
+{
+  "year": 2025,
+  "queries": [
+    {
+      "url": "https://web.archive.org/cdx/search/cdx?url=pixelplace.io%2Fjs%2Fscript.min.js&matchType=prefix&from=2025&to=2025&output=json&filter=statuscode%3A200&fl=urlkey%2Ctimestamp%2Coriginal%2Cdigest%2Cstatuscode%2Cmimetype&limit=500&showResumeKey=true",
+      "rows": 29,
+      "responseSha256": "abeb6f52ded6ab9d3e07253c2b5a4fc2bfe6cec846590844f69cdb942ba7c36d",
+      "resumeKey": null
+    },
+    {
+      "url": "https://web.archive.org/cdx/search/cdx?url=www.pixelplace.io%2Fjs%2Fscript.min.js&matchType=prefix&from=2025&to=2025&output=json&filter=statuscode%3A200&fl=urlkey%2Ctimestamp%2Coriginal%2Cdigest%2Cstatuscode%2Cmimetype&limit=500&showResumeKey=true",
+      "rows": 29,
+      "responseSha256": "abeb6f52ded6ab9d3e07253c2b5a4fc2bfe6cec846590844f69cdb942ba7c36d",
+      "resumeKey": null
+    }
+  ],
+  "captures": [
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=84349",
+      "timestamp": "20250101065720",
+      "original": "https://pixelplace.io/js/script.min.js?v3=84349",
+      "digest": "UFPVEGDMWHQFOF5JTK35NUWTLCKZVAQF",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=84353",
+      "timestamp": "20250114132048",
+      "original": "https://pixelplace.io/js/script.min.js?v3=84353",
+      "digest": "CKIRJAGY277GTMXBYQWOYGCQKDNMLF5R",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=84353",
+      "timestamp": "20250205173655",
+      "original": "https://pixelplace.io/js/script.min.js?v3=84353",
+      "digest": "CKIRJAGY277GTMXBYQWOYGCQKDNMLF5R",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=84353",
+      "timestamp": "20250224010006",
+      "original": "https://pixelplace.io/js/script.min.js?v3=84353",
+      "digest": "CKIRJAGY277GTMXBYQWOYGCQKDNMLF5R",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=84353",
+      "timestamp": "20250321053456",
+      "original": "https://pixelplace.io/js/script.min.js?v3=84353",
+      "digest": "CKIRJAGY277GTMXBYQWOYGCQKDNMLF5R",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=84355",
+      "timestamp": "20250402000636",
+      "original": "https://pixelplace.io/js/script.min.js?v3=84355",
+      "digest": "PN65L7DZO3KX3AXS4C7AJAZVC6XDVQAY",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=84355",
+      "timestamp": "20250407184332",
+      "original": "https://pixelplace.io/js/script.min.js?v3=84355",
+      "digest": "UQTDEN6RUBU4PSA6TC5BVDF5HYIKCLHW",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=84355",
+      "timestamp": "20250408175834",
+      "original": "https://pixelplace.io/js/script.min.js?v3=84355",
+      "digest": "UQTDEN6RUBU4PSA6TC5BVDF5HYIKCLHW",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=84355",
+      "timestamp": "20250410141857",
+      "original": "https://pixelplace.io/js/script.min.js?v3=84355",
+      "digest": "PGBDY3CEF7XHI3ENJCDFWWU2OYKJ2HYR",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=84355",
+      "timestamp": "20250426210948",
+      "original": "https://pixelplace.io/js/script.min.js?v3=84355",
+      "digest": "UQTDEN6RUBU4PSA6TC5BVDF5HYIKCLHW",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=84356",
+      "timestamp": "20250630100424",
+      "original": "https://pixelplace.io/js/script.min.js?v3=84356",
+      "digest": "XPGF2IECCCZKUYTPWPKYFMLB47PQ6HVF",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=84356",
+      "timestamp": "20250630101230",
+      "original": "https://pixelplace.io/js/script.min.js?v3=84356",
+      "digest": "ZHAARPQPDAZPQFJ447JIF6NE4JFW4FY5",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=84356",
+      "timestamp": "20250713190242",
+      "original": "https://pixelplace.io/js/script.min.js?v3=84356",
+      "digest": "6XS54FGP2AXJJR7GSKPL2OTB6KLYF7R5",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=84356",
+      "timestamp": "20250715183130",
+      "original": "https://pixelplace.io/js/script.min.js?v3=84356",
+      "digest": "XPGF2IECCCZKUYTPWPKYFMLB47PQ6HVF",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=84356",
+      "timestamp": "20250727231235",
+      "original": "https://pixelplace.io/js/script.min.js?v3=84356",
+      "digest": "ZHAARPQPDAZPQFJ447JIF6NE4JFW4FY5",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=84356",
+      "timestamp": "20250808100957",
+      "original": "https://pixelplace.io/js/script.min.js?v3=84356",
+      "digest": "DEL7SWXEQAEPZL3MKVB5ZUDN7F4IJZTH",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=84356",
+      "timestamp": "20250809204646",
+      "original": "https://pixelplace.io/js/script.min.js?v3=84356",
+      "digest": "XPGF2IECCCZKUYTPWPKYFMLB47PQ6HVF",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=84356",
+      "timestamp": "20250809220349",
+      "original": "https://pixelplace.io/js/script.min.js?v3=84356",
+      "digest": "XPGF2IECCCZKUYTPWPKYFMLB47PQ6HVF",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=84356",
+      "timestamp": "20250811050112",
+      "original": "https://pixelplace.io/js/script.min.js?v3=84356",
+      "digest": "XPGF2IECCCZKUYTPWPKYFMLB47PQ6HVF",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=84356",
+      "timestamp": "20250812022545",
+      "original": "https://pixelplace.io/js/script.min.js?v3=84356",
+      "digest": "AIPDXC63EBTIG4Z3NNS2SRZDYSPXUFG6",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=84361",
+      "timestamp": "20250815033838",
+      "original": "https://pixelplace.io/js/script.min.js?v3=84361",
+      "digest": "FIK6K4UOKFGCN52OM6R3GCPW35ZD6XVE",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=84361",
+      "timestamp": "20250816043734",
+      "original": "https://pixelplace.io/js/script.min.js?v3=84361",
+      "digest": "XVIOOLVQNBYKTUA2SBHLB7KJL7QGNUPF",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=84361",
+      "timestamp": "20250816192134",
+      "original": "https://pixelplace.io/js/script.min.js?v3=84361",
+      "digest": "FIK6K4UOKFGCN52OM6R3GCPW35ZD6XVE",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=84361",
+      "timestamp": "20250817220131",
+      "original": "https://pixelplace.io/js/script.min.js?v3=84361",
+      "digest": "KWNF7R3N4XOPH2UJLFB4RMH5PYFYF2OU",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=84361",
+      "timestamp": "20250818082359",
+      "original": "https://pixelplace.io/js/script.min.js?v3=84361",
+      "digest": "FIK6K4UOKFGCN52OM6R3GCPW35ZD6XVE",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=84388",
+      "timestamp": "20250831022816",
+      "original": "https://pixelplace.io/js/script.min.js?v3=84388",
+      "digest": "JB37UFOH26XTG7LMXZ6CT7I4PDGTLST2",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=84391",
+      "timestamp": "20250928073151",
+      "original": "https://pixelplace.io/js/script.min.js?v3=84391",
+      "digest": "YK5VBZQCANZBJKS6Q57OXHEUJ4YSB2XF",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=85015",
+      "timestamp": "20251026111529",
+      "original": "https://pixelplace.io/js/script.min.js?v3=85015",
+      "digest": "Q56T3NVOTNLOVROBZ5DAUYIZ5YYU3GKV",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=85030",
+      "timestamp": "20251120000855",
+      "original": "https://pixelplace.io/js/script.min.js?v3=85030",
+      "digest": "ACBAPU5OL7O5BVFRYZ62IO7XTXEUFNFK",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    }
+  ],
+  "discoveryComplete": true,
+  "discoveredAt": "2026-11-16T19:01:31.906Z"
+}

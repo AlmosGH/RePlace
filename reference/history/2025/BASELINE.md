@@ -1,0 +1,62 @@
+# Initial observed baseline
+
+Initial observed baseline 20250101065720-6c95e191. Security/anticheat: no earlier verified snapshot is available for comparison; security changes before this capture are unknown.
+
+[Readable source](versions/20250101065720-6c95e191.js). This is a baseline, not an inferred release or update.
+
+- HTTP endpoint literal: `/api/account-password.php`
+- HTTP endpoint literal: `/api/account-username.php`
+- HTTP endpoint literal: `/api/delete-painting.php`
+- HTTP endpoint literal: `/api/forgot-activation.php`
+- HTTP endpoint literal: `/api/forgot.php`
+- HTTP endpoint literal: `/api/framed-painting.php`
+- HTTP endpoint literal: `/api/gembox.php`
+- HTTP endpoint literal: `/api/get-bot.php`
+- HTTP endpoint literal: `/api/get-claims.php`
+- HTTP endpoint literal: `/api/get-coin-island.php`
+- HTTP endpoint literal: `/api/get-gold-rush-island.php`
+- HTTP endpoint literal: `/api/get-guild-members.php`
+- HTTP endpoint literal: `/api/get-guild.php`
+- HTTP endpoint literal: `/api/get-item.php`
+- HTTP endpoint literal: `/api/get-jackpot-ticket.php`
+- HTTP endpoint literal: `/api/get-my-friends.php`
+- HTTP endpoint literal: `/api/get-my-items.php`
+- HTTP endpoint literal: `/api/get-my-paintings.php`
+- HTTP endpoint literal: `/api/get-painting-access.php`
+- HTTP endpoint literal: `/api/get-painting-access.php?getAccessRequests=true&id=`
+- HTTP endpoint literal: `/api/get-painting-access.php?getModerators=true&painting=`
+- HTTP endpoint literal: `/api/get-painting-access.php?getPendingCount=true&id=`
+- HTTP endpoint literal: `/api/get-painting-access.php?getStatus=true&painting=`
+- HTTP endpoint literal: `/api/get-painting.php?id=`
+- HTTP endpoint literal: `/api/get-user-followers.php`
+- HTTP endpoint literal: `/api/get-user-guild.php`
+- HTTP endpoint literal: `/api/get-user-sessions.php?username=`
+- HTTP endpoint literal: `/api/get-user.php`
+- HTTP endpoint literal: `/api/login.php`
+- HTTP endpoint literal: `/api/manage-premium.php`
+- HTTP endpoint literal: `/api/ping.php`
+- HTTP endpoint literal: `/api/post-appeal.php`
+- HTTP endpoint literal: `/api/post-bio.php`
+- HTTP endpoint literal: `/api/post-claim.php`
+- HTTP endpoint literal: `/api/post-coin-island.php`
+- HTTP endpoint literal: `/api/post-coins.php`
+- HTTP endpoint literal: `/api/post-dailylootv3.php`
+- HTTP endpoint literal: `/api/post-dailyreward.php`
+- HTTP endpoint literal: `/api/post-delete.php`
+- HTTP endpoint literal: `/api/post-favorite.php`
+- HTTP endpoint literal: `/api/post-friend.php`
+- HTTP endpoint literal: `/api/post-guild-access.php`
+- HTTP endpoint literal: `/api/post-guild-avatar.php`
+- HTTP endpoint literal: `/api/post-guild-rank.php`
+- HTTP endpoint literal: `/api/post-guild-transfer.php`
+- HTTP endpoint literal: `/api/post-guild.php`
+- HTTP endpoint literal: `/api/post-jackpot-ticket.php`
+- HTTP endpoint literal: `/api/post-logout.php`
+- HTTP endpoint literal: `/api/post-painting.php`
+- HTTP endpoint literal: `/api/post-settings.php`
+- HTTP endpoint literal: `/api/post-shop.php`
+- HTTP endpoint literal: `/api/post-user-avatar.php`
+- HTTP endpoint literal: `/api/register.php`
+- HTTP endpoint literal: `/api/relog.php`
+- HTTP endpoint literal: `/api/sso.php?type=3&action=login`
+- HTTP endpoint literal: `/api/stripe.php`

@@ -1,0 +1,1306 @@
+{
+  "before": "20230918184106-fcb6a620",
+  "after": "20231007203232-4168e3da",
+  "changes": {
+    "endpoints": {
+      "added": [
+        "/api/framed-painting.php",
+        "/api/gembox.php"
+      ],
+      "removed": []
+    },
+    "emits": {
+      "added": [
+        "hb"
+      ],
+      "removed": []
+    },
+    "listeners": {
+      "added": [
+        "area_fight_bonus_chest",
+        "auction.lost.bid",
+        "auction.new.bid",
+        "auction.notification.win"
+      ],
+      "removed": []
+    },
+    "selectors": {
+      "added": [
+        "#artist-island",
+        "#artist-island .box-content-x > .loading",
+        "#artist-island .box-content-x > div",
+        "#artist-island .box-x",
+        "#artist-island .craft-painting",
+        "#artist-island .inv-framed.auctions",
+        "#artist-island .inv-framed.sell",
+        "#artist-island .paint-preview .author",
+        "#artist-island .paint-preview .author .author-name",
+        "#artist-island .paint-preview .author .icns",
+        "#artist-island .paint-preview .painting-bloc",
+        "#artist-island .paint-preview .painting-bloc > img",
+        "#artist-island .paint-settings",
+        "#artist-island .paint-settings a.active[data-type=\"frame\"]",
+        "#artist-island .paint-settings a.active[data-type=\"gems\"]",
+        "#artist-island .painting-bloc",
+        "#artist-island .painting-bloc > img",
+        "#auction",
+        "#auction .box-content-x > .loading",
+        "#auction .box-content-x > div",
+        "#item .s-coins",
+        "#item .s-goldbars",
+        "#profile .user-inventory [data-name=\"copper_ores\"] > div",
+        "#profile .user-inventory [data-name=\"emerald_stones\"] > div",
+        "#profile .user-inventory [data-name=\"gold_bars\"] > div",
+        "#profile .user-inventory [data-name=\"gold_dynamite_level\"] > div",
+        "#profile .user-inventory [data-name=\"gold_dynamite_level\"] img",
+        "#profile .user-inventory [data-name=\"gold_mine_level\"] > div",
+        "#profile .user-inventory [data-name=\"gold_mine_level\"] img",
+        "#profile .user-inventory [data-name=\"gold_ores\"] > div",
+        "#profile .user-inventory [data-name=\"iron_ores\"] > div",
+        "#profile .user-inventory [data-name=\"pyrite_ores\"] > div",
+        "#profile .user-inventory [data-name=\"ruby_stones\"] > div",
+        "#profile .user-inventory [data-name=\"sapphire_stones\"] > div",
+        ".artist-island",
+        ".confirm-painting .recap > div[data-type=\"price\"] b",
+        ".copper-ore-count",
+        ".emerald-count",
+        ".gb b",
+        ".iron-ore-count",
+        ".odds-gem",
+        ".paint-list",
+        ".paint-preview .frame > div > img",
+        ".paint-preview .frame > img",
+        ".pyrite-ore-count",
+        ".ruby-count",
+        ".sapphire-count",
+        ".tc b"
+      ],
+      "removed": []
+    },
+    "text": {
+      "added": [
+        "\"  style=\"background-color:",
+        "\" class=\"pixelate sp-framed-",
+        "#artist-island .box-x",
+        "#artist-island .choose-paint",
+        "#artist-island .craft-painting",
+        "#artist-island .inv-framed.auctions",
+        "#artist-island .inv-framed.sell",
+        "#artist-island .paint-preview .author",
+        "#artist-island .paint-preview .author .author-name",
+        "#artist-island .paint-preview .author .icns",
+        "#artist-island .paint-preview .painting-bloc",
+        "#artist-island .paint-settings",
+        "#artist-island .paint-settings .row-select a",
+        "#artist-island .paint-settings a.active[data-type=\"frame\"]",
+        "#artist-island .paint-settings a.active[data-type=\"gems\"]",
+        "#artist-island .painting-bloc",
+        "#profile .user-inventory [data-name=\"gold_dynamite_level\"] img",
+        "#profile .user-inventory [data-name=\"gold_mine_level\"] img",
+        "-- Guaranteed loots --\n\nCopper Ore: 10+\nIron Ore: 7+\nEmerald: 6+\nSapphire: 3+\n\n-- Rare loots --\n\nPyrite Ore: 60% loot chance\nRuby: 30% loot chance\nGold Ore: 10% loot chance\n\n-- Epic loots --\n\n5 % chance to get up to 3 of the following epic loot:\n\nAtomic bomb, 3 Days Premium, Halloween Username, XMAS Username, Pixel Missile\n\n-- Legendary loots --\n\nVIP badge: 0.01% loot chance",
+        "Framed Painting created!",
+        "Starting bid price needs to be 300 PXP coins or more. This is art!",
+        "This painting will be removed from your account during the entire time of the auction and will be given to the highest bidder or returned to you if no one placed an offer. Would you like to continue?",
+        "You are now the highest bidder",
+        "You have been outbid by ",
+        "You need to buy a treasure chest first. Click the Get more button at the bottom"
+      ],
+      "removed": [
+        "You need to buy a treasure chest first. Click the button under it"
+      ]
+    },
+    "functions": {
+      "added": [
+        "clickCallback",
+        "collectGemBoxLoot",
+        "formatDuration",
+        "loadFramedArtAuctions",
+        "loadFramedArtForSale",
+        "openArtistIsland",
+        "openAuction",
+        "openGemBox",
+        "renderGemBoxLoot",
+        "shopDropdownCallback",
+        "toggleArtistSetting"
+      ],
+      "removed": [
+        "openGoldShop",
+        "openProfile",
+        "resetGemBoxContents",
+        "toggleInventory"
+      ],
+      "changed": [
+        "api.error",
+        "api.removeRequest",
+        "api.req",
+        "callback",
+        "canvasRenderer.centerPositionTo",
+        "canvasRenderer.checkDuplicateFromPainting",
+        "canvasRenderer.checkProtectionFromPainting",
+        "canvasRenderer.checkSamePlaceThanLast",
+        "canvasRenderer.drawPixelAt",
+        "canvasRenderer.fetchPaintingAccess",
+        "canvasRenderer.fetchPaintingModerators",
+        "canvasRenderer.formatScale",
+        "canvasRenderer.getColorFromPainting",
+        "canvasRenderer.getUrlHash",
+        "canvasRenderer.loadBlocked",
+        "canvasRenderer.loadFriends",
+        "canvasRenderer.loadGuildMembers",
+        "canvasRenderer.loadGuildMembersRequests",
+        "canvasRenderer.loadMyPaintings",
+        "canvasRenderer.loadPainting",
+        "canvasRenderer.loadPaintingList",
+        "canvasRenderer.loadPalette",
+        "canvasRenderer.loadUserItems",
+        "canvasRenderer.refreshPaintingList",
+        "canvasRenderer.selectPaletteColor",
+        "canvasRenderer.updateScaleAndPosition",
+        "canvasRenderer.useItem",
+        "canvasRenderer.useWeapon",
+        "chat.addMessageRow",
+        "chat.checkOnlineDisplay",
+        "chat.deleteMessagesByUsername",
+        "chat.resize",
+        "chat.sendMessage",
+        "chat.updateFlash",
+        "chat.updateNotificationCount",
+        "chat.updateScroll",
+        "connectRealtime",
+        "findNearestPaletteColor",
+        "formatElapsedTime",
+        "formatElapsedTimeLong",
+        "initializeChatChannel",
+        "initializePainting",
+        "loadAuctionRows",
+        "loadTrackingHistory",
+        "normalizePointerEvent",
+        "object.closeModal",
+        "object.loadGuilds",
+        "object.loadPaintingCreateOrEdit",
+        "object.loadTopUsers",
+        "object.onChangeTools",
+        "object.onmove",
+        "object.openModal",
+        "object.resize",
+        "object.settingsPaintingSelectAccess",
+        "object.settingsPaintingSelectBackground",
+        "object.triggerChooseModal",
+        "object.triggerFormInputError",
+        "object.triggerLoader",
+        "object.updateActiveContent",
+        "openCoinIsland",
+        "openGuild",
+        "openSocialPanel",
+        "placeCursorPixel",
+        "placeNextImagePixel",
+        "pointer.screenToPaintingSpace",
+        "pointer.setCursorPosition",
+        "pointer.triggerCursor",
+        "randomHolidayEmoji",
+        "removeWarArea",
+        "renderHistoryFrame",
+        "renderRateLimitedPlacement",
+        "resizeViewport",
+        "runCaptchaAction",
+        "setPageLoading",
+        "setPaintingLoading",
+        "showNotification",
+        "showWarArea",
+        "updateAuctionFee",
+        "updateConnectionVersion",
+        "updateDynamiteUpgrade",
+        "updatePaletteScrollButtons"
+      ],
+      "smallNumericOnly": [
+        "colorDifference",
+        "rgbToLab"
+      ]
+    }
+  },
+  "assessment": {
+    "major": [
+      {
+        "area": "Account and access",
+        "evidence": [
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#artist-island .paint-preview .author"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#artist-island .paint-preview .author .author-name"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#artist-island .paint-preview .author .icns"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "#artist-island .paint-preview .author"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "#artist-island .paint-preview .author .author-name"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "#artist-island .paint-preview .author .icns"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "This painting will be removed from your account during the entire time of the auction and will be given to the highest bidder or returned to you if no one placed an offer. Would you like to continue?"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "runCaptchaAction"
+          }
+        ]
+      },
+      {
+        "area": "Canvas and placement",
+        "evidence": [
+          {
+            "kind": "added",
+            "key": "endpoints",
+            "value": "/api/framed-painting.php"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#artist-island .craft-painting"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#artist-island .paint-preview .author"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#artist-island .paint-preview .author .author-name"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#artist-island .paint-preview .author .icns"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#artist-island .paint-preview .painting-bloc"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#artist-island .paint-preview .painting-bloc > img"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#artist-island .paint-settings"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#artist-island .paint-settings a.active[data-type=\"frame\"]"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#artist-island .paint-settings a.active[data-type=\"gems\"]"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#artist-island .painting-bloc"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#artist-island .painting-bloc > img"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": ".confirm-painting .recap > div[data-type=\"price\"] b"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": ".paint-list"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": ".paint-preview .frame > div > img"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": ".paint-preview .frame > img"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "\"  style=\"background-color:"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "\" class=\"pixelate sp-framed-"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "#artist-island .choose-paint"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "#artist-island .craft-painting"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "#artist-island .paint-preview .author"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "#artist-island .paint-preview .author .author-name"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "#artist-island .paint-preview .author .icns"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "#artist-island .paint-preview .painting-bloc"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "#artist-island .paint-settings"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "#artist-island .paint-settings .row-select a"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "#artist-island .paint-settings a.active[data-type=\"frame\"]"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "#artist-island .paint-settings a.active[data-type=\"gems\"]"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "#artist-island .painting-bloc"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "-- Guaranteed loots --\n\nCopper Ore: 10+\nIron Ore: 7+\nEmerald: 6+\nSapphire: 3+\n\n-- Rare loots --\n\nPyrite Ore: 60% loot chance\nRuby: 30% loot chance\nGold Ore: 10% loot chance\n\n-- Epic loots --\n\n5 % chance to get up to 3 of the following epic loot:\n\nAtomic bomb, 3 Days Premium, Halloween Username, XMAS Username, Pixel Missile\n\n-- Legendary loots --\n\nVIP badge: 0.01% loot chance"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "Framed Painting created!"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "This painting will be removed from your account during the entire time of the auction and will be given to the highest bidder or returned to you if no one placed an offer. Would you like to continue?"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.centerPositionTo"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.checkDuplicateFromPainting"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.checkProtectionFromPainting"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.checkSamePlaceThanLast"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.drawPixelAt"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.fetchPaintingAccess"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.fetchPaintingModerators"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.formatScale"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.getColorFromPainting"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.getUrlHash"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadBlocked"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadFriends"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadGuildMembers"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadGuildMembersRequests"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadMyPaintings"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadPainting"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadPaintingList"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadPalette"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadUserItems"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.refreshPaintingList"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.selectPaletteColor"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.updateScaleAndPosition"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.useItem"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.useWeapon"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "findNearestPaletteColor"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "initializePainting"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.loadPaintingCreateOrEdit"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.settingsPaintingSelectAccess"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.settingsPaintingSelectBackground"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "placeCursorPixel"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "placeNextImagePixel"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "pointer.screenToPaintingSpace"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "renderRateLimitedPlacement"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "setPaintingLoading"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "updatePaletteScrollButtons"
+          }
+        ]
+      },
+      {
+        "area": "Guilds and social features",
+        "evidence": [
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadFriends"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadGuildMembers"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadGuildMembersRequests"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "chat.addMessageRow"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "chat.checkOnlineDisplay"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "chat.deleteMessagesByUsername"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "chat.resize"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "chat.sendMessage"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "chat.updateFlash"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "chat.updateNotificationCount"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "chat.updateScroll"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "initializeChatChannel"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.loadGuilds"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "openGuild"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "openSocialPanel"
+          }
+        ]
+      },
+      {
+        "area": "Store and inventory",
+        "evidence": [
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#item .s-coins"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#item .s-goldbars"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#profile .user-inventory [data-name=\"copper_ores\"] > div"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#profile .user-inventory [data-name=\"emerald_stones\"] > div"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#profile .user-inventory [data-name=\"gold_bars\"] > div"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#profile .user-inventory [data-name=\"gold_dynamite_level\"] > div"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#profile .user-inventory [data-name=\"gold_dynamite_level\"] img"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#profile .user-inventory [data-name=\"gold_mine_level\"] > div"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#profile .user-inventory [data-name=\"gold_mine_level\"] img"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#profile .user-inventory [data-name=\"gold_ores\"] > div"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#profile .user-inventory [data-name=\"iron_ores\"] > div"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#profile .user-inventory [data-name=\"pyrite_ores\"] > div"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#profile .user-inventory [data-name=\"ruby_stones\"] > div"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#profile .user-inventory [data-name=\"sapphire_stones\"] > div"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "#profile .user-inventory [data-name=\"gold_dynamite_level\"] img"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "#profile .user-inventory [data-name=\"gold_mine_level\"] img"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "-- Guaranteed loots --\n\nCopper Ore: 10+\nIron Ore: 7+\nEmerald: 6+\nSapphire: 3+\n\n-- Rare loots --\n\nPyrite Ore: 60% loot chance\nRuby: 30% loot chance\nGold Ore: 10% loot chance\n\n-- Epic loots --\n\n5 % chance to get up to 3 of the following epic loot:\n\nAtomic bomb, 3 Days Premium, Halloween Username, XMAS Username, Pixel Missile\n\n-- Legendary loots --\n\nVIP badge: 0.01% loot chance"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "Starting bid price needs to be 300 PXP coins or more. This is art!"
+          },
+          {
+            "kind": "added",
+            "key": "functions",
+            "value": "shopDropdownCallback"
+          },
+          {
+            "kind": "removed",
+            "key": "functions",
+            "value": "openGoldShop"
+          },
+          {
+            "kind": "removed",
+            "key": "functions",
+            "value": "toggleInventory"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadUserItems"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.useItem"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "openCoinIsland"
+          }
+        ]
+      },
+      {
+        "area": "Realtime and connection handling",
+        "evidence": [
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "connectRealtime"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "updateConnectionVersion"
+          }
+        ]
+      },
+      {
+        "area": "Maps and navigation",
+        "evidence": [
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "resizeViewport"
+          }
+        ]
+      },
+      {
+        "area": "Interface and settings",
+        "evidence": [
+          {
+            "kind": "added",
+            "key": "listeners",
+            "value": "auction.notification.win"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#artist-island .paint-settings"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#artist-island .paint-settings a.active[data-type=\"frame\"]"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#artist-island .paint-settings a.active[data-type=\"gems\"]"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#profile .user-inventory [data-name=\"copper_ores\"] > div"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#profile .user-inventory [data-name=\"emerald_stones\"] > div"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#profile .user-inventory [data-name=\"gold_bars\"] > div"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#profile .user-inventory [data-name=\"gold_dynamite_level\"] > div"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#profile .user-inventory [data-name=\"gold_dynamite_level\"] img"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#profile .user-inventory [data-name=\"gold_mine_level\"] > div"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#profile .user-inventory [data-name=\"gold_mine_level\"] img"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#profile .user-inventory [data-name=\"gold_ores\"] > div"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#profile .user-inventory [data-name=\"iron_ores\"] > div"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#profile .user-inventory [data-name=\"pyrite_ores\"] > div"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#profile .user-inventory [data-name=\"ruby_stones\"] > div"
+          },
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#profile .user-inventory [data-name=\"sapphire_stones\"] > div"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "#artist-island .paint-settings"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "#artist-island .paint-settings .row-select a"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "#artist-island .paint-settings a.active[data-type=\"frame\"]"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "#artist-island .paint-settings a.active[data-type=\"gems\"]"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "#profile .user-inventory [data-name=\"gold_dynamite_level\"] img"
+          },
+          {
+            "kind": "added",
+            "key": "text",
+            "value": "#profile .user-inventory [data-name=\"gold_mine_level\"] img"
+          },
+          {
+            "kind": "added",
+            "key": "functions",
+            "value": "toggleArtistSetting"
+          },
+          {
+            "kind": "removed",
+            "key": "functions",
+            "value": "openProfile"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "chat.checkOnlineDisplay"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "chat.updateNotificationCount"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.closeModal"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.openModal"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.settingsPaintingSelectAccess"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.settingsPaintingSelectBackground"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.triggerChooseModal"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "showNotification"
+          }
+        ]
+      }
+    ],
+    "security": {
+      "added": [
+        {
+          "fingerprint": "5f30b5531a16aca745efc891",
+          "line": 481,
+          "code": "serverData.painting.moderators[itemKey].permissions.tools&&(welcomeVisible=true);"
+        },
+        {
+          "fingerprint": "af5b4de407636698064b2526",
+          "line": 577,
+          "code": "if(serverData.painting.moderators[itemKey].permissions.tools){$('a[data-id=\"painting-owner-tools\"]').removeClass('display-none').show();}"
+        },
+        {
+          "fingerprint": "9baac72776ec5359bdd56fa6",
+          "line": 1044,
+          "code": "if(serverData.painting.cooldown>0)canvasRenderer.drawPixelAt();else{if(pointer.mobileFirstActivation){pointer.mobileFirstActivation=false;canvasRenderer.scale=10;zoomAroundViewportCenter(true);}pointer.mobileBrushActivated=true;$(this).find('span').text('Disable Brush?');$(this).find('div').hide();}"
+        },
+        {
+          "fingerprint": "4438529eada295fc3f4a3e05",
+          "line": 3787,
+          "code": "argument-countValue0Setting>=serverData.painting.rate*1.5&&(countValue0Setting=argument,placeCursorPixel());"
+        },
+        {
+          "fingerprint": "cb332234be81bc5df7436a9e",
+          "line": 3828,
+          "code": "if(event.originalEvent){event.preventDefault();if(selectedItemId!==null)canvasRenderer.useWeapon();else{if(!enabled){if(count>5){enabled=true;localStorage.setItem('know-about-space-bar',true);showNotification('info','Tip: Hold [SPACE BAR] to draw faster!');}else{count++;}}canvasRenderer.drawPixelAt();}}"
+        },
+        {
+          "fingerprint": "579a98fb21301e33c43f5c6a",
+          "line": 5858,
+          "code": "if(event.originalEvent){var guildRankRequest={};guildRankRequest.username=$(this).attr('data-username');guildRankRequest.rank=$(this).val();var requestData=guildRankRequest;api.xhr.req('POST','/api/post-guild-rank.php',requestData,true,function(success,response){if(success)showNotification('success','Success','Guild rank updated');else{$('.profile-guild-rank select[name=\"guild-rank\"]').val($('.profile-guild-rank select[name=\"guild-rank\"]').attr('data-rank')).change();showNotification('error','Error',response.message);}});}"
+        },
+        {
+          "fingerprint": "bb38c6c191b832cd5b9433ed",
+          "line": 6328,
+          "code": "if(ui.selectors.modal==='captcha')return;else visible?(ui.activeContent.find('> form').hide(),ui.activeContent.find('> div').hide(),ui.activeContent.find('.loading').css('display','flex')):(ui.activeContent.find('> form').show(),ui.activeContent.find('> div').show(),ui.activeContent.find('.loading').css('display','none'));"
+        },
+        {
+          "fingerprint": "f28fe1cdbb6902ebd56192d8",
+          "line": 6628,
+          "code": "ui.activeElement.find('.account-password').hide();"
+        },
+        {
+          "fingerprint": "37eff1579f82a3ef652cccc7",
+          "line": 6629,
+          "code": "ui.activeElement.find('.account-password').show();"
+        },
+        {
+          "fingerprint": "e137229f285e549f0d0b4c54",
+          "line": 6891,
+          "code": "if(target==='captcha')ui.activeCaptcha=true;else{ui.activeCaptcha=false;}"
+        },
+        {
+          "fingerprint": "4a906b3b25c63882d2972587",
+          "line": 7060,
+          "code": "serverData.user.premium.active?(ui.elem.settings.painting.find('input[name=\"sizeX\"]').val(serverData.painting.width),ui.elem.settings.painting.find('input[name=\"sizeY\"]').val(serverData.painting.height),ui.elem.settings.painting.find('input[name=\"cooldown\"]').val(serverData.painting.cooldown),ui.elem.settings.painting.find('input[name=\"autoAcceptTime\"]').val(serverData.painting.autoAcceptTime)):(ui.elem.settings.painting.find('input[name=\"sizeX\"]').val(appState.painting.width),ui.elem.settings.painting.find('input[name=\"sizeY\"]').val(appState.painting.height),ui.elem.settings.painting.find('input[name=\"cooldown\"]').val(appState.painting.cooldown),ui.elem.settings.painting.find('input[name=\"autoAcceptTime\"]').val(appState.painting.autoAcceptTime));"
+        },
+        {
+          "fingerprint": "1e7117efec3f98f6ff83cbb3",
+          "line": 8251,
+          "code": "success?(ui.triggerLoader(false),element.text(element.attr('data-text')),element.removeAttr('disabled'),element.removeClass('spin'),canvasRenderer.fetchPaintingModerators(),showNotification('success','Permissions updated')):(ui.triggerLoader(false),element.text(element.attr('data-text')),element.removeAttr('disabled'),element.removeClass('spin'),showNotification('error','Error',response.message));"
+        },
+        {
+          "fingerprint": "ad923c05cdcafcbb6814f147",
+          "line": 13115,
+          "code": "if(inputValue!==appState.painting.cooldown){showNotification('error','You need to be a Premium Subscriber to modify this setting.');}else{ui.triggerFormInputError('cooldown','');}"
+        },
+        {
+          "fingerprint": "885b3f336452550a94b1c54a",
+          "line": 13428,
+          "code": "isTouchDevice()?(pointer.touchDevice=true,!alternativeMobileDrawing&&(serverData.painting.cooldown>0?($('#mobileplace a.mobile-place').find('span').text('Place pixel?'),$('#mobileplace a.mobile-place').find('div').hide()):($('#mobileplace a.mobile-place').find('span').text('Activate Brush?'),$('#mobileplace a.mobile-place').find('div').show()),$('#mobileplace').show())):$('.input-checkbox[data-name=\"tools-mobile-alt\"]').hide();"
+        },
+        {
+          "fingerprint": "7258ada546e1f71e40862898",
+          "line": 13463,
+          "code": "if(event.originalEvent.changedTouches[0].clientX===undefined||event.originalEvent.changedTouches[0].clientY===undefined)alert('Browser not supported, please use Chrome (recommended), Safari or Firefox');else{event.pageX=event.originalEvent.changedTouches[0].clientX;event.pageY=event.originalEvent.changedTouches[0].clientY;}"
+        },
+        {
+          "fingerprint": "4347db941e3ba2d0625036e3",
+          "line": 13647,
+          "code": "if(id==='logout'){var cookieOptions={};cookieOptions.path='';Cookies.remove('authId',cookieOptions);var authIdCookieOptions={};authIdCookieOptions.path='';Cookies.remove('authKey',authIdCookieOptions);var authKeyCookieOptions={};authKeyCookieOptions.path='';Cookies.remove('authToken',authKeyCookieOptions);window.location.reload();setTimeout(function(){showNotification('success','Success!','You are now disconnected, please refresh the page');},5000);}else if(id==='download-painting'){{const downloadLink=document.createElement('a');canvasRenderer.element.canvas.painting[0].toBlob(function(blob){downloadLink.href=URL.createObjectURL(blob);var date=new Date();downloadLink.download=serverData.painting.id+'-'+serverData.painting.slug+'-'+date.valueOf()+'.png';downloadLink.click();},'image/png');}}"
+        },
+        {
+          "fingerprint": "9545b39065dcaede7c8cf1d7",
+          "line": 14011,
+          "code": "showNotification('success','Password set successfully! Please log in to your account');"
+        },
+        {
+          "fingerprint": "46fd5d04f429b279813e16d3",
+          "line": 14028,
+          "code": "formActions['form-account-change-password']=function(gRecaptchaResponse){var passwordChangeForm=$('#form-account-change-password'),passwordChangeFields={};passwordChangeFields.current=passwordChangeForm.find('[name=\"password-current\"]').val();passwordChangeFields.password=passwordChangeForm.find('[name=\"password\"]').val();passwordChangeFields.confirm=passwordChangeForm.find('[name=\"password-confirm\"]').val();var requestData=passwordChangeFields;gRecaptchaResponse!==undefined&&(requestData['g-recaptcha-response']=gRecaptchaResponse);grecaptcha.reset();if(gRecaptchaResponse!==undefined){ui.goBackFromCaptcha();}ui.triggerLoader(true);api.xhr.req('POST','/api/account-password.php',requestData,true,function(success,response){ui.triggerLoader(false);passwordChangeForm.find('.submit-form').text(passwordChangeForm.find('.submit-form').attr('data-text'));passwordChangeForm.find('.submit-form').removeAttr('disabled');passwordChangeForm.find('.submit-form').removeClass('spin');if(success){passwordChangeForm.find('input').val('');showNotification('success','Success','Password updated');}else{showNotification('error','Error',response.message);}});};"
+        },
+        {
+          "fingerprint": "b3abf3a6b3191768b4202d09",
+          "line": 14041,
+          "code": "api.xhr.req('POST','/api/account-password.php',requestData,true,function(success,response){ui.triggerLoader(false);passwordChangeForm.find('.submit-form').text(passwordChangeForm.find('.submit-form').attr('data-text'));passwordChangeForm.find('.submit-form').removeAttr('disabled');passwordChangeForm.find('.submit-form').removeClass('spin');if(success){passwordChangeForm.find('input').val('');showNotification('success','Success','Password updated');}else{showNotification('error','Error',response.message);}});"
+        },
+        {
+          "fingerprint": "220725cfb14f25bb6a0549f9",
+          "line": 15355,
+          "code": "if(Notification.permission==='granted'){const notification=new Notification(incomingMessage.username+' says: '+incomingMessage.message);}else if(Notification.permission!=='denied'){Notification.requestPermission().then(argument=>{if(argument==='granted'){{const notification=new Notification(incomingMessage.username+' says: '+incomingMessage.message);}}});}"
+        },
+        {
+          "fingerprint": "e1a08508f7eefc0777ca7d7c",
+          "line": 15359,
+          "code": "if(Notification.permission!=='denied'){Notification.requestPermission().then(argument=>{if(argument==='granted'){{const notification=new Notification(incomingMessage.username+' says: '+incomingMessage.message);}}});}"
+        },
+        {
+          "fingerprint": "bcc1e618acf935465661fc99",
+          "line": 15360,
+          "code": "Notification.requestPermission().then(argument=>{if(argument==='granted'){{const notification=new Notification(incomingMessage.username+' says: '+incomingMessage.message);}}});"
+        },
+        {
+          "fingerprint": "ae6ed60dc267ba5f6206b736",
+          "line": 15950,
+          "code": "if(Notification.permission==='granted'){const notification=new Notification('The '+options[areaFightStartPayload.id].name+' '+text+' war has begun!');}else Notification.permission!=='denied'&&Notification.requestPermission().then(argument=>{if(argument==='granted'){const notification=new Notification('The '+options[areaFightStartPayload.id].name+' '+text+' war has begun!');}});"
+        },
+        {
+          "fingerprint": "6efe40ed83aa2090aa6010ee",
+          "line": 15955,
+          "code": "Notification.permission!=='denied'&&Notification.requestPermission().then(argument=>{if(argument==='granted'){const notification=new Notification('The '+options[areaFightStartPayload.id].name+' '+text+' war has begun!');}});"
+        }
+      ],
+      "removed": [
+        {
+          "fingerprint": "69e5d2a74e1b151071b331a2",
+          "line": 479,
+          "code": "if(serverData.painting.moderators[itemKey].permissions.tools){welcomeVisible=true;}"
+        },
+        {
+          "fingerprint": "91863a2a8b051b2cf9374914",
+          "line": 566,
+          "code": "serverData.painting.moderators[itemKey].permissions.tools&&$('a[data-id=\"painting-owner-tools\"]').removeClass('display-none').show();"
+        },
+        {
+          "fingerprint": "7c64eecd63226fd445b919c1",
+          "line": 1026,
+          "code": "pointer.mobileBrushActivated?(pointer.mobileBrushActivated=false,$(this).find('span').text('Activate Brush?'),$(this).find('div').show()):serverData.painting.cooldown>0?canvasRenderer.drawPixelAt():(pointer.mobileFirstActivation&&(pointer.mobileFirstActivation=false,canvasRenderer.scale=10,zoomAroundViewportCenter(true)),pointer.mobileBrushActivated=true,$(this).find('span').text('Disable Brush?'),$(this).find('div').hide());"
+        },
+        {
+          "fingerprint": "0f2fe308fe276ff7eca4d2c3",
+          "line": 3778,
+          "code": "if(argument-countValue0Setting>=serverData.painting.rate*1.5){countValue0Setting=argument;placeCursorPixel();}"
+        },
+        {
+          "fingerprint": "ade56a382fd2627932ebdbde",
+          "line": 3822,
+          "code": "if(event.originalEvent){event.preventDefault();if(selectedItemId!==null)canvasRenderer.useWeapon();else{if(!enabled){if(count>5){enabled=true;localStorage.setItem('know-about-space-bar',true);showNotification('info','Tip: Hold [SPACE BAR] to draw faster!');}else count++;}canvasRenderer.drawPixelAt();}}"
+        },
+        {
+          "fingerprint": "ec9a27c4c9586d52c5251c15",
+          "line": 5535,
+          "code": "if(event.originalEvent){var guildRankRequest={};guildRankRequest.username=$(this).attr('data-username');guildRankRequest.rank=$(this).val();var requestData=guildRankRequest;api.xhr.req('POST','/api/post-guild-rank.php',requestData,true,function(success,response){success?showNotification('success','Success','Guild rank updated'):($('.profile-guild-rank select[name=\"guild-rank\"]').val($('.profile-guild-rank select[name=\"guild-rank\"]').attr('data-rank')).change(),showNotification('error','Error',response.message));});}"
+        },
+        {
+          "fingerprint": "baeffd8672fcc2ad2940d0fa",
+          "line": 6002,
+          "code": "if(ui.selectors.modal==='captcha'){return;}else visible?(ui.activeContent.find('> form').hide(),ui.activeContent.find('> div').hide(),ui.activeContent.find('.loading').css('display','flex')):(ui.activeContent.find('> form').show(),ui.activeContent.find('> div').show(),ui.activeContent.find('.loading').css('display','none'));"
+        },
+        {
+          "fingerprint": "394dfc56488292b3f23a462c",
+          "line": 6314,
+          "code": "!serverData.user.hasEmail?ui.activeElement.find('.account-password').hide():ui.activeElement.find('.account-password').show();"
+        },
+        {
+          "fingerprint": "8ede075b19c3956ba8f7a397",
+          "line": 6575,
+          "code": "if(target==='captcha'){ui.activeCaptcha=true;}else ui.activeCaptcha=false;"
+        },
+        {
+          "fingerprint": "52190a17d892cc68f9637db4",
+          "line": 7926,
+          "code": "showNotification('success','Permissions updated');"
+        },
+        {
+          "fingerprint": "f73b2c70ae9f4e8b8b269525",
+          "line": 11817,
+          "code": "if(inputValue!==appState.painting.cooldown)showNotification('error','You need to be a Premium Subscriber to modify this setting.');else{ui.triggerFormInputError('cooldown','');}"
+        },
+        {
+          "fingerprint": "8e65c91a87d12839085e4f39",
+          "line": 12119,
+          "code": "if(serverData.painting.cooldown>0){$('#mobileplace a.mobile-place').find('span').text('Place pixel?');$('#mobileplace a.mobile-place').find('div').hide();}else{$('#mobileplace a.mobile-place').find('span').text('Activate Brush?');$('#mobileplace a.mobile-place').find('div').show();}"
+        },
+        {
+          "fingerprint": "aae230511eea7859b7e35e51",
+          "line": 12154,
+          "code": "if(event.originalEvent.changedTouches[0].clientX===undefined||event.originalEvent.changedTouches[0].clientY===undefined){alert('Browser not supported, please use Chrome (recommended), Safari or Firefox');}else{event.pageX=event.originalEvent.changedTouches[0].clientX;event.pageY=event.originalEvent.changedTouches[0].clientY;}"
+        },
+        {
+          "fingerprint": "2a408acf1903c5eee23318c1",
+          "line": 12342,
+          "code": "if(id==='logout'){var cookieOptions={};cookieOptions.path='';Cookies.remove('authId',cookieOptions);var authIdCookieOptions={};authIdCookieOptions.path='';Cookies.remove('authKey',authIdCookieOptions);var authKeyCookieOptions={};authKeyCookieOptions.path='';Cookies.remove('authToken',authKeyCookieOptions);window.location.reload();setTimeout(function(){showNotification('success','Success!','You are now disconnected, please refresh the page');},5000);}else if(id==='download-painting'){const downloadLink=document.createElement('a');canvasRenderer.element.canvas.painting[0].toBlob(function(blob){downloadLink.href=URL.createObjectURL(blob);var date=new Date();downloadLink.download=serverData.painting.id+'-'+serverData.painting.slug+'-'+date.valueOf()+'.png';downloadLink.click();},'image/png');}"
+        },
+        {
+          "fingerprint": "166884d8b00af88f57d3c38c",
+          "line": 12706,
+          "code": "success?(showNotification('success','Password set successfully! Please log in to your account'),setTimeout(function(){window.location.replace('/'+appState.page);},3000)):showNotification('error','Error',response.message);"
+        },
+        {
+          "fingerprint": "5bb6fef7e08e2ac39d5317cf",
+          "line": 12722,
+          "code": "formActions['form-account-change-password']=function(gRecaptchaResponse){var passwordChangeForm=$('#form-account-change-password'),passwordChangeFields={};passwordChangeFields.current=passwordChangeForm.find('[name=\"password-current\"]').val();passwordChangeFields.password=passwordChangeForm.find('[name=\"password\"]').val();passwordChangeFields.confirm=passwordChangeForm.find('[name=\"password-confirm\"]').val();var requestData=passwordChangeFields;gRecaptchaResponse!==undefined&&(requestData['g-recaptcha-response']=gRecaptchaResponse);grecaptcha.reset();if(gRecaptchaResponse!==undefined){ui.goBackFromCaptcha();}ui.triggerLoader(true);api.xhr.req('POST','/api/account-password.php',requestData,true,function(success,response){ui.triggerLoader(false);passwordChangeForm.find('.submit-form').text(passwordChangeForm.find('.submit-form').attr('data-text'));passwordChangeForm.find('.submit-form').removeAttr('disabled');passwordChangeForm.find('.submit-form').removeClass('spin');if(success){passwordChangeForm.find('input').val('');showNotification('success','Success','Password updated');}else showNotification('error','Error',response.message);});};"
+        },
+        {
+          "fingerprint": "8d594c427e7a62ae1691acf7",
+          "line": 12735,
+          "code": "api.xhr.req('POST','/api/account-password.php',requestData,true,function(success,response){ui.triggerLoader(false);passwordChangeForm.find('.submit-form').text(passwordChangeForm.find('.submit-form').attr('data-text'));passwordChangeForm.find('.submit-form').removeAttr('disabled');passwordChangeForm.find('.submit-form').removeClass('spin');if(success){passwordChangeForm.find('input').val('');showNotification('success','Success','Password updated');}else showNotification('error','Error',response.message);});"
+        },
+        {
+          "fingerprint": "a54b1b6a66468e7c194ec9f9",
+          "line": 14038,
+          "code": "if(Notification.permission==='granted'){{const notification=new Notification(incomingMessage.username+' says: '+incomingMessage.message);}}else Notification.permission!=='denied'&&Notification.requestPermission().then(notificationPermission=>{if(notificationPermission==='granted'){{const notification=new Notification(incomingMessage.username+' says: '+incomingMessage.message);}}});"
+        },
+        {
+          "fingerprint": "04e3a46ca6ec967edafe8f1b",
+          "line": 14045,
+          "code": "Notification.permission!=='denied'&&Notification.requestPermission().then(notificationPermission=>{if(notificationPermission==='granted'){{const notification=new Notification(incomingMessage.username+' says: '+incomingMessage.message);}}});"
+        },
+        {
+          "fingerprint": "d0c09d704125e7daa5277209",
+          "line": 14542,
+          "code": "if(Notification.permission==='granted'){const notification=new Notification('The '+options[areaFightStartPayload.id].name+' '+text+' war has begun!');}else if(Notification.permission!=='denied'){Notification.requestPermission().then(notificationPermission=>{if(notificationPermission==='granted'){{const notification=new Notification('The '+options[areaFightStartPayload.id].name+' '+text+' war has begun!');}}});}"
+        },
+        {
+          "fingerprint": "9df4b67902445cd639ac9ebf",
+          "line": 14546,
+          "code": "if(Notification.permission!=='denied'){Notification.requestPermission().then(notificationPermission=>{if(notificationPermission==='granted'){{const notification=new Notification('The '+options[areaFightStartPayload.id].name+' '+text+' war has begun!');}}});}"
+        },
+        {
+          "fingerprint": "3ab928b0aa008a3db5719bc9",
+          "line": 14547,
+          "code": "Notification.requestPermission().then(notificationPermission=>{if(notificationPermission==='granted'){{const notification=new Notification('The '+options[areaFightStartPayload.id].name+' '+text+' war has begun!');}}});"
+        }
+      ]
+    },
+    "contracts": {
+      "registrations": {
+        "added": [
+          "on(\"area_fight_bonus_chest\")",
+          "on(\"auction.lost.bid\")",
+          "on(\"auction.new.bid\")",
+          "on(\"auction.notification.win\")",
+          "on(\"click\", \"#artist-island .choose-paint\")",
+          "on(\"click\", \"#artist-island .paint-settings .row-select a\")",
+          "on(\"click\", \".bid-framed-auction\")",
+          "on(\"click\", \".close-auction\")",
+          "on(\"click\", \".close-gembox\")",
+          "on(\"click\", \".confirm-craft-painting\")",
+          "on(\"click\", \".create-framed-auction\")",
+          "on(\"click\", \".open-artist-island\")",
+          "on(\"click\", \".open-framed-auction\")",
+          "on(\"click\", \".open-gembox\")",
+          "on(\"click\", \".open-pt-create\")"
+        ],
+        "removed": []
+      },
+      "requests": {
+        "added": [
+          "GET /api/framed-painting.php payload keys: (dynamic or none)",
+          "GET /api/gembox.php payload keys: (dynamic or none)",
+          "POST /api/framed-painting.php payload keys: (dynamic or none)"
+        ],
+        "removed": []
+      }
+    },
+    "securityTopics": [
+      {
+        "topic": "CAPTCHA",
+        "added": 3,
+        "removed": 3
+      },
+      {
+        "topic": "synthetic input",
+        "added": 3,
+        "removed": 3
+      },
+      {
+        "topic": "sessions/authentication",
+        "added": 6,
+        "removed": 5
+      },
+      {
+        "topic": "placement cooldown/rate",
+        "added": 5,
+        "removed": 4
+      },
+      {
+        "topic": "permissions/moderation",
+        "added": 8,
+        "removed": 8
+      }
+    ],
+    "bootstrap": {
+      "added": [],
+      "removed": [],
+      "implementationChanged": true
+    },
+    "bootstrapSummary": "Removed obfuscator guard implementation differs; detected guard features are unchanged (possibly obfuscation noise).",
+    "shortSummary": "Security/anticheat: candidates include CAPTCHA (+3/-3); synthetic input (+3/-3); sessions/authentication (+6/-5); placement cooldown/rate (+5/-4); permissions/moderation (+8/-8). Static observations; review source evidence. Removed obfuscator guard implementation differs; detected guard features are unchanged (possibly obfuscation noise).\nAccount and access: added #artist-island .paint-preview .author, added #artist-island .paint-preview .author .author-name; Canvas and placement: added /api/framed-painting.php, added #artist-island .craft-painting; Guilds and social features: changed canvasRenderer.loadFriends, changed canvasRenderer.loadGuildMembers; Store and inventory: added #item .s-coins, added #item .s-goldbars",
+    "limits": "Categories are inferred from public literals, member names and function names. Security entries show exact changed statement fingerprints with source lines; they can include refactoring, renaming and numeric changes. They do not prove an exploit, anticheat bypass, server enforcement, or complete security coverage. Obfuscator bootstrap removal is the same deliberate transform in every generated version; this scan covers retained application code only."
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "baselineCommit": "f44f08920100146b9ba4109315dc3c79d80a7f0f",
+  "baselineSha256": "e377bea924ae60c38e9719a519ad656a47530299b1044430b5ac119336ad1991",
+  "commentedSha256": "f3712c3b8a641a4d4ea890e83f30dd34d26d707eef2df19bc7afe9565d7e6ef5",
+  "normalizedApplicationSha256": "5231415d8bb83d49e94d39dbf2eae4ee76a742e873d25d03264a9451786ec4ce",
+  "explanatoryComments": 551,
+  "executableApplicationUnchanged": true
+}

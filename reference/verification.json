@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "outputSha256": "b17fff1f0332018c80d193a7e98e75a4dcd374d397827b563edaff5cba8d5022",
+  "stringTableEntriesChecked": 7755,
+  "rejectedMutations": [
+    "bootstrap byte",
+    "statement insertion",
+    "string value",
+    "numeric value",
+    "operator"
+  ]
+}

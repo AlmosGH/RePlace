@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "outputSha256": "f3712c3b8a641a4d4ea890e83f30dd34d26d707eef2df19bc7afe9565d7e6ef5",
+  "helperFunctions": 17,
+  "differentialCases": 640,
+  "hoistingCases": 7,
+  "readyCallbackRegistered": true,
+  "consoleUnmodified": true,
+  "applicationCallbackExecuted": false
+}

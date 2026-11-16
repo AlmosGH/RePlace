@@ -1,0 +1,629 @@
+{
+  "before": "20220405121923-4a476196",
+  "after": "20220405154241-2135cdd2",
+  "changes": {
+    "endpoints": {
+      "added": [],
+      "removed": []
+    },
+    "emits": {
+      "added": [],
+      "removed": []
+    },
+    "listeners": {
+      "added": [],
+      "removed": []
+    },
+    "selectors": {
+      "added": [
+        "#painting-list"
+      ],
+      "removed": []
+    },
+    "text": {
+      "added": [],
+      "removed": [
+        " pixels placed\" class=\""
+      ]
+    },
+    "functions": {
+      "added": [
+        "idPrototypeData"
+      ],
+      "removed": [],
+      "changed": [
+        "animateWeaponExpansion",
+        "api.abortRequest",
+        "callback",
+        "canvasRenderer.checkProtectionFromPainting",
+        "canvasRenderer.drawPixelAt",
+        "canvasRenderer.fetchPaintingAccess",
+        "canvasRenderer.fetchPaintingModerators",
+        "canvasRenderer.formatScale",
+        "canvasRenderer.getColorFromPainting",
+        "canvasRenderer.loadBlocked",
+        "canvasRenderer.loadFreeCoins",
+        "canvasRenderer.loadGuildMembers",
+        "canvasRenderer.loadMyPaintings",
+        "canvasRenderer.loadPainting",
+        "canvasRenderer.loadUserItems",
+        "canvasRenderer.refreshPaintingList",
+        "canvasRenderer.selectPaletteColor",
+        "canvasRenderer.triggerCooldownPanel",
+        "canvasRenderer.updateScaleAndPosition",
+        "canvasRenderer.useWeapon",
+        "chat.addMessageRow",
+        "chat.sendMessage",
+        "chat.updateFlash",
+        "chat.updateNotificationCount",
+        "connectRealtime",
+        "exportsPrototypeData",
+        "formatElapsedTime",
+        "holidayTextHtml",
+        "initializePainting",
+        "localEncodingPacketJCallback",
+        "normalizePointerEvent",
+        "object.goBackFromCaptcha",
+        "object.loadGuildData",
+        "object.loadGuilds",
+        "object.loadPaintingCreateOrEdit",
+        "object.loadTopUsers",
+        "object.onChangeTools",
+        "object.openModal",
+        "object.settingsPaintingSelectAccess",
+        "object.triggerLoader",
+        "object.updateActiveContent",
+        "openCoinIsland",
+        "openGuild",
+        "openSocialPanel",
+        "pointer.setCursorPosition",
+        "prototypeData",
+        "resizeViewport",
+        "setPageLoading",
+        "setPaintingLoading",
+        "zoomAroundViewportCenter"
+      ],
+      "smallNumericOnly": []
+    }
+  },
+  "assessment": {
+    "major": [
+      {
+        "area": "Account and access",
+        "evidence": [
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.goBackFromCaptcha"
+          }
+        ]
+      },
+      {
+        "area": "Canvas and placement",
+        "evidence": [
+          {
+            "kind": "added",
+            "key": "selectors",
+            "value": "#painting-list"
+          },
+          {
+            "kind": "removed",
+            "key": "text",
+            "value": " pixels placed\" class=\""
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "animateWeaponExpansion"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.checkProtectionFromPainting"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.drawPixelAt"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.fetchPaintingAccess"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.fetchPaintingModerators"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.formatScale"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.getColorFromPainting"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadBlocked"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadFreeCoins"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadGuildMembers"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadMyPaintings"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadPainting"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadUserItems"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.refreshPaintingList"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.selectPaletteColor"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.triggerCooldownPanel"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.updateScaleAndPosition"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.useWeapon"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "initializePainting"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.loadPaintingCreateOrEdit"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.settingsPaintingSelectAccess"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "setPaintingLoading"
+          }
+        ]
+      },
+      {
+        "area": "Guilds and social features",
+        "evidence": [
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadGuildMembers"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "chat.addMessageRow"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "chat.sendMessage"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "chat.updateFlash"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "chat.updateNotificationCount"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.loadGuildData"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.loadGuilds"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "openGuild"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "openSocialPanel"
+          }
+        ]
+      },
+      {
+        "area": "Store and inventory",
+        "evidence": [
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadFreeCoins"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "canvasRenderer.loadUserItems"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "openCoinIsland"
+          }
+        ]
+      },
+      {
+        "area": "Realtime and connection handling",
+        "evidence": [
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "connectRealtime"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "localEncodingPacketJCallback"
+          }
+        ]
+      },
+      {
+        "area": "Maps and navigation",
+        "evidence": [
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "resizeViewport"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "zoomAroundViewportCenter"
+          }
+        ]
+      },
+      {
+        "area": "Interface and settings",
+        "evidence": [
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "chat.updateNotificationCount"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.openModal"
+          },
+          {
+            "kind": "changed",
+            "key": "functions",
+            "value": "object.settingsPaintingSelectAccess"
+          }
+        ]
+      }
+    ],
+    "security": {
+      "added": [
+        {
+          "fingerprint": "7c64eecd63226fd445b919c1",
+          "line": 5442,
+          "code": "pointer.mobileBrushActivated?(pointer.mobileBrushActivated=false,$(this).find('span').text('Activate Brush?'),$(this).find('div').show()):serverData.painting.cooldown>0?canvasRenderer.drawPixelAt():(pointer.mobileFirstActivation&&(pointer.mobileFirstActivation=false,canvasRenderer.scale=10,zoomAroundViewportCenter(true)),pointer.mobileBrushActivated=true,$(this).find('span').text('Disable Brush?'),$(this).find('div').hide());"
+        },
+        {
+          "fingerprint": "a8f25ae57c8a39ab646dd44b",
+          "line": 5703,
+          "code": "canvasRenderer.cooldownSetInterval=setInterval(function(){var cooldown=canvasRenderer.cooldown+1000-nowMilliseconds();cooldown<0?(cooldown=0,clearInterval(canvasRenderer.cooldownSetInterval),elements.cooldown.hide()):cooldown=parseInt(cooldown/1000);!dotting&&cooldown>serverData.painting.cooldown&&(cooldown=serverData.painting.cooldown);var number=0,text=0;cooldown>60?(number=parseInt(cooldown/60),text=cooldown-number*60):text=cooldown;number<10&&(number='0'+number);text<10&&(text='0'+text);elements.cooldown.find('.box .cd').text(number+':'+text);},10);"
+        },
+        {
+          "fingerprint": "7a966517b669cb805705fda2",
+          "line": 5711,
+          "code": "cooldown<0?(cooldown=0,clearInterval(canvasRenderer.cooldownSetInterval),elements.cooldown.hide()):cooldown=parseInt(cooldown/1000);"
+        },
+        {
+          "fingerprint": "59c0d059107d56014f181168",
+          "line": 5730,
+          "code": "elements.cooldown.find('.head').hide();"
+        },
+        {
+          "fingerprint": "66ff1fe510fb431469814459",
+          "line": 5731,
+          "code": "elements.cooldown.find('.foot').hide();"
+        },
+        {
+          "fingerprint": "ea96b63c1973bf5430a95e86",
+          "line": 5733,
+          "code": "elements.cooldown.find('.head[data-id=\"dotting\"]').show();"
+        },
+        {
+          "fingerprint": "887d779eeaa5fc0c645f58a9",
+          "line": 5734,
+          "code": "elements.cooldown.find('.foot[data-id=\"dotting\"]').show();"
+        },
+        {
+          "fingerprint": "f28889c51fad233f6a18e427",
+          "line": 5736,
+          "code": "elements.cooldown.find('.head[data-id=\"painting\"]').show();"
+        },
+        {
+          "fingerprint": "58495e8e6a1b215e203635ba",
+          "line": 5737,
+          "code": "elements.cooldown.find('.foot[data-id=\"painting\"]').show();"
+        },
+        {
+          "fingerprint": "1d517ff7f5315c6486079d1d",
+          "line": 5739,
+          "code": "elements.cooldown.show();"
+        },
+        {
+          "fingerprint": "94e359e173f09f8f15cf4e3d",
+          "line": 6487,
+          "code": "!accessFilters['filter-6']&&pixelplaceEntry.cooldown!=='0'&&(paintingFilteredOut=true);"
+        },
+        {
+          "fingerprint": "ade56a382fd2627932ebdbde",
+          "line": 7468,
+          "code": "if(event.originalEvent){event.preventDefault();if(selectedItemId!==null)canvasRenderer.useWeapon();else{if(!drawingHintAcknowledged){if(drawingHintAttempts>5){drawingHintAcknowledged=true;localStorage.setItem('know-about-space-bar',true);showNotification('info','Tip: Hold [SPACE BAR] to draw faster!');}else drawingHintAttempts++;}canvasRenderer.drawPixelAt();}}"
+        },
+        {
+          "fingerprint": "7d770ea3ab71ae1e0c1535f4",
+          "line": 8608,
+          "code": "profileElement.find('.profile-name').attr('title','BANNED').removeClass('banned').addClass('banned');"
+        },
+        {
+          "fingerprint": "301f438b697c799f4b6a5d53",
+          "line": 8619,
+          "code": "profileElement.find('.profile-name').attr('title','').removeClass('banned');"
+        },
+        {
+          "fingerprint": "b0669353470665036aef2fc9",
+          "line": 8744,
+          "code": "if(event.originalEvent){var guildRankRequest={};guildRankRequest.username=$(this).attr('data-username');guildRankRequest.rank=$(this).val();var requestData=guildRankRequest;api.xhr.req('POST','https://pixelplace.io/api/post-guild-rank.php',requestData,true,function(success,response){success?showNotification('success','Success','Guild rank updated'):($('.profile-guild-rank select[name=\"guild-rank\"]').val($('.profile-guild-rank select[name=\"guild-rank\"]').attr('data-rank')).change(),showNotification('error','Error',response.message));});}"
+        },
+        {
+          "fingerprint": "bb38c6c191b832cd5b9433ed",
+          "line": 9187,
+          "code": "if(ui.selectors.modal==='captcha')return;else visible?(ui.activeContent.find('> form').hide(),ui.activeContent.find('> div').hide(),ui.activeContent.find('.loading').css('display','flex')):(ui.activeContent.find('> form').show(),ui.activeContent.find('> div').show(),ui.activeContent.find('.loading').css('display','none'));"
+        },
+        {
+          "fingerprint": "f28fe1cdbb6902ebd56192d8",
+          "line": 9467,
+          "code": "ui.activeElement.find('.account-password').hide();"
+        },
+        {
+          "fingerprint": "37eff1579f82a3ef652cccc7",
+          "line": 9469,
+          "code": "ui.activeElement.find('.account-password').show();"
+        },
+        {
+          "fingerprint": "e137229f285e549f0d0b4c54",
+          "line": 9720,
+          "code": "if(target==='captcha')ui.activeCaptcha=true;else{ui.activeCaptcha=false;}"
+        },
+        {
+          "fingerprint": "f300b19a68109fa85af0ff37",
+          "line": 9838,
+          "code": "ui.activeCaptcha&&ui.openModal(ui.previous.modal,ui.previous.content,ui.previous.extra,true);"
+        },
+        {
+          "fingerprint": "8f6f99b518bbfa20b67e9eca",
+          "line": 11141,
+          "code": "!ui.activeCaptcha&&!ui.activeAlert&&ui.closeModal();"
+        },
+        {
+          "fingerprint": "0a7f469831974b74f8f330f3",
+          "line": 13409,
+          "code": "ui.elem.settings.painting.find('[name=\"cooldown\"]').on('input',function(event){var inputValue=parseInt($(this).val());if(serverData.user.premium.active){if(inputValue>3600)ui.triggerFormInputError('cooldown','Maximum cooldown is 3600 (1 hour)');else inputValue<0&&ui.triggerFormInputError('cooldown','Minimum cooldown is 0 (disabled)');}else inputValue!==appState.painting.cooldown?($(this).val(appState.painting.cooldown),showNotification('error','You need to be a Premium Subscriber to modify this setting. (Cooldown can be set to 0 second to be disabled or up to 1 hour)')):ui.triggerFormInputError('cooldown','');});"
+        },
+        {
+          "fingerprint": "06f24d5693618c80a4bcd4e0",
+          "line": 13424,
+          "code": "inputValue<0&&ui.triggerFormInputError('cooldown','Minimum cooldown is 0 (disabled)');"
+        },
+        {
+          "fingerprint": "6e9001a2865e7495e2557084",
+          "line": 13455,
+          "code": "inputValue!==appState.painting.autoAcceptTime?($(this).val(appState.painting.cooldown),showNotification('error','You need to be a Premium Subscriber to modify this setting.')):ui.triggerFormInputError('autoAcceptTime','');"
+        },
+        {
+          "fingerprint": "18f98d02eb5c6c201221e002",
+          "line": 13795,
+          "code": "event.originalEvent.changedTouches[0].clientX===undefined||event.originalEvent.changedTouches[0].clientY===undefined?alert('Browser not supported, please use Chrome (recommended), Safari or Firefox'):(event.pageX=event.originalEvent.changedTouches[0].clientX,event.pageY=event.originalEvent.changedTouches[0].clientY);"
+        },
+        {
+          "fingerprint": "bab0a921d38a637e2f605ec2",
+          "line": 16362,
+          "code": "if(serverData.painting.rate<100){serverData.painting.rate+=10;mouseupSetIntervalResult!==null&&(clearInterval(mouseupSetIntervalResult),mouseupSetIntervalResult=null);}"
+        },
+        {
+          "fingerprint": "7fda641b1fa97257db441be3",
+          "line": 16363,
+          "code": "serverData.painting.rate+=10;"
+        }
+      ],
+      "removed": [
+        {
+          "fingerprint": "83a4b826d7dcf724059225b4",
+          "line": 5438,
+          "code": "serverData.painting.cooldown>0?canvasRenderer.drawPixelAt():(pointer.mobileFirstActivation&&(pointer.mobileFirstActivation=false,canvasRenderer.scale=10,zoomAroundViewportCenter(true)),pointer.mobileBrushActivated=true,$(this).find('span').text('Disable Brush?'),$(this).find('div').hide());"
+        },
+        {
+          "fingerprint": "240f18088a3df5f21cc68b0d",
+          "line": 5700,
+          "code": "showCountdown&&(canvasRenderer.cooldownSetInterval=setInterval(function(){var cooldown=canvasRenderer.cooldown+1000-nowMilliseconds();if(cooldown<0){cooldown=0;clearInterval(canvasRenderer.cooldownSetInterval);elements.cooldown.hide();}else cooldown=parseInt(cooldown/1000);!dotting&&cooldown>serverData.painting.cooldown&&(cooldown=serverData.painting.cooldown);var number=0,text=0;cooldown>60?(number=parseInt(cooldown/60),text=cooldown-number*60):text=cooldown;number<10&&(number='0'+number);text<10&&(text='0'+text);elements.cooldown.find('.box .cd').text(number+':'+text);},10),elements.cooldown.find('.head').hide(),elements.cooldown.find('.foot').hide(),dotting?(elements.cooldown.find('.head[data-id=\"dotting\"]').show(),elements.cooldown.find('.foot[data-id=\"dotting\"]').show()):(elements.cooldown.find('.head[data-id=\"painting\"]').show(),elements.cooldown.find('.foot[data-id=\"painting\"]').show()),elements.cooldown.show());"
+        },
+        {
+          "fingerprint": "20167be8e6f198e851bc324e",
+          "line": 5711,
+          "code": "clearInterval(canvasRenderer.cooldownSetInterval);"
+        },
+        {
+          "fingerprint": "efc8442ab8984dc524154eb5",
+          "line": 5712,
+          "code": "elements.cooldown.hide();"
+        },
+        {
+          "fingerprint": "60379eb28606627d88d29afa",
+          "line": 6479,
+          "code": "if(!accessFilters['filter-6']&&pixelplaceEntry.cooldown!=='0'){paintingFilteredOut=true;}"
+        },
+        {
+          "fingerprint": "5808797e3d0d322b2b1cb570",
+          "line": 7455,
+          "code": "mathAbs<5&&mathAbsTouchStartY<5&&touchStartScale===canvasRenderer.scale&&event.originalEvent&&(event.preventDefault(),selectedItemId!==null?canvasRenderer.useWeapon():(!enabled&&(count>5?(enabled=true,localStorage.setItem('know-about-space-bar',true),showNotification('info','Tip: Hold [SPACE BAR] to draw faster!')):count++),canvasRenderer.drawPixelAt()));"
+        },
+        {
+          "fingerprint": "a585dd2b2fe1383b34d87341",
+          "line": 8609,
+          "code": "parseInt(response.status)===2?(profileElement.find('.profile-name').attr('title','BANNED').removeClass('banned').addClass('banned'),response.banReason&&profileElement.find('.profile-name-ban').text('Ban reason: '+response.banReason).show()):profileElement.find('.profile-name').attr('title','').removeClass('banned');"
+        },
+        {
+          "fingerprint": "19f737061bc0693afd8d03de",
+          "line": 8744,
+          "code": "if(event.originalEvent){var guildRankRequest={};guildRankRequest.username=$(this).attr('data-username');guildRankRequest.rank=$(this).val();var requestData=guildRankRequest;api.xhr.req('POST','https://pixelplace.io/api/post-guild-rank.php',requestData,true,function(success,response){if(success){showNotification('success','Success','Guild rank updated');}else{$('.profile-guild-rank select[name=\"guild-rank\"]').val($('.profile-guild-rank select[name=\"guild-rank\"]').attr('data-rank')).change();showNotification('error','Error',response.message);}});}"
+        },
+        {
+          "fingerprint": "784a300fc5902db6bd60af39",
+          "line": 9190,
+          "code": "if(ui.selectors.modal==='captcha')return;else if(visible){ui.activeContent.find('> form').hide();ui.activeContent.find('> div').hide();ui.activeContent.find('.loading').css('display','flex');}else{ui.activeContent.find('> form').show();ui.activeContent.find('> div').show();ui.activeContent.find('.loading').css('display','none');}"
+        },
+        {
+          "fingerprint": "394dfc56488292b3f23a462c",
+          "line": 9473,
+          "code": "!serverData.user.hasEmail?ui.activeElement.find('.account-password').hide():ui.activeElement.find('.account-password').show();"
+        },
+        {
+          "fingerprint": "8ede075b19c3956ba8f7a397",
+          "line": 9722,
+          "code": "if(target==='captcha'){ui.activeCaptcha=true;}else ui.activeCaptcha=false;"
+        },
+        {
+          "fingerprint": "2921f6020aeef04d40b05358",
+          "line": 9841,
+          "code": "if(ui.activeCaptcha){ui.openModal(ui.previous.modal,ui.previous.content,ui.previous.extra,true);}"
+        },
+        {
+          "fingerprint": "29c741630bdaa8011385ba0e",
+          "line": 11123,
+          "code": "ui.activeElement&&$(event.target).attr('id')==='modals'&&!ui.activeCaptcha&&!ui.activeAlert&&ui.closeModal();"
+        },
+        {
+          "fingerprint": "cea85ef8cad7444d199f4ee0",
+          "line": 13386,
+          "code": "ui.elem.settings.painting.find('[name=\"cooldown\"]').on('input',function(event){var inputValue=parseInt($(this).val());if(serverData.user.premium.active){if(inputValue>3600)ui.triggerFormInputError('cooldown','Maximum cooldown is 3600 (1 hour)');else if(inputValue<0){ui.triggerFormInputError('cooldown','Minimum cooldown is 0 (disabled)');}}else inputValue!==appState.painting.cooldown?($(this).val(appState.painting.cooldown),showNotification('error','You need to be a Premium Subscriber to modify this setting. (Cooldown can be set to 0 second to be disabled or up to 1 hour)')):ui.triggerFormInputError('cooldown','');});"
+        },
+        {
+          "fingerprint": "351ee405c7fbbefedd85363e",
+          "line": 13402,
+          "code": "ui.triggerFormInputError('cooldown','Minimum cooldown is 0 (disabled)');"
+        },
+        {
+          "fingerprint": "4228a1131e0e16526a4e9c54",
+          "line": 13434,
+          "code": "$(this).val(appState.painting.cooldown);"
+        },
+        {
+          "fingerprint": "78ce3f801c77b9b99f110b0a",
+          "line": 13761,
+          "code": "return(event.pageX===undefined||event.pageY===undefined)&&(event.clientX===undefined||event.clientY===undefined?event.originalEvent.changedTouches[0].clientX===undefined||event.originalEvent.changedTouches[0].clientY===undefined?alert('Browser not supported, please use Chrome (recommended), Safari or Firefox'):(event.pageX=event.originalEvent.changedTouches[0].clientX,event.pageY=event.originalEvent.changedTouches[0].clientY):(event.pageX=event.clientX,event.pageY=event.clientY)),event;"
+        },
+        {
+          "fingerprint": "654fc2df9c3d81f2da7d3823",
+          "line": 13963,
+          "code": "requestData['g-recaptcha-response']=gRecaptchaResponse;"
+        },
+        {
+          "fingerprint": "04f490d0ba9f11e5837a279b",
+          "line": 16345,
+          "code": "serverData.painting.rate<100&&(serverData.painting.rate+=10,mouseupSetIntervalResult!==null&&(clearInterval(mouseupSetIntervalResult),mouseupSetIntervalResult=null));"
+        }
+      ]
+    },
+    "contracts": {
+      "registrations": {
+        "added": [],
+        "removed": []
+      },
+      "requests": {
+        "added": [],
+        "removed": []
+      }
+    },
+    "securityTopics": [
+      {
+        "topic": "CAPTCHA",
+        "added": 4,
+        "removed": 5
+      },
+      {
+        "topic": "synthetic input",
+        "added": 3,
+        "removed": 3
+      },
+      {
+        "topic": "sessions/authentication",
+        "added": 2,
+        "removed": 1
+      },
+      {
+        "topic": "placement cooldown/rate",
+        "added": 16,
+        "removed": 9
+      },
+      {
+        "topic": "permissions/moderation",
+        "added": 2,
+        "removed": 1
+      }
+    ],
+    "bootstrap": {
+      "added": [],
+      "removed": [],
+      "implementationChanged": false
+    },
+    "bootstrapSummary": "Removed obfuscator guard features and implementation fingerprint unchanged.",
+    "shortSummary": "Security/anticheat: candidates include CAPTCHA (+4/-5); synthetic input (+3/-3); sessions/authentication (+2/-1); placement cooldown/rate (+16/-9); permissions/moderation (+2/-1). Static observations; review source evidence. Removed obfuscator guard features and implementation fingerprint unchanged.\nAccount and access: changed object.goBackFromCaptcha; Canvas and placement: added #painting-list, removed  pixels placed\" class=\"; Guilds and social features: changed canvasRenderer.loadGuildMembers, changed chat.addMessageRow; Store and inventory: changed canvasRenderer.loadFreeCoins, changed canvasRenderer.loadUserItems",
+    "limits": "Categories are inferred from public literals, member names and function names. Security entries show exact changed statement fingerprints with source lines; they can include refactoring, renaming and numeric changes. They do not prove an exploit, anticheat bypass, server enforcement, or complete security coverage. Obfuscator bootstrap removal is the same deliberate transform in every generated version; this scan covers retained application code only."
+  }
+}

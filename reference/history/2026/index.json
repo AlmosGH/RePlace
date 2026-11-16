@@ -1,0 +1,53 @@
+{
+  "year": 2026,
+  "queries": [
+    {
+      "url": "https://web.archive.org/cdx/search/cdx?url=pixelplace.io%2Fjs%2Fscript.min.js&matchType=prefix&from=2026&to=2026&output=json&filter=statuscode%3A200&fl=urlkey%2Ctimestamp%2Coriginal%2Cdigest%2Cstatuscode%2Cmimetype&limit=500&showResumeKey=true",
+      "rows": 4,
+      "responseSha256": "b41ae609c780d05dc13a2feca099313845c319db3dda0933efde87a65f7b5518",
+      "resumeKey": null
+    },
+    {
+      "url": "https://web.archive.org/cdx/search/cdx?url=www.pixelplace.io%2Fjs%2Fscript.min.js&matchType=prefix&from=2026&to=2026&output=json&filter=statuscode%3A200&fl=urlkey%2Ctimestamp%2Coriginal%2Cdigest%2Cstatuscode%2Cmimetype&limit=500&showResumeKey=true",
+      "rows": 4,
+      "responseSha256": "b41ae609c780d05dc13a2feca099313845c319db3dda0933efde87a65f7b5518",
+      "resumeKey": null
+    }
+  ],
+  "captures": [
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=85030",
+      "timestamp": "20260103192131",
+      "original": "https://pixelplace.io/js/script.min.js?v3=85030",
+      "digest": "6T4P7FTLGI7G7FJQ4PZHCLG73NCS7KVR",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=85049",
+      "timestamp": "20260227071834",
+      "original": "https://pixelplace.io/js/script.min.js?v3=85049",
+      "digest": "PUAG7O6NAZRB76B7FATOQALXMXTYZPIF",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=84338",
+      "timestamp": "20260524052024",
+      "original": "https://pixelplace.io/js/script.min.js?v3=84338",
+      "digest": "C45MF32OROZ5TIDBSFIKOF7OAVLXPALC",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    },
+    {
+      "urlkey": "io,pixelplace)/js/script.min.js?v3=85291",
+      "timestamp": "20260824144436",
+      "original": "https://pixelplace.io/js/script.min.js?v3=85291",
+      "digest": "TRYVUEXA3SXHHRRD4VFZ7PGOQZRINRPZ",
+      "statuscode": "200",
+      "mimetype": "application/javascript"
+    }
+  ],
+  "discoveryComplete": true,
+  "discoveredAt": "2026-11-16T18:29:44.765Z"
+}

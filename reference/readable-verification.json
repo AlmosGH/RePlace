@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "outputSha256": "f3712c3b8a641a4d4ea890e83f30dd34d26d707eef2df19bc7afe9565d7e6ef5",
+  "checkedRenamedBindings": 2152,
+  "authorizedChanges": [
+    "Removed encoded table and decoder",
+    "Removed obfuscator self-defense",
+    "Removed console suppression"
+  ],
+  "rejectedMutations": [
+    "string",
+    "number",
+    "operator",
+    "reference",
+    "HTTP URL",
+    "socket event",
+    "payload key",
+    "DOM selector",
+    "statement",
+    "bootstrap reintroduction"
+  ]
+}

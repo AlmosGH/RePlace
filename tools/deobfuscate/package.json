@@ -1,0 +1,12 @@
+{
+  "name": "replace-deobfuscation-tools",
+  "private": true,
+  "dependencies": {
+    "@babel/generator": "^8.1.2",
+    "@babel/parser": "^8.1.2",
+    "@babel/traverse": "^8.1.2",
+    "@babel/types": "^8.1.2",
+    "diff": "9.0.0",
+    "prettier": "3.10.1"
+  }
+}

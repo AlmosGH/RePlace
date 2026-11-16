@@ -1,0 +1,35 @@
+{
+  "decoderFamily": "rotated-custom-base64",
+  "bootstrapProtection": {
+    "features": [
+      "console suppression",
+      "function-source self-defense",
+      "obfuscator domain restriction"
+    ],
+    "implementationFingerprint": "08b8cbb15b5360c383bd8b8e",
+    "assessment": "Static classification of deliberately removed obfuscator guards; an implementation fingerprint change can be generated obfuscation noise, not a new protection."
+  },
+  "bodySha256": "7f86d18be05c2329965c6bee66b93a518aba2cb5eb49beb20569da374b9c0dd5",
+  "stringTableEntries": 6454,
+  "decodedCalls": 29426,
+  "foldedExpressions": 24386,
+  "decoderAudited": true,
+  "expandedApplicationVerified": true,
+  "removedBootstrapBytes": 112778,
+  "preservedLegacyScratchGlobals": [
+    "U"
+  ],
+  "scratchNamingVersion": 1,
+  "constantBranchesRemoved": 952,
+  "preservedHoistedBindings": 952,
+  "sequencesExpanded": 1453,
+  "explanatoryComments": 478,
+  "renamedBindings": 1796,
+  "transferredNameHints": 1425,
+  "readableApplicationVerified": true,
+  "naming": "Heuristic structural alignment, inferred roles, and contextual fallback; not recovered author names",
+  "outputSha256": "7421e65437e1c607c77ee074f081fafee5cbe0da4845c88383e1492f670eaf9f",
+  "toolFingerprint": "41f62abcba081f32eb6ea0faf690e96b69f7a7a3094c63b4053158862f7c71d1",
+  "inputSha256": "7f86d18be05c2329965c6bee66b93a518aba2cb5eb49beb20569da374b9c0dd5",
+  "namesSha256": "634cadb936040c291bd21d39f00be268e771cd34b75eac3518a5231f2ecdfeab"
+}
