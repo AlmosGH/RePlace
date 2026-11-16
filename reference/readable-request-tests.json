@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "outputSha256": "e34ee7dbd28ca577f8cddb6f1b75feb16072ea215d0f9f1608a919d4522d240f",
+  "differentialRequestCases": 40,
+  "compared": [
+    "HTTP URL and method",
+    "Request data and generated headers",
+    "Request cancellation",
+    "Success/error callback data",
+    "Notifications and redirects"
+  ],
+  "networkRequestsSent": 0
+}

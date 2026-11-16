@@ -1,0 +1,12 @@
+{
+  "source": "script.deobfuscated.js",
+  "sourceSha256": "b17fff1f0332018c80d193a7e98e75a4dcd374d397827b563edaff5cba8d5022",
+  "outputSha256": "e34ee7dbd28ca577f8cddb6f1b75feb16072ea215d0f9f1608a919d4522d240f",
+  "constantBranchesRemoved": 1272,
+  "preservedHoistedBindings": 1272,
+  "sequencesExpanded": 1805,
+  "renamedBindings": 2152,
+  "removedBootstrapBytes": 127995,
+  "removedConsoleSuppression": true,
+  "bytes": 753861
+}

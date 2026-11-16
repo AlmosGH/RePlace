@@ -5,6 +5,7 @@
     "@babel/generator": "^8.1.2",
     "@babel/parser": "^8.1.2",
     "@babel/traverse": "^8.1.2",
-    "@babel/types": "^8.1.2"
+    "@babel/types": "^8.1.2",
+    "prettier": "3.10.1"
   }
 }
