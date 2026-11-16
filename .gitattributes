@@ -1,0 +1,4 @@
+# This artifact contains a byte-preserved self-defending prefix and a recorded hash.
+reference/script.deobfuscated.js -text
+reference/*.json text eol=lf
+tools/deobfuscate/* text eol=lf

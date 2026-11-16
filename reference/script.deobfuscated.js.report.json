@@ -1,0 +1,9 @@
+{
+  "sourceSha256": "f6bf3ef894bac00f0434dc2362a025cf01a63583980d29d4e7962fccda04fff8",
+  "outputSha256": "b17fff1f0332018c80d193a7e98e75a4dcd374d397827b563edaff5cba8d5022",
+  "preservedBootstrapBytes": 127995,
+  "stringTableEntries": 7755,
+  "decodedCalls": 36004,
+  "foldedExpressions": 29876,
+  "readableProperties": 20374
+}
